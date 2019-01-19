@@ -65,11 +65,13 @@ public class OI {
   }
  
   public double getForwardValue() {
-    return joy.getY(GenericHID.Hand.kLeft);
+    System.out.println(joy.getRawAxis(1));
+    return joy.getRawAxis(1);
   }
   
   public double getTurnValue() {
-    return joy.getX(GenericHID.Hand.kRight);
+    System.out.println(joy.getRawAxis(4));
+    return joy.getRawAxis(4);
   }
   
 

@@ -6,10 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -28,24 +27,26 @@ public class DriveTrain extends Subsystem {
   private SpeedControllerGroup m_right;
   private DifferentialDrive m_drive;
 
+
+
   public DriveTrain(){
     //initialize + set objects created above
     m_frontleft = new WPI_TalonSRX(11);
-    m_backleft = new WPI_TalonSRX(13);
+    m_backleft = new WPI_TalonSRX(10);
     m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
 
-    m_frontright = new WPI_TalonSRX(10);
-    m_backright = new WPI_TalonSRX(7);
+    m_frontright = new WPI_TalonSRX(21);
+    m_backright = new WPI_TalonSRX(20);
     m_right = new SpeedControllerGroup(m_frontright, m_backright);
-    // m_left.setInverted(true);  invert left motor
+    //m_left.setInverted(true); invert left side
 
     m_drive = new DifferentialDrive(m_left, m_right);
-    m_drive.arcadeDrive(0.0, 0.0);
+    
 
   }
 
   public void update(){
-    //this method will be used to control the drive train
+    m_drive.arcadeDrive(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
   }
 
 
