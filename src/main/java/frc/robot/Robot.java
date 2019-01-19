@@ -7,13 +7,23 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.CompressorOff;
+import frc.robot.commands.CompressorOn;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.PneumaticArmExtend;
+import frc.robot.commands.PneumaticArmOff;
+import frc.robot.commands.PneumaticArmRetract;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.GrabberArmSubsystem;
 
 /*
 	
@@ -29,7 +39,9 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static final Subsystem m_GrabberArmSubsystem = null;
+public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static GrabberArmSubsystem m_GrabberSubsystem = new GrabberArmSubsystem();
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -45,6 +57,23 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    Joystick stick = new Joystick(0);
+  
+    Button b1 = new JoystickButton(stick, 1);
+    Button b2 = new JoystickButton(stick, 2);
+    Button b3 = new JoystickButton(stick, 3);
+    Button b4 = new JoystickButton(stick, 4);
+
+  
+
+      b1.whenPressed(new PneumaticArmExtend());
+      b2.whenPressed(new PneumaticArmRetract());
+     // b4.whenPressed(new PneumaticArmOff());
+      //b4.whenPressed(new CompressorOn());
+      //b4.whenPressed(new CompressorOff());
+
+  
   }
 
   /**
