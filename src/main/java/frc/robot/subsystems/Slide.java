@@ -22,12 +22,12 @@ public class Slide extends Subsystem {
   private WPI_TalonSRX m_slide;
   public Slide(){
 
-    m_slide = new WPI_TalonSRX(4);
+    m_slide = new WPI_TalonSRX(3);
   }
   
   public void SlideForward(){
 
-    m_slide.set(.5);
+    m_slide.set(0.5);
 
   }
 
