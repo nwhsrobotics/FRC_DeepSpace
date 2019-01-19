@@ -47,17 +47,18 @@ public class OI {
   Joystick joy = new Joystick(0);
   
   int CLIMB_BUTTON = 1;
-	public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
-	public JoystickButton yButton = new JoystickButton(joy, );
-	public JoystickButton aButton = new JoystickButton(joy, );
-	public JoystickButton bButton = new JoystickButton(joy, );
-	public JoystickButton rightBumper = new JoystickButton(joy, );
-	public JoystickButton leftBumper = new JoystickButton(joy, );
-	public JoystickButton startButton = new JoystickButton(joy, );
-	public JoystickButton selectButton = new JoystickButton(joy, );
-	public JoystickButton leftStickButton = new JoystickButton(joy, );
+  public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
+  /*
+  public JoystickButton yButton = new JoystickButton(joy, );
+  public JoystickButton aButton = new JoystickButton(joy, );
+  public JoystickButton bButton = new JoystickButton(joy, );
+  public JoystickButton rightBumper = new JoystickButton(joy, );
+  public JoystickButton leftBumper = new JoystickButton(joy, );
+  public JoystickButton startButton = new JoystickButton(joy, );
+  public JoystickButton selectButton = new JoystickButton(joy, );
+  public JoystickButton leftStickButton = new JoystickButton(joy, );
   public JoystickButton rightStickButton = new JoystickButton(joy, );
-
+  */
 
   public OI () {
 
@@ -65,14 +66,11 @@ public class OI {
  
   public double getForwardValue() {
     return joy.getY(GenericHID.Hand.kLeft);
-
   }
+  
   public double getTurnValue() {
     return joy.getX(GenericHID.Hand.kRight);
   }
-
-
   
-
 
 }
