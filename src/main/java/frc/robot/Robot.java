@@ -18,9 +18,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.commands.ExampleCommand;
+<<<<<<< HEAD
 import frc.robot.commands.PneumaticArmExtend;
 import frc.robot.commands.PneumaticArmOff;
 import frc.robot.commands.PneumaticArmRetract;
+=======
+import frc.robot.subsystems.DriveTrain;
+>>>>>>> 3705acce0149562aeafaee03dae3516e432f7a9d
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.GrabberArmSubsystem;
 
@@ -38,9 +42,14 @@ import frc.robot.subsystems.GrabberArmSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+<<<<<<< HEAD
   public static final Subsystem m_GrabberArmSubsystem = null;
 public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static GrabberArmSubsystem m_GrabberSubsystem = new GrabberArmSubsystem();
+=======
+  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static DriveTrain m_drivetrain = new DriveTrain();
+>>>>>>> 3705acce0149562aeafaee03dae3516e432f7a9d
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -135,6 +144,7 @@ public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
   }
 
   @Override
@@ -145,6 +155,7 @@ public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
     // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
+      
     }
   }
 
@@ -154,6 +165,7 @@ public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
   }
 
   /**
