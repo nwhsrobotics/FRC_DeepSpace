@@ -46,8 +46,8 @@ public class DriveTrain extends Subsystem {
 
   }
 
-  public void update(){
-    m_drive.arcadeDrive(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+  public void update(double y, double z) {
+    m_drive.arcadeDrive(y, z);
   }
 
 
