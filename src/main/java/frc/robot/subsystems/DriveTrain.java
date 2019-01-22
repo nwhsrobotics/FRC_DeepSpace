@@ -32,12 +32,12 @@ public class DriveTrain extends Subsystem {
 
   public DriveTrain(){
     //initialize + set objects created above
-    m_frontleft = new WPI_TalonSRX(RobotMap.frontLeftCan);
-    m_backleft = new WPI_TalonSRX(RobotMap.backLeftCan);
+    m_frontleft = new WPI_TalonSRX(RobotMap.frontLeftMotorCanId());
+    m_backleft = new WPI_TalonSRX(RobotMap.backLeftMotorCanId());
     m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
 
-    m_frontright = new WPI_TalonSRX(RobotMap.frontRightCan);
-    m_backright = new WPI_TalonSRX(RobotMap.backRightCan);
+    m_frontright = new WPI_TalonSRX(RobotMap.frontRightMotorCanId());
+    m_backright = new WPI_TalonSRX(RobotMap.backRightMotorCanId());
     m_right = new SpeedControllerGroup(m_frontright, m_backright);
     //m_left.setInverted(true); invert left side
 
@@ -46,8 +46,8 @@ public class DriveTrain extends Subsystem {
 
   }
 
-  public void update(){
-    m_drive.arcadeDrive(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+  public void update(double y, double z){
+    m_drive.arcadeDrive(y, z);
   }
 
 
