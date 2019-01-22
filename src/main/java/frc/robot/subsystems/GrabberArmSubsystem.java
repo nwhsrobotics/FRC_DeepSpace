@@ -44,14 +44,8 @@ public class GrabberArmSubsystem extends Subsystem {
       m_grabberarm.set(DoubleSolenoid.Value.kReverse);
     }
 
-    public void CompressorOn(){
-      //m_Compressor.setClosedLoopControl(true);
-
-    }
-
-    public void CompressorOff(){
-      m_Compressor.setClosedLoopControl(false);
-    }
+   
+    
 
 
 

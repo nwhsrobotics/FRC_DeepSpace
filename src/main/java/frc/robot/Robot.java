@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.CompressorOff;
-import frc.robot.commands.CompressorOn;
+
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.PneumaticArmExtend;
 import frc.robot.commands.PneumaticArmOff;

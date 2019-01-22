@@ -10,15 +10,16 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.CompressorOff;
-import frc.robot.commands.CompressorOn;
+
 import frc.robot.commands.PneumaticArmExtend;
 import frc.robot.commands.PneumaticArmOff;
 import frc.robot.commands.PneumaticArmRetract;
 
 
 public class OI{
+
   
+
 }
 
 
