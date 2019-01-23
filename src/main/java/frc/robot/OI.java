@@ -23,7 +23,7 @@ public class OI{
 
   
 
-}
+
 
 
 /**
@@ -59,12 +59,10 @@ public class OI{
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-<<<<<<< HEAD
-=======
-  Joystick joy = new Joystick(0);
+  //Joystick joy = new Joystick(0);
   
-  int CLIMB_BUTTON = 1;
-  public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
+  //int CLIMB_BUTTON = 1;
+  //public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
   /*
   public JoystickButton yButton = new JoystickButton(joy, );
   public JoystickButton aButton = new JoystickButton(joy, );
@@ -77,7 +75,7 @@ public class OI{
   public JoystickButton rightStickButton = new JoystickButton(joy, );
   */
 
-  public OI () {
+  /*public OI () {
 
   }
  
@@ -90,7 +88,7 @@ public class OI{
     System.out.println(joy.getRawAxis(4));
     return joy.getRawAxis(4);
   }
-  
 
+  
+*/
 }
->>>>>>> 3705acce0149562aeafaee03dae3516e432f7a9d
