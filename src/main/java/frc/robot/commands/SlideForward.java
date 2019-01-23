@@ -8,11 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class SlideForward extends Command {
   public SlideForward() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_slide);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +25,7 @@ public class SlideForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_slide.SlideForward();
   }
 
   // Make this return true when this Command no longer needs to run execute()

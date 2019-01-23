@@ -29,7 +29,9 @@ public class RobotMap {
   public static int backLeftCan = 10;
   public static int frontRightCan = 21;
   public static int backRightCan = 20;
-
+  public static int slideCanId(){
+    return 3;
+  }
   
 
 }

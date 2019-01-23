@@ -19,6 +19,7 @@ import frc.robot.commands.SlideForward;
 import frc.robot.commands.SlideStop;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Slide;
 
 /*
 	
@@ -37,6 +38,7 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
   public static OI m_oi;
+  public static Slide m_slide = new Slide();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -48,12 +50,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    Joystick js = new Joystick(0);
-    JoystickButton a = new JoystickButton(js, 1);
-    JoystickButton b = new JoystickButton(js, 2);
 
-    a.whenPressed(new SlideForward());
-    a.whenReleased(new SlideStop());
+   
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

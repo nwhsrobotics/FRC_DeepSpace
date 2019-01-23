@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.SlideForward;
 import frc.robot.commands.SlideStop;
-
+import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
@@ -22,7 +22,7 @@ public class Slide extends Subsystem {
   private WPI_TalonSRX m_slide;
   public Slide(){
 
-    m_slide = new WPI_TalonSRX(3);
+    m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
   }
   
   public void SlideForward(){
