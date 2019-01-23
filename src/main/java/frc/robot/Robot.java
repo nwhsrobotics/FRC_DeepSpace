@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     b1.whenReleased(new StopLiftCommand());
 
     b4.whenPressed(new UpLiftCommand());
-    b4.whenReleased(new DownLiftCommand());
+    b4.whenReleased(new StopLiftCommand());
     
     
 
