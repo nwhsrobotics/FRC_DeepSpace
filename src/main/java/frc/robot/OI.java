@@ -6,7 +6,6 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -65,11 +64,13 @@ public class OI {
   }
  
   public double getForwardValue() {
-    return joy.getY(GenericHID.Hand.kLeft);
+    System.out.println(joy.getRawAxis(1));
+    return joy.getRawAxis(1);
   }
   
   public double getTurnValue() {
-    return joy.getX(GenericHID.Hand.kRight);
+    System.out.println(joy.getRawAxis(4));
+    return joy.getRawAxis(4);
   }
   
 
