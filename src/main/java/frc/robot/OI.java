@@ -10,12 +10,28 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+import frc.robot.commands.PneumaticArmExtend;
+import frc.robot.commands.PneumaticArmOff;
+import frc.robot.commands.PneumaticArmRetract;
+
+
+public class OI{
+
+  
+
+}
+
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
-  //// CREATING BUTTONS
+
+   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
   // You create one by telling it which joystick it's on and which button
@@ -43,6 +59,8 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
+<<<<<<< HEAD
+=======
   Joystick joy = new Joystick(0);
   
   int CLIMB_BUTTON = 1;
@@ -75,3 +93,4 @@ public class OI {
   
 
 }
+>>>>>>> 3705acce0149562aeafaee03dae3516e432f7a9d
