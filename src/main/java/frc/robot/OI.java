@@ -9,6 +9,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.SlideForward;
+import frc.robot.commands.SlideStop;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,6 +49,8 @@ public class OI {
   
   int CLIMB_BUTTON = 1;
   public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
+  JoystickButton a = new JoystickButton(joy, 1);
+   JoystickButton b = new JoystickButton(joy, 2);
   /*
   public JoystickButton yButton = new JoystickButton(joy, );
   public JoystickButton aButton = new JoystickButton(joy, );
@@ -58,9 +62,10 @@ public class OI {
   public JoystickButton leftStickButton = new JoystickButton(joy, );
   public JoystickButton rightStickButton = new JoystickButton(joy, );
   */
-
+ 
   public OI () {
-
+    a.whenPressed(new SlideForward());
+    a.whenReleased(new SlideStop());
   }
  
   public double getForwardValue() {
@@ -73,5 +78,5 @@ public class OI {
     return joy.getRawAxis(4);
   }
   
-
+  
 }

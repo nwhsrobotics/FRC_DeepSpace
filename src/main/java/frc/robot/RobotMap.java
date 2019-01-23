@@ -17,6 +17,9 @@ public class RobotMap {
 
 
   //drive train
+  public static int slideCanId(){
+    return 3;
+  }
   public static int frontLeftMotorCanId() {
     return 11;
   }
