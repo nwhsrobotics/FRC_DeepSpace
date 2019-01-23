@@ -65,7 +65,7 @@ public class OI {
  
   public OI () {
     a.whenPressed(new SlideForward());
-    a.whenReleased(new SlideStop());
+    b.whenReleased(new SlideStop());
   }
  
   public double getForwardValue() {
