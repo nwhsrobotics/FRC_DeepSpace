@@ -9,10 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.buttons.Button;
-=======
->>>>>>> master
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -21,20 +18,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.commands.ExampleCommand;
-<<<<<<< HEAD
 import frc.robot.commands.PneumaticArmExtend;
 import frc.robot.commands.PneumaticArmOff;
 import frc.robot.commands.PneumaticArmRetract;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.GrabberArmSubsystem;
-=======
 import frc.robot.commands.SlideForward;
 import frc.robot.commands.SlideStop;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Slide;
->>>>>>> master
 
 /*
 	

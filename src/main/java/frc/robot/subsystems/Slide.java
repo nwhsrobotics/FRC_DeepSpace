@@ -25,13 +25,13 @@ public class Slide extends Subsystem {
     m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
   }
   
-  public void SlideForward(){
+  public void slideForward(){
 
     m_slide.set(0.5);
 
   }
 
-  public void SlideStop(){
+  public void slideStop(){
 
     m_slide.set(0);
 
