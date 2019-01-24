@@ -137,7 +137,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    //m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
+    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
   }
 
   @Override

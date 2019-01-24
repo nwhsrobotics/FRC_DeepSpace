@@ -25,7 +25,7 @@ public class DriveTrainMove extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+    Robot.m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
     //need to add this command to continuously run in the scheduler. Trigger with a joystick input or just with start of auto/teleop?
   }
 

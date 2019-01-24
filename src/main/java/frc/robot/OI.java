@@ -1,37 +1,16 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import frc.robot.commands.PneumaticArmExtend;
-import frc.robot.commands.PneumaticArmOff;
-import frc.robot.commands.PneumaticArmRetract;
-
-
-public class OI{
-
-  
-
-
-
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-
-   //// CREATING BUTTONS
+public class OI {
+  //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
   // You create one by telling it which joystick it's on and which button
@@ -59,26 +38,55 @@ public class OI{
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-  //Joystick joy = new Joystick(0);
+  Joystick joy = new Joystick(0);
   
-  //int CLIMB_BUTTON = 1;
-  //public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
-  /*
-  public JoystickButton yButton = new JoystickButton(joy, );
-  public JoystickButton aButton = new JoystickButton(joy, );
-  public JoystickButton bButton = new JoystickButton(joy, );
-  public JoystickButton rightBumper = new JoystickButton(joy, );
-  public JoystickButton leftBumper = new JoystickButton(joy, );
-  public JoystickButton startButton = new JoystickButton(joy, );
-  public JoystickButton selectButton = new JoystickButton(joy, );
-  public JoystickButton leftStickButton = new JoystickButton(joy, );
-  public JoystickButton rightStickButton = new JoystickButton(joy, );
-  */
+  int CAMERA_BUTTON = 1;
+  int Lvl2DESC_BUTTON = 2;
+  int Lvl2CLIMB_BUTTON = 3;
+  int Lvl3CLIMB_BUTTON = 4;
+    public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
+	public JoystickButton backButton = new JoystickButton(joy, Lvl2DESC_BUTTON);
+	public JoystickButton startButton = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
+    public JoystickButton playButton = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+    
 
-  /*public OI () {
+  Joystick joy2 = new Joystick(1);
 
+  final int HIGHHATCH_BUTTON = 1;
+  final int MIDHATCH_BUTTON = 2;
+  final int LOWHATCH_BUTTON = 3;
+  final int CLAMP_BUTTON = 4;
+    public JoystickButton yButton = new JoystickButton(joy2, HIGHHATCH_BUTTON);
+    public JoystickButton xButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);
+    public JoystickButton aButton = new JoystickButton(joy2, LOWHATCH_BUTTON);
+    public JoystickButton bButton = new JoystickButton(joy2, CLAMP_BUTTON);
+
+}
+
+  public OI () {
+
+    xButton.toggleWhenPressed();
+
+    rightTrigger.togglewhenActive();
+    rightTrigger.whenInactive();
+
+    backButton.whenPressed();
+    startButton.whenPressed();
+    playButton.whenPressed();
+
+
+    yButton.toggleWhenPressed();
+    xButton.toggleWhenPressed();
+    aButton.toggleWhenPressed();
+    bButton.toggleWhenPressed();
+
+    
+    
   }
  
+
+
+
   public double getForwardValue() {
     System.out.println(joy.getRawAxis(1));
     return joy.getRawAxis(1);
@@ -90,5 +98,5 @@ public class OI{
   }
 
   
-*/
+
 }
