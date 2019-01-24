@@ -7,11 +7,34 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.PneumaticExtendAllLarge;
+import frc.robot.commands.PneumaticExtendFrontLarge;
+import frc.robot.commands.PneumaticRetractAllLarge;
+import frc.robot.commands.PneumaticRetractFrontLarge;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+  Joystick stick = new Joystick(0);
+
+    Button b1 = new JoystickButton(stick, 1);
+    Button b2 = new JoystickButton(stick, 2);
+    Button b3 = new JoystickButton(stick, 3);
+   
+  
+
+  public OI() {
+    b1.whenPressed(new PneumaticExtendFrontLarge());
+    b2.whenPressed(new PneumaticRetractFrontLarge());
+  
+  }
+
+
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
