@@ -22,9 +22,9 @@ public class OI {
   private final int Lvl3CLIMB_BUTTON = 4;
 
   public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
-	public JoystickButton backButton = new JoystickButton(joy, Lvl2DESC_BUTTON);
-	public JoystickButton startButton = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
-  public JoystickButton playButton = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
+	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
+  public JoystickButton playButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
     
 
   Joystick joy2 = new Joystick(1);
@@ -43,20 +43,20 @@ public class OI {
 
   public OI () {
 
-    xButton.toggleWhenPressed();
+    xButton1.toggleWhenPressed();
 
     rightTrigger.togglewhenActive();
     rightTrigger.whenInactive();
 
-    backButton.whenPressed();
-    startButton.whenPressed();
-    playButton.whenPressed();
+    backButton1.whenPressed();
+    startButton1.whenPressed();
+    playButton1.whenPressed();
 
 
-    yButton.toggleWhenPressed();
-    xButton.toggleWhenPressed();
-    aButton.toggleWhenPressed();
-    bButton.toggleWhenPressed();
+    yButton2.toggleWhenPressed();
+    xButton2.toggleWhenPressed();
+    aButton2.toggleWhenPressed();
+    bButton2.toggleWhenPressed();
 
     bButton2.whenPressed(new PneumaticArmExtend());
     bButton2.whenReleased(new PneumaticArmRetract());

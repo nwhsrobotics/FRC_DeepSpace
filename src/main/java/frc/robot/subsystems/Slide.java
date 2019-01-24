@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.SlideForward;
 import frc.robot.commands.SlideStop;
 import frc.robot.RobotMap;
+import frc.robot.Robot;
+
+import java.lang.Math;
 /**
  * Add your docs here.
  */
@@ -25,9 +28,15 @@ public class Slide extends Subsystem {
     m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
   }
   
-  public void slideForward(){
-
-    m_slide.set(0.5);
+  public void slideOn(){
+    if (Math.abs(Robot.m_oi.slideRightValue()) > Math.abs(Robot.m_oi.slideLeftValue())) {
+      m_slide.set(Robot.m_oi.slideRightValue());
+    } else if (Math.abs(Robot.m_oi.slideRightValue()) < Math.abs(Robot.m_oi.slideLeftValue())) {
+      m_slide.set(Robot.m_oi.slideLeftValue());
+    } else {
+      m_slide.set(0);
+    }
+    
 
   }
 

@@ -17,14 +17,10 @@ public class GrabberArmSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
     private DoubleSolenoid m_grabberarm;
-    
 
     @Override
     public void initDefaultCommand() {
-      m_grabberarm = new DoubleSolenoid(5, 0, 1);
-  
-  
-        
+      m_grabberarm = new DoubleSolenoid(5, 0, 1);    
     }
 
     public void turnOff() {
