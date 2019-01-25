@@ -10,7 +10,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -19,36 +21,37 @@ public class GrabberArmSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
     private DoubleSolenoid m_grabberarm;
-    private DoubleSolenoid m_grabberarm2; 
+    
 
     
 
     @Override
     public void initDefaultCommand() {
-      m_grabberarm = new DoubleSolenoid(5, 0, 1);
-      m_grabberarm2 = new DoubleSolenoid(5, 0, 2);
+      m_grabberarm = new DoubleSolenoid(RobotMap.pmcArmCanID,RobotMap.ArmSolenoidForward,RobotMap.ArmSolenoidReverse);
+      m_grabberarm.set(DoubleSolenoid.Value.kOff);
+     
       
-  
+
         
     }
 
     public void TurnOff() {
         m_grabberarm.set(DoubleSolenoid.Value.kOff);
-        m_grabberarm2.set(DoubleSolenoid.Value.kOff);
+        
 
 
     }
 
     public void Extend() {
       m_grabberarm.set(DoubleSolenoid.Value.kForward);
-      m_grabberarm2.set(DoubleSolenoid.Value.kForward);
+      
 
 
     }
 
     public void Retract(){
       m_grabberarm.set(DoubleSolenoid.Value.kReverse);
-      m_grabberarm2.set(DoubleSolenoid.Value.kReverse);
+   
     }
 
    

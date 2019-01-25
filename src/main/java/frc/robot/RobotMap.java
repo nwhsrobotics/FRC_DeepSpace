@@ -42,6 +42,11 @@ public class RobotMap {
     return 0;
   }
 
+  public static int pmcArmCanID = 5;
+  public static int ArmSolenoidForward = 2;
+  public static int ArmSolenoidReverse =  3;
+  
+
 
   
 

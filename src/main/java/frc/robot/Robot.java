@@ -59,20 +59,8 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    Joystick stick = new Joystick(0);
-  
-    Button b1 = new JoystickButton(stick, 1);
-    Button b2 = new JoystickButton(stick, 2);
-    Button b3 = new JoystickButton(stick, 3);
-    Button b4 = new JoystickButton(stick, 4);
 
   
-
-      b1.whenPressed(new PneumaticArmExtend());
-      b2.whenPressed(new PneumaticArmRetract());
-     // b4.whenPressed(new PneumaticArmOff());
-      //b4.whenPressed(new CompressorOn());
-      //b4.whenPressed(new CompressorOff());
 
   
   }
