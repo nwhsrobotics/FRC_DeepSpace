@@ -7,14 +7,30 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
+
+import frc.robot.commands.PneumaticArmExtend;
+import frc.robot.commands.PneumaticArmOff;
+import frc.robot.commands.PneumaticArmRetract;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.GrabberArmSubsystem;
+import frc.robot.commands.SlideForward;
+import frc.robot.commands.SlideStop;
+import frc.robot.subsystems.Slide;
+import frc.robot.commands.StopLiftCommand;
+import frc.robot.subsystems.LiftSubsystem;
+import frc.robot.commands.DownLiftCommand;
+import frc.robot.commands.UpLiftCommand;
+
 
 /*
 	
@@ -30,9 +46,13 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static final Subsystem m_GrabberArmSubsystem = null;
+  public static GrabberArmSubsystem m_GrabberSubsystem = new GrabberArmSubsystem();
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
+  public static LiftSubsystem l_Subsystem = new LiftSubsystem();
   public static OI m_oi;
+  public static Slide m_slide = new Slide();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -44,9 +64,20 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    m_chooser.setDefaultOption("Default Auto", new StopLiftCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    Joystick stick = new Joystick(0);
+    Button b1 = new JoystickButton(stick, 1);
+    Button b4 = new JoystickButton(stick, 4);
+    b1.whenPressed(new DownLiftCommand());
+    b1.whenReleased(new StopLiftCommand());
+
+    b4.whenPressed(new UpLiftCommand());
+    b4.whenReleased(new StopLiftCommand());
+    
+    
+
   }
 
   /**
@@ -130,7 +161,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
+    
   }
 
   /**
