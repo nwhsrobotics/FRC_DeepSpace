@@ -42,21 +42,25 @@ public class OI {
 
 
   public OI () {
-
+    
+    //toggle camera
     xButton1.toggleWhenPressed();
 
+    //slide
     rightTrigger.togglewhenActive();
     rightTrigger.whenInactive();
 
+    //climb 
     backButton1.whenPressed();
     startButton1.whenPressed();
     playButton1.whenPressed();
 
-
+    //lift
     yButton2.toggleWhenPressed();
     xButton2.toggleWhenPressed();
     aButton2.toggleWhenPressed();
-    bButton2.toggleWhenPressed();
+
+    //grabber
 
     bButton2.whenPressed(new PneumaticArmExtend());
     bButton2.whenReleased(new PneumaticArmRetract());
