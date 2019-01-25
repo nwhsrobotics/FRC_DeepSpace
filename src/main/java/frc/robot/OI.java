@@ -6,7 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -45,33 +47,75 @@ public class OI {
 
   Joystick joy = new Joystick(0);
   
-  int CLIMB_BUTTON = 1;
-  public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
-  /*
-  public JoystickButton yButton = new JoystickButton(joy, );
-  public JoystickButton aButton = new JoystickButton(joy, );
-  public JoystickButton bButton = new JoystickButton(joy, );
-  public JoystickButton rightBumper = new JoystickButton(joy, );
-  public JoystickButton leftBumper = new JoystickButton(joy, );
-  public JoystickButton startButton = new JoystickButton(joy, );
-  public JoystickButton selectButton = new JoystickButton(joy, );
-  public JoystickButton leftStickButton = new JoystickButton(joy, );
-  public JoystickButton rightStickButton = new JoystickButton(joy, );
-  */
+  int CAMERA_BUTTON = 1;
+  int Lvl2DESC_BUTTON = 2;
+  int Lvl2CLIMB_BUTTON = 3;
+  int Lvl3CLIMB_BUTTON = 4;
+  public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
+	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
+	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
+  public JoystickButton playButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+    
+
+  Joystick joy2 = new Joystick(1);
+
+  final int HIGHHATCH_BUTTON = 1;
+  final int MIDHATCH_BUTTON = 2;
+  final int LOWHATCH_BUTTON = 3;
+  final int CLAMP_BUTTON = 4;
+  public JoystickButton yButton2 = new JoystickButton(joy2, HIGHHATCH_BUTTON);
+  public JoystickButton xButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);
+  public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
+  public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
+
+
 
   public OI () {
 
+    xButton1.toggleWhenPressed(new CameraToggle);
+
+    rightTrigger2.togglewhenActive(new SlideRightToggle);
+    rightTrigger2.whenInactive(new SlideLeftStop);
+
+    backButton1.whenPressed(new Lvl2Descent);
+    startButton1.whenPressed(new Lvl2Climb);
+    playButton1.whenPressed(new Lvl3Climb);
+
+
+    yButton2.toggleWhenPressed(new HighHatchInitiate);
+    xButton2.toggleWhenPressed(new MidHatchInitiate);
+    aButton2.toggleWhenPressed(new LowHatchInitiate);
+    bButton2.toggleWhenPressed(new ClampToggle);
+
+    
+    
   }
  
+
+
+
   public double getForwardValue() {
-    System.out.println(joy.getRawAxis(1));
     return joy.getRawAxis(1);
+
   }
-  
   public double getTurnValue() {
-    System.out.println(joy.getRawAxis(4));
     return joy.getRawAxis(4);
   }
+
+  public double getLiftValue(){
+    return joy2.getRawAxis(1);
+  }
+
+  public double getLeftSlideValue() {
+    return joy2.getRawAxis(2);
+  }
+
+  public double getRightSlideValue() {
+    return joy2.getRawAxis(3);
+  }
+
+
   
+
 
 }
