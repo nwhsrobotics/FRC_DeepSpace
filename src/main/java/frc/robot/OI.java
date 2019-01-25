@@ -20,7 +20,6 @@ public class OI {
   private final int Lvl2DESC_BUTTON = 2;
   private final int Lvl2CLIMB_BUTTON = 3;
   private final int Lvl3CLIMB_BUTTON = 4;
-
   public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
 	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
 	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
@@ -28,6 +27,7 @@ public class OI {
     
 
   Joystick joy2 = new Joystick(1);
+
 
   private final int HIGHHATCH_BUTTON = 1;
   private final int MIDHATCH_BUTTON = 2;
@@ -43,27 +43,21 @@ public class OI {
 
   public OI () {
     
-    //toggle camera
-    xButton1.toggleWhenPressed();
 
-    //slide
-    rightTrigger.togglewhenActive();
-    rightTrigger.whenInactive();
+    xButton1.toggleWhenPressed(new CameraToggle);
 
-    //climb 
-    backButton1.whenPressed();
-    startButton1.whenPressed();
-    playButton1.whenPressed();
+    rightTrigger2.togglewhenActive(new SlideRightToggle);
+    rightTrigger2.whenInactive(new SlideLeftStop);
 
-    //lift
-    yButton2.toggleWhenPressed();
-    xButton2.toggleWhenPressed();
-    aButton2.toggleWhenPressed();
+    backButton1.whenPressed(new Lvl2Descent);
+    startButton1.whenPressed(new Lvl2Climb);
+    playButton1.whenPressed(new Lvl3Climb);
 
-    //grabber
 
-    bButton2.whenPressed(new PneumaticArmExtend());
-    bButton2.whenReleased(new PneumaticArmRetract());
+    yButton2.toggleWhenPressed(new HighHatchInitiate);
+    xButton2.toggleWhenPressed(new MidHatchInitiate);
+    aButton2.toggleWhenPressed(new LowHatchInitiate);
+    bButton2.toggleWhenPressed(new ClampToggle);
 
     
     
@@ -74,11 +68,12 @@ public class OI {
 
   public double getForwardValue() {
     return joy.getRawAxis(1);
+
   }
-  
   public double getTurnValue() {
     return joy.getRawAxis(4);
   }
+
 
   public double liftUpValue() {
     return joy2.getRawAxis(0);
@@ -89,14 +84,17 @@ public class OI {
     return joy2.getRawAxis(1);
   }
 
-  public double slideRightValue() {
-    return joy2.getRawAxis(3);
-  }
 
-  public double slideLeftValue() {
+  public double getLeftSlideValue() {
     return joy2.getRawAxis(2);
   }
 
+  public double getRightSlideValue() {
+    return joy2.getRawAxis(3);
+  }
+
+
   
+
 
 }
