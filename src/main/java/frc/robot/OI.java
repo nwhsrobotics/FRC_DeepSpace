@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.SlideForward;
+import frc.robot.commands.SlideReposition;
 import frc.robot.commands.SlideStop;
+import frc.robot.commands.slideUpdateParams;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,7 +52,18 @@ public class OI {
   int CLIMB_BUTTON = 1;
   public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
   JoystickButton a = new JoystickButton(joy, 1);
-   JoystickButton b = new JoystickButton(joy, 2);
+  JoystickButton b = new JoystickButton(joy, 2);
+  JoystickButton x = new JoystickButton(joy, 3);
+  JoystickButton y = new JoystickButton(joy, 4);
+  private static final int POS_HOLD_TOGGLE_BUTTON = 2;  // B button
+  private static final int POS_HOLD_UPDATE_BUTTON = 4;  // Y button
+
+   private static final double MAX_POS_DEG = 90.0;       // how far to rotate shaft at full joystick deflection.
+   private static final int POS_HOLD_AXIS = 0;           // left-right on left joystick
+
+   private static final Joystick m_controller = new Joystick(0);
+  private static final JoystickButton m_b = new JoystickButton(m_controller, POS_HOLD_TOGGLE_BUTTON);
+  private static final JoystickButton m_y = new JoystickButton(m_controller, POS_HOLD_UPDATE_BUTTON);
   /*
   public JoystickButton yButton = new JoystickButton(joy, );
   public JoystickButton aButton = new JoystickButton(joy, );
@@ -66,7 +79,16 @@ public class OI {
   public OI () {
     a.whenPressed(new SlideForward());
     a.whenReleased(new SlideStop());
+
+    b.whenPressed(new SlideReposition());        // Toggle position hold mode with B button.
+    y.whenPressed(new slideUpdateParams());  // Update params when Y is pressed.
   }
+  public double readPositionDeg() {
+    double input = m_controller.getRawAxis(POS_HOLD_AXIS);  // get joystick position, in range -1.0 to 1.0
+    double holdPos = input * MAX_POS_DEG;     // convert to degrees
+
+    return holdPos;
+  } 
  
   public double getForwardValue() {
     System.out.println(joy.getRawAxis(1));

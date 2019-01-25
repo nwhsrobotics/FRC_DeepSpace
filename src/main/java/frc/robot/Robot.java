@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.SlideForward;
+import frc.robot.commands.SlideReposition;
 import frc.robot.commands.SlideStop;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -40,8 +41,11 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Slide m_slide = new Slide();
 
-  Command m_autonomousCommand;
+  public static Slide m_posHold = new Slide();
+
+ Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -55,6 +59,13 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    m_chooser.addDefault("Default Auto", new SlideReposition());
+    // chooser.addObject("My Auto", new MyAutoCommand());
+    SmartDashboard.putData("Auto mode", m_chooser);
+
+    // Let position hold subsystem get params from dashboard.
+    m_slide.init();
   }
 
   /**
