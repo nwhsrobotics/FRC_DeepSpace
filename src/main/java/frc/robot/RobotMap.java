@@ -33,6 +33,15 @@ public class RobotMap {
     return 20;
   }
 
+  public static int grabberCanId(){
+    return 0;
+  
+  }
+
+  public static int armCanId(){
+    return 0;
+  }
+
 
   
 

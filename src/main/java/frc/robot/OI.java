@@ -23,7 +23,7 @@ public class OI{
 
   
 
-}
+
 
 
 /**
@@ -59,8 +59,6 @@ public class OI{
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-<<<<<<< HEAD
-=======
   Joystick joy = new Joystick(0);
   
   int CLIMB_BUTTON = 1;
@@ -93,4 +91,3 @@ public class OI{
   
 
 }
->>>>>>> 3705acce0149562aeafaee03dae3516e432f7a9d
