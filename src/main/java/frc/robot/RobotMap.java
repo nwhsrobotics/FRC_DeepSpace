@@ -18,6 +18,20 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
+ 
+  public static int frontLeftMotorCanId() {
+    return 0;
+  }
+  public static int backLeftMotorCanId() {
+    return 0;
+  }
+  public static int frontRightMotorCanId() {
+    return 0;
+  }
+  public static int backRightMotorCanId() {
+    return 0;
+  }
+ 
   public static int pmcClimbCanId = 5;
   public static int FrontLeftSolenoidExtend = 0;
   public static int FrontLeftSolenoidRetract = 1;
@@ -41,6 +55,11 @@ public class RobotMap {
   public static int pmcArmCanId = 7;
   public static int PusherSolenoidPush = 4;
   public static int PusherSolenoidRetract = 5;
+  public static int ArmSolenoidForward = 6;
+  public static int ArmSolenoidReverse = 7;
+ 
+ 
+ 
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

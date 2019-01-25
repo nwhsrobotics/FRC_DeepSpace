@@ -32,14 +32,15 @@ public class SolenoidClimbSubsystem extends Subsystem {
   private DoubleSolenoid Solenoid_8;
   WPI_TalonSRX backleftwheel;
   WPI_TalonSRX backrightwheel;
-  SpeedControllerGroup backwheels;
+  SpeedControllerGroup climbwheels;
   
 
 
   public SolenoidClimbSubsystem() {
 
-    backleftwheel = new WPI_TalonSRX(100);
+    backleftwheel = new WPI_TalonSRX(100);   
     backrightwheel = new WPI_TalonSRX(101);
+    climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
 
     Solenoid_1 = new DoubleSolenoid(RobotMap.pmcClimbCanId,RobotMap.FrontLeftSolenoidExtend,RobotMap.FrontLeftSolenoidRetract);
     Solenoid_1.set(DoubleSolenoid.Value.kOff);
@@ -77,30 +78,56 @@ public class SolenoidClimbSubsystem extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  public void extendfront() {
+
+
+
+
+  public void ascendFront(boolean state) {
+    if (state) {
     Solenoid_1.set(DoubleSolenoid.Value.kForward);
     Solenoid_2.set(DoubleSolenoid.Value.kForward);
   }
-
-public void extendback() {
-  Solenoid_3.set(DoubleSolenoid.Value.kForward);
-  Solenoid_4.set(DoubleSolenoid.Value.kForward);
+  else {
+    Solenoid_1.set(DoubleSolenoid.Value.kReverse);
+    Solenoid_2.set(DoubleSolenoid.Value.kReverse);
+  }
 }
 
-public void retractfront() {
-  Solenoid_1.set(DoubleSolenoid.Value.kReverse);
-  Solenoid_2.set(DoubleSolenoid.Value.kReverse);
-}
-
-public void retractback() {
+public void ascendBack(boolean state) {
+  if (state) {
+    Solenoid_3.set(DoubleSolenoid.Value.kForward);
+    Solenoid_4.set(DoubleSolenoid.Value.kForward);
+  }
+  else{
   Solenoid_3.set(DoubleSolenoid.Value.kReverse);
   Solenoid_4.set(DoubleSolenoid.Value.kReverse);
+  }
 }
 
-public void extendsmallfront() {
-  Solenoid_5.set(DoubleSolenoid.Value.kForward);
-  Solenoid_6.set(DoubleSolenoid.Value.kForward);
+public void descendAssistFront(boolean state) {
+  if (state) {
+    Solenoid_5.set(DoubleSolenoid.Value.kForward);
+  }
+  else {
+    Solenoid_5.set(DoubleSolenoid.Value.kReverse);
+  }
+
 }
 
+public void descendAssistBack(boolean state) {
+  if (state) {
+    Solenoid_6.set(DoubleSolenoid.Value.kForward);
+  }
+  else {
+    Solenoid_6.set(DoubleSolenoid.Value.kReverse);
+  }
+}
 
+public void ascendAssistBack(boolean state) {
+  if (state) {
+    Solenoid_7.set(DoubleSolenoid.Value.kForward);
+    Solenoid_8.set(DoubleSolenoid.Value.kForward);
+  }
+
+}
 }
