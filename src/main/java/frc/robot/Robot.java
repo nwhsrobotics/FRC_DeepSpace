@@ -7,13 +7,22 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.CompressorOffCommand;
+import frc.robot.commands.CompressorOnCommand;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.PneumaticExtendCommand;
+import frc.robot.commands.PneumaticOffCommand;
+import frc.robot.commands.PneumaticRetractCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.GrabberHandSubsystem;
 
 /*
 	
@@ -30,6 +39,7 @@ import frc.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static GrabberHandSubsystem m_grabberSubsystem = new GrabberHandSubsystem();
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -45,6 +55,20 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    Joystick stick = new Joystick(0);
+
+    Button b1 = new JoystickButton(stick, 1);
+    Button b2 = new JoystickButton(stick, 2);
+    Button b3 = new JoystickButton(stick, 3);
+    Button b4 = new JoystickButton(stick, 4);
+
+    b1.whenPressed(new PneumaticExtendCommand());
+    b2.whenPressed(new PneumaticRetractCommand());
+    //b3.whenPressed(new PneumaticOffCommand());
+    //b4.whenPressed(new CompressorOnCommand());
+    //b4.whenReleased(new CompressorOffCommand());
+
   }
 
   /**
