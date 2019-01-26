@@ -14,28 +14,25 @@ public class ClimbPrevCommand extends Command {
   public ClimbPrevCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_PneumaticTestSubsystem); //TODO-MR Rename Subsystem
-    //TODO-MR Add Drive Subsystem
+    requires(Robot.climbSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_PneumaticTestSubsystem.prevStage();
-
-
+    Robot.climbSubsystem.prevStage();
+    setTimeout(Robot.climbSubsystem.getTimeLeft());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_PneumaticTestSubsystem.isStageDone();
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

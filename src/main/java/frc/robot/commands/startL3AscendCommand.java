@@ -10,28 +10,29 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class PneumaticExtendAllLarge extends Command {
-  public PneumaticExtendAllLarge() {
+public class startL3AscendCommand extends Command {
+  public startL3AscendCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_PneumaticTestSubsystem);
+    requires(Robot.climbSubsystem);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.climbSubsystem.startL3Ascend();
+    setTimeout(Robot.climbSubsystem.getTimeLeft());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.m_PneumaticTestSubsystem.ExtendAllLarge();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

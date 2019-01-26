@@ -10,57 +10,32 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class AscentL3Backward extends Command {
-  public AscentL3Backward() {
+public class startDescendCommand extends Command {
+  public startDescendCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_PneumaticTestSubsystem);
-    //TODO-MR Add Drive subsystem
+    requires(Robot.climbSubsystem);
+    //TODO-MR Add Drive Train Subsystem
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    int state = Robot.m_PneumaticTestSubsystem.getstate();
-    Robot.m_PneumaticTestSubsystem.setState(state + 1);
-
-    switch(state) {
-
-      case 1: setState0();
-              break;
-      case 2: setState1();
-              break;
-      case 3: setState2();
-              break;
-    }
-
-    private void setState0() {
-      Robot.m_PneumaticTestSubsystem.ascendFront(false);
-      Robot.m_PneumaticTestSubsystem.ascendBack(false);
-      Robot.m_PneumaticTestSubsystem.AuxDrive(-0.5);
-    }
-
-    private void setState1(){
-      Robot.m_PneumaticTestSubsystem.ascendFront(true);
-      //TODO-MR Drive backward
-    }
-
-    private void setState2() {
-      Robot.m_PneumaticTestSubsystem.ascendBack(true);
-    }
-
-
+    Robot.climbSubsystem.startDescend();
+    setTimeout(Robot.climbSubsystem.getTimeLeft());
+    //TODO-MR Robot.DriveTrain.update(Robot.climbSubsystem.getMainDrive());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
