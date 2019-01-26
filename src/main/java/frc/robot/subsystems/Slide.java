@@ -7,15 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.SlideForward;
-import frc.robot.commands.SlideStop;
 import frc.robot.RobotMap;
-import frc.robot.Robot;
-
-import java.lang.Math;
 /**
  * Add your docs here.
  */
@@ -28,17 +24,8 @@ public class Slide extends Subsystem {
     m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
   }
   
-  public void slideOn(){
-    //if rightTrigger > leftTrigger, move slide right. If rightTrigger < leftTrigger, move slide left.
-    //if neither (both are equal), no movement.
-    if (Math.abs(Robot.m_oi.getRightSlideValue()) > Math.abs(Robot.m_oi.getLeftSlideValue())) {
-      m_slide.set(Robot.m_oi.getRightSlideValue());
-    } else if (Math.abs(Robot.m_oi.getRightSlideValue()) < Math.abs(Robot.m_oi.getLeftSlideValue())) {
-      m_slide.set(Robot.m_oi.getLeftSlideValue());
-    } else {
-      m_slide.set(0);
-    }
-
+  public void update(double x){
+    m_slide.set(ControlMode.PercentOutput, x);
   }
 
   public void slideStop(){

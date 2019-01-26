@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new DriveTrainMove()); 
+    m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
@@ -116,7 +116,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
+    axisControls();
   }
 
   @Override
@@ -137,7 +137,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    
+    axisControls();
   }
 
   /**
@@ -145,5 +145,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  public void axisControls() {
+    m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+    m_lift.update(Robot.m_oi.getLiftValue());
+    m_slide.update(Robot.m_oi.getSlideValue());
   }
 }

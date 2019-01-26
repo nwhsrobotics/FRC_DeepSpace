@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -76,23 +76,12 @@ public class OI{
     return joy.getRawAxis(4);
   }
 
-
-  public double liftUpValue() {
-    return joy2.getRawAxis(0);
-  }
-
-  public double liftDownValue() {
-    //need to check axes
+  public double getLiftValue() {
     return joy2.getRawAxis(1);
   }
 
-
-  public double getLeftSlideValue() {
-    return joy2.getRawAxis(2);
-  }
-
-  public double getRightSlideValue() {
-    return joy2.getRawAxis(3);
+  public double getSlideValue() {
+    return joy2.getRawAxis(3) - joy2.getRawAxis(2);
   }
 
 
