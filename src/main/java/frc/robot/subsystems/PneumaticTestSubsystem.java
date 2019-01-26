@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import java.util.EnumMap;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -21,9 +23,23 @@ import frc.robot.RobotMap;
 public class PneumaticTestSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  //private DoubleSolenoid m_FrontrightLargePiston;
   private DoubleSolenoid m_FrontleftLargePiston;
   private DoubleSolenoid m_FrontrightLargePiston;
+
+
+  enum ClimbState {
+    IDLE,
+    DESCEND_S1, DESCEND_S2, DESCEND_S3, DESCEND_S4,
+    CLIMB_L2_S1, CLIMB_L2_S2, CLIMB_L2_S3, CLIMB_L2_S4,
+    CLIMB_L3_S1, CLIMB_L3_S2, CLIMB_L3_S3, CLIMB_L3_S4,
+  }
+  private ClimbState m_climbState = ClimbState.IDLE;
+
+  private static final EnumMap<ClimbState, ClimbState> nextStageMap = new EnumMap<>(ClimbState.class);
+  private static final EnumMap<ClimbState, ClimbState> prevStageMap = new EnumMap<>(ClimbState.class);
+
+
+  private int m_timeLeft;
   
   /*
   private DoubleSolenoid m_BackrightLargePiston;
@@ -40,6 +56,40 @@ public class PneumaticTestSubsystem extends Subsystem {
 
 */
   public PneumaticTestSubsystem() {
+
+    nextStageMap.put(ClimbState.IDLE, ClimbState.IDLE);
+
+    nextStageMap.put(ClimbState.DESCEND_S1, ClimbState.DESCEND_S2);
+    nextStageMap.put(ClimbState.DESCEND_S2, ClimbState.DESCEND_S3);
+    nextStageMap.put(ClimbState.DESCEND_S3, ClimbState.DESCEND_S4);
+    nextStageMap.put(ClimbState.DESCEND_S4, ClimbState.IDLE);
+
+    nextStageMap.put(ClimbState.CLIMB_L2_S1, ClimbState.CLIMB_L2_S2);
+    nextStageMap.put(ClimbState.CLIMB_L2_S2, ClimbState.CLIMB_L2_S3);
+    nextStageMap.put(ClimbState.CLIMB_L2_S3, ClimbState.CLIMB_L2_S4);
+    nextStageMap.put(ClimbState.CLIMB_L2_S4, ClimbState.IDLE);
+
+    nextStageMap.put(ClimbState.CLIMB_L3_S1, ClimbState.CLIMB_L3_S2);
+    nextStageMap.put(ClimbState.CLIMB_L3_S2, ClimbState.CLIMB_L3_S3);
+    nextStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S4);
+    nextStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.IDLE);
+
+    prevStageMap.put(ClimbState.IDLE, ClimbState.IDLE);
+
+    prevStageMap.put(ClimbState.DESCEND_S1, ClimbState.IDLE);
+    prevStageMap.put(ClimbState.DESCEND_S2, ClimbState.DESCEND_S1);
+    prevStageMap.put(ClimbState.DESCEND_S3, ClimbState.DESCEND_S2);
+    prevStageMap.put(ClimbState.DESCEND_S4, ClimbState.DESCEND_S3);
+
+    prevStageMap.put(ClimbState.CLIMB_L2_S1, ClimbState.IDLE);
+    prevStageMap.put(ClimbState.CLIMB_L2_S2, ClimbState.CLIMB_L2_S1);
+    prevStageMap.put(ClimbState.CLIMB_L2_S3, ClimbState.CLIMB_L2_S2);
+    prevStageMap.put(ClimbState.CLIMB_L2_S4, ClimbState.CLIMB_L2_S3);
+
+    prevStageMap.put(ClimbState.CLIMB_L3_S1, ClimbState.IDLE);
+    prevStageMap.put(ClimbState.CLIMB_L3_S2, ClimbState.CLIMB_L3_S1);
+    prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
+    prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
     m_FrontleftLargePiston = new DoubleSolenoid(RobotMap.PcmCanID,RobotMap.SolenoidPort1,RobotMap.SolenoidPort2);
     m_FrontrightLargePiston = new DoubleSolenoid(RobotMap.PcmCanID,RobotMap.SolenoidPort3,RobotMap.SolenoidPort4);
@@ -64,6 +114,37 @@ public class PneumaticTestSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
     
   }
+
+  public void startDescend() {
+
+    m_climbState = ClimbState.DESCEND_S1;
+
+  }
+
+  public void startL2Ascend() {
+
+    m_climbState = ClimbState.CLIMB_L2_S1;
+
+  }
+
+  public void startL3Ascend() {
+
+    m_climbState = ClimbState.CLIMB_L3_S1;
+
+  }
+
+  public void nextStage() {
+
+    m_climbState = nextStageMap.get(m_climbState);
+
+  }
+
+  public void prevStage() {
+
+    m_climbState = prevStageMap.get(m_climbState);
+
+  }
+
 
   /*
   public void ExtendAllLarge() {
@@ -154,4 +235,8 @@ public class PneumaticTestSubsystem extends Subsystem {
   }
 
   */
+
+
+
+
 }
