@@ -10,8 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.SolenoidCommand;
-import frc.robot.commands.SolenoidRetractCommand;
+import frc.robot.commands.SolenoidExtendBackCommand;
+import frc.robot.commands.SolenoidExtendFrontCommand;
+import frc.robot.commands.SolenoidRetractBackCommand;
+import frc.robot.commands.SolenoidRetractFrontCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -26,17 +28,17 @@ public class OI {
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
   Joystick stick = new Joystick(0);
-  Button extendall = new JoystickButton(stick, 1);
+  Button extendfront = new JoystickButton(stick, 1);
 
-  Button retractall = new JoystickButton(stick, 2);
+  Button retractfront = new JoystickButton(stick, 2);
 
-  Button extendfront = new JoystickButton(stick, 3);
+  Button extendback = new JoystickButton(stick, 3);
 
-  Button extendback = new JoystickButton(stick, 4);
+  Button retractback = new JoystickButton(stick, 4);
 
-  Button retractfront = new JoystickButton(stick, 5);
+ // Button retractfront = new JoystickButton(stick, 5);
 
-  Button retractback = new JoystickButton(stick, 6);
+ // Button retractback = new JoystickButton(stick, 6);
 
   //Button smallfrontextend = new JoystickButton(stick, 1);
   //Button smallfrontretract = new JoystickButton(stick, 1);
@@ -49,8 +51,10 @@ public class OI {
   public OI(){
     
     
-    extendall.whenPressed(new SolenoidCommand());
-    retractall.whenPressed(new SolenoidRetractCommand());
+    extendfront.whenPressed(new SolenoidExtendFrontCommand());
+    retractfront.whenPressed(new SolenoidRetractFrontCommand());
+    extendback.whenPressed(new SolenoidExtendBackCommand());
+    retractback.whenPressed(new SolenoidRetractBackCommand());
 
   
   
