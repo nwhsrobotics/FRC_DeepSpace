@@ -72,20 +72,23 @@ public class OI {
 
   public OI () {
 
-    xButton1.toggleWhenPressed(new CameraToggle);
+    xButton1.toggleWhenPressed(new CameraToggle); //toggles camera on and off
 
-    rightTrigger2.togglewhenActive(new SlideRightToggle);
-    rightTrigger2.whenInactive(new SlideLeftStop);
+    rightTrigger2.togglewhenActive(new SlideRightToggle); //slide moves right
+    rightTrigger2.whenInactive(new SlideRightStop); //slide stops at current place
 
-    backButton1.whenPressed(new Lvl2Descent);
-    startButton1.whenPressed(new Lvl2Climb);
-    playButton1.whenPressed(new Lvl3Climb);
+    leftTrigger2.togglewhenActive(new SlideLeftToggle); //slide moves left
+    leftTrigger2.whenInactive(new SlideLeftStop); //slide stops at current place
+
+    backButton1.whenPressed(new Lvl2Descent); //initiate lvl 2 descent
+    startButton1.whenPressed(new Lvl2Climb); //initiate lvl 2 climb
+    playButton1.whenPressed(new Lvl3Climb); // intiate lvl 3 climb
 
 
-    yButton2.toggleWhenPressed(new HighHatchInitiate);
-    xButton2.toggleWhenPressed(new MidHatchInitiate);
-    aButton2.toggleWhenPressed(new LowHatchInitiate);
-    bButton2.toggleWhenPressed(new ClampToggle);
+    yButton2.toggleWhenPressed(new HighHatchInitiate); //move lift to high hatch position
+    xButton2.toggleWhenPressed(new MidHatchInitiate); //move lift to mid hatch position
+    aButton2.toggleWhenPressed(new LowHatchInitiate); //move lift to low hatch position
+    bButton2.toggleWhenPressed(new ClampToggle); //toggle for clamp
 
     
     
