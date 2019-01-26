@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 
@@ -34,19 +35,19 @@ public class LiftSubsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-
-
      
   }
 
   public void goingUp() {
-    m_lift.set(0.5);
+    m_lift.set(Robot.m_oi.liftUpValue());
   }
 
   public void goingDown() {
-    m_lift.set(-0.5);
+    m_lift.set(Robot.m_oi.liftDownValue());
   }
   public void stopLift(){
     m_lift.set(0);
   }
+
+  
 }
