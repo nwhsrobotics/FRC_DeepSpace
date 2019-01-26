@@ -7,15 +7,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
 
+
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 /*
 	
 	JAGBOTS 2019 DEEP SPACE CODE
@@ -30,9 +34,12 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
+  public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
+  public static LiftSubsystem m_lift = new LiftSubsystem();
   public static OI m_oi;
+  public static Slide m_slide = new Slide();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -44,9 +51,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
   }
 
   /**
@@ -109,7 +117,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
+    axisControls();
   }
 
   @Override
@@ -130,7 +138,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
+    axisControls();
   }
 
   /**
@@ -138,5 +146,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  public void axisControls() {
+    m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+    m_lift.update(Robot.m_oi.getLiftValue());
+    m_slide.update(Robot.m_oi.getSlideValue());
   }
 }

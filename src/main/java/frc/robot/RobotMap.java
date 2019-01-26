@@ -15,23 +15,65 @@ package frc.robot;
  */
 public class RobotMap {
 
-
+  //slide
+  public static int slideCanId(){
+    return 5;
+  }
   //drive train
   public static int frontLeftMotorCanId() {
-    return 11;
-  }
-
-  public static int backLeftMotorCanId() {
     return 10;
   }
 
+  public static int backLeftMotorCanId() {
+    return 7;
+  }
+
   public static int frontRightMotorCanId() {
-    return 21;
+    return 11;
   }
 
   public static int backRightMotorCanId() {
-    return 20;
+    return 13;
   }
+  //lift
+  public static int leftLiftMotorCanId() {
+    return 1; //replace with actual can id
+  }
+  public static int rightLiftMotorCanId() {
+    return 6; //replace with actual can id
+  }
+
+  public static int grabberCanId(){
+    return 62;
+  
+  }
+
+
+  public static int pmc1CanID() {
+    return 5;
+  }
+
+  public static int pmc2CanID() {
+    return 59;
+  }
+
+  public static int ArmSolenoidForward() {
+    return 2;
+  }
+
+  public static int ArmSolenoidReverse() {
+    return 3;
+  }
+
+  public static int GrabberSolenoidForward() {
+    return 0;
+  }
+  
+  public static int GrabberSolenoidReverse() {
+    return 1;
+  }
+
+  
 
 
   
