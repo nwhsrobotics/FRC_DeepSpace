@@ -14,7 +14,8 @@ public class GrabberRetract extends CommandGroup {
    * Add your docs here.
    */
   public GrabberRetract() {
-    requires(Robot.m_pneumatics);
+    requires(Robot.m_grabberArm);
+    requires(Robot.m_grabberHand);
 
     addParallel(new PneumaticRetractCommand());
     addParallel(new PneumaticArmRetract());

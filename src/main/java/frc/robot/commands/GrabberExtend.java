@@ -17,7 +17,8 @@ public class GrabberExtend extends CommandGroup {
    * Add your docs here.
    */
   public GrabberExtend() {
-    requires(Robot.m_pneumatics);
+    requires(Robot.m_grabberArm);
+    requires(Robot.m_grabberHand);
 
     addParallel(new PneumaticArmExtend());
     addParallel(new PneumaticExtendCommand());

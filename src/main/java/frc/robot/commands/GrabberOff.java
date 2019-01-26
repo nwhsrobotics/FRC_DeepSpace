@@ -15,7 +15,8 @@ public class GrabberOff extends CommandGroup {
    * Add your docs here.
    */
   public GrabberOff() {
-    requires(Robot.m_pneumatics);
+    requires(Robot.m_grabberArm);
+    requires(Robot.m_grabberHand);
 
     addParallel(new PneumaticOffCommand());
     addParallel(new PneumaticArmOff());
