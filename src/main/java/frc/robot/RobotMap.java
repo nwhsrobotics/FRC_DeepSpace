@@ -31,8 +31,8 @@ public class RobotMap {
   public static int backRightMotorCanId() {
     return 0;
   }
- 
-  public static int pmcClimbCanId = 5;
+
+  public static int pcmClimbCanId = 5;
   public static int FrontLeftSolenoidExtend = 0;
   public static int FrontLeftSolenoidRetract = 1;
   public static int BackLeftSolenoidExtend = 2;
@@ -42,21 +42,22 @@ public class RobotMap {
   public static int BackRightSolenoidExtend = 6;
   public static int BackRightSolenoidRetract = 7;
 
-  public static int pmcClimbCanId2 = 6;
-  public static int LowerFrontLeftSolenoidExtend = 0;
-  public static int LowerFrontLeftSolenoidRetract = 1;
-  public static int LowerBackLeftSolenoidExtend = 2;
-  public static int LowerBackLeftSolenoidRetract = 3;
-  public static int LowerFrontRightSolenoidExtend = 4;
-  public static int LowerFrontRightSolenoidRetract = 5;
-  public static int LowerBackRightSolenoidExtend = 6;
-  public static int LowerBackRightSolenoidRetract = 7;
+  public static int pcmClimbCanId2 = 6;
+  public static int LowerFrontSolenoidExtend = 0;
+  public static int LowerFrontSolenoidRetract = 1;
+  public static int LowerBackSolenoidExtend = 2;
+  public static int LowerBackSolenoidRetract = 3;
+  public static int ascendAssistBackLeftExtend = 4;
+  public static int ascendAssistBackLeftRetract = 5;
+  public static int ascendAssistBackRightExtend = 6;
+  public static int ascendAssistBackRightRetract = 7;
   
-  public static int pmcArmCanId = 7;
-  public static int PusherSolenoidPush = 4;
-  public static int PusherSolenoidRetract = 5;
-  public static int ArmSolenoidForward = 6;
-  public static int ArmSolenoidReverse = 7;
+  
+  public static int pcmArmCanId = 7;
+  public static int PusherSolenoidPush = 0;
+  public static int PusherSolenoidRetract = 1;
+  public static int ArmSolenoidForward = 2;
+  public static int ArmSolenoidReverse = 3;
  
  
  
