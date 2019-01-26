@@ -1,19 +1,16 @@
 package frc.robot;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.PneumaticArmExtend;
-import frc.robot.commands.PneumaticArmRetract;
+
+import frc.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import frc.robot.commands.PneumaticArmExtend;
-import frc.robot.commands.PneumaticArmOff;
-import frc.robot.commands.PneumaticArmRetract;
+
 
 
 public class OI{
@@ -62,8 +59,8 @@ public class OI{
     xButton2.toggleWhenPressed(new MidHatchInitiate);
     aButton2.toggleWhenPressed(new LowHatchInitiate);
     */
-    bButton2.whenPressed(new PneumaticArmExtend());
-    bButton2.whenReleased(new PneumaticArmRetract());
+    bButton2.whenPressed(new GrabberExtend());
+    bButton2.whenReleased(new GrabberRetract());
 
     
   }
