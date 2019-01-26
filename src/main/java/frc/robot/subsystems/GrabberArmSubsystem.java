@@ -23,7 +23,7 @@ public class GrabberArmSubsystem extends Subsystem {
     m_grabberArm.set(DoubleSolenoid.Value.kOff);
   }
 
-  public void armTurnOff() {
+   public void armTurnOff() {
     m_grabberArm.set(DoubleSolenoid.Value.kOff);
   }
   public void armExtend() {

@@ -40,7 +40,6 @@ public class Robot extends TimedRobot {
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static OI m_oi;
   public static Slide m_slide = new Slide();
-  public static PneumaticsSubsystem m_pneumatics = new PneumaticsSubsystem();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

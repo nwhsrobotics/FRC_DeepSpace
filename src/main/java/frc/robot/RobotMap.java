@@ -17,47 +17,44 @@ public class RobotMap {
 
   //slide
   public static int slideCanId(){
-    return 3;
+    return 5;
   }
   //drive train
   public static int frontLeftMotorCanId() {
-    return 11;
-  }
-
-  public static int backLeftMotorCanId() {
     return 10;
   }
 
+  public static int backLeftMotorCanId() {
+    return 7;
+  }
+
   public static int frontRightMotorCanId() {
-    return 21;
+    return 11;
   }
 
   public static int backRightMotorCanId() {
-    return 20;
+    return 13;
   }
   //lift
   public static int leftLiftMotorCanId() {
-    return 0; //replace with actual can id
+    return 1; //replace with actual can id
   }
   public static int rightLiftMotorCanId() {
-    return 0; //replace with actual can id
+    return 6; //replace with actual can id
   }
 
   public static int grabberCanId(){
-    return 0;
+    return 62;
   
   }
 
-  public static int armCanId(){
-    return 0;
-  }
 
   public static int pmc1CanID() {
     return 5;
   }
 
   public static int pmc2CanID() {
-    return 10000;
+    return 59;
   }
 
   public static int ArmSolenoidForward() {
@@ -69,11 +66,11 @@ public class RobotMap {
   }
 
   public static int GrabberSolenoidForward() {
-    return 10000;
+    return 0;
   }
   
   public static int GrabberSolenoidReverse() {
-    return 10000;
+    return 1;
   }
 
   
