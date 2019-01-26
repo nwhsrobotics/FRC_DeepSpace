@@ -24,7 +24,9 @@ public class PneumaticArmOff extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_GrabberSubsystem.TurnOff();
+
+    Robot.m_GrabberSubsystem.turnOff();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

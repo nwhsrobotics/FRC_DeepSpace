@@ -10,10 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class PneumaticArmRetract extends Command {
-  public PneumaticArmRetract() {
+public class DriveTrainMove extends Command {
+  public DriveTrainMove() {
     // Use requires() here to declare subsystem dependencies
-     requires(Robot.m_GrabberSubsystem);
+    // eg. requires(chassis);
+    requires(Robot.m_drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -24,15 +25,14 @@ public class PneumaticArmRetract extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    Robot.m_GrabberSubsystem.retract();
-
+    Robot.m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+    //need to add this command to continuously run in the scheduler. Trigger with a joystick input or just with start of auto/teleop?
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

@@ -15,7 +15,10 @@ package frc.robot;
  */
 public class RobotMap {
 
-
+  //slide
+  public static int slideCanId(){
+    return 3;
+  }
   //drive train
   public static int frontLeftMotorCanId() {
     return 11;
@@ -31,6 +34,13 @@ public class RobotMap {
 
   public static int backRightMotorCanId() {
     return 20;
+  }
+  //lift
+  public static int leftLiftMotorCanId() {
+    return 0; //replace with actual can id
+  }
+  public static int rightLiftMotorCanId() {
+    return 0; //replace with actual can id
   }
 
   public static int grabberCanId(){
