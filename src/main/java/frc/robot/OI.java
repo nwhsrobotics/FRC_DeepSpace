@@ -7,11 +7,16 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.PneumaticArmExtend;
 import frc.robot.commands.PneumaticArmRetract;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
-public class OI {
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+import frc.robot.commands.PneumaticArmExtend;
+import frc.robot.commands.PneumaticArmOff;
+import frc.robot.commands.PneumaticArmRetract;
+
+
+public class OI{
 
 
   Joystick joy = new Joystick(0);
@@ -42,7 +47,6 @@ public class OI {
 
 
   public OI () {
-    
 
     xButton1.toggleWhenPressed(new CameraToggle);
 
@@ -56,10 +60,11 @@ public class OI {
 
     yButton2.toggleWhenPressed(new HighHatchInitiate);
     xButton2.toggleWhenPressed(new MidHatchInitiate);
-    aButton2.toggleWhenPressed(new LowHatchInitiate);
-    bButton2.toggleWhenPressed(new ClampToggle);
-
+    aButton2.toggleWhenPressed(new LowHatchInitiate); */
     
+    bButton2.whenPressed(new PneumaticArmExtend());
+    bButton2.whenReleased(new PneumaticArmRetract());
+
     
   }
  

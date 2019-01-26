@@ -43,6 +43,20 @@ public class RobotMap {
     return 0; //replace with actual can id
   }
 
+  public static int grabberCanId(){
+    return 0;
+  
+  }
+
+  public static int armCanId(){
+    return 0;
+  }
+
+  public static int pmcArmCanID = 5;
+  public static int ArmSolenoidForward = 2;
+  public static int ArmSolenoidReverse =  3;
+  
+
 
   
 

@@ -17,12 +17,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
+import frc.robot.commands.ExampleCommand;
+
 import frc.robot.commands.PneumaticArmExtend;
 import frc.robot.commands.PneumaticArmOff;
 import frc.robot.commands.PneumaticArmRetract;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.GrabberArmSubsystem;
+
 import frc.robot.commands.SlideForward;
 import frc.robot.commands.SlideStop;
 import frc.robot.subsystems.Slide;
@@ -67,16 +71,6 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", new StopLiftCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    Joystick stick = new Joystick(0);
-    Button b1 = new JoystickButton(stick, 1);
-    Button b4 = new JoystickButton(stick, 4);
-    b1.whenPressed(new DownLiftCommand());
-    b1.whenReleased(new StopLiftCommand());
-
-    b4.whenPressed(new UpLiftCommand());
-    b4.whenReleased(new StopLiftCommand());
-    
-    
 
   }
 

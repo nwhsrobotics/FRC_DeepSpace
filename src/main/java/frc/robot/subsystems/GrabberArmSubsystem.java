@@ -7,8 +7,12 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+
 
 /**
  * Add your docs here.
@@ -20,8 +24,16 @@ public class GrabberArmSubsystem extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-      m_grabberarm = new DoubleSolenoid(5, 0, 1);    
+      m_grabberarm = new DoubleSolenoid(RobotMap.pmcArmCanID,RobotMap.ArmSolenoidForward,RobotMap.ArmSolenoidReverse);
+      m_grabberarm.set(DoubleSolenoid.Value.kOff);
+        
     }
+
+ 
+   
+
+
+   
 
     public void turnOff() {
         m_grabberarm.set(DoubleSolenoid.Value.kOff);
@@ -35,6 +47,7 @@ public class GrabberArmSubsystem extends Subsystem {
 
     public void retract(){
       m_grabberarm.set(DoubleSolenoid.Value.kReverse);
+
     }
 
    
