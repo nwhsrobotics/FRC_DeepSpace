@@ -48,7 +48,7 @@ public class OI{
 
   public OI () {
 
-    xButton1.toggleWhenPressed(new CameraToggle);
+  /**  xButton1.toggleWhenPressed(new CameraToggle);
 
     rightTrigger2.togglewhenActive(new SlideRightToggle);
     rightTrigger2.whenInactive(new SlideLeftStop);
@@ -60,8 +60,8 @@ public class OI{
 
     yButton2.toggleWhenPressed(new HighHatchInitiate);
     xButton2.toggleWhenPressed(new MidHatchInitiate);
-    aButton2.toggleWhenPressed(new LowHatchInitiate); */
-    
+    aButton2.toggleWhenPressed(new LowHatchInitiate);
+    */
     bButton2.whenPressed(new PneumaticArmExtend());
     bButton2.whenReleased(new PneumaticArmRetract());
 

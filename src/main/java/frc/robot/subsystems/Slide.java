@@ -31,10 +31,10 @@ public class Slide extends Subsystem {
   public void slideOn(){
     //if rightTrigger > leftTrigger, move slide right. If rightTrigger < leftTrigger, move slide left.
     //if neither (both are equal), no movement.
-    if (Math.abs(Robot.m_oi.slideRightValue()) > Math.abs(Robot.m_oi.slideLeftValue())) {
-      m_slide.set(Robot.m_oi.slideRightValue());
-    } else if (Math.abs(Robot.m_oi.slideRightValue()) < Math.abs(Robot.m_oi.slideLeftValue())) {
-      m_slide.set(Robot.m_oi.slideLeftValue());
+    if (Math.abs(Robot.m_oi.getRightSlideValue()) > Math.abs(Robot.m_oi.getLeftSlideValue())) {
+      m_slide.set(Robot.m_oi.getRightSlideValue());
+    } else if (Math.abs(Robot.m_oi.getRightSlideValue()) < Math.abs(Robot.m_oi.getLeftSlideValue())) {
+      m_slide.set(Robot.m_oi.getLeftSlideValue());
     } else {
       m_slide.set(0);
     }
