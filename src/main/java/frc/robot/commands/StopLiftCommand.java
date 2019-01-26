@@ -16,7 +16,7 @@ import frc.robot.Robot;
 public class StopLiftCommand extends Command {
   public StopLiftCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.l_Subsystem);
+    requires(Robot.m_lift);
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +27,7 @@ public class StopLiftCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.l_Subsystem.stopLift();
+    Robot.m_lift.stopLift();
   }
 
   // Make this return true when this Command no longer needs to run execute()

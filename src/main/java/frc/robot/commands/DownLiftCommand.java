@@ -14,7 +14,7 @@ public class DownLiftCommand extends Command {
   public DownLiftCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.l_Subsystem);
+    requires(Robot.m_lift);
     
   }
 
@@ -26,7 +26,7 @@ public class DownLiftCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.l_Subsystem.goingDown();
+    Robot.m_lift.goingDown();
 
   }
 

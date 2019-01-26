@@ -13,7 +13,7 @@ import frc.robot.Robot;
 public class PneumaticArmRetract extends Command {
   public PneumaticArmRetract() {
     // Use requires() here to declare subsystem dependencies
-     requires(Robot.m_GrabberSubsystem);
+     requires(Robot.m_pneumatics);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class PneumaticArmRetract extends Command {
   @Override
   protected void execute() {
 
-    Robot.m_GrabberSubsystem.retract();
+    Robot.m_pneumatics.armRetract();
 
   }
 

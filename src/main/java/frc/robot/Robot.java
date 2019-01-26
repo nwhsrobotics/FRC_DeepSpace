@@ -7,30 +7,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.commands.PneumaticArmExtend;
-import frc.robot.commands.PneumaticArmOff;
-import frc.robot.commands.PneumaticArmRetract;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.GrabberArmSubsystem;
 
-import frc.robot.commands.SlideForward;
-import frc.robot.commands.SlideStop;
-import frc.robot.subsystems.Slide;
-import frc.robot.commands.StopLiftCommand;
-import frc.robot.subsystems.LiftSubsystem;
-import frc.robot.commands.DownLiftCommand;
-import frc.robot.commands.DriveTrainMove;
-import frc.robot.commands.UpLiftCommand;
-
-
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 /*
 	
 	JAGBOTS 2019 DEEP SPACE CODE
@@ -45,13 +34,11 @@ import frc.robot.commands.UpLiftCommand;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static final Subsystem m_GrabberArmSubsystem = null;
-  public static GrabberArmSubsystem m_GrabberSubsystem = new GrabberArmSubsystem();
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
-  public static LiftSubsystem l_Subsystem = new LiftSubsystem();
+  public static LiftSubsystem m_lift = new LiftSubsystem();
   public static OI m_oi;
   public static Slide m_slide = new Slide();
+  public static PneumaticsSubsystem m_pneumatics = new PneumaticsSubsystem();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
