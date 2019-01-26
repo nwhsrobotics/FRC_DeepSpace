@@ -26,8 +26,8 @@ public class LiftSubsystem extends Subsystem {
   
   //Using the PID Controller group with only one talon right now
   //declaring all of the variables in the beginning 
-  static final int DEFAULT_TALON_ID = 1;
-  static final int TALON_ID2 = 2;/**Enter the Second Talon Here */
+  static final int DEFAULT_TALON_ID = 70;
+  static final int TALON_ID2 = 90;/**Enter the Second Talon Here */
   private static final int ENC_COUNT_PER_REV = 4096;
   private static final int SLOT_IDX = 0;
   private static final int PID_PRIMARY = 0;

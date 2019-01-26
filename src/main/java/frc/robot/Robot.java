@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
 
     b4.whenPressed(new UpLiftCommand());
     b4.whenReleased(new StopLiftCommand());
-    
+    l_Subsystem.init();
     
 
   }
