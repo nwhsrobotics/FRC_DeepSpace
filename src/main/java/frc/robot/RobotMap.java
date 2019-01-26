@@ -13,7 +13,15 @@ package frc.robot;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap {
+
+
+
+ public class RobotMap {
+
+  
+ 
+ 
+ 
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
@@ -42,7 +50,7 @@ public class RobotMap {
   public static int BackRightSolenoidExtend = 6;
   public static int BackRightSolenoidRetract = 7;
 
-  public static int pcmClimbCanId2 = 6;
+ /* public static int pcmClimbCanId2 = 6;
   public static int LowerFrontSolenoidExtend = 0;
   public static int LowerFrontSolenoidRetract = 1;
   public static int LowerBackSolenoidExtend = 2;
@@ -57,7 +65,7 @@ public class RobotMap {
   public static int PusherSolenoidPush = 0;
   public static int PusherSolenoidRetract = 1;
   public static int ArmSolenoidForward = 2;
-  public static int ArmSolenoidReverse = 3;
+  public static int ArmSolenoidReverse = 3; */
  
  
  

@@ -12,6 +12,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ClimbNextCommand;
+import frc.robot.commands.ClimbPrevCommand;
+import frc.robot.commands.DescendCommandGroup;
+import frc.robot.commands.L2AscendCommandGroup;
+import frc.robot.commands.L3AscendCommandGroup;
+import frc.robot.commands.startDescendCommand;
+import frc.robot.commands.startL2AscendCommand;
+import frc.robot.commands.startL3AscendCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,28 +33,6 @@ public class OI {
   // number it is.
   // Joystick stick = new Joystick(port);
   // Button button = new JoystickButton(stick, buttonNumber);
-  Joystick stick = new Joystick(0);
-  Button extendfront = new JoystickButton(stick, 1);
-
-  Button retractfront = new JoystickButton(stick, 2);
-
-  Button extendback = new JoystickButton(stick, 3);
-
-  Button retractback = new JoystickButton(stick, 4);
-
- // Button retractfront = new JoystickButton(stick, 5);
-
- // Button retractback = new JoystickButton(stick, 6);
-
-  //Button smallfrontextend = new JoystickButton(stick, 1);
-  //Button smallfrontretract = new JoystickButton(stick, 1);
-  //Button smallbackextend = new JoystickButton(stick, 2);
-  //Button smallfrontretract = new JoystickButton(stick, 2);
-  
-  Button push = new JoystickButton(stick, 7);
-
-  Button retractpusher = new JoystickButton(stick, 8);
-
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.
@@ -69,14 +55,19 @@ public class OI {
 
   Joystick joy = new Joystick(0);
   
-  int CAMERA_BUTTON = 1;
-  int Lvl2DESC_BUTTON = 2;
+
+  int ClimbNext_BUTTON = 1;
+  int ClimbPrev_BUTTON = 2;
   int Lvl2CLIMB_BUTTON = 3;
   int Lvl3CLIMB_BUTTON = 4;
-  public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
-	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
-	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
-  public JoystickButton playButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+  int CAMERA_BUTTON = 7;
+  int Lvl2DESC_BUTTON = 8;
+  public JoystickButton selectButton1 = new JoystickButton(joy, CAMERA_BUTTON);
+	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
+	public JoystickButton xButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
+  public JoystickButton yButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+  public JoystickButton aButton1 = new JoystickButton(joy, ClimbNext_BUTTON);
+  public JoystickButton bButton1 = new JoystickButton(joy, ClimbPrev_BUTTON);
     
 
   Joystick joy2 = new Joystick(1);
@@ -94,20 +85,22 @@ public class OI {
 
   public OI () {
 
-    xButton1.toggleWhenPressed(new CameraToggle);
+   // xButton1.toggleWhenPressed(new CameraToggle);
 
-    rightTrigger2.togglewhenActive(new SlideRightToggle);
-    rightTrigger2.whenInactive(new SlideLeftStop);
+   // rightTrigger2.togglewhenActive(new SlideRightToggle);
+   // rightTrigger2.whenInactive(new SlideLeftStop);
 
-    backButton1.whenPressed(new Lvl2Descent);
-    startButton1.whenPressed(new Lvl2Climb);
-    playButton1.whenPressed(new Lvl3Climb);
+    startButton1.whenPressed(new DescendCommandGroup());
+    xButton1.whenPressed(new L2AscendCommandGroup());
+    yButton1.whenPressed(new L3AscendCommandGroup());
+    aButton1.whenPressed(new ClimbNextCommand());
+    bButton1.whenPressed(new ClimbPrevCommand());
 
 
-    yButton2.toggleWhenPressed(new HighHatchInitiate);
-    xButton2.toggleWhenPressed(new MidHatchInitiate);
-    aButton2.toggleWhenPressed(new LowHatchInitiate);
-    bButton2.toggleWhenPressed(new ClampToggle); 
+  //  yButton2.toggleWhenPressed(new HighHatchInitiate);
+   // xButton2.toggleWhenPressed(new MidHatchInitiate);
+   // aButton2.toggleWhenPressed(new LowHatchInitiate);
+   // bButton2.toggleWhenPressed(new ClampToggle); 
 
     
     
