@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.SolenoidExtendFrontCommand;
-import frc.robot.subsystems.SolenoidArmSubsystem;
 import frc.robot.subsystems.SolenoidClimbSubsystem;
 
 /**
@@ -26,7 +24,6 @@ import frc.robot.subsystems.SolenoidClimbSubsystem;
 public class Robot extends TimedRobot {
 
   public static SolenoidClimbSubsystem ClimbSolenoid = new SolenoidClimbSubsystem();
-  public static SolenoidArmSubsystem ArmSolenoid = new SolenoidArmSubsystem();
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -39,7 +36,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new SolenoidExtendFrontCommand());
+   // m_chooser.setDefaultOption("Default Auto", new SolenoidExtendFrontCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

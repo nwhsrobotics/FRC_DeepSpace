@@ -12,10 +12,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.SolenoidExtendBackCommand;
-import frc.robot.commands.SolenoidExtendFrontCommand;
-import frc.robot.commands.SolenoidRetractBackCommand;
-import frc.robot.commands.SolenoidRetractFrontCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,17 +46,7 @@ public class OI {
   Button push = new JoystickButton(stick, 7);
 
   Button retractpusher = new JoystickButton(stick, 8);
-  public OI(){
-    
-    
-    extendfront.whenPressed(new SolenoidExtendFrontCommand());
-    retractfront.whenPressed(new SolenoidRetractFrontCommand());
-    extendback.whenPressed(new SolenoidExtendBackCommand());
-    retractback.whenPressed(new SolenoidRetractBackCommand());
 
-  
-  
-  }
   // There are a few additional built in buttons you can use. Additionally,
   // by subclassing Button you can create custom triggers and bind those to
   // commands the same as any other Button.
@@ -121,7 +107,7 @@ public class OI {
     yButton2.toggleWhenPressed(new HighHatchInitiate);
     xButton2.toggleWhenPressed(new MidHatchInitiate);
     aButton2.toggleWhenPressed(new LowHatchInitiate);
-    bButton2.toggleWhenPressed(new ClampToggle);
+    bButton2.toggleWhenPressed(new ClampToggle); 
 
     
     

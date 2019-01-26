@@ -38,32 +38,34 @@ public class SolenoidClimbSubsystem extends Subsystem {
 
   public SolenoidClimbSubsystem() {
 
+
+
     backleftwheel = new WPI_TalonSRX(100);   
     backrightwheel = new WPI_TalonSRX(101);
     climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
 
-    Solenoid_1 = new DoubleSolenoid(RobotMap.pmcClimbCanId,RobotMap.FrontLeftSolenoidExtend,RobotMap.FrontLeftSolenoidRetract);
+    Solenoid_1 = new DoubleSolenoid(RobotMap.pcmClimbCanId,RobotMap.FrontLeftSolenoidExtend,RobotMap.FrontLeftSolenoidRetract);
     Solenoid_1.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_2 = new DoubleSolenoid(RobotMap.pmcClimbCanId,RobotMap.FrontRightSolenoidExtend,RobotMap.FrontRightSolenoidRetract);
+    Solenoid_2 = new DoubleSolenoid(RobotMap.pcmClimbCanId,RobotMap.FrontRightSolenoidExtend,RobotMap.FrontRightSolenoidRetract);
     Solenoid_2.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_3 = new DoubleSolenoid(RobotMap.pmcClimbCanId,RobotMap.BackLeftSolenoidExtend,RobotMap.BackLeftSolenoidRetract);
+    Solenoid_3 = new DoubleSolenoid(RobotMap.pcmClimbCanId,RobotMap.BackLeftSolenoidExtend,RobotMap.BackLeftSolenoidRetract);
     Solenoid_3.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_4 = new DoubleSolenoid(RobotMap.pmcClimbCanId,RobotMap.BackRightSolenoidExtend,RobotMap.BackRightSolenoidRetract);
+    Solenoid_4 = new DoubleSolenoid(RobotMap.pcmClimbCanId,RobotMap.BackRightSolenoidExtend,RobotMap.BackRightSolenoidRetract);
     Solenoid_4.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_5 = new DoubleSolenoid(RobotMap.pmcClimbCanId2,RobotMap.LowerFrontLeftSolenoidExtend,RobotMap.LowerFrontLeftSolenoidRetract);
+    Solenoid_5 = new DoubleSolenoid(RobotMap.pcmClimbCanId2,RobotMap.LowerFrontSolenoidExtend,RobotMap.LowerFrontSolenoidRetract);
     Solenoid_5.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_6 = new DoubleSolenoid(RobotMap.pmcClimbCanId2,RobotMap.LowerBackLeftSolenoidExtend,RobotMap.LowerBackLeftSolenoidRetract);
+    Solenoid_6 = new DoubleSolenoid(RobotMap.pcmClimbCanId2,RobotMap.LowerBackSolenoidExtend,RobotMap.LowerBackSolenoidRetract);
     Solenoid_6.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_7 = new DoubleSolenoid(RobotMap.pmcClimbCanId2,RobotMap.LowerFrontRightSolenoidExtend,RobotMap.LowerFrontRightSolenoidRetract);
+    Solenoid_7 = new DoubleSolenoid(RobotMap.pcmClimbCanId2,RobotMap.ascendAssistBackLeftExtend,RobotMap.ascendAssistBackLeftRetract);
     Solenoid_7.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_8 = new DoubleSolenoid(RobotMap.pmcClimbCanId2,RobotMap.LowerBackRightSolenoidExtend,RobotMap.LowerBackRightSolenoidRetract);
+    Solenoid_8 = new DoubleSolenoid(RobotMap.pcmClimbCanId2,RobotMap.ascendAssistBackRightExtend,RobotMap.ascendAssistBackRightRetract);
     Solenoid_8.set(DoubleSolenoid.Value.kOff);
 
 
@@ -127,6 +129,10 @@ public void ascendAssistBack(boolean state) {
   if (state) {
     Solenoid_7.set(DoubleSolenoid.Value.kForward);
     Solenoid_8.set(DoubleSolenoid.Value.kForward);
+  }
+  else {
+    Solenoid_7.set(DoubleSolenoid.Value.kReverse);
+    Solenoid_8.set(DoubleSolenoid.Value.kReverse);
   }
 
 }
