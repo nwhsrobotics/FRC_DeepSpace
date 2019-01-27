@@ -31,7 +31,7 @@ public class RobotMap {
     SLIDE, LIFT_LEFT, LIFT_RIGHT, 
     PCM_CLIMBCANID, 
     SOLENOID_FRONTLEFTEXTEND, SOLENOID_FRONTLEFTRETRACT, SOLENOID_BACKLEFTEXTEND, SOLENOID_BACKLEFTRETRACT, SOLENOID_FRONTRIGHTEXTEND, SOLENOID_FRONTRIGHTRETRACT, SOLENOID_BACKRIGHTEXTEND, SOLENOID_BACKRIGHTRETRACT,
-    PCLM_CLIMBCANID2,
+    PCM_CLIMBCANID2,
     SOLENOID_LOWERFRONTEXTEND, SOLENOID_LOWERFRONTRETRACT, SOLENOID_LOWERBACKEXTEND, SOLENOID_LOWERBACKRETRACT, SOLENOID_ASCENDASSISTBACKLEFTEXTEND, SOLENOID_ASCENDASSISTBACKLEFTRETRACT, SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, SOLENOID_ASCENDASSISTBACKRIGHTRETRACT,
     PCM_ARMCANID,
     SOLENOID_PUSHERPUSH, SOLENOID_PUSHERRETRACT, SOLENOID_ARMFORWARD, SOLENOID_ARMREVERSE
@@ -39,10 +39,13 @@ public class RobotMap {
   }
 
   public enum RobotTypes {
-    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT
+    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT, DEADPIXEL
   }
 
   public RobotMap() {
+
+    // BRIEFCASE IDs BEGIN HERE #########################################
+
     briefcase.put(MapKeys.DRIVE_FRONTLEFT, 0);
     briefcase.put(MapKeys.DRIVE_FRONTRIGHT, 0);
     briefcase.put(MapKeys.DRIVE_BACKLEFT, 0);
@@ -52,6 +55,7 @@ public class RobotMap {
     briefcase.put(MapKeys.LIFT_LEFT, 0);
     briefcase.put(MapKeys.LIFT_RIGHT, 0);
 
+    briefcase.put(MapKeys.PCM_CLIMBCANID, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 0);
     briefcase.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0);
@@ -61,6 +65,7 @@ public class RobotMap {
     briefcase.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 0);
     briefcase.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 0);
 
+    briefcase.put(MapKeys.PCM_CLIMBCANID2, 0);
     briefcase.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
     briefcase.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 0);
     briefcase.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 0);
@@ -70,6 +75,7 @@ public class RobotMap {
     briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
     briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
 
+    briefcase.put(MapKeys.PCM_ARMCANID, 0);
     briefcase.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
     briefcase.put(MapKeys.SOLENOID_PUSHERRETRACT, 0);
     briefcase.put(MapKeys.SOLENOID_ARMFORWARD, 0);
@@ -86,6 +92,7 @@ public class RobotMap {
     albert.put(MapKeys.LIFT_LEFT, 0);
     albert.put(MapKeys.LIFT_RIGHT, 0);
 
+    albert.put(MapKeys.PCM_CLIMBCANID, 0);
     albert.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
     albert.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 0);
     albert.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0);
@@ -95,6 +102,7 @@ public class RobotMap {
     albert.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 0);
     albert.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 0);
 
+    albert.put(MapKeys.PCM_CLIMBCANID2, 0);
     albert.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
     albert.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 0);
     albert.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 0);
@@ -104,14 +112,48 @@ public class RobotMap {
     albert.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
     albert.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
 
+    albert.put(MapKeys.PCM_ARMCANID, 0);
     albert.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
     albert.put(MapKeys.SOLENOID_PUSHERRETRACT, 0);
     albert.put(MapKeys.SOLENOID_ARMFORWARD, 0);
     albert.put(MapKeys.SOLENOID_ARMREVERSE, 0);
 
-    
+    // DEADPIXEL IDs BEGIN HERE #########################################
 
-    
+    deadpixel.put(MapKeys.DRIVE_FRONTLEFT, 0);
+    deadpixel.put(MapKeys.DRIVE_FRONTRIGHT, 0);
+    deadpixel.put(MapKeys.DRIVE_BACKLEFT, 0);
+    deadpixel.put(MapKeys.DRIVE_BACKRIGHT, 0);
+
+    deadpixel.put(MapKeys.SLIDE, 0);
+    deadpixel.put(MapKeys.LIFT_LEFT, 0);
+    deadpixel.put(MapKeys.LIFT_RIGHT, 0);
+
+    deadpixel.put(MapKeys.PCM_CLIMBCANID, 0);
+    deadpixel.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 0);
+
+    deadpixel.put(MapKeys.PCM_CLIMBCANID2, 0);
+    deadpixel.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
+
+    deadpixel.put(MapKeys.PCM_ARMCANID, 0);
+    deadpixel.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
+    deadpixel.put(MapKeys.SOLENOID_PUSHERRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_ARMFORWARD, 0);
+    deadpixel.put(MapKeys.SOLENOID_ARMREVERSE, 0);
 
   }
 
@@ -119,10 +161,12 @@ public class RobotMap {
 
   public RobotTypes activeRobot = RobotTypes.ALBERT;
 
-
   public int getId(MapKeys key) {
     if(activeRobot == RobotTypes.BRIEFCASE) {
       return briefcase.get(key);
+    }
+    else if(activeRobot == RobotTypes.DEADPIXEL) {
+      return deadpixel.get(key);
     }
     else {
       return albert.get(key);
@@ -132,6 +176,8 @@ public class RobotMap {
   public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
 
   public EnumMap<MapKeys, Integer> albert = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> deadpixel = new EnumMap<MapKeys, Integer>(MapKeys.class);
 
   
 
