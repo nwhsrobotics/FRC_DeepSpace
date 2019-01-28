@@ -26,8 +26,8 @@ public class LiftSubsystem extends Subsystem {
   
   //Using the PID Controller group with only one talon right now
   //declaring all of the variables in the beginning 
-  static final int DEFAULT_TALON_ID = 70;
-  static final int TALON_ID2 = 90;/**Enter the Second Talon Here */
+  static final int DEFAULT_TALON_ID = 10;
+  static final int TALON_ID2 = 11;/**Enter the Second Talon Here */
   private static final int ENC_COUNT_PER_REV = 4096;
   private static final int SLOT_IDX = 0;
   private static final int PID_PRIMARY = 0;
@@ -43,7 +43,7 @@ public class LiftSubsystem extends Subsystem {
 
   boolean m_enabled = false;
 
-  int m_holdPosEnc = 0;
+  int m_holdPosEnc = 0;  //position holding
 
   double m_p = 0.0;
   double m_i = 0.0;
@@ -160,6 +160,7 @@ private void readPreferences() {
   public void GoingUp() {
     m_motorup1.set(0.5);
     m_motorup2.set(0.5);
+    
   }
 
 
