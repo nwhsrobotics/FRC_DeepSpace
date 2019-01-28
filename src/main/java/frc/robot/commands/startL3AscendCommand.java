@@ -22,6 +22,7 @@ public class startL3AscendCommand extends Command {
   protected void initialize() {
     Robot.climbSubsystem.startL3Ascend();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
+    Robot.climbSubsystem.setauxDrive();
   }
 
   // Called repeatedly when this Command is scheduled to run

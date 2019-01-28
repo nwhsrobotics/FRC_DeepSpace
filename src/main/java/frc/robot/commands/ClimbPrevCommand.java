@@ -22,6 +22,7 @@ public class ClimbPrevCommand extends Command {
   protected void initialize() {
     Robot.climbSubsystem.prevStage();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
+    Robot.climbSubsystem.setauxDrive();
   }
 
   // Called repeatedly when this Command is scheduled to run

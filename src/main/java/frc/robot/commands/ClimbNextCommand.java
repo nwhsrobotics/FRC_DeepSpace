@@ -22,7 +22,9 @@ public class ClimbNextCommand extends Command {
   protected void initialize() {
     Robot.climbSubsystem.nextStage();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
+    Robot.climbSubsystem.setauxDrive();
   }
+
 
   // Called repeatedly when this Command is scheduled to run
   @Override

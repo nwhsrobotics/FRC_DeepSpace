@@ -23,6 +23,7 @@ public class startDescendCommand extends Command {
   protected void initialize() {
     Robot.climbSubsystem.startDescend();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
+    Robot.climbSubsystem.setauxDrive();
     //TODO-MR Robot.DriveTrain.update(Robot.climbSubsystem.getMainDrive());
   }
 
