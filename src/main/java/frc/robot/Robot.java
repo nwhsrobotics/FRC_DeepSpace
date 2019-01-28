@@ -15,11 +15,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.StopLiftCommand;
-import frc.robot.subsystems.LiftSubsystem;
-import frc.robot.commands.DownLiftCommand;
-import frc.robot.commands.UpLiftCommand;
-
 
 /*
 	
@@ -37,7 +32,6 @@ import frc.robot.subsystems.LedSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static LiftSubsystem l_Subsystem = new LiftSubsystem();
   public static LedSubsystem a_Subsystem = new LedSubsystem();
   public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
   public static OI m_oi;

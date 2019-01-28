@@ -24,7 +24,7 @@ public class startDescendCommand extends Command {
     Robot.climbSubsystem.startDescend();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
     Robot.climbSubsystem.setauxDrive();
-    Robot.a_Subsystem.LED(Robot.climbSubsystem.getBlueValue(), Robot.climbSubsystem.getGreenValue(), Robot.climbSubsystem.getRedValue());
+    Robot.a_Subsystem.LED(Robot.climbSubsystem.getBlueValue(), Robot.climbSubsystem.getGreenValue(), Robot.climbSubsystem.getRedValue(), true);
     //TODO-MR Robot.DriveTrain.update(Robot.climbSubsystem.getMainDrive());
   }
 

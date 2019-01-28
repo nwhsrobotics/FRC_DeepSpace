@@ -9,10 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.PositionCommand;
-import frc.robot.commands.PositionUpdateCommand;
-import frc.robot.commands.StopLiftCommand;
-import frc.robot.commands.UpLiftCommand;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SendableBase;
@@ -21,7 +17,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ClimbNextCommand;
 import frc.robot.commands.ClimbPrevCommand;
 import frc.robot.commands.DescendCommandGroup;
-import frc.robot.commands.DownLiftCommand;
 import frc.robot.commands.L2AscendCommandGroup;
 import frc.robot.commands.L3AscendCommandGroup;
 import frc.robot.commands.startDescendCommand;
@@ -121,13 +116,14 @@ public class OI {
     yButton1.whenPressed(new L3AscendCommandGroup());
     aButton1.whenPressed(new ClimbNextCommand());
     bButton1.whenPressed(new ClimbPrevCommand());
-    b1.whenPressed(new DownLiftCommand());
+   
+   /* b1.whenPressed(new DownLiftCommand());
     b1.whenReleased(new StopLiftCommand());
     m_x.whenPressed(new PositionCommand());
     m_y.whenPressed(new PositionUpdateCommand());
     b4.whenPressed(new UpLiftCommand());
     b4.whenReleased(new StopLiftCommand());
-    
+    */
 
 
   //  yButton2.toggleWhenPressed(new HighHatchInitiate);

@@ -23,7 +23,7 @@ public class ClimbPrevCommand extends Command {
     Robot.climbSubsystem.prevStage();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
     Robot.climbSubsystem.setauxDrive();
-    Robot.a_Subsystem.LED(Robot.climbSubsystem.getBlueValue(), Robot.climbSubsystem.getGreenValue(), Robot.climbSubsystem.getRedValue());
+    Robot.a_Subsystem.LED(Robot.climbSubsystem.getBlueValue(), Robot.climbSubsystem.getGreenValue(), Robot.climbSubsystem.getRedValue(), true);
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -240,7 +240,7 @@ public class ClimbSubsystem extends Subsystem {
         m_mainDrive = DESCEND_SLOW;
         m_timeLeft_sec = 1.0;
         m_LEDRedValue = 0;
-        m_LEDBlueValue = 0;
+        m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 1\n");
         break;
@@ -255,7 +255,7 @@ public class ClimbSubsystem extends Subsystem {
         m_mainDrive = DESCEND_SLOW;
         m_timeLeft_sec = 1.0;
         m_LEDRedValue = 0;
-        m_LEDBlueValue = 0;
+        m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 2\n");
         break;
@@ -270,7 +270,7 @@ public class ClimbSubsystem extends Subsystem {
         m_mainDrive = DESCEND_SLOW;
         m_timeLeft_sec = 1.0;
         m_LEDRedValue = 0;
-        m_LEDBlueValue = 0;
+        m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 3\n");
         break;
@@ -285,7 +285,7 @@ public class ClimbSubsystem extends Subsystem {
         m_mainDrive = DESCEND_SLOW;
         m_timeLeft_sec = 1.0;
         m_LEDRedValue = 0;
-        m_LEDBlueValue = 0;
+        m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 4\n");
         break;

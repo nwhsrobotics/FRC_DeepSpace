@@ -157,13 +157,18 @@ public class LedSubsystem extends Subsystem {
   }
 
 //public void LED(int n, boolean state) {
-  public void LED(int blue, int green, int red){
+  public void LED(int blue, int green, int red, Boolean state/**, int n */){
     /*if (){         
       m_pixel[n].set((byte) 50,(byte) 0,(byte) 0);
     } else {
       m_pixel[n].set((byte)0, (byte)0, (byte)0);
     }
     */
+    /*if (state){         
+      m_pixel[n].set((byte)blue, (byte) red,(byte) green);
+    } else {
+      m_pixel[n].set((byte)0, (byte)0, (byte)0);
+    } Working but need to initialize each LED */
     for (int n = NUM_PIXELS-1; n > 0; n--) {
       // shift all pixels by one
       m_pixel[n].copy(m_pixel[n-1]);
@@ -172,9 +177,7 @@ public class LedSubsystem extends Subsystem {
       m_pixel[0].set((byte)blue, (byte)red, (byte)green); // ___ r _____
     }
     //sendFrame();
-    System.out.println("\nDid thing.");
-  }
-public void Climb(){
+    System.out.println("\nLed On");
   }
 }
   
