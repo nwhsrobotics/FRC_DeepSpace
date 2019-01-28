@@ -114,8 +114,8 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
-    backleftwheel = new WPI_TalonSRX(21);   
-    backrightwheel = new WPI_TalonSRX(11);
+    backleftwheel = new WPI_TalonSRX(RobotMap.backleftwheel);   
+    backrightwheel = new WPI_TalonSRX(RobotMap.backrightwheel);
     backrightwheel.setInverted(true);
     climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
 

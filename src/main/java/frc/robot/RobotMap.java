@@ -47,8 +47,8 @@ package frc.robot;
   }
 
 
-  public static int backleftwheel = 21;
-  public static int backrightwheel = 11;
+  public static int backleftwheel = 3;
+  public static int backrightwheel = 111;
   public static int pcmClimbCanId = 5;
   public static int FrontLeftSolenoidExtend = 0;
   public static int FrontLeftSolenoidRetract = 1;
