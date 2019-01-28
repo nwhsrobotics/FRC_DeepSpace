@@ -35,7 +35,8 @@ public class LiftSubsystem extends Subsystem {
   private static final int DEFAULT_CURR_LIMIT = 2;
   private static final double DEFAULT_P = 1.0;
   private static final double DEFAULT_MAX_INTEGRAL = 2.0 * DEFAULT_P;
-
+  //create an encoder count (ticks) ---> distance (inches), for a new vairbale 
+  
   int m_canId = DEFAULT_TALON_ID;
   int m_canId2 = DEFAULT_TALON_ID;
   WPI_TalonSRX m_talon;
