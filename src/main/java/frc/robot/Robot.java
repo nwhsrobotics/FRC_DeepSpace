@@ -117,7 +117,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    axisControls();
+    
   }
 
   @Override
@@ -138,7 +138,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    axisControls();
+    
   }
 
   /**
@@ -148,9 +148,4 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 
-  public void axisControls() {
-    m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
-    m_lift.update(Robot.m_oi.getLiftValue());
-    m_slide.update(Robot.m_oi.getSlideValue());
-  }
 }
