@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.StopLiftCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.commands.DownLiftCommand;
 import frc.robot.commands.UpLiftCommand;
@@ -27,6 +26,8 @@ import frc.robot.commands.UpLiftCommand;
 	JAGBOTS 2019 DEEP SPACE CODE
 	
  */
+import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.LedSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,8 +37,9 @@ import frc.robot.commands.UpLiftCommand;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static LiftSubsystem l_Subsystem = new LiftSubsystem();
+  public static LedSubsystem a_Subsystem = new LedSubsystem();
+  public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -50,19 +52,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new StopLiftCommand());
+    //m_chooser.setDefaultOption("Default Auto", );
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    Joystick stick = new Joystick(0);
-    Button b1 = new JoystickButton(stick, 1);
-    Button b4 = new JoystickButton(stick, 4);
-    b1.whenPressed(new DownLiftCommand());
-    b1.whenReleased(new StopLiftCommand());
 
-    b4.whenPressed(new UpLiftCommand());
-    b4.whenReleased(new StopLiftCommand());
-    l_Subsystem.init();
     
+
+
 
   }
 
@@ -111,7 +107,7 @@ public class Robot extends TimedRobot {
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
      * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
+     * autonomousCommand = new SolenoidCommand(); break; }
      */
 
     // schedule the autonomous command (example)
