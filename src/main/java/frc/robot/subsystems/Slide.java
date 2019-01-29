@@ -35,9 +35,9 @@ public class Slide extends Subsystem {
 
   private static final int TALON_TIMEOUT_MS = 100;
 
-  private static final double DEFAULT_P = 1.0;
-  private static final int DEFAULT_CURR_LIMIT = 2;
-  private static final double DEFAULT_MAX_INTEGRAL = 2.0 * DEFAULT_P;
+  private static final double DEFAULT_P = 0.1;
+  private static final int DEFAULT_CURR_LIMIT = 0;
+  private static final double DEFAULT_MAX_INTEGRAL = 0.0 * DEFAULT_P;
 
   int m_canId = RobotMap.slideCanId();
   WPI_TalonSRX m_talon;
