@@ -15,6 +15,7 @@ public class startDescendCommand extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.climbSubsystem);
+    requires(Robot.m_drivetrain);
     //TODO-MR Add Drive Train Subsystem
   }
 

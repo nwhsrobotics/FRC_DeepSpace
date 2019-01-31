@@ -28,9 +28,9 @@ package frc.robot;
   // public static int rightMotor = 2;
  
   //slide
-  /*public static int slideCanId(){
-    return 5;*/
-  
+  public static int slideCanId(){
+    return 5;
+  }
   //drive train
   public static int frontLeftMotorCanId() {
     return 20;
@@ -53,12 +53,6 @@ package frc.robot;
   public static int rightLiftMotorCanId() {
     return 6; //replace with actual can id
   }
-
-  public static int grabberCanId(){
-    return 62;
-  
-  }
-
 
   public static int pmc1CanID() {
     return 5;
