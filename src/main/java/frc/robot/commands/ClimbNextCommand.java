@@ -23,7 +23,7 @@ public class ClimbNextCommand extends Command {
     Robot.climbSubsystem.nextStage();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
     Robot.climbSubsystem.setauxDrive();
-    Robot.a_Subsystem.LED(Robot.climbSubsystem.getBlueValue(), Robot.climbSubsystem.getGreenValue(), Robot.climbSubsystem.getRedValue(), true);
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
   }
 
 

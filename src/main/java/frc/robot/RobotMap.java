@@ -27,57 +27,138 @@ package frc.robot;
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
  
+  //slide
+  /*public static int slideCanId(){
+    return 5;*/
+  
+  //drive train
   public static int frontLeftMotorCanId() {
-    return 0;
+    return 20;
   }
   public static int backLeftMotorCanId() {
-    return 0;
+    return 21;
   }
   public static int frontRightMotorCanId() {
-    return 0;
+    
+    return 11;
   }
   public static int backRightMotorCanId() {
-    return 0;
-  }
-  public static int backleftwheel() {
-    return 0;
-  }
-  public static int backrightwheel() {
-    return 0;
-  }
-
-
-  public static int backleftwheel = 3;
-  public static int backrightwheel = 111;
-  public static int pcmClimbCanId = 5;
-  public static int FrontLeftSolenoidExtend = 0;
-  public static int FrontLeftSolenoidRetract = 1;
-  public static int BackLeftSolenoidExtend = 2;
-  public static int BackLeftSolenoidRetract = 3; 
-  public static int FrontRightSolenoidExtend = 4;
-  public static int FrontRightSolenoidRetract = 5;
-  public static int BackRightSolenoidExtend = 6;
-  public static int BackRightSolenoidRetract = 7;
-
   
+    return 10;
+  }
+  //lift
+  public static int leftLiftMotorCanId() {
+    return 1; //replace with actual can id
+  }
+  public static int rightLiftMotorCanId() {
+    return 6; //replace with actual can id
+  }
 
- /* public static int pcmClimbCanId2 = 6;
-  public static int LowerFrontSolenoidExtend = 0;
-  public static int LowerFrontSolenoidRetract = 1;
-  public static int LowerBackSolenoidExtend = 2;
-  public static int LowerBackSolenoidRetract = 3;
-  public static int ascendAssistBackLeftExtend = 4;
-  public static int ascendAssistBackLeftRetract = 5;
-  public static int ascendAssistBackRightExtend = 6;
-  public static int ascendAssistBackRightRetract = 7;
+  public static int grabberCanId(){
+    return 62;
   
+  }
+
+
+  public static int pmc1CanID() {
+    return 5;
+  }
+
+  public static int pmc2CanID() {
+    return 6;
+  }
   
-  public static int pcmArmCanId = 7;
-  public static int PusherSolenoidPush = 0;
-  public static int PusherSolenoidRetract = 1;
-  public static int ArmSolenoidForward = 2;
-  public static int ArmSolenoidReverse = 3; */
+  public static int pcm3CanID() {
+    return 7;
+  }
+
  
+  public static int GrabberSolenoidForward() {
+    return 0;
+  }
+  
+  public static int GrabberSolenoidReverse() {
+    return 1;
+  }
+  
+  public static int ArmSolenoidForward() {
+    return 2;
+  }
+
+  public static int ArmSolenoidReverse() {
+    return 3;
+  }
+  
+  public static int backLeftWheel() {
+    return 3;
+  }
+  public static int backRightWheel() {
+    return 2;
+  }
+  
+  
+
+  
+  public static int frontLeftSolenoidExtend() {
+    return 0;
+  }
+  public static int frontLeftSolenoidRetract() {
+    return 1;
+  }
+  public static int backLeftSolenoidExtend() {
+    return 2;
+  }
+  public static int backLeftSolenoidRetract() {
+    return 3;
+  }
+  public static int frontRightSolenoidExtend() {
+    return 4;
+  }
+  public static int frontRightSolenoidRetract() {
+    return 5;
+  }
+  public static int backRightSolenoidExtend() {
+    return 6;
+  }
+  public static int backRightSolenoidRetract() {
+    return 7;
+  }
+
+  
+  public static int LowerFrontSolenoidExtend() {
+    return 0;
+  }
+  public static int LowerFrontSolenoidRetract() {
+    return 1;
+  }
+  public static int LowerBackSolenoidExtend() {
+    return 2;
+  }
+  public static int LowerBackSolenoidRetract() {
+    return 3;
+  } 
+  public static int ascendAssistBackLeftExtend() {
+    return 4;
+  }
+  public static int ascendAssistBackLeftRetract() {
+    return 5;
+  }
+  public static int ascendAssistBackRightExtend() {
+    return 6;
+  }
+  public static int ascendAssistBackRightRetract() {
+    return 7;
+  }
+ 
+ 
+
+
+  
+
+
+  
+
+
  
  
 

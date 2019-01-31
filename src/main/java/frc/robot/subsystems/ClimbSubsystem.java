@@ -114,38 +114,38 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
-    backleftwheel = new WPI_TalonSRX(RobotMap.backleftwheel);   
-    backrightwheel = new WPI_TalonSRX(RobotMap.backrightwheel);
-    backrightwheel.setInverted(true);
+    backleftwheel = new WPI_TalonSRX(RobotMap.backLeftWheel());   
+   //backrightwheel = new WPI_TalonSRX(RobotMap.backRightWheel());
+    //backrightwheel.setInverted(true);
     climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
 
-    DummySolenoid = new DoubleSolenoid(RobotMap.pcmClimbCanId,6,7);
+    DummySolenoid = new DoubleSolenoid(RobotMap.pmc1CanID(),6,7);
     DummySolenoid.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_1 = new DoubleSolenoid(RobotMap.pcmClimbCanId,RobotMap.FrontLeftSolenoidExtend,RobotMap.FrontLeftSolenoidRetract);
+    Solenoid_1 = new DoubleSolenoid(RobotMap.pmc1CanID(),RobotMap.frontLeftSolenoidExtend(),RobotMap.frontLeftSolenoidRetract());
     Solenoid_1.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_2 = new DoubleSolenoid(RobotMap.pcmClimbCanId,RobotMap.FrontRightSolenoidExtend,RobotMap.FrontRightSolenoidRetract);
+    Solenoid_2 = new DoubleSolenoid(RobotMap.pmc1CanID(),RobotMap.frontRightSolenoidExtend(),RobotMap.frontRightSolenoidRetract());
     Solenoid_2.set(DoubleSolenoid.Value.kOff);
   
 
-   /* Solenoid_3 = new DoubleSolenoid(RobotMap.pcmClimbCanId,RobotMap.BackLeftSolenoidExtend,RobotMap.BackLeftSolenoidRetract);
+   /* Solenoid_3 = new DoubleSolenoid(RobotMap.pmc1CanId(),RobotMap.backLeftSolenoidExtend(),RobotMap.backLeftSolenoidRetract());
     Solenoid_3.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_4 = new DoubleSolenoid(RobotMap.pcmClimbCanId,RobotMap.BackRightSolenoidExtend,RobotMap.BackRightSolenoidRetract);
+    Solenoid_4 = new DoubleSolenoid(RobotMap.pmc1CanId(),RobotMap.backRightSolenoidExtend(),RobotMap.backRightSolenoidRetract());
     Solenoid_4.set(DoubleSolenoid.Value.kOff);
     
     
-    Solenoid_5 = new DoubleSolenoid(RobotMap.pcmClimbCanId2,RobotMap.LowerFrontSolenoidExtend,RobotMap.LowerFrontSolenoidRetract);
+    Solenoid_5 = new DoubleSolenoid(RobotMap.pmc2CanID,RobotMap.lowerFrontSolenoidExtend(),RobotMap.lowerFrontSolenoidRetract());
     Solenoid_5.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_6 = new DoubleSolenoid(RobotMap.pcmClimbCanId2,RobotMap.LowerBackSolenoidExtend,RobotMap.LowerBackSolenoidRetract);
+    Solenoid_6 = new DoubleSolenoid(RobotMap.pmc2CanID,RobotMap.lowerBackSolenoidExtend(),RobotMap.lowerBackSolenoidRetract());
     Solenoid_6.set(DoubleSolenoid.Value.kOff); 
     
-    Solenoid_7 = new DoubleSolenoid(RobotMap.pcmClimbCanId2,RobotMap.ascendAssistBackLeftExtend,RobotMap.ascendAssistBackLeftRetract);
+    Solenoid_7 = new DoubleSolenoid(RobotMap.pmc2CanID,RobotMap.ascendAssistBackLeftExtend(),RobotMap.ascendAssistBackLeftRetract());
     Solenoid_7.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_8 = new DoubleSolenoid(RobotMap.pcmClimbCanId2,RobotMap.ascendAssistBackRightExtend,RobotMap.ascendAssistBackRightRetract); 
+    Solenoid_8 = new DoubleSolenoid(RobotMap.pmc2CanID,RobotMap.ascendAssistBackRightExtend(),RobotMap.ascendAssistBackRightRetract()); 
     Solenoid_8.set(DoubleSolenoid.Value.kOff);
     */ 
     
