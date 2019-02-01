@@ -21,7 +21,7 @@ public class Slide extends Subsystem {
   private WPI_TalonSRX m_slide;
   public Slide(){
 
-    m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
+    //m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
   }
   
   public void update(double x){

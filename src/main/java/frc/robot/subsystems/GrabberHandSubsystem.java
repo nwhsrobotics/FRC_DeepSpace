@@ -20,8 +20,8 @@ public class GrabberHandSubsystem extends Subsystem {
   private DoubleSolenoid m_grabberHand;
   @Override
    public void initDefaultCommand() {
-    m_grabberHand = new DoubleSolenoid(RobotMap.pmc1CanID(), RobotMap.GrabberSolenoidForward(), RobotMap.GrabberSolenoidReverse());
-    m_grabberHand.set(DoubleSolenoid.Value.kOff);
+   // m_grabberHand = new DoubleSolenoid(RobotMap.pmc1CanID(), RobotMap.GrabberSolenoidForward(), RobotMap.GrabberSolenoidReverse());
+   // m_grabberHand.set(DoubleSolenoid.Value.kOff);
   }
 
    public void handTurnOff() {
@@ -32,5 +32,5 @@ public class GrabberHandSubsystem extends Subsystem {
   } 
   public void handRetract() {
     m_grabberHand.set(DoubleSolenoid.Value.kReverse);
-  }
-}
+  } 
+} 
