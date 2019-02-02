@@ -56,9 +56,9 @@ public class OI{
     leftTrigger2.togglewhenActive(new SlideForward()); //slide moves left
     leftTrigger2.whenInactive(new SlideStop()); //slide stops at current place
 
-    backButton1.whenPressed(new Lvl2Descent); //initiate lvl 2 descent
-    startButton1.whenPressed(new Lvl2Climb); //initiate lvl 2 climb
-    playButton1.whenPressed(new Lvl3Climb); // intiate lvl 3 climb
+    backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
+    startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
+    playButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
 
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
