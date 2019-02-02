@@ -15,10 +15,10 @@ public class OI{
 
   Joystick joy = new Joystick(0);
   
-  private final int CAMERA_BUTTON = 3;
+  private final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
-  private final int Lvl3CLIMB_BUTTON = 4;//cant find button
+  private final int Lvl3CLIMB_BUTTON = 3;//cant find button
   private final int CLIMBNEXT_BUTTON = 6;
   private final int CLIMBPREV_BUTTON = 5;
   public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
@@ -45,7 +45,7 @@ public class OI{
 
   public OI () {
 
-    //xButton1.toggleWhenPressed(new CameraToggle);
+    //bButton1.toggleWhenPressed(new CameraToggle);
 
     //rightTrigger2.togglewhenActive(new SlideForward()); //slide moves right
     //rightTrigger2.whenInactive(new SlideStop()); //slide stops at current place
@@ -55,7 +55,7 @@ public class OI{
 
     backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
     startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
-    playButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
+    xButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
 
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
