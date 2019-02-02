@@ -24,12 +24,13 @@ public class startL3AscendCommand extends Command {
     Robot.climbSubsystem.startL3Ascend();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
     Robot.climbSubsystem.setauxDrive();
-    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

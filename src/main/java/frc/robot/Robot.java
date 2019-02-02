@@ -38,9 +38,9 @@ public class Robot extends TimedRobot {
   public static LedSubsystem a_Subsystem = new LedSubsystem();
   public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
   public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
-  public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
+  //public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
-  public static LiftSubsystem m_lift = new LiftSubsystem();
+  //public static LiftSubsystem m_lift = new LiftSubsystem();
   public static OI m_oi;
   public static Slide m_slide = new Slide();
 
@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
+   // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 

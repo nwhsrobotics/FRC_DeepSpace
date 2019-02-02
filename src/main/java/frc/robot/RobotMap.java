@@ -28,9 +28,9 @@ package frc.robot;
   // public static int rightMotor = 2;
  
   //slide
-  public static int slideCanId(){
-    return 5;
-  }
+ // public static int slideCanId(){
+   // return 5;
+ // }
   //drive train
   public static int frontLeftMotorCanId() {
     return 20;
@@ -47,18 +47,19 @@ package frc.robot;
     return 10;
   }
   //lift
-  public static int leftLiftMotorCanId() {
+ /* public static int leftLiftMotorCanId() {
     return 1; //replace with actual can id
   }
   public static int rightLiftMotorCanId() {
     return 6; //replace with actual can id
   }
+  */
 
   public static int pmc1CanID() {
     return 5;
   }
 
-  public static int pmc2CanID() {
+ /* public static int pmc2CanID() {
     return 6;
   }
   
@@ -82,6 +83,7 @@ package frc.robot;
   public static int ArmSolenoidReverse() {
     return 3;
   }
+  */
   
   public static int backLeftWheel() {
     return 3;
@@ -100,18 +102,18 @@ package frc.robot;
     return 1;
   }
   public static int backLeftSolenoidExtend() {
-    return 2;
-  }
-  public static int backLeftSolenoidRetract() {
-    return 3;
-  }
-  public static int frontRightSolenoidExtend() {
     return 4;
   }
-  public static int frontRightSolenoidRetract() {
+  public static int backLeftSolenoidRetract() {
     return 5;
   }
-  public static int backRightSolenoidExtend() {
+  public static int frontRightSolenoidExtend() {
+    return 2;
+  }
+  public static int frontRightSolenoidRetract() {
+    return 3;
+  }
+ /* public static int backRightSolenoidExtend() {
     return 6;
   }
   public static int backRightSolenoidRetract() {
@@ -143,6 +145,7 @@ package frc.robot;
   public static int ascendAssistBackRightRetract() {
     return 7;
   }
+  */
  
  
 

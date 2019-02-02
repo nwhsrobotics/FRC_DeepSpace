@@ -115,8 +115,8 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
     backleftwheel = new WPI_TalonSRX(RobotMap.backLeftWheel());   
-   //backrightwheel = new WPI_TalonSRX(RobotMap.backRightWheel());
-    //backrightwheel.setInverted(true);
+    backrightwheel = new WPI_TalonSRX(RobotMap.backRightWheel());
+    backrightwheel.setInverted(true);
     climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
 
     DummySolenoid = new DoubleSolenoid(RobotMap.pmc1CanID(),6,7);
@@ -129,10 +129,10 @@ public class ClimbSubsystem extends Subsystem {
     Solenoid_2.set(DoubleSolenoid.Value.kOff);
   
 
-   /* Solenoid_3 = new DoubleSolenoid(RobotMap.pmc1CanId(),RobotMap.backLeftSolenoidExtend(),RobotMap.backLeftSolenoidRetract());
+    Solenoid_3 = new DoubleSolenoid(RobotMap.pmc1CanID(),RobotMap.backLeftSolenoidExtend(),RobotMap.backLeftSolenoidRetract());
     Solenoid_3.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_4 = new DoubleSolenoid(RobotMap.pmc1CanId(),RobotMap.backRightSolenoidExtend(),RobotMap.backRightSolenoidRetract());
+    /*Solenoid_4 = new DoubleSolenoid(RobotMap.pmc1CanId(),RobotMap.backRightSolenoidExtend(),RobotMap.backRightSolenoidRetract());
     Solenoid_4.set(DoubleSolenoid.Value.kOff);
     
     
@@ -150,7 +150,7 @@ public class ClimbSubsystem extends Subsystem {
     */ 
     
     
-    Solenoid_3 = DummySolenoid;
+    
     Solenoid_4 = DummySolenoid;
     Solenoid_5 = DummySolenoid;
     Solenoid_6 = DummySolenoid;
@@ -467,15 +467,16 @@ public class ClimbSubsystem extends Subsystem {
 
   }
 
-  /*public double getauxDrive() {
+    public double getauxDrive() {
 
     return m_auxDrive;
   }
-*/
-  public void setauxDrive() {
+
+    public void setauxDrive() {
 
     climbwheels.set(m_auxDrive);
   }
+  
 
 
 
