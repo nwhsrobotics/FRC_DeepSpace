@@ -18,12 +18,12 @@ public class OI{
 
   Joystick joy = new Joystick(0);
   
-  private final int CAMERA_BUTTON = 1;
-  private final int Lvl2DESC_BUTTON = 2;
-  private final int Lvl2CLIMB_BUTTON = 3;
-  private final int Lvl3CLIMB_BUTTON = 4;
-  private final int CLIMBNEXT_BUTTON = 5;
-  private final int CLIMBPREV_BUTTON = 6;
+  private final int CAMERA_BUTTON = 3;
+  private final int Lvl2DESC_BUTTON = 7;
+  private final int Lvl2CLIMB_BUTTON = 8;
+  private final int Lvl3CLIMB_BUTTON = 4;//cant find button
+  private final int CLIMBNEXT_BUTTON = 6;
+  private final int CLIMBPREV_BUTTON = 5;
   public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
 	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
 	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
@@ -34,10 +34,10 @@ public class OI{
   Joystick joy2 = new Joystick(1);
 
 
-  private final int HIGHHATCH_BUTTON = 1;
-  private final int MIDHATCH_BUTTON = 2;
-  private final int LOWHATCH_BUTTON = 3;
-  private final int CLAMP_BUTTON = 4;
+  private final int HIGHHATCH_BUTTON = 4;
+  private final int MIDHATCH_BUTTON = 3;
+  private final int LOWHATCH_BUTTON = 1;
+  private final int CLAMP_BUTTON = 2;
 
   public JoystickButton yButton2 = new JoystickButton(joy2, HIGHHATCH_BUTTON);
   public JoystickButton xButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);
