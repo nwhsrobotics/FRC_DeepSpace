@@ -93,7 +93,7 @@ public class RobotMap {
     albert.put(MapKeys.LIFT_LEFT, 0);
     albert.put(MapKeys.LIFT_RIGHT, 0);
 
-    albert.put(MapKeys.PCM_CLIMBCANID, 5);
+    albert.put(MapKeys.PCM_CLIMBCANID, 0);
     albert.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
     albert.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
     albert.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
@@ -113,11 +113,11 @@ public class RobotMap {
     albert.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
     albert.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
 
-    albert.put(MapKeys.PCM_ARMCANID, 0);
+    albert.put(MapKeys.PCM_ARMCANID, 5);
     albert.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
-    albert.put(MapKeys.SOLENOID_PUSHERRETRACT, 0);
-    albert.put(MapKeys.SOLENOID_ARMFORWARD, 0);
-    albert.put(MapKeys.SOLENOID_ARMREVERSE, 0);
+    albert.put(MapKeys.SOLENOID_PUSHERRETRACT, 1);
+    albert.put(MapKeys.SOLENOID_ARMFORWARD, 2);
+    albert.put(MapKeys.SOLENOID_ARMREVERSE, 3);
 
     // DEADPIXEL IDs BEGIN HERE #########################################
 

@@ -120,7 +120,8 @@ public class ClimbSubsystem extends Subsystem {
     //backrightwheel = new WPI_TalonSRX(RobotMap.backRightWheel());
     //backrightwheel.setInverted(true);
     //climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
-    final int PCM_1_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID);
+
+    /** final int PCM_1_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID);
     final int PCM_2_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2);
 
     DummySolenoid = new DoubleSolenoid(PCM_1_CAN_ID, 6,7);
@@ -141,7 +142,7 @@ public class ClimbSubsystem extends Subsystem {
     Solenoid_2.set(DoubleSolenoid.Value.kOff);
   
 
-   /* Solenoid_3 = new DoubleSolenoid(PCM_1_CAN_ID,RobotMap.backLeftSolenoidExtend(),RobotMap.backLeftSolenoidRetract());
+    Solenoid_3 = new DoubleSolenoid(PCM_1_CAN_ID,RobotMap.backLeftSolenoidExtend(),RobotMap.backLeftSolenoidRetract());
     Solenoid_3.set(DoubleSolenoid.Value.kOff);
 
     Solenoid_4 = new DoubleSolenoid(PCM_1_CAN_ID,RobotMap.backRightSolenoidExtend(),RobotMap.backRightSolenoidRetract());

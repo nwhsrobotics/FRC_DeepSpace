@@ -41,6 +41,8 @@ public class OI{
   public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
 
+  public double turnModifier = .4;
+  public double driveModifier = .9;
 
 
   public OI () {
@@ -74,11 +76,11 @@ public class OI{
 
 
   public double getForwardValue() {
-    return joy.getRawAxis(1);
+    return joy.getRawAxis(1) * driveModifier;
 
   }
   public double getTurnValue() {
-    return joy.getRawAxis(4);
+    return joy.getRawAxis(4) * turnModifier;
   }
 
   public double getLiftValue() {
