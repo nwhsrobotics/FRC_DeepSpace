@@ -15,6 +15,7 @@ import java.util.EnumMap;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+<<<<<<< HEAD
 public class RobotMap {
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
@@ -158,9 +159,52 @@ public class RobotMap {
   }
 
 
+=======
+
+
+
+ public class RobotMap {
+
+  
+ 
+ 
+ 
+  // For example to map the left and right motors, you could define the
+  // following variables to use with your drivetrain subsystem.
+  // public static int leftMotor = 1;
+  // public static int rightMotor = 2;
+ 
+  //slide
+  public static int slideCanId(){
+    return 5;
+  }
+  //drive train
+  public static int frontLeftMotorCanId() {
+    return 20;
+  }
+  public static int backLeftMotorCanId() {
+    return 21;
+  }
+  public static int frontRightMotorCanId() {
+    
+    return 11;
+  }
+  public static int backRightMotorCanId() {
+  
+    return 10;
+  }
+  //lift
+  public static int leftLiftMotorCanId() {
+    return 1; //replace with actual can id
+  }
+  public static int rightLiftMotorCanId() {
+    return 6; //replace with actual can id
+  }
+>>>>>>> 5dddb033f522cc0d4c0b3198ee96f9512d9726d0
 
   public RobotTypes activeRobot = RobotTypes.ALBERT;
 
+<<<<<<< HEAD
   public int getId(MapKeys key) {
     if(activeRobot == RobotTypes.BRIEFCASE) {
       return briefcase.get(key);
@@ -178,8 +222,111 @@ public class RobotMap {
   public EnumMap<MapKeys, Integer> albert = new EnumMap<MapKeys, Integer>(MapKeys.class);
 
   public EnumMap<MapKeys, Integer> deadpixel = new EnumMap<MapKeys, Integer>(MapKeys.class);
+=======
+  public static int pmc2CanID() {
+    return 6;
+  }
+  
+  public static int pcm3CanID() {
+    return 7;
+  }
+
+ 
+  public static int GrabberSolenoidForward() {
+    return 0;
+  }
+  
+  public static int GrabberSolenoidReverse() {
+    return 1;
+  }
+  
+  public static int ArmSolenoidForward() {
+    return 2;
+  }
+
+  public static int ArmSolenoidReverse() {
+    return 3;
+  }
+  
+  public static int backLeftWheel() {
+    return 3;
+  }
+  public static int backRightWheel() {
+    return 2;
+  }
+  
+  
+
+  
+  public static int frontLeftSolenoidExtend() {
+    return 0;
+  }
+  public static int frontLeftSolenoidRetract() {
+    return 1;
+  }
+  public static int backLeftSolenoidExtend() {
+    return 2;
+  }
+  public static int backLeftSolenoidRetract() {
+    return 3;
+  }
+  public static int frontRightSolenoidExtend() {
+    return 4;
+  }
+  public static int frontRightSolenoidRetract() {
+    return 5;
+  }
+  public static int backRightSolenoidExtend() {
+    return 6;
+  }
+  public static int backRightSolenoidRetract() {
+    return 7;
+  }
+
+  
+  public static int LowerFrontSolenoidExtend() {
+    return 0;
+  }
+  public static int LowerFrontSolenoidRetract() {
+    return 1;
+  }
+  public static int LowerBackSolenoidExtend() {
+    return 2;
+  }
+  public static int LowerBackSolenoidRetract() {
+    return 3;
+  } 
+  public static int ascendAssistBackLeftExtend() {
+    return 4;
+  }
+  public static int ascendAssistBackLeftRetract() {
+    return 5;
+  }
+  public static int ascendAssistBackRightExtend() {
+    return 6;
+  }
+  public static int ascendAssistBackRightRetract() {
+    return 7;
+  }
+ 
+ 
+
+>>>>>>> 5dddb033f522cc0d4c0b3198ee96f9512d9726d0
 
   
 
 
+<<<<<<< HEAD
+=======
+  
+
+
+ 
+ 
+
+  // If you are using multiple modules, make sure to define both the port
+  // number and the module. For example you with a rangefinder:
+  // public static int rangefinderPort = 1;
+  // public static int rangefinderModule = 1;
+>>>>>>> 5dddb033f522cc0d4c0b3198ee96f9512d9726d0
 }

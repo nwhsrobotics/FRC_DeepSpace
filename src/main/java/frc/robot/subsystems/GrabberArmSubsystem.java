@@ -7,35 +7,30 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class Slide extends Subsystem {
+public class GrabberArmSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private WPI_TalonSRX m_slide;
-  public Slide(){
-
-    //m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
-  }
-  
-  public void update(double x){
-    m_slide.set(ControlMode.PercentOutput, x);
-  }
-
-  public void slideStop(){
-
-    m_slide.set(0);
-
-  }
+  private DoubleSolenoid m_grabberArm;
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    m_grabberArm = new DoubleSolenoid(RobotMap.pmc1CanID(),RobotMap.ArmSolenoidForward(),RobotMap.ArmSolenoidReverse());
+    m_grabberArm.set(DoubleSolenoid.Value.kOff);
   }
-}
+
+   public void armTurnOff() {
+    m_grabberArm.set(DoubleSolenoid.Value.kOff);
+  }
+  public void armExtend() {
+    m_grabberArm.set(DoubleSolenoid.Value.kForward);
+  }
+  public void armRetract() {
+    m_grabberArm.set(DoubleSolenoid.Value.kReverse);
+  } 
+} 
+

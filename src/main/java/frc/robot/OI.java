@@ -22,10 +22,13 @@ public class OI{
   private final int Lvl2DESC_BUTTON = 2;
   private final int Lvl2CLIMB_BUTTON = 3;
   private final int Lvl3CLIMB_BUTTON = 4;
+  private final int CLIMBNEXT_BUTTON = 5;
+  private final int CLIMBPREV_BUTTON = 6;
   public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
 	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
 	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
-  public JoystickButton playButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+  public JoystickButton leftBumper1 = new JoystickButton(joy, CLIMBPREV_BUTTON);
+  public JoystickButton rightBumper1 = new JoystickButton(joy, CLIMBNEXT_BUTTON);
     
 
   Joystick joy2 = new Joystick(1);
@@ -45,36 +48,27 @@ public class OI{
 
   public OI () {
 
-<<<<<<< HEAD
-    xButton1.toggleWhenPressed(new CameraToggle); //toggles camera on and off
-=======
-  /**  xButton1.toggleWhenPressed(new CameraToggle);
->>>>>>> nwhsrobotics/integration
+    xButton1.toggleWhenPressed(new CameraToggle);
 
-    rightTrigger2.togglewhenActive(new SlideRightToggle); //slide moves right
-    rightTrigger2.whenInactive(new SlideRightStop); //slide stops at current place
+    rightTrigger2.togglewhenActive(new SlideForward()); //slide moves right
+    rightTrigger2.whenInactive(new SlideStop()); //slide stops at current place
 
-    leftTrigger2.togglewhenActive(new SlideLeftToggle); //slide moves left
-    leftTrigger2.whenInactive(new SlideLeftStop); //slide stops at current place
+    leftTrigger2.togglewhenActive(new SlideForward()); //slide moves left
+    leftTrigger2.whenInactive(new SlideStop()); //slide stops at current place
 
     backButton1.whenPressed(new Lvl2Descent); //initiate lvl 2 descent
     startButton1.whenPressed(new Lvl2Climb); //initiate lvl 2 climb
     playButton1.whenPressed(new Lvl3Climb); // intiate lvl 3 climb
 
-<<<<<<< HEAD
+    leftBumper1.whenPressed(new ClimbPrevCommand());
+    rightBumper1.whenPressed(new ClimbNextCommand());
 
-    yButton2.toggleWhenPressed(new HighHatchInitiate); //move lift to high hatch position
-    xButton2.toggleWhenPressed(new MidHatchInitiate); //move lift to mid hatch position
-    aButton2.toggleWhenPressed(new LowHatchInitiate); //move lift to low hatch position
-    bButton2.toggleWhenPressed(new ClampToggle); //toggle for clamp
-=======
-    yButton2.toggleWhenPressed(new HighHatchInitiate);
-    xButton2.toggleWhenPressed(new MidHatchInitiate);
-    aButton2.toggleWhenPressed(new LowHatchInitiate);
-    */
-    bButton2.whenPressed(new GrabberExtend());
-    bButton2.whenReleased(new GrabberRetract());
->>>>>>> nwhsrobotics/integration
+    yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
+    xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
+    aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
+
+    bButton2.togglewhenActive(new GrabberExtend()); //toggle for clamp
+    bButton2.togglewhenInactive(new GrabberRetract()); //toggle for clamp
 
     
   }

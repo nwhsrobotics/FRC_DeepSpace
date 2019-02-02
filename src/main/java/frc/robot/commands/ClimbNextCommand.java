@@ -10,29 +10,36 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DriveTrainMove extends Command {
-  public DriveTrainMove() {
+public class ClimbNextCommand extends Command {
+  public ClimbNextCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.climbSubsystem);
     requires(Robot.m_drivetrain);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.climbSubsystem.nextStage();
+    setTimeout(Robot.climbSubsystem.getTimeLeft());
+    Robot.climbSubsystem.setauxDrive();
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
   }
+
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
-    //need to add this command to continuously run in the scheduler. Trigger with a joystick input or just with start of auto/teleop?
+    
+
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

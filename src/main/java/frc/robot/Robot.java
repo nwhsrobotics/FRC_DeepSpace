@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 /*
@@ -25,6 +24,8 @@ import frc.robot.subsystems.*;
 	JAGBOTS 2019 DEEP SPACE CODE
 	
  */
+import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.LedSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,11 +35,14 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static LedSubsystem a_Subsystem = new LedSubsystem();
+  public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
+  public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
+  public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static OI m_oi;
   public static Slide m_slide = new Slide();
-  public static PneumaticsSubsystem m_pneumatics = new PneumaticsSubsystem();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -50,9 +54,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new DriveTrainMove()); 
+    m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+
 
   }
 
@@ -101,7 +107,7 @@ public class Robot extends TimedRobot {
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
      * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
+     * autonomousCommand = new SolenoidCommand(); break; }
      */
 
     // schedule the autonomous command (example)
@@ -116,7 +122,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
+    
   }
 
   @Override
@@ -127,7 +133,6 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
-      
     }
   }
 
@@ -146,4 +151,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
 }

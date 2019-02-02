@@ -9,6 +9,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 
+
 /**
  * Add your docs here.
  */
@@ -38,16 +39,9 @@ public class LiftSubsystem extends Subsystem {
      
   }
 
-  public void goingUp() {
-    m_lift.set(Robot.m_oi.liftUpValue());
-  }
-
-  public void goingDown() {
-    m_lift.set(Robot.m_oi.liftDownValue());
-  }
-  public void stopLift(){
-    m_lift.set(0);
+  public void update(double x) {
+    m_lift.set(x);
   }
 
   
-}
+} 
