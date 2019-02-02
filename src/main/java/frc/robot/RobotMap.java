@@ -35,6 +35,7 @@ public class RobotMap {
     SOLENOID_LOWERFRONTEXTEND, SOLENOID_LOWERFRONTRETRACT, SOLENOID_LOWERBACKEXTEND, SOLENOID_LOWERBACKRETRACT, SOLENOID_ASCENDASSISTBACKLEFTEXTEND, SOLENOID_ASCENDASSISTBACKLEFTRETRACT, SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, SOLENOID_ASCENDASSISTBACKRIGHTRETRACT,
     PCM_ARMCANID,
     SOLENOID_PUSHERPUSH, SOLENOID_PUSHERRETRACT, SOLENOID_ARMFORWARD, SOLENOID_ARMREVERSE
+
   }
 
   public enum RobotTypes {
@@ -82,24 +83,25 @@ public class RobotMap {
 
     // ALBERT IDs BEGIN HERE #########################################
 
-    albert.put(MapKeys.DRIVE_FRONTLEFT, 0);
-    albert.put(MapKeys.DRIVE_FRONTRIGHT, 0);
-    albert.put(MapKeys.DRIVE_BACKLEFT, 0);
-    albert.put(MapKeys.DRIVE_BACKRIGHT, 0);
+    albert.put(MapKeys.DRIVE_FRONTLEFT, 20);
+    albert.put(MapKeys.DRIVE_FRONTRIGHT, 11);
+    albert.put(MapKeys.DRIVE_BACKLEFT, 21);
+    albert.put(MapKeys.DRIVE_BACKRIGHT, 10);
 
-    albert.put(MapKeys.SLIDE, 0);
+    albert.put(MapKeys.SLIDE, 3);
+    
     albert.put(MapKeys.LIFT_LEFT, 0);
     albert.put(MapKeys.LIFT_RIGHT, 0);
 
-    albert.put(MapKeys.PCM_CLIMBCANID, 0);
+    albert.put(MapKeys.PCM_CLIMBCANID, 5);
     albert.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
-    albert.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 0);
-    albert.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0);
-    albert.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 0);
-    albert.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 0);
-    albert.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 0);
-    albert.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 0);
-    albert.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 0);
+    albert.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
+    albert.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
+    albert.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 3);
+    albert.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 4);
+    albert.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 5);
+    albert.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 6);
+    albert.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 7);
 
     albert.put(MapKeys.PCM_CLIMBCANID2, 0);
     albert.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
@@ -128,15 +130,15 @@ public class RobotMap {
     deadpixel.put(MapKeys.LIFT_LEFT, 0);
     deadpixel.put(MapKeys.LIFT_RIGHT, 0);
 
-    deadpixel.put(MapKeys.PCM_CLIMBCANID, 0);
+    deadpixel.put(MapKeys.PCM_CLIMBCANID, 5);
     deadpixel.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
-    deadpixel.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 0);
-    deadpixel.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0);
-    deadpixel.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 0);
-    deadpixel.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 0);
-    deadpixel.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 0);
-    deadpixel.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 0);
-    deadpixel.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
+    deadpixel.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
+    deadpixel.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 3);
+    deadpixel.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 4);
+    deadpixel.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 5);
+    deadpixel.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 6);
+    deadpixel.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 7);
 
     deadpixel.put(MapKeys.PCM_CLIMBCANID2, 0);
     deadpixel.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
