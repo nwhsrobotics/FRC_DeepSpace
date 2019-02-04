@@ -35,6 +35,8 @@ public class LiftSubsystem extends Subsystem {
   private static final int DEFAULT_CURR_LIMIT = 2;
   private static final double DEFAULT_P = 1.0;
   private static final double DEFAULT_MAX_INTEGRAL = 2.0 * DEFAULT_P;
+  private static final double TRAVEL_PER_REVOLUTION = 10; // in inches
+
   //create an encoder count (ticks) ---> distance (inches), for a new vairbale 
   
   int m_canId = DEFAULT_TALON_ID;
@@ -71,7 +73,7 @@ public class LiftSubsystem extends Subsystem {
   }
   
   @Override
-  public void periodic(){
+  public void periodic(double inches){
     double holdPosDeg = Robot.m_oi.readPositionDeg();
 
     m_holdPosEnc = degToEncoder(holdPosDeg);
@@ -79,7 +81,7 @@ public class LiftSubsystem extends Subsystem {
       m_talon.set(ControlMode.Disabled, 0.0);
     }
     else {
-      m_talon.set(ControlMode.Position, m_holdPosEnc);
+      m_talon.set(ControlMode.Position, inchesToEncoder(inches));
     }
 
     double actualPosDeg = encToDeg(m_talon.getSelectedSensorPosition(PID_PRIMARY));
@@ -155,6 +157,9 @@ private void readPreferences() {
 
   private int degToEncoder(double degrees) {
     return (int)(ENC_COUNT_PER_REV * degrees / 360.0);
+  }
+  public double inchesToEncoder(double inches) {
+    return (int)((inches/TRAVEL_PER_REVOLUTION)*ENC_COUNT_PER_REV);
   }
 
   public void GoingUp() {

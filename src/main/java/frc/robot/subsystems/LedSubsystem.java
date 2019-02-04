@@ -139,11 +139,17 @@ public class LedSubsystem extends Subsystem {
     for (int n = 0; n < NUM_PIXELS; n++) {
       // power multiplier
       m_frame[cursor++] = (byte) (m_power + 0xE0);
-       
-      m_frame[cursor++] = m_pixel[n].m_r;
-      m_frame[cursor++] = m_pixel[n].m_b;
-      m_frame[cursor++] = m_pixel[n].m_g;
-    
+      
+     
+      if (n % 10 == 0) {
+        m_frame[cursor++] = (byte) 230;
+        m_frame[cursor++] = (byte) 230;
+        m_frame[cursor++] = (byte) 230;
+      } else {
+        m_frame[cursor++] = m_pixel[n].m_r;
+        m_frame[cursor++] = m_pixel[n].m_b;
+        m_frame[cursor++] = m_pixel[n].m_g;
+      }
     }
 
     // stop sequence
@@ -169,12 +175,25 @@ public class LedSubsystem extends Subsystem {
       m_pixel[n].copy(m_pixel[n-1]);
 
       // write one new pixel
-      m_pixel[0].set((byte)blue, (byte)red, (byte)green); // ___ r _____
+      m_pixel[0].set((byte)blue, (byte)red, (byte)green);} // ___ r _____
     }
     //sendFrame();
-    System.out.println("\nDid thing.");
+    
+
+public void Climb(boolean state){
+  if (state){         
+    m_pixel[5].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[10].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[15].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[20].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[25].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[30].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[35].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[40].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[45].set((byte) 255,(byte) 171,(byte) 0);
+  } else {
+    m_pixel[0].set((byte)0, (byte)0, (byte)0);
   }
-public void Climb(){
   }
 }
   
