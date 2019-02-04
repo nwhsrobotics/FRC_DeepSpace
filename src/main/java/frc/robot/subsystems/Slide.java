@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.SlideCommand;
 /**
  * Add your docs here.
  */
@@ -25,17 +26,20 @@ public class Slide extends Subsystem {
   }
   
   public void update(double x){
-    m_slide.set(ControlMode.PercentOutput, x);
+    if (m_slide != null) {
+      m_slide.set(ControlMode.PercentOutput, x);
+    }
   }
 
   public void slideStop(){
-
-    m_slide.set(0);
-
+    if (m_slide != null) {
+      m_slide.set(0);
+    }
   }
+  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new SlideCommand());
   }
 }

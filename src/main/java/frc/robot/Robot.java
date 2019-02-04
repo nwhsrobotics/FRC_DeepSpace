@@ -82,6 +82,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    m_lift.m_motorup1.setIntegralAccumulator(0);
   }
 
   @Override

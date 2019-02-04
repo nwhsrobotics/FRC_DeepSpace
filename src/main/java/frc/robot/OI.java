@@ -62,9 +62,9 @@ public class OI{
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
 
-    yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
-    xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
-    aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
+    yButton2.whenPressed(new LiftHighCommand()); //move lift to high hatch position
+    xButton2.whenPressed(new LiftMidCommand()); //move lift to mid hatch position
+    aButton2.whenPressed(new LiftLowCommand()); //move lift to low hatch position
 
     bButton2.whenActive(new GrabberExtend()); //toggle for clamp
     bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
