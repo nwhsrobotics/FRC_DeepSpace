@@ -21,13 +21,13 @@ public class OI{
   private final int Lvl3CLIMB_BUTTON = 3;//cant find button
   private final int CLIMBNEXT_BUTTON = 6;
   private final int CLIMBPREV_BUTTON = 5;
-  public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
+  public JoystickButton bButton1 = new JoystickButton(joy, CAMERA_BUTTON);
 	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
 	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
   public JoystickButton leftBumper1 = new JoystickButton(joy, CLIMBPREV_BUTTON);
   public JoystickButton rightBumper1 = new JoystickButton(joy, CLIMBNEXT_BUTTON);
+  public JoystickButton xButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
     
-
   Joystick joy2 = new Joystick(1);
 
 
@@ -60,12 +60,14 @@ public class OI{
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
 
+    /*
     yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
     xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
     aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
 
     bButton2.whenActive(new GrabberExtend()); //toggle for clamp
     bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
+    */
 
     
   }

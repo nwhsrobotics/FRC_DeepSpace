@@ -23,7 +23,7 @@ public class ClimbNextCommand extends Command {
   protected void initialize() {
     Robot.climbSubsystem.nextStage();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
-    Robot.climbSubsystem.setauxDrive();
+    
     
   }
 
@@ -32,7 +32,7 @@ public class ClimbNextCommand extends Command {
   @Override
   protected void execute() {
     Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
-    
+    Robot.climbSubsystem.setauxDrive();
 
   
   }
