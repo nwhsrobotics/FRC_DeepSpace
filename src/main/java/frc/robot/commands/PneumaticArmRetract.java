@@ -10,7 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class PneumaticArmRetract extends Command {
+/*public class PneumaticArmRetract extends Command {
   public PneumaticArmRetract() {
     // Use requires() here to declare subsystem dependencies
      requires(Robot.m_grabberArm);
@@ -46,3 +46,4 @@ public class PneumaticArmRetract extends Command {
   protected void interrupted() {
   }
 }
+*/

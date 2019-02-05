@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class GrabberArmSubsystem extends Subsystem {
+/*public class GrabberArmSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberArm;
@@ -28,6 +28,7 @@ public class GrabberArmSubsystem extends Subsystem {
     );
     m_grabberArm.set(DoubleSolenoid.Value.kOff);
   }
+  
 
    public void armTurnOff() {
     m_grabberArm.set(DoubleSolenoid.Value.kOff);
@@ -39,4 +40,4 @@ public class GrabberArmSubsystem extends Subsystem {
     m_grabberArm.set(DoubleSolenoid.Value.kReverse);
   } 
 } 
-
+*/

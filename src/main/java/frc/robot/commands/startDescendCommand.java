@@ -24,15 +24,16 @@ public class startDescendCommand extends Command {
   protected void initialize() {
     Robot.climbSubsystem.startDescend();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
-    Robot.climbSubsystem.setauxDrive();
-    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
-    //TODO-MR Robot.DriveTrain.update(Robot.climbSubsystem.getMainDrive());
+    
+    
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
+    Robot.climbSubsystem.setauxDrive();
   }
 
   // Make this return true when this Command no longer needs to run execute()

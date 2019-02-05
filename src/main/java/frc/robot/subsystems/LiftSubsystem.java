@@ -14,7 +14,7 @@ import frc.robot.RobotMap.MapKeys;
 /**
  * Add your docs here.
  */
-public class LiftSubsystem extends Subsystem {
+/*public class LiftSubsystem extends Subsystem {
   private WPI_TalonSRX m_motorup1;
   private WPI_TalonSRX m_motorup2;
   private SpeedControllerGroup m_lift;
@@ -46,3 +46,4 @@ public class LiftSubsystem extends Subsystem {
 
   
 } 
+*/
