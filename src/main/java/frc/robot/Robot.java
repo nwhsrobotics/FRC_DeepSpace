@@ -7,20 +7,16 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.StopLiftCommand;
-import frc.robot.subsystems.LiftSubsystem;
-import frc.robot.commands.DownLiftCommand;
-import frc.robot.commands.UpLiftCommand;
 
-
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 /*
 	
 	JAGBOTS 2019 DEEP SPACE CODE
@@ -37,10 +33,17 @@ import frc.robot.subsystems.LedSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static LiftSubsystem l_Subsystem = new LiftSubsystem();
+  public static OI m_oi;
+  public static RobotMap m_map = new RobotMap();
+  public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
   public static LedSubsystem a_Subsystem = new LedSubsystem();
   public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
-  public static OI m_oi;
+  public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
+  public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
+  public static DriveTrain m_drivetrain = new DriveTrain();
+  public static LiftSubsystem m_lift = new LiftSubsystem();
+  public static Slide m_slide = new Slide();
+  
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -52,11 +55,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    //m_chooser.setDefaultOption("Default Auto", );
+    m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
-    
 
 
 
@@ -81,6 +82,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    m_lift.m_motorup1.setIntegralAccumulator(0);
   }
 
   @Override
@@ -122,6 +124,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    
   }
 
   @Override
@@ -141,6 +144,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    
   }
 
   /**
@@ -149,4 +153,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
 }

@@ -15,7 +15,7 @@ public class startL2AscendCommand extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.climbSubsystem);
-
+    requires(Robot.m_drivetrain);
     
   }
 
@@ -25,7 +25,7 @@ public class startL2AscendCommand extends Command {
     Robot.climbSubsystem.startL2Ascend();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
     Robot.climbSubsystem.setauxDrive();
-    Robot.a_Subsystem.LED(Robot.climbSubsystem.getBlueValue(), Robot.climbSubsystem.getGreenValue(), Robot.climbSubsystem.getRedValue());
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -10,32 +10,29 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ClimbPrevCommand extends Command {
-  public ClimbPrevCommand() {
+public class PneumaticArmOff extends Command {
+  public PneumaticArmOff() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.climbSubsystem);
-    requires(Robot.m_drivetrain);
+    requires(Robot.m_grabberArm);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.climbSubsystem.prevStage();
-    setTimeout(Robot.climbSubsystem.getTimeLeft());
-    Robot.climbSubsystem.setauxDrive();
-    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    Robot.m_grabberArm.armTurnOff();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return true;
   }
 
   // Called once after isFinished returns true

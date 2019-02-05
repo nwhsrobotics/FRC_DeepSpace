@@ -15,6 +15,7 @@ public class ClimbNextCommand extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.climbSubsystem);
+    requires(Robot.m_drivetrain);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +24,7 @@ public class ClimbNextCommand extends Command {
     Robot.climbSubsystem.nextStage();
     setTimeout(Robot.climbSubsystem.getTimeLeft());
     Robot.climbSubsystem.setauxDrive();
-    Robot.a_Subsystem.LED(Robot.climbSubsystem.getBlueValue(), Robot.climbSubsystem.getGreenValue(), Robot.climbSubsystem.getRedValue());
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
   }
 
 

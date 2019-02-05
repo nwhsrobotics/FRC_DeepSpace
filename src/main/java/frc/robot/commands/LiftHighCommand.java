@@ -10,32 +10,30 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ClimbPrevCommand extends Command {
-  public ClimbPrevCommand() {
+public class LiftHighCommand extends Command {
+  private static final double HIGH_POS_IN = 8.0; //inches
+  public LiftHighCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.climbSubsystem);
-    requires(Robot.m_drivetrain);
+    requires(Robot.m_lift);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.climbSubsystem.prevStage();
-    setTimeout(Robot.climbSubsystem.getTimeLeft());
-    Robot.climbSubsystem.setauxDrive();
-    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
+    Robot.m_lift.startAutoMove(HIGH_POS_IN);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.a_Subsystem.LiftHigh();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return Robot.m_lift.autoMoveFinished(); //TO-DO: why doesnt this return true as soonn as initialize is run?
   }
 
   // Called once after isFinished returns true

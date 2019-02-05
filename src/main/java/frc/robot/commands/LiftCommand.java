@@ -10,12 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DownLiftCommand extends Command {
-  public DownLiftCommand() {
+public class LiftCommand extends Command {
+  public LiftCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.l_Subsystem);
-    
+    requires(Robot.m_lift);
   }
 
   // Called just before this Command runs the first time
@@ -26,8 +25,8 @@ public class DownLiftCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.l_Subsystem.GoingDown();
-
+    Robot.m_lift.update(Robot.m_oi.getLiftValue());
+    Robot.a_Subsystem.LiftDrive(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()

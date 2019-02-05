@@ -7,82 +7,180 @@
 
 package frc.robot;
 
+import java.util.EnumMap;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-
-
-
- public class RobotMap {
-
-  
- 
- 
- 
+public class RobotMap {
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
- 
-  public static int frontLeftMotorCanId() {
-    return 0;
-  }
-  public static int backLeftMotorCanId() {
-    return 0;
-  }
-  public static int frontRightMotorCanId() {
-    return 0;
-  }
-  public static int backRightMotorCanId() {
-    return 0;
-  }
-  public static int backleftwheel() {
-    return 0;
-  }
-  public static int backrightwheel() {
-    return 0;
-  }
-
-
-  public static int backleftwheel = 21;
-  public static int backrightwheel = 11;
-  public static int pcmClimbCanId = 5;
-  public static int FrontLeftSolenoidExtend = 0;
-  public static int FrontLeftSolenoidRetract = 1;
-  public static int BackLeftSolenoidExtend = 2;
-  public static int BackLeftSolenoidRetract = 3; 
-  public static int FrontRightSolenoidExtend = 4;
-  public static int FrontRightSolenoidRetract = 5;
-  public static int BackRightSolenoidExtend = 6;
-  public static int BackRightSolenoidRetract = 7;
-
-  
-
- /* public static int pcmClimbCanId2 = 6;
-  public static int LowerFrontSolenoidExtend = 0;
-  public static int LowerFrontSolenoidRetract = 1;
-  public static int LowerBackSolenoidExtend = 2;
-  public static int LowerBackSolenoidRetract = 3;
-  public static int ascendAssistBackLeftExtend = 4;
-  public static int ascendAssistBackLeftRetract = 5;
-  public static int ascendAssistBackRightExtend = 6;
-  public static int ascendAssistBackRightRetract = 7;
-  
-  
-  public static int pcmArmCanId = 7;
-  public static int PusherSolenoidPush = 0;
-  public static int PusherSolenoidRetract = 1;
-  public static int ArmSolenoidForward = 2;
-  public static int ArmSolenoidReverse = 3; */
- 
- 
- 
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
+
+  public enum MapKeys {
+    DRIVE_FRONTLEFT, DRIVE_FRONTRIGHT, DRIVE_BACKLEFT, DRIVE_BACKRIGHT,
+    SLIDE, LIFT_LEFT, LIFT_RIGHT, 
+    PCM_CLIMBCANID, 
+    SOLENOID_FRONTLEFTEXTEND, SOLENOID_FRONTLEFTRETRACT, SOLENOID_BACKLEFTEXTEND, SOLENOID_BACKLEFTRETRACT, SOLENOID_FRONTRIGHTEXTEND, SOLENOID_FRONTRIGHTRETRACT, SOLENOID_BACKRIGHTEXTEND, SOLENOID_BACKRIGHTRETRACT,
+    PCM_CLIMBCANID2,
+    SOLENOID_LOWERFRONTEXTEND, SOLENOID_LOWERFRONTRETRACT, SOLENOID_LOWERBACKEXTEND, SOLENOID_LOWERBACKRETRACT, SOLENOID_ASCENDASSISTBACKLEFTEXTEND, SOLENOID_ASCENDASSISTBACKLEFTRETRACT, SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, SOLENOID_ASCENDASSISTBACKRIGHTRETRACT,
+    PCM_ARMCANID,
+    SOLENOID_PUSHERPUSH, SOLENOID_PUSHERRETRACT, SOLENOID_ARMFORWARD, SOLENOID_ARMREVERSE
+
+  }
+
+  public enum RobotTypes {
+    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT, DEADPIXEL
+  }
+
+  public RobotMap() {
+
+    // BRIEFCASE IDs BEGIN HERE #########################################
+
+    briefcase.put(MapKeys.DRIVE_FRONTLEFT, 0);
+    briefcase.put(MapKeys.DRIVE_FRONTRIGHT, 0);
+    briefcase.put(MapKeys.DRIVE_BACKLEFT, 0);
+    briefcase.put(MapKeys.DRIVE_BACKRIGHT, 0);
+
+    briefcase.put(MapKeys.SLIDE, 0);
+    briefcase.put(MapKeys.LIFT_LEFT, 1);
+    briefcase.put(MapKeys.LIFT_RIGHT, 3);
+
+    briefcase.put(MapKeys.PCM_CLIMBCANID, 0);
+    briefcase.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 0);
+
+    briefcase.put(MapKeys.PCM_CLIMBCANID2, 0);
+    briefcase.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
+
+    briefcase.put(MapKeys.PCM_ARMCANID, 0);
+    briefcase.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
+    briefcase.put(MapKeys.SOLENOID_PUSHERRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_ARMFORWARD, 0);
+    briefcase.put(MapKeys.SOLENOID_ARMREVERSE, 0);
+
+    // ALBERT IDs BEGIN HERE #########################################
+
+    albert.put(MapKeys.DRIVE_FRONTLEFT, 20);
+    albert.put(MapKeys.DRIVE_FRONTRIGHT, 11);
+    albert.put(MapKeys.DRIVE_BACKLEFT, 21);
+    albert.put(MapKeys.DRIVE_BACKRIGHT, 10);
+
+    albert.put(MapKeys.SLIDE, 3);
+    
+    albert.put(MapKeys.LIFT_LEFT, 0);
+    albert.put(MapKeys.LIFT_RIGHT, 0);
+
+    albert.put(MapKeys.PCM_CLIMBCANID, 0);
+    albert.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
+    albert.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
+    albert.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
+    albert.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 3);
+    albert.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 4);
+    albert.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 5);
+    albert.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 6);
+    albert.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 7);
+
+    albert.put(MapKeys.PCM_CLIMBCANID2, 0);
+    albert.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
+    albert.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 0);
+    albert.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 0);
+    albert.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 0);
+    albert.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 0);
+    albert.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 0);
+    albert.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
+    albert.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
+
+    albert.put(MapKeys.PCM_ARMCANID, 5);
+    albert.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
+    albert.put(MapKeys.SOLENOID_PUSHERRETRACT, 1);
+    albert.put(MapKeys.SOLENOID_ARMFORWARD, 2);
+    albert.put(MapKeys.SOLENOID_ARMREVERSE, 3);
+
+    // DEADPIXEL IDs BEGIN HERE #########################################
+
+    deadpixel.put(MapKeys.DRIVE_FRONTLEFT, 0);
+    deadpixel.put(MapKeys.DRIVE_FRONTRIGHT, 0);
+    deadpixel.put(MapKeys.DRIVE_BACKLEFT, 0);
+    deadpixel.put(MapKeys.DRIVE_BACKRIGHT, 0);
+
+    deadpixel.put(MapKeys.SLIDE, 0);
+    deadpixel.put(MapKeys.LIFT_LEFT, 0);
+    deadpixel.put(MapKeys.LIFT_RIGHT, 0);
+
+    deadpixel.put(MapKeys.PCM_CLIMBCANID, 5);
+    deadpixel.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
+    deadpixel.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
+    deadpixel.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 3);
+    deadpixel.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 4);
+    deadpixel.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 5);
+    deadpixel.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 6);
+    deadpixel.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 7);
+
+    deadpixel.put(MapKeys.PCM_CLIMBCANID2, 0);
+    deadpixel.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
+    deadpixel.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
+
+    deadpixel.put(MapKeys.PCM_ARMCANID, 0);
+    deadpixel.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
+    deadpixel.put(MapKeys.SOLENOID_PUSHERRETRACT, 0);
+    deadpixel.put(MapKeys.SOLENOID_ARMFORWARD, 0);
+    deadpixel.put(MapKeys.SOLENOID_ARMREVERSE, 0);
+
+  }
+
+
+
+  public RobotTypes activeRobot = RobotTypes.BRIEFCASE;
+
+  public int getId(MapKeys key) {
+    if(activeRobot == RobotTypes.BRIEFCASE) {
+      return briefcase.get(key);
+    }
+    else if(activeRobot == RobotTypes.DEADPIXEL) {
+      return deadpixel.get(key);
+    }
+    else {
+      return albert.get(key);
+    }
+  }
+
+  public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> albert = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> deadpixel = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  
+
+
 }

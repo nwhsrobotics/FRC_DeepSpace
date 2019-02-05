@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class UpLiftCommand extends Command {
-  public UpLiftCommand() {
+public class PneumaticRetractCommand extends Command {
+  public PneumaticRetractCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.l_Subsystem);
+    requires(Robot.m_grabberHand);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class UpLiftCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.l_Subsystem.GoingUp();
+    Robot.m_grabberHand.handRetract();
   }
 
   // Make this return true when this Command no longer needs to run execute()

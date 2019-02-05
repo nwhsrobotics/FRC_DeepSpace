@@ -1,181 +1,154 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.RobotMap.MapKeys;
+import frc.robot.commands.LiftCommand;
+import java.math.*;
+
 
 /**
  * Add your docs here.
  */
 public class LiftSubsystem extends Subsystem {
-  private WPI_TalonSRX m_motorup1;
-  private WPI_TalonSRX m_motorup2;
+  
+  public TalonSRX m_motorup1;
+  private TalonSRX m_motorup2;
+
+  private double m_speed_ips; //inches per second
+  private double m_position_in; //desired position in inches
+  private double m_position_counts; 
+  private static final double MAXSPEED = 20.0; //inches per second
+  private static final double AUTOLIFTSPEED = 10.0; //inches per second
+  private static final double SECONDS_PER_TICK = .02; // seconds per encoder tic
+  private static final double COUNTS_PER_INCH = 150; // encoder counts per inch
+  private static final int TALON_TIMEOUT_MS = 1000; 
+  private static final double DISTANCE_PER_TICK = AUTOLIFTSPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
+
+  private double m_p = 1.0;
+  private double m_i = 0.001;
+  private double m_d = 0.0;
+  private double m_maxIntegral = 1.0;
+  private int m_maxAmps = 2;
+
+  private boolean m_autoActive; //is auto active?
+  private double m_autoDistance; //distance to travel autonomously
+
+  //private double m_current; //current draw of the talon from the PDP
+
   public LiftSubsystem(){
-    m_motorup1 = new WPI_TalonSRX(m_canId);
-    m_motorup1.set(ControlMode.PercentOutput, 0.0);
-    m_motorup2 = new WPI_TalonSRX(m_canId2);
-    m_motorup2.set(ControlMode.PercentOutput,0.0);
+    m_motorup1 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
+    m_motorup2 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
+    setOutput(0.0);
+    configTalons();
+    m_position_in = 0.0;
+    m_speed_ips = 0.0;
+
+
+    
   }
-  
-  //Using the PID Controller group with only one talon right now
-  //declaring all of the variables in the beginning 
-  static final int DEFAULT_TALON_ID = 10;
-  static final int TALON_ID2 = 11;/**Enter the Second Talon Here */
-  private static final int ENC_COUNT_PER_REV = 4096;
-  private static final int SLOT_IDX = 0;
-  private static final int PID_PRIMARY = 0;
-  private static final int TALON_TIMEOUT_MS = 100;
-  private static final int DEFAULT_CURR_LIMIT = 2;
-  private static final double DEFAULT_P = 1.0;
-  private static final double DEFAULT_MAX_INTEGRAL = 2.0 * DEFAULT_P;
-  private static final double TRAVEL_PER_REVOLUTION = 10; // in inches
-
-  //create an encoder count (ticks) ---> distance (inches), for a new vairbale 
-  
-  int m_canId = DEFAULT_TALON_ID;
-  int m_canId2 = DEFAULT_TALON_ID;
-  WPI_TalonSRX m_talon;
-
-  boolean m_enabled = false;
-
-  int m_holdPosEnc = 0;  //position holding
-
-  double m_p = 0.0;
-  double m_i = 0.0;
-  double m_d = 0.0;
-  double m_maxIntegral = 0.0;
-  int m_maxAmps = 1;
-
-  public void init(){
-    readPreferences();
-
-    m_talon = new WPI_TalonSRX(m_canId);
-    m_talon.selectProfileSlot(SLOT_IDX, PID_PRIMARY);
-
-    m_talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, PID_PRIMARY, TALON_TIMEOUT_MS);
-    m_talon.setSensorPhase(false);
-
-    configTalon();
+  public void setOutput(double output) {
+    if ((m_motorup1 != null) && (m_motorup2 != null)) {
+      m_motorup1.set(ControlMode.PercentOutput, output);
+      m_motorup2.set(ControlMode.PercentOutput, output);
+    }
   }
 
-  
+  public void configTalons() {
+    if ((m_motorup1 == null) || (m_motorup2 == null)) {
+      return;
+    }
+
+    m_motorup1.selectProfileSlot(0, 0);
+    m_motorup1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, TALON_TIMEOUT_MS);
+    m_motorup1.setSensorPhase(false);
+
+    m_motorup1.config_kP(0, m_p, TALON_TIMEOUT_MS);
+    m_motorup1.config_kI(0, m_i, TALON_TIMEOUT_MS);
+    m_motorup1.config_kD(0, m_d, TALON_TIMEOUT_MS);
+
+    m_motorup1.configMaxIntegralAccumulator(0, m_maxIntegral, TALON_TIMEOUT_MS);
+    m_motorup1.configContinuousCurrentLimit(m_maxAmps, TALON_TIMEOUT_MS);
+    m_motorup1.configPeakCurrentLimit(m_maxAmps, TALON_TIMEOUT_MS);
+
+    m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
+    m_position_counts = 0;
+    m_motorup1.setIntegralAccumulator(0);
+    m_motorup1.set(ControlMode.Position, m_position_counts); // moves motor to 0
+
+    m_motorup2.set(ControlMode.Follower, Robot.m_map.getId(MapKeys.LIFT_LEFT));
+  }
+
+  /** public void liftToBottom() {
+    current = Robot.m_pdp.getCurrent(14);
+    while(current)
+    setOutput(-0.5);
+  } */
 
   @Override
   public void initDefaultCommand() {
-    /**Do nothing */ 
+    // Set the default command for a subsystem here.
+    setDefaultCommand(new LiftCommand());
+     
   }
   
+
+  public void update(double x) {
+    m_speed_ips = x * MAXSPEED;
+    //in the commands, converts joystick to motor speed
+  }
+
   @Override
-  public void periodic(double inches){
-    double holdPosDeg = Robot.m_oi.readPositionDeg();
+  public void periodic() {
+    //if auto is active, do second if loop, if not, revert to manual position
+    if(m_autoActive) {
 
-    m_holdPosEnc = degToEncoder(holdPosDeg);
-    if (!m_enabled) {
-      m_talon.set(ControlMode.Disabled, 0.0);
+      if (Math.abs(m_autoDistance) < Math.abs(DISTANCE_PER_TICK)) { //if there is only a small distance left to travel, finishes auto move
+        m_position_in += m_autoDistance;
+        m_autoDistance = 0;
+        m_autoActive = false;
+      }else{
+        if (m_autoDistance > 0) {
+          m_position_in += DISTANCE_PER_TICK;
+          m_autoDistance -= DISTANCE_PER_TICK;
+        } else if (m_autoDistance < 0) {
+          m_position_in -= DISTANCE_PER_TICK;
+          m_autoDistance += DISTANCE_PER_TICK;
+        }
+        
+      }
+    } else {
+      m_position_in += m_speed_ips * SECONDS_PER_TICK;
     }
-    else {
-      m_talon.set(ControlMode.Position, inchesToEncoder(inches));
+    
+    m_position_counts = m_position_in * COUNTS_PER_INCH; //converts desired position to counts
+    if (m_motorup1 != null) { //moves tha motor to desired position
+      m_motorup1.set(ControlMode.Position, m_position_counts);
     }
 
-    double actualPosDeg = encToDeg(m_talon.getSelectedSensorPosition(PID_PRIMARY));
-    double current = m_talon.getOutputCurrent();
-
-    SmartDashboard.putNumber("target", holdPosDeg);
-    SmartDashboard.putNumber("actual", actualPosDeg);
-    SmartDashboard.putNumber("hold current", current);
-    SmartDashboard.putBoolean("hold active", m_enabled);
-  }
-public void enable(boolean enabled){
-  System.out.printf("setting enabled: %b\n", enabled);
-  m_enabled = enabled;
-
-  ErrorCode status = m_talon.setSelectedSensorPosition(0, PID_PRIMARY, TALON_TIMEOUT_MS);
-  checkStatus(status, "setSelectedSensorPosition failed.");
-
-  status = m_talon.setIntegralAccumulator(0.0, PID_PRIMARY, TALON_TIMEOUT_MS);
-  checkStatus(status, "Error clearing integral accumulator.");
-}
-
-public boolean isEnabled(){
-  System.out.printf("Checking enabled: %b\n", m_enabled);
-  return m_enabled;
-}
-
-public void UpdateParameters(){
-  readPreferences();
-  configTalon();
-}
-
-private void configTalon() {
-  ErrorCode status;
-
-  status = m_talon.config_kP(SLOT_IDX, m_p, TALON_TIMEOUT_MS);
-  checkStatus(status, "error setting the P parameter");
-
-  status = m_talon.config_kI(SLOT_IDX, m_i, TALON_TIMEOUT_MS);
-  checkStatus(status, "Error setting the I parameter");
-
-  status = m_talon.config_kD(SLOT_IDX, m_d, TALON_TIMEOUT_MS);
-  checkStatus(status, "Error setting the D parameter**CHECK CODE CONFIRM NO TYPO**");
-
-  m_talon.configMaxIntegralAccumulator(SLOT_IDX, m_maxIntegral, TALON_TIMEOUT_MS);
-
-  m_talon.configContinuousCurrentLimit(m_maxAmps, TALON_TIMEOUT_MS);
-  m_talon.configPeakCurrentLimit(0, TALON_TIMEOUT_MS);
-}
-
-private void readPreferences() {
-  Preferences prefs;
-  prefs = Preferences.getInstance();
-  
-  m_canId = prefs.getInt("holdPos_canId", DEFAULT_TALON_ID);
-  m_p = prefs.getDouble("HoldPos_p", DEFAULT_P);
-  m_i = prefs.getDouble("holdPis_i", 0.0);
-  m_d = prefs.getDouble("holdPos_limit", DEFAULT_CURR_LIMIT);
-  m_maxIntegral = prefs.getDouble("holdPos_maxIntegral", DEFAULT_MAX_INTEGRAL);
-
-  System.out.printf("Updated parameters: \n");
-  System.out.printf("     holdPos_canId: %d\n", m_canId);
-  System.out.printf("     holdPos_p: %f\n", m_p);
-}  
-  private void checkStatus(ErrorCode status, String msg) {
-    if (status != ErrorCode.OK){
-      System.out.printf("Error: %d, %s\n", status, msg);
-    }
-  }
-
-  private double encToDeg(int enc) {
-    return (double)(enc *360.0 / ENC_COUNT_PER_REV);
-  }
-
-  private int degToEncoder(double degrees) {
-    return (int)(ENC_COUNT_PER_REV * degrees / 360.0);
-  }
-  public double inchesToEncoder(double inches) {
-    return (int)((inches/TRAVEL_PER_REVOLUTION)*ENC_COUNT_PER_REV);
-  }
-
-  public void GoingUp() {
-    m_motorup1.set(0.5);
-    m_motorup2.set(0.5);
     
   }
-
-
-  public void GoingDown() {
-    m_motorup1.set(-0.5);
-    m_motorup2.set(-0.5);
-
-  }
-  public void StopLift(){
-    m_motorup1.set(0);
-    m_motorup2.set(0);
+public void startAutoMove(double position_in) {
+  if (m_autoActive) {
+    //cancels auto move if previous one was still active when this method is called again
+    m_autoActive = false;
+    m_autoDistance = 0;
+  } else {
+    //activate auto lift
+    m_autoActive = true;
+    m_autoDistance = position_in - m_position_in; //sets auto distance to travel to the desired - current desired distance
   }
 }
+public boolean autoMoveFinished() {
+	return !m_autoActive;
+}
+
+  
+} 
