@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.RobotMap.MapKeys;
 
 import java.util.EnumMap;

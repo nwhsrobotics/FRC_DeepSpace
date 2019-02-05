@@ -1,7 +1,5 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SendableBase;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import frc.robot.commands.*;
@@ -47,12 +45,6 @@ public class OI{
 
     //bButton1.toggleWhenPressed(new CameraToggle);
 
-    //rightTrigger2.togglewhenActive(new SlideForward()); //slide moves right
-    //rightTrigger2.whenInactive(new SlideStop()); //slide stops at current place
-
-    //leftTrigger2.togglewhenActive(new SlideForward()); //slide moves left
-    //leftTrigger2.whenInactive(new SlideStop()); //slide stops at current place
-
     backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
     startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
     xButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
@@ -60,14 +52,14 @@ public class OI{
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
 
-    /*
+    
     yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
     xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
     aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
 
     bButton2.whenActive(new GrabberExtend()); //toggle for clamp
     bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
-    */
+    
 
     
   }

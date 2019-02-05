@@ -7,7 +7,8 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.RobotMap;
+import frc.robot.Robot;
+import frc.robot.RobotMap.MapKeys;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,8 +21,8 @@ public class GrabberHandSubsystem extends Subsystem {
   private DoubleSolenoid m_grabberHand;
   @Override
    public void initDefaultCommand() {
-   // m_grabberHand = new DoubleSolenoid(RobotMap.pmc1CanID(), RobotMap.GrabberSolenoidForward(), RobotMap.GrabberSolenoidReverse());
-   // m_grabberHand.set(DoubleSolenoid.Value.kOff);
+   m_grabberHand = new DoubleSolenoid(Robot.m_map.getId(MapKeys.PCM_ARMCANID), Robot.m_map.getId(MapKeys.SOLENOID_PUSHERPUSH), Robot.m_map.getId(MapKeys.SOLENOID_PUSHERRETRACT));
+   m_grabberHand.set(DoubleSolenoid.Value.kOff);
   }
 
    public void handTurnOff() {

@@ -7,17 +7,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 /*
 	
@@ -35,14 +30,14 @@ import frc.robot.subsystems.LedSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static OI m_oi;
   public static RobotMap m_map = new RobotMap();
   public static LedSubsystem a_Subsystem = new LedSubsystem();
-  public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
+  public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
-  //public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
+  public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
-  //public static LiftSubsystem m_lift = new LiftSubsystem();
-  public static OI m_oi;
+  public static LiftSubsystem m_lift = new LiftSubsystem();
   public static Slide m_slide = new Slide();
 
   Command m_autonomousCommand;
@@ -55,7 +50,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    climbSubsystem.initialize();
+    m_climbSubsystem.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
