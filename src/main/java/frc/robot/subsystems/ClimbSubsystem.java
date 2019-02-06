@@ -48,6 +48,15 @@ public class ClimbSubsystem extends Subsystem {
 
   private static final double L3_ASCEND_SLOW = 0.5;
 
+  private boolean m_autoDescend;
+
+  private boolean m_autoL2Ascend;
+
+  private boolean m_autoL3Ascend;
+
+  private boolean m_autoNextStage;
+  
+  private boolean m_autoPrevStage;
 
   private double m_timeLeft_sec;
 
@@ -192,38 +201,62 @@ public class ClimbSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  public boolean stateDescend(){
+    return !m_autoDescend;
+  } 
+
   public void startDescend() {
 
     m_climbState = ClimbState.DESCEND_S1;
     setActuators();
+    m_autoDescend = true;
+  }
+
+  public boolean stateL2Ascend(){
+    return !m_autoL2Ascend;
   }
 
   public void startL2Ascend() {
 
     m_climbState = ClimbState.CLIMB_L2_S1;
     setActuators();
+    m_autoL2Ascend = true;
+  }
+
+  public boolean stateL3Ascend(){
+    return !m_autoL3Ascend;
   }
 
   public void startL3Ascend() {
 
     m_climbState = ClimbState.CLIMB_L3_S1;
     setActuators();
+    m_autoL3Ascend = true;
 
+  }
+
+  public boolean stateNextStage(){
+    return !m_autoNextStage;
   }
 
   public void nextStage() {
 
     m_climbState = nextStageMap.get(m_climbState);
     setActuators();
+    m_autoNextStage = true;
 
+  }
+
+  public boolean statePrevStage(){
+    return !m_autoPrevStage;
   }
 
   public void prevStage() {
 
     m_climbState = prevStageMap.get(m_climbState);
     setActuators();
+    m_autoPrevStage = true;
   }
-
   private void setActuators() {
 
     switch(m_climbState) {
@@ -240,6 +273,12 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDRedValue = 255;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
+        m_autoNextStage = false;
+        m_autoPrevStage = false;
+
         System.out.print("Robot is in stage IDLE\n");
         break;
 

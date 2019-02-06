@@ -133,7 +133,6 @@ public class LiftSubsystem extends Subsystem {
       m_motorup1.set(ControlMode.Position, m_position_counts);
     }
 
-    
   }
 public void startAutoMove(double position_in) {
   if (m_autoActive) {
