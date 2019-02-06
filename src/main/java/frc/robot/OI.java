@@ -39,6 +39,8 @@ public class OI{
   public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
 
+  public double turnModifier = .4;
+  public double driveModifier = .9;
 
 
   public OI () {
@@ -52,10 +54,9 @@ public class OI{
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
 
-    
-    yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
-    xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
-    aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
+    yButton2.whenPressed(new LiftHighCommand()); //move lift to high hatch position
+    xButton2.whenPressed(new LiftMidCommand()); //move lift to mid hatch position
+    aButton2.whenPressed(new LiftLowCommand()); //move lift to low hatch position
 
     bButton2.whenActive(new GrabberExtend()); //toggle for clamp
     bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
@@ -68,11 +69,11 @@ public class OI{
 
 
   public double getForwardValue() {
-    return joy.getRawAxis(1);
+    return joy.getRawAxis(1) * driveModifier;
 
   }
   public double getTurnValue() {
-    return joy.getRawAxis(4);
+    return joy.getRawAxis(4) * turnModifier;
   }
 
   public double getLiftValue() {

@@ -52,8 +52,8 @@ public class RobotMap {
     briefcase.put(MapKeys.DRIVE_BACKRIGHT, 0);
 
     briefcase.put(MapKeys.SLIDE, 0);
-    briefcase.put(MapKeys.LIFT_LEFT, 0);
-    briefcase.put(MapKeys.LIFT_RIGHT, 0);
+    briefcase.put(MapKeys.LIFT_LEFT, 1);
+    briefcase.put(MapKeys.LIFT_RIGHT, 3);
 
     briefcase.put(MapKeys.PCM_CLIMBCANID, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
@@ -96,7 +96,7 @@ public class RobotMap {
     albert.put(MapKeys.LIFT_LEFT, 0);
     albert.put(MapKeys.LIFT_RIGHT, 0);
 
-    albert.put(MapKeys.PCM_CLIMBCANID, 5);
+    albert.put(MapKeys.PCM_CLIMBCANID, 0);
     albert.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
     albert.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
     albert.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
@@ -163,7 +163,7 @@ public class RobotMap {
 
 
 
-  public RobotTypes activeRobot = RobotTypes.ALBERT;
+  public RobotTypes activeRobot = RobotTypes.BRIEFCASE;
 
   public int getId(MapKeys key) {
     if(activeRobot == RobotTypes.BRIEFCASE) {

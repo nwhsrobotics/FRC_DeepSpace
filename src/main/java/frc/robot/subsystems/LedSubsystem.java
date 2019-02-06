@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.*;
 
 // TODO-DW : create methods to reflect status, joystick, button, team.
 
@@ -139,11 +140,17 @@ public class LedSubsystem extends Subsystem {
     for (int n = 0; n < NUM_PIXELS; n++) {
       // power multiplier
       m_frame[cursor++] = (byte) (m_power + 0xE0);
-       
-      m_frame[cursor++] = m_pixel[n].m_r;
-      m_frame[cursor++] = m_pixel[n].m_b;
-      m_frame[cursor++] = m_pixel[n].m_g;
-    
+      
+     
+      if (n % 10 == 0) {
+        m_frame[cursor++] = (byte) 230;
+        m_frame[cursor++] = (byte) 230;
+        m_frame[cursor++] = (byte) 230;
+      } else {
+        m_frame[cursor++] = m_pixel[n].m_r;
+        m_frame[cursor++] = m_pixel[n].m_b;
+        m_frame[cursor++] = m_pixel[n].m_g;
+      }
     }
 
     // stop sequence
@@ -174,12 +181,148 @@ public class LedSubsystem extends Subsystem {
       m_pixel[n].copy(m_pixel[n-1]);
 
       // write one new pixel
-      m_pixel[0].set((byte)blue, (byte)red, (byte)green); // ___ r _____
+      m_pixel[0].set((byte)blue, (byte)red, (byte)green);} // ___ r _____
     }
     //sendFrame();
-    System.out.println("\nLed On");
+    
+
+    public void LiftLow(boolean state){
+      if (state){         
+        m_pixel[15].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[16].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[17].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[18].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[19].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[20].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[21].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[22].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[23].set((byte) 255,(byte) 171,(byte) 0);
+        m_pixel[24].set((byte) 255,(byte) 171,(byte) 0);
+    
+        
+      } else {
+        m_pixel[15].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[16].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[17].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[18].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[19].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[20].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[21].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[22].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[23].set((byte) 0,(byte) 0,(byte) 0);
+        m_pixel[24].set((byte) 0,(byte) 0,(byte) 0);
+      }
+  }
+  public void LiftLow(){
+    if (Robot.m_lift.autoMoveFinished() == false){         
+      m_pixel[1].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[2].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[3].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[4].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[5].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[6].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[7].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[8].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[9].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[10].set((byte) 255,(byte) 171,(byte) 0);
+  
+      
+    } else {
+      m_pixel[1].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[2].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[3].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[4].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[5].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[6].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[7].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[8].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[9].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[10].set((byte) 0,(byte) 0,(byte) 0);
+    }
+}
+public void LiftMid(){
+  if (Robot.m_lift.autoMoveFinished() == false){         
+    m_pixel[16].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[17].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[18].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[19].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[20].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[21].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[22].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[23].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[24].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[25].set((byte) 255,(byte) 171,(byte) 0);
+
+    
+  } else {
+    m_pixel[16].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[17].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[18].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[19].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[20].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[21].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[22].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[23].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[24].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[25].set((byte) 0,(byte) 0,(byte) 0);
   }
 }
+public void LiftHigh(){
+  if (Robot.m_lift.autoMoveFinished() == false){         
+    m_pixel[29].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[30].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[31].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[32].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[33].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[34].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[35].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[36].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[37].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[38].set((byte) 255,(byte) 171,(byte) 0);
+
+    
+  } else {
+    m_pixel[29].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[30].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[31].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[32].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[33].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[34].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[35].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[36].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[37].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[38].set((byte) 0,(byte) 0,(byte) 0);
+  }
+}
+public void LiftDrive(boolean state){
+  if (state){         
+    m_pixel[49].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[50].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[51].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[52].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[53].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[54].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[55].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[56].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[57].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[58].set((byte) 255,(byte) 171,(byte) 0);
+
+    
+  } else {
+    m_pixel[49].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[50].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[51].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[52].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[53].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[54].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[55].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[56].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[57].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
+  }
+}
+}
+
   
 
 

@@ -10,29 +10,29 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftCommand extends Command {
-  public LiftCommand() {
+public class LiftLowCommand extends Command {
+  private static final double LOW_POS_IN = 1.0; //inches
+  public LiftLowCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_lift);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_lift.startAutoMove(LOW_POS_IN);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_lift.update(Robot.m_oi.getLiftValue());
-    Robot.a_Subsystem.LiftDrive(true);
+    Robot.a_Subsystem.LiftLow();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.m_lift.autoMoveFinished();
   }
 
   // Called once after isFinished returns true
@@ -46,4 +46,3 @@ public class LiftCommand extends Command {
   protected void interrupted() {
   }
 }
-

@@ -35,20 +35,30 @@ public class DriveTrain extends Subsystem {
     //initialize + set objects created above
     m_frontleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTLEFT));
     m_backleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_BACKLEFT));
-    m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
+    if ((m_frontleft != null) && (m_backleft != null)) {
+      m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
+    } 
 
     m_frontright = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTRIGHT));
     m_backright = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_BACKRIGHT));
-    m_right = new SpeedControllerGroup(m_frontright, m_backright);
+    if ((m_frontright != null) && (m_backright != null)) {
+      m_right = new SpeedControllerGroup(m_frontright, m_backright);
+    }
     //m_left.setInverted(true); invert left side
 
-    m_drive = new DifferentialDrive(m_left, m_right);
-    
+    if ((m_left != null) && (m_right != null)) {
+      m_drive = new DifferentialDrive(m_left, m_right);
+    }
+  }
 
+  public void configTalons() {
+    
   }
 
   public void update(double y, double z){
-    m_drive.arcadeDrive(y, z);
+    if (m_drive != null) {
+      m_drive.arcadeDrive(y, z);
+    }
   }
 
 
