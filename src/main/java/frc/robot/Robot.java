@@ -15,9 +15,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.SlideForward;
-import frc.robot.commands.SlideReposition;
-import frc.robot.commands.SlideStop;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Slide;
@@ -41,8 +38,6 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Slide m_slide = new Slide();
 
-  public static Slide m_posHold = new Slide();
-
  Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -60,7 +55,7 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    m_chooser.addDefault("Default Auto", new SlideReposition());
+    //m_chooser.addDefault("Default Auto", new ExampleCommand());
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 

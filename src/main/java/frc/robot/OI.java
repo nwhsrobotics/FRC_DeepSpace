@@ -9,9 +9,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.SlideForward;
-import frc.robot.commands.SlideReposition;
-import frc.robot.commands.SlideStop;
 import frc.robot.commands.slideUpdateParams;
 
 /**
@@ -61,7 +58,7 @@ public class OI {
    private static final double MAX_POS_DEG = 90.0;       // how far to rotate shaft at full joystick deflection.
    private static final int POS_HOLD_AXIS = 0;           // left-right on left joystick
 
-   private static final Joystick m_controller = new Joystick(0);
+   private static final Joystick m_controller = new Joystick(1);
   private static final JoystickButton m_b = new JoystickButton(m_controller, POS_HOLD_TOGGLE_BUTTON);
   private static final JoystickButton m_y = new JoystickButton(m_controller, POS_HOLD_UPDATE_BUTTON);
   /*
@@ -77,11 +74,8 @@ public class OI {
   */
  
   public OI () {
-    a.whenPressed(new SlideForward());
-    a.whenReleased(new SlideStop());
-
-    b.whenPressed(new SlideReposition());        // Toggle position hold mode with B button.
-    y.whenPressed(new slideUpdateParams());  // Update params when Y is pressed.
+       // Toggle position hold mode with B button.
+      // Update params when Y is pressed.
   }
   public double readPositionDeg() {
     double input = m_controller.getRawAxis(POS_HOLD_AXIS);  // get joystick position, in range -1.0 to 1.0
