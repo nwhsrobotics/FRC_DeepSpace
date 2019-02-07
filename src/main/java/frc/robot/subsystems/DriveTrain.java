@@ -22,10 +22,10 @@ import java.math.*;
  */
 public class DriveTrain extends Subsystem {
   //all calculations are done in feet
-  private WPI_TalonSRX m_frontleft;
-  private WPI_TalonSRX m_backleft;
-  private WPI_TalonSRX m_frontright;
-  private WPI_TalonSRX m_backright;
+  public WPI_TalonSRX m_frontleft;
+  public WPI_TalonSRX m_backleft;
+  public WPI_TalonSRX m_frontright;
+  public WPI_TalonSRX m_backright;
   private static final int TIMEOUT_MS = 1000;
   private static double m_velocity_fps; //feet per second velocity
   private static double m_velocity_turn_rps;//rad per second
