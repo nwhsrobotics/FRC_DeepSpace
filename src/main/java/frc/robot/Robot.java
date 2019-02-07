@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static RobotMap m_map = new RobotMap();
   public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
-  public static LedSubsystem a_Subsystem = new LedSubsystem();
+  public static LedSubsystem m_ledSubsystem = new LedSubsystem();
   public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
   public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();

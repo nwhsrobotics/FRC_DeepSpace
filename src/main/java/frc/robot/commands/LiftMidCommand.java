@@ -26,7 +26,7 @@ public class LiftMidCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.a_Subsystem.LiftMid();
+    Robot.m_ledSubsystem.LiftMid();
   }
 
   // Make this return true when this Command no longer needs to run execute()
