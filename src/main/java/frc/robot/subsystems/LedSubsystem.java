@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.*;
+import java.math.*;
 
 // TODO-DW : create methods to reflect status, joystick, button, team.
 
@@ -94,7 +95,7 @@ public class LedSubsystem extends Subsystem {
       m_pixel[0].set((byte)0, (byte)80, (byte)0); // ___ r _____
     }
 */
-
+//System.out.printf("The output is %d %n", Robot.m_lift.m_motorup1.getOutputCurrent());
     updateLeds();
   }
 
@@ -186,33 +187,7 @@ public class LedSubsystem extends Subsystem {
     //sendFrame();
     
 
-    public void LiftLow(boolean state){
-      if (state){         
-        m_pixel[15].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[16].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[17].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[18].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[19].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[20].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[21].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[22].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[23].set((byte) 255,(byte) 171,(byte) 0);
-        m_pixel[24].set((byte) 255,(byte) 171,(byte) 0);
     
-        
-      } else {
-        m_pixel[15].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[16].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[17].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[18].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[19].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[20].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[21].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[22].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[23].set((byte) 0,(byte) 0,(byte) 0);
-        m_pixel[24].set((byte) 0,(byte) 0,(byte) 0);
-      }
-  }
   public void LiftLow(){
     if (Robot.m_lift.autoMoveFinished() == false){         
       m_pixel[1].set((byte) 255,(byte) 171,(byte) 0);
@@ -294,8 +269,9 @@ public void LiftHigh(){
     m_pixel[38].set((byte) 0,(byte) 0,(byte) 0);
   }
 }
-public void LiftDrive(boolean state){
-  if (state){         
+
+public void LiftDrive(){
+  if (Math.abs(Robot.m_lift.m_motorup1.getMotorOutputVoltage()) > 0){         
     m_pixel[49].set((byte) 255,(byte) 171,(byte) 0);
     m_pixel[50].set((byte) 255,(byte) 171,(byte) 0);
     m_pixel[51].set((byte) 255,(byte) 171,(byte) 0);
@@ -321,7 +297,37 @@ public void LiftDrive(boolean state){
     m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
   }
 }
+
+public void climbDescend(){
+  if (Robot.m_climbSubsystem.stateDescend() == true){
+    m_pixel[29].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[30].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[31].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[32].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[33].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[34].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[35].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[36].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[37].set((byte) 50,(byte) 171,(byte) 0);
+    m_pixel[38].set((byte) 50,(byte) 171,(byte) 0);
+
+    
+  } else {
+    m_pixel[29].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[30].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[31].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[32].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[33].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[34].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[35].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[36].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[37].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[38].set((byte) 0,(byte) 0,(byte) 0);
+  }
+  }
 }
+
+
 
   
 
