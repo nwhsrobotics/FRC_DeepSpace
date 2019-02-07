@@ -7,23 +7,30 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+<<<<<<< HEAD
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Slide;
+=======
+>>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
 
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 /*
 	
 	JAGBOTS 2019 DEEP SPACE CODE
 	
  */
+import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.LedSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,10 +40,17 @@ import frc.robot.subsystems.Slide;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static DriveTrain m_drivetrain = new DriveTrain();
   public static OI m_oi;
+  public static RobotMap m_map = new RobotMap();
+  public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
+  public static LedSubsystem a_Subsystem = new LedSubsystem();
+  public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
+  public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
+  public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
+  public static DriveTrain m_drivetrain = new DriveTrain();
+  public static LiftSubsystem m_lift = new LiftSubsystem();
   public static Slide m_slide = new Slide();
+  
 
  Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -49,18 +63,21 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-
-   
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
+<<<<<<< HEAD
     //m_chooser.addDefault("Default Auto", new ExampleCommand());
     // chooser.addObject("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
     // Let position hold subsystem get params from dashboard.
     m_slide.init();
+=======
+
+
+>>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
   }
 
   /**
@@ -82,6 +99,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    m_lift.m_motorup1.setIntegralAccumulator(0);
   }
 
   @Override
@@ -108,7 +126,7 @@ public class Robot extends TimedRobot {
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
      * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
+     * autonomousCommand = new SolenoidCommand(); break; }
      */
 
     // schedule the autonomous command (example)
@@ -123,7 +141,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
+    
   }
 
   @Override
@@ -134,7 +152,6 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
-      
     }
   }
 
@@ -144,7 +161,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    m_drivetrain.update(m_oi.getForwardValue(), m_oi.getTurnValue());
+    
   }
 
   /**
@@ -153,4 +170,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
 }

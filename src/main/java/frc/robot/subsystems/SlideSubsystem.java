@@ -7,15 +7,23 @@
 
 package frc.robot.subsystems;
 
+<<<<<<< HEAD
 import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+=======
+import com.ctre.phoenix.motorcontrol.ControlMode;
+>>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+=======
+>>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
 import frc.robot.RobotMap;
+import frc.robot.commands.SlideCommand;
 /**
  * Add your docs here.
  */
@@ -48,6 +56,7 @@ public class Slide extends Subsystem {
 
   public Slide(){
 
+<<<<<<< HEAD
     m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
 
   
@@ -59,9 +68,19 @@ public class Slide extends Subsystem {
     m_slide.setSensorPhase(false);
     configTalon();
 
+=======
+    //m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
+  }
+  
+  public void update(double x){
+    if (m_slide != null) {
+      m_slide.set(ControlMode.PercentOutput, x);
+    }
+>>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
   }
   
 
+<<<<<<< HEAD
   private void configTalon() {
   
 
@@ -85,10 +104,18 @@ public class Slide extends Subsystem {
 
  
 
+=======
+  public void slideStop(){
+    if (m_slide != null) {
+      m_slide.set(0);
+    }
+  }
+  
+>>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new SlideCommand());
   }
   
   
