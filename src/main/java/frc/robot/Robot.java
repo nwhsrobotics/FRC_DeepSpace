@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.SlideSubsystem;
 
 import frc.robot.subsystems.*;
 /*
@@ -41,11 +43,12 @@ public class Robot extends TimedRobot {
   public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
   public static LiftSubsystem m_lift = new LiftSubsystem();
-  public static Slide m_slide = new Slide();
+  public static SlideSubsystem m_slide = new SlideSubsystem();
   
 
-  Command m_autonomousCommand;
+ Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+
 
   /**
    * This function is run when the robot is first started up and should be
