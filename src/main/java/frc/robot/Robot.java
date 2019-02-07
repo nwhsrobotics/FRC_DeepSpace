@@ -14,13 +14,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-<<<<<<< HEAD
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Slide;
-=======
->>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
+import frc.robot.subsystems.SlideSubsystem;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -49,7 +44,7 @@ public class Robot extends TimedRobot {
   public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
   public static LiftSubsystem m_lift = new LiftSubsystem();
-  public static Slide m_slide = new Slide();
+  public static SlideSubsystem m_slide = new SlideSubsystem();
   
 
  Command m_autonomousCommand;
@@ -67,17 +62,8 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
-<<<<<<< HEAD
-    //m_chooser.addDefault("Default Auto", new ExampleCommand());
-    // chooser.addObject("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
-
-    // Let position hold subsystem get params from dashboard.
-    m_slide.init();
-=======
 
 
->>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
   }
 
   /**

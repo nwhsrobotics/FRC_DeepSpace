@@ -3,43 +3,18 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-<<<<<<< HEAD
-import frc.robot.commands.slideUpdateParams;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
-public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
+import frc.robot.commands.*;
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+public class OI{
+
 
   Joystick joy = new Joystick(0);
+
   
   int CLIMB_BUTTON = 1;
   public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
@@ -56,34 +31,6 @@ public class OI {
    private static final Joystick m_controller = new Joystick(1);
   private static final JoystickButton m_b = new JoystickButton(m_controller, POS_HOLD_TOGGLE_BUTTON);
   private static final JoystickButton m_y = new JoystickButton(m_controller, POS_HOLD_UPDATE_BUTTON);
-  /*
-  public JoystickButton yButton = new JoystickButton(joy, );
-  public JoystickButton aButton = new JoystickButton(joy, );
-  public JoystickButton bButton = new JoystickButton(joy, );
-  public JoystickButton rightBumper = new JoystickButton(joy, );
-  public JoystickButton leftBumper = new JoystickButton(joy, );
-  public JoystickButton startButton = new JoystickButton(joy, );
-  public JoystickButton selectButton = new JoystickButton(joy, );
-  public JoystickButton leftStickButton = new JoystickButton(joy, );
-  public JoystickButton rightStickButton = new JoystickButton(joy, );
-  */
- 
-  public OI () {
-       // Toggle position hold mode with B button.
-      // Update params when Y is pressed.
-=======
-
-import frc.robot.commands.*;
-
-
-
-
-
-public class OI{
-
-
-  Joystick joy = new Joystick(0);
-  
   private final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
@@ -139,7 +86,6 @@ public class OI{
     bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
 
     
->>>>>>> b393bda422fc1b0324a7d5544c2f8f58fd646cab
   }
   public double readPositionDeg() {
     double input = m_controller.getRawAxis(POS_HOLD_AXIS);  // get joystick position, in range -1.0 to 1.0
