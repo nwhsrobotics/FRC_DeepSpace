@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 
 public class GrabberExtend extends CommandGroup {
-  
-
   /**
    * Add your docs here.
    */
@@ -42,3 +40,4 @@ public class GrabberExtend extends CommandGroup {
     // arm.
   }
 }
+

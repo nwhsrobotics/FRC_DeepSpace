@@ -8,7 +8,6 @@
 package frc.robot.subsystems;
 
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.RobotMap.MapKeys;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,15 +20,16 @@ public class GrabberArmSubsystem extends Subsystem {
   private DoubleSolenoid m_grabberArm;
   @Override
   public void initDefaultCommand() {
-    /** m_grabberArm = new DoubleSolenoid(
+      m_grabberArm = new DoubleSolenoid(
       Robot.m_map.getId(MapKeys.PCM_ARMCANID),
       Robot.m_map.getId(MapKeys.SOLENOID_ARMFORWARD),
       Robot.m_map.getId(MapKeys.SOLENOID_ARMREVERSE)
     );
     if (m_grabberArm != null) {
       m_grabberArm.set(DoubleSolenoid.Value.kOff);
-    }*/
+    }
   }
+  
 
    public void armTurnOff() {
      if (m_grabberArm != null) {

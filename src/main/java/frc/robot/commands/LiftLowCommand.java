@@ -26,6 +26,7 @@ public class LiftLowCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_ledSubsystem.LiftLow();
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -14,8 +14,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.SlideSubsystem;
 
-import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 /*
 	
@@ -36,17 +37,18 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static RobotMap m_map = new RobotMap();
   public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
-  public static LedSubsystem a_Subsystem = new LedSubsystem();
-  public static ClimbSubsystem climbSubsystem = new ClimbSubsystem();
+  public static LedSubsystem m_ledSubsystem = new LedSubsystem();
+  public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
   public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
   public static LiftSubsystem m_lift = new LiftSubsystem();
-  public static Slide m_slide = new Slide();
+  public static SlideSubsystem m_slide = new SlideSubsystem();
   
 
-  Command m_autonomousCommand;
+ Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -55,7 +57,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
+    m_climbSubsystem.initialize();
+    // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
 
