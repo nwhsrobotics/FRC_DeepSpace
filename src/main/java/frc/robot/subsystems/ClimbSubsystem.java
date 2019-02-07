@@ -50,7 +50,7 @@ public class ClimbSubsystem extends Subsystem {
 
   private double m_timeLeft_sec;
 
-  private DoubleSolenoid DummySolenoid;
+  
   private DoubleSolenoid Solenoid_1;
   private DoubleSolenoid Solenoid_2;
   private DoubleSolenoid Solenoid_3;
@@ -123,9 +123,7 @@ public class ClimbSubsystem extends Subsystem {
     final int PCM_1_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID);
     final int PCM_2_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2);
 
-    /*DummySolenoid = new DoubleSolenoid(PCM_1_CAN_ID, 6,7);
-    DummySolenoid.set(DoubleSolenoid.Value.kOff);
-    */
+   
     Solenoid_1 = new DoubleSolenoid(
       PCM_1_CAN_ID,
       Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTEXTEND),
@@ -156,7 +154,7 @@ public class ClimbSubsystem extends Subsystem {
     );
     Solenoid_4.set(DoubleSolenoid.Value.kOff);
     
-    // solenoids below do not work on albert
+   
 
     Solenoid_5 = new DoubleSolenoid(
       PCM_2_CAN_ID,

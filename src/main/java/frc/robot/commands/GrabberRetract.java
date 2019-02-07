@@ -9,17 +9,30 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+<<<<<<< HEAD
 public class GrabberRetract extends CommandGroup {
   
+=======
+
+public class GrabberRetract extends CommandGroup {
+>>>>>>> d9522c3dc82abd6b7ae2c926616d25012c401132
   /**
    * Add your docs here.
    */
   public GrabberRetract() {
+<<<<<<< HEAD
     requires(Robot.m_grabberArm);
     requires(Robot.m_grabberHand);
 
     addParallel(new PneumaticRetractCommand());
     addParallel(new PneumaticArmRetract());
+=======
+      requires(Robot.m_grabberArm);
+      requires(Robot.m_grabberHand);
+  
+      addParallel(new PneumaticRetractCommand());
+      addParallel(new PneumaticArmRetract());
+>>>>>>> d9522c3dc82abd6b7ae2c926616d25012c401132
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -38,4 +51,7 @@ public class GrabberRetract extends CommandGroup {
     // arm.
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d9522c3dc82abd6b7ae2c926616d25012c401132
