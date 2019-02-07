@@ -3,6 +3,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import frc.robot.commands.*;
+import java.lang.Math.*;
 
 
 
@@ -13,7 +14,9 @@ public class OI{
 
   Joystick joy = new Joystick(0);
 
-  
+  private final double FORWARD_DEADBAND_LIMIT = .1;
+  private final double TURN_DEADBAND_LIMIT = .1;
+
   int CLIMB_BUTTON = 1;
   public JoystickButton xButton = new JoystickButton(joy, CLIMB_BUTTON);
   JoystickButton a = new JoystickButton(joy, 1);
@@ -29,6 +32,7 @@ public class OI{
    private static final Joystick m_controller = new Joystick(1);
   private static final JoystickButton m_b = new JoystickButton(m_controller, POS_HOLD_TOGGLE_BUTTON);
   private static final JoystickButton m_y = new JoystickButton(m_controller, POS_HOLD_UPDATE_BUTTON);
+
   private final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
@@ -91,11 +95,20 @@ public class OI{
 
 
   public double getForwardValue() {
+    if (Math.abs(joy.getRawAxis(1)) < FORWARD_DEADBAND_LIMIT) { //creates deadband
+      return 0;
+    } else {
+      joy.getRawAxis(1);
+    }
     return joy.getRawAxis(1) * driveModifier;
-
   }
   public double getTurnValue() {
-    return joy.getRawAxis(4) * turnModifier;
+    if (Math.abs(joy.getRawAxis(4)) < TURN_DEADBAND_LIMIT) {
+      return 0;
+    } else {
+      return joy.getRawAxis(4) * turnModifier;
+    }
+    
   }
 
   public double getLiftValue() {

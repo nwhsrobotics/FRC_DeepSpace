@@ -46,14 +46,14 @@ public class RobotMap {
 
     // BRIEFCASE IDs BEGIN HERE #########################################
 
-    briefcase.put(MapKeys.DRIVE_FRONTLEFT, 0);
-    briefcase.put(MapKeys.DRIVE_FRONTRIGHT, 0);
+    briefcase.put(MapKeys.DRIVE_FRONTLEFT, 1);
+    briefcase.put(MapKeys.DRIVE_FRONTRIGHT, 3);
     briefcase.put(MapKeys.DRIVE_BACKLEFT, 0);
     briefcase.put(MapKeys.DRIVE_BACKRIGHT, 0);
 
     briefcase.put(MapKeys.SLIDE, 0);
-    briefcase.put(MapKeys.LIFT_LEFT, 1);
-    briefcase.put(MapKeys.LIFT_RIGHT, 3);
+    briefcase.put(MapKeys.LIFT_LEFT, 0);
+    briefcase.put(MapKeys.LIFT_RIGHT, 0);
 
     briefcase.put(MapKeys.PCM_CLIMBCANID, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
@@ -124,10 +124,10 @@ public class RobotMap {
 
     // DEADPIXEL IDs BEGIN HERE #########################################
 
-    deadpixel.put(MapKeys.DRIVE_FRONTLEFT, 0);
-    deadpixel.put(MapKeys.DRIVE_FRONTRIGHT, 0);
-    deadpixel.put(MapKeys.DRIVE_BACKLEFT, 0);
-    deadpixel.put(MapKeys.DRIVE_BACKRIGHT, 0);
+    deadpixel.put(MapKeys.DRIVE_FRONTLEFT, 10);
+    deadpixel.put(MapKeys.DRIVE_FRONTRIGHT, 11);
+    deadpixel.put(MapKeys.DRIVE_BACKLEFT, 7);
+    deadpixel.put(MapKeys.DRIVE_BACKRIGHT, 13);
 
     deadpixel.put(MapKeys.SLIDE, 0);
     deadpixel.put(MapKeys.LIFT_LEFT, 0);
@@ -163,7 +163,7 @@ public class RobotMap {
 
 
 
-  public RobotTypes activeRobot = RobotTypes.BRIEFCASE;
+  public RobotTypes activeRobot = RobotTypes.DEADPIXEL;
 
   public int getId(MapKeys key) {
     if(activeRobot == RobotTypes.BRIEFCASE) {
