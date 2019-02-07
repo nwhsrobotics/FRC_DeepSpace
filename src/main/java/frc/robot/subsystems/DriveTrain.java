@@ -20,10 +20,10 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
  */
 public class DriveTrain extends Subsystem {
   //create CAN Talon SRX objects
-  private WPI_TalonSRX m_frontleft;
-  private WPI_TalonSRX m_backleft;
-  private WPI_TalonSRX m_frontright;
-  private WPI_TalonSRX m_backright;
+  public WPI_TalonSRX m_frontleft;
+  public WPI_TalonSRX m_backleft;
+  public WPI_TalonSRX m_frontright;
+  public WPI_TalonSRX m_backright;
   //create drive train and drive train sides objects
   private SpeedControllerGroup m_left;
   private SpeedControllerGroup m_right;
