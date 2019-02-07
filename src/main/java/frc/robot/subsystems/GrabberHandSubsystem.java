@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.MapKeys;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -18,10 +20,15 @@ public class GrabberHandSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberHand;
+  final int PCM_ARMCANID = Robot.m_map.getId(MapKeys.PCM_ARMCANID);
   @Override
    public void initDefaultCommand() {
-   // m_grabberHand = new DoubleSolenoid(RobotMap.pmc1CanID(), RobotMap.GrabberSolenoidForward(), RobotMap.GrabberSolenoidReverse());
-   // m_grabberHand.set(DoubleSolenoid.Value.kOff);
+   m_grabberHand = new DoubleSolenoid(
+      PCM_ARMCANID,
+      Robot.m_map.getId(MapKeys.SOLENOID_PUSHERPUSH),
+      Robot.m_map.getId(MapKeys.SOLENOID_PUSHERRETRACT)
+   );
+    m_grabberHand.set(DoubleSolenoid.Value.kOff);
   }
 
    public void handTurnOff() {

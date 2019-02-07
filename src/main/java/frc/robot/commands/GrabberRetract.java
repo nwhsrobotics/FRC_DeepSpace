@@ -9,17 +9,17 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
-/*public class GrabberRetract extends CommandGroup {
-  */
+
+public class GrabberRetract extends CommandGroup {
   /**
    * Add your docs here.
    */
-  /*public GrabberRetract() {
-    requires(Robot.m_grabberArm);
-    requires(Robot.m_grabberHand);
-
-    addParallel(new PneumaticRetractCommand());
-    addParallel(new PneumaticArmRetract());
+  public GrabberRetract() {
+      requires(Robot.m_grabberArm);
+      requires(Robot.m_grabberHand);
+  
+      addParallel(new PneumaticRetractCommand());
+      addParallel(new PneumaticArmRetract());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -38,4 +38,3 @@ import frc.robot.Robot;
     // arm.
   }
 }
-*/

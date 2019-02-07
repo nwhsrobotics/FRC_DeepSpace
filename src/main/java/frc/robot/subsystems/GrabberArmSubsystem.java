@@ -15,10 +15,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-/*public class GrabberArmSubsystem extends Subsystem {
+public class GrabberArmSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberArm;
+  final int  PCM_ARMCANID = Robot.m_map.getId(MapKeys.PCM_ARMCANID);
   @Override
   public void initDefaultCommand() {
     m_grabberArm = new DoubleSolenoid(
@@ -40,4 +41,4 @@ import edu.wpi.first.wpilibj.command.Subsystem;
     m_grabberArm.set(DoubleSolenoid.Value.kReverse);
   } 
 } 
-*/
+

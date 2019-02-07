@@ -64,10 +64,10 @@ public class OI{
     yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
     xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
     aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
-
-    bButton2.whenActive(new GrabberExtend()); //toggle for clamp
-    bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
     */
+    bButton2.whenActive(new GrabberExtend()); //toggle for clamp
+    bButton2.whenReleased(new GrabberRetract()); //toggle for clamp
+    
 
     
   }

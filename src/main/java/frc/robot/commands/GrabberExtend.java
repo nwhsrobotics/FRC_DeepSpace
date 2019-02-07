@@ -10,21 +10,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 
-/*public class GrabberExtend extends CommandGroup {
-  */
-  
-
+public class GrabberExtend extends CommandGroup {
   /**
    * Add your docs here.
    */
-  /*public GrabberExtend() {
+  public GrabberExtend() {
     requires(Robot.m_grabberArm);
     requires(Robot.m_grabberHand);
 
     addParallel(new PneumaticArmExtend());
     addParallel(new PneumaticExtendCommand());
-
-
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -43,4 +38,3 @@ import frc.robot.Robot;
     // arm.
   }
 }
-*/
