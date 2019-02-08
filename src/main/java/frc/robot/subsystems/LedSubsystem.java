@@ -9,6 +9,7 @@
 package frc.robot.subsystems;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -524,8 +525,12 @@ public void DriveRight(){
     m_pixel[57].set((byte) 0,(byte) 0,(byte) 0);
     m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
   }
-}
+  
 
+}
+public void DriveStaright(){
+    
+}
 
 
 }
