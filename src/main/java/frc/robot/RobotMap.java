@@ -160,7 +160,7 @@ public class RobotMap {
 
 
 
-  public RobotTypes activeRobot = RobotTypes.BRIEFCASE;
+  public RobotTypes activeRobot = RobotTypes.ALBERT;
 
   public int getId(MapKeys key) {
     if(activeRobot == RobotTypes.BRIEFCASE) {
