@@ -24,7 +24,7 @@ public class GrabberHandSubsystem extends Subsystem {
    public void initDefaultCommand() {
    m_grabberHand = new DoubleSolenoid(Robot.m_map.getId(MapKeys.PCM_ARMCANID), Robot.m_map.getId(MapKeys.SOLENOID_PUSHERPUSH), Robot.m_map.getId(MapKeys.SOLENOID_PUSHERRETRACT));
    m_grabberHand.set(DoubleSolenoid.Value.kOff);
-  }
+   }
 
    public void handTurnOff() {
     m_grabberHand.set(DoubleSolenoid.Value.kOff);
