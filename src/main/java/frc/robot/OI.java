@@ -13,6 +13,8 @@ public class OI{
 
   Joystick joy = new Joystick(0);
   
+  private final double TURNMODIFIER = 0.6;
+  private final double STRAIGHMODIFIER = 0.9;
   private final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
@@ -68,11 +70,11 @@ public class OI{
 
 
   public double getForwardValue() {
-    return joy.getRawAxis(1);
+    return -joy.getRawAxis(1) * STRAIGHMODIFIER;
 
   }
   public double getTurnValue() {
-    return joy.getRawAxis(4);
+    return joy.getRawAxis(4) * TURNMODIFIER;
   }
 
   public double getLiftValue() {
