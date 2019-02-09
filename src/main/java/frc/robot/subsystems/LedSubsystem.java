@@ -312,7 +312,7 @@ public void LiftDrive(){
 } */ 
 public void DriveLeft(){
   System.out.println(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage());
-  double ledValue = Math.min(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage() * 0.1, 1) * 255;
+  double ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage() * 0.1, 1) * 255);
   //if (Math.abs(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage()) > 0) {
   if (true) {
       m_pixel[1].set((byte) 0,(byte) ledValue,(byte) 0);
@@ -381,36 +381,38 @@ public void DriveLeft(){
 
 
 public void DriveRight(){
-  if (Math.abs(Robot.m_drivetrain.m_backright.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage()) > 0) {
-    m_pixel[30].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[31].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[32].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[33].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[34].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[35].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[36].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[37].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[38].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[39].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[40].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[41].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[42].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[43].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[44].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[45].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[46].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[47].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[48].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[49].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[50].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[51].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[52].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[53].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[54].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[55].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[56].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[57].set((byte) 0,(byte) 255,(byte) 0);
-    m_pixel[58].set((byte) 0,(byte) 255,(byte) 0);
+  double ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_backright.getMotorOutputVoltage() * 0.1, 1) * 255);
+if (true){
+  //if (Math.abs(Robot.m_drivetrain.m_backright.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage()) > 0) {
+    m_pixel[30].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[31].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[32].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[33].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[34].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[35].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[36].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[37].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[38].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[39].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[40].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[41].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[42].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[43].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[44].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[45].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[46].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[47].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[48].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[49].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[50].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[51].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[52].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[53].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[54].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[55].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[56].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[57].set((byte) 0,(byte) ledValue2,(byte) 0);
+    m_pixel[58].set((byte) 0,(byte) ledValue2,(byte) 0);
     
   } else {
     m_pixel[30].set((byte) 0,(byte) 0,(byte) 0);

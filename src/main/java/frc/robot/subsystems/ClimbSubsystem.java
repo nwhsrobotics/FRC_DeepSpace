@@ -63,15 +63,15 @@ public class ClimbSubsystem extends Subsystem {
   WPI_TalonSRX backrightwheel;
   public SpeedControllerGroup climbwheels;
 
-  private double m_mainDrive;
+  public double m_mainDrive;
 
-  private double m_auxDrive;
+  public double m_auxDrive;
 
-  private int m_LEDRedValue;
+  public int m_LEDRedValue;
 
-  private int m_LEDBlueValue;
+  public int m_LEDBlueValue;
 
-  private int m_LEDGreenValue;
+  public int m_LEDGreenValue;
   
 
 
