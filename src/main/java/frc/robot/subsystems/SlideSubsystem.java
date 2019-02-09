@@ -3,14 +3,12 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.RobotMap.MapKeys;
-import frc.robot.commands.LiftCommand;
+import frc.robot.commands.SlideCommand;
+
 import java.math.*;
 
 
@@ -93,7 +91,7 @@ public class SlideSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new LiftCommand());
+    setDefaultCommand(new SlideCommand());
      
   }
   
@@ -132,7 +130,7 @@ public class SlideSubsystem extends Subsystem {
     }
 
   }
-public void startAutoMove(double position_in) {
+public void startAutomoveSlide(double position_in) {
   if (m_autoActiveslide) {
     //cancels auto move if previous one was still active when this method is called again
     m_autoActiveslide = false;
@@ -143,7 +141,7 @@ public void startAutoMove(double position_in) {
     m_autoDistance = position_in - m_position_in; //sets auto distance to travel to the desired - current desired distance
   }
 }
-public boolean autoMoveFinished() {
+public boolean autoMoveFinishedSlide() {
 	return !m_autoActiveslide;
 }
 
