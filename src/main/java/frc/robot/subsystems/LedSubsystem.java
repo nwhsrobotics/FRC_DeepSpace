@@ -244,8 +244,7 @@ public class LedSubsystem extends Subsystem {
       m_pixel[56].set((byte)0, (byte)255, (byte)255);
       m_pixel[57].set((byte)0, (byte)0, (byte)255);
       m_pixel[58].set((byte)0, (byte)255, (byte)0);
-      m_pixel[59].set((byte)0, (byte)255, (byte)127);    //BRG
-      m_pixel[60].set((byte)0, (byte)255, (byte)255);
+      m_pixel[59].set((byte)0, (byte)255, (byte)127);
 
 
 
@@ -310,8 +309,6 @@ public class LedSubsystem extends Subsystem {
     m_pixel[57].set((byte) 0,(byte) 0,(byte) 0);
     m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
     m_pixel[59].set((byte) 0,(byte) 0,(byte) 0);
-    m_pixel[60].set((byte) 0,(byte) 0,(byte) 0);
-    
     }
       // ___ r _____
     //sendFrame();
