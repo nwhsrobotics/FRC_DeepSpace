@@ -18,8 +18,7 @@ public class GrabberArmSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberArm;
-  @Override
-  public void initDefaultCommand() {
+  public GrabberArmSubsystem() {
       m_grabberArm = new DoubleSolenoid(
       Robot.m_map.getId(MapKeys.PCM_ARMCANID),
       Robot.m_map.getId(MapKeys.SOLENOID_ARMFORWARD),
@@ -45,6 +44,11 @@ public class GrabberArmSubsystem extends Subsystem {
     if (m_grabberArm != null) {
       m_grabberArm.set(DoubleSolenoid.Value.kReverse);
     }
-  } 
+  }
+
+  @Override
+  protected void initDefaultCommand() {
+
+  }
 } 
 
