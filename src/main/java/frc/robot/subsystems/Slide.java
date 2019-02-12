@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap.MapKeys;
-/**
+/*
  * Add your docs here.
  */
 public class Slide extends Subsystem {
