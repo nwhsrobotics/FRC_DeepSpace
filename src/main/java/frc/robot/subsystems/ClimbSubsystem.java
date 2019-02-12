@@ -10,7 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
+import frc.robot.Robot;
+import frc.robot.RobotMap.MapKeys;
 
 import java.util.EnumMap;
 
@@ -49,7 +50,7 @@ public class ClimbSubsystem extends Subsystem {
 
   private double m_timeLeft_sec;
 
-  private DoubleSolenoid DummySolenoid;
+  
   private DoubleSolenoid Solenoid_1;
   private DoubleSolenoid Solenoid_2;
   private DoubleSolenoid Solenoid_3;
@@ -62,16 +63,20 @@ public class ClimbSubsystem extends Subsystem {
   WPI_TalonSRX backrightwheel;
   public SpeedControllerGroup climbwheels;
 
-  private double m_mainDrive;
+  public double m_mainDrive;
 
-  private double m_auxDrive;
+  public double m_auxDrive;
 
-  private int m_LEDRedValue;
+  public int m_LEDRedValue;
 
-  private int m_LEDBlueValue;
+  public int m_LEDBlueValue;
 
-  private int m_LEDGreenValue;
+  public int m_LEDGreenValue;
   
+  public boolean m_autoDescend;
+  public boolean m_autoL2Ascend;
+  public boolean m_autoL3Ascend;
+
 
 
   public ClimbSubsystem() {
@@ -114,48 +119,79 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
-    backleftwheel = new WPI_TalonSRX(RobotMap.backLeftWheel());   
-   //backrightwheel = new WPI_TalonSRX(RobotMap.backRightWheel());
-    //backrightwheel.setInverted(true);
+    backleftwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKLEFTCLIMBWHEEL));  
+    backleftwheel.setInverted(true); 
+    backrightwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKRIGHTCLIMBWHEEL));
+    backrightwheel.setInverted(true);
     climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
+    final int PCM_1_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID);
+    final int PCM_2_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2);
 
-    DummySolenoid = new DoubleSolenoid(RobotMap.pmc1CanID(),6,7);
-    DummySolenoid.set(DoubleSolenoid.Value.kOff);
-
-    Solenoid_1 = new DoubleSolenoid(RobotMap.pmc1CanID(),RobotMap.frontLeftSolenoidExtend(),RobotMap.frontLeftSolenoidRetract());
+   
+    Solenoid_1 = new DoubleSolenoid(
+      PCM_1_CAN_ID,
+      Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTEXTEND),
+      Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTRETRACT)
+    );
     Solenoid_1.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_2 = new DoubleSolenoid(RobotMap.pmc1CanID(),RobotMap.frontRightSolenoidExtend(),RobotMap.frontRightSolenoidRetract());
+    Solenoid_2 = new DoubleSolenoid(
+      PCM_1_CAN_ID,
+      Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTEXTEND),
+      Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTRETRACT)
+    );
     Solenoid_2.set(DoubleSolenoid.Value.kOff);
   
 
-   /* Solenoid_3 = new DoubleSolenoid(RobotMap.pmc1CanId(),RobotMap.backLeftSolenoidExtend(),RobotMap.backLeftSolenoidRetract());
+    
+    Solenoid_3 = new DoubleSolenoid(
+      PCM_1_CAN_ID,
+      Robot.m_map.getId(MapKeys.SOLENOID_BACKLEFTEXTEND),
+      Robot.m_map.getId(MapKeys.SOLENOID_BACKLEFTRETRACT)
+      );
     Solenoid_3.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_4 = new DoubleSolenoid(RobotMap.pmc1CanId(),RobotMap.backRightSolenoidExtend(),RobotMap.backRightSolenoidRetract());
+    Solenoid_4 = new DoubleSolenoid(
+      PCM_1_CAN_ID,
+    Robot.m_map.getId(MapKeys.SOLENOID_BACKRIGHTEXTEND),
+    Robot.m_map.getId(MapKeys.SOLENOID_BACKRIGHTRETRACT)
+    );
     Solenoid_4.set(DoubleSolenoid.Value.kOff);
     
-    
-    Solenoid_5 = new DoubleSolenoid(RobotMap.pmc2CanID,RobotMap.lowerFrontSolenoidExtend(),RobotMap.lowerFrontSolenoidRetract());
+   
+
+    Solenoid_5 = new DoubleSolenoid(
+      PCM_2_CAN_ID,
+      Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTEXTEND),
+      Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTRETRACT)
+    );
     Solenoid_5.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_6 = new DoubleSolenoid(RobotMap.pmc2CanID,RobotMap.lowerBackSolenoidExtend(),RobotMap.lowerBackSolenoidRetract());
+    Solenoid_6 = new DoubleSolenoid(
+      PCM_2_CAN_ID,
+      Robot.m_map.getId(MapKeys.SOLENOID_LOWERBACKEXTEND),
+      Robot.m_map.getId(MapKeys.SOLENOID_LOWERBACKRETRACT)
+    );
     Solenoid_6.set(DoubleSolenoid.Value.kOff); 
     
-    Solenoid_7 = new DoubleSolenoid(RobotMap.pmc2CanID,RobotMap.ascendAssistBackLeftExtend(),RobotMap.ascendAssistBackLeftRetract());
+    Solenoid_7 = new DoubleSolenoid(
+      PCM_2_CAN_ID,
+      Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND),
+      Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT)
+    );
     Solenoid_7.set(DoubleSolenoid.Value.kOff);
 
-    Solenoid_8 = new DoubleSolenoid(RobotMap.pmc2CanID,RobotMap.ascendAssistBackRightExtend(),RobotMap.ascendAssistBackRightRetract()); 
+    Solenoid_8 = new DoubleSolenoid(
+      PCM_2_CAN_ID,
+      Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND),
+      Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT)
+    );
     Solenoid_8.set(DoubleSolenoid.Value.kOff);
-    */ 
     
     
-    Solenoid_3 = DummySolenoid;
-    Solenoid_4 = DummySolenoid;
-    Solenoid_5 = DummySolenoid;
-    Solenoid_6 = DummySolenoid;
-    Solenoid_7 = DummySolenoid;
-    Solenoid_8 = DummySolenoid;
+    
+    
+  
 
     m_mainDrive = 0.0;
     
@@ -173,12 +209,24 @@ public class ClimbSubsystem extends Subsystem {
 
     }
 
+  public void initialize() {
+    setActuators();
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-
+  public boolean stateDescend(){
+    return !m_autoDescend;
+  } 
+  public boolean stateL2Ascend(){
+    return !m_autoL2Ascend;
+  }
+  public boolean stateL3Ascend(){
+    return !m_autoL3Ascend;
+  }
   public void startDescend() {
 
     m_climbState = ClimbState.DESCEND_S1;
@@ -228,6 +276,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Robot is in stage IDLE\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case DESCEND_S1:
@@ -238,11 +289,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = DESCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 1\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case DESCEND_S2:
@@ -253,11 +307,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = DESCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 2\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case DESCEND_S3:
@@ -268,11 +325,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = DESCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 3\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case DESCEND_S4:
@@ -283,11 +343,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = DESCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 4\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S1:
@@ -298,11 +361,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = 0.0;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 1\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S2:
@@ -313,11 +379,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = L2_ASCEND_SPEED;
         m_mainDrive = L2_ASCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 2\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S3:
@@ -328,11 +397,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(true);
         m_auxDrive = L2_ASCEND_SPEED;
         m_mainDrive = L2_ASCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 3\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S4:
@@ -343,11 +415,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(true);
         m_auxDrive = 0.0;
         m_mainDrive = L2_ASCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 4\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S5:
@@ -358,11 +433,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = L2_ASCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec =2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 5\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S6:
@@ -373,11 +451,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = 0.0;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 6\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L3_S1:
@@ -388,11 +469,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = 0.0;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 1\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
         break;
 
       case CLIMB_L3_S2:
@@ -403,11 +487,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = L3_ASCEND_SPEED;
         m_mainDrive = L3_ASCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 2\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
         break;
 
       case CLIMB_L3_S3:
@@ -418,11 +505,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = L3_ASCEND_SPEED;
         m_mainDrive = L3_ASCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 3\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
         break;
 
       case CLIMB_L3_S4:
@@ -433,11 +523,14 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = L3_ASCEND_SLOW;
-        m_timeLeft_sec = 1.0;
+        m_timeLeft_sec = 2.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 4\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
         break;
 
     }
@@ -467,15 +560,14 @@ public class ClimbSubsystem extends Subsystem {
 
   }
 
-  /*public double getauxDrive() {
-
+  public double getauxDrive() {
     return m_auxDrive;
   }
-*/
-  public void setauxDrive() {
 
+  public void setauxDrive() {
     climbwheels.set(m_auxDrive);
   }
+  
 
 
 

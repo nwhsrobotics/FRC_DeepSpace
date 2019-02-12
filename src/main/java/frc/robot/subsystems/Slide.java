@@ -11,8 +11,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-/**
+import frc.robot.Robot;
+import frc.robot.RobotMap.MapKeys;
+/*
  * Add your docs here.
  */
 public class Slide extends Subsystem {
@@ -20,8 +21,7 @@ public class Slide extends Subsystem {
   // here. Call these from Commands.
   private WPI_TalonSRX m_slide;
   public Slide(){
-
-    //m_slide = new WPI_TalonSRX(RobotMap.slideCanId());
+    m_slide = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.SLIDE));
   }
   
   public void update(double x){
@@ -29,9 +29,7 @@ public class Slide extends Subsystem {
   }
 
   public void slideStop(){
-
     m_slide.set(0);
-
   }
   @Override
   public void initDefaultCommand() {
