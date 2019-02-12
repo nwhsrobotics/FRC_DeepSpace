@@ -14,7 +14,7 @@ public class startDescendCommand extends Command {
   public startDescendCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_climbSubsystem);
+    requires(Robot.climbSubsystem);
     requires(Robot.m_drivetrain);
     //TODO-MR Add Drive Train Subsystem
   }
@@ -22,26 +22,23 @@ public class startDescendCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_climbSubsystem.startDescend();
-    setTimeout(Robot.m_climbSubsystem.getTimeLeft());
-    
-    
-    
+    Robot.climbSubsystem.startDescend();
+    setTimeout(Robot.climbSubsystem.getTimeLeft());
+    Robot.climbSubsystem.setauxDrive();
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
+    //TODO-MR Robot.DriveTrain.update(Robot.climbSubsystem.getMainDrive());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_drivetrain.update(Robot.m_climbSubsystem.getMainDrive(), 0);
-    Robot.m_climbSubsystem.setauxDrive();
-    Robot.m_ledSubsystem.climbDescend();
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return isTimedOut();
-    //return !Robot.m_climbSubsystem.m_autoDescend;
   }
 
   // Called once after isFinished returns true

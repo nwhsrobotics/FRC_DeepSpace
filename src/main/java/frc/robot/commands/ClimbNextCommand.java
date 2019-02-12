@@ -14,25 +14,24 @@ public class ClimbNextCommand extends Command {
   public ClimbNextCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_climbSubsystem);
+    requires(Robot.climbSubsystem);
     requires(Robot.m_drivetrain);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_climbSubsystem.nextStage();
-    setTimeout(Robot.m_climbSubsystem.getTimeLeft());
-    
-    
+    Robot.climbSubsystem.nextStage();
+    setTimeout(Robot.climbSubsystem.getTimeLeft());
+    Robot.climbSubsystem.setauxDrive();
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
   }
 
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_drivetrain.update(Robot.m_climbSubsystem.getMainDrive(), 0);
-    Robot.m_climbSubsystem.setauxDrive();
+    
 
   
   }

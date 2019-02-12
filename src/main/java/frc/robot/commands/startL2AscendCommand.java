@@ -14,7 +14,7 @@ public class startL2AscendCommand extends Command {
   public startL2AscendCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_climbSubsystem);
+    requires(Robot.climbSubsystem);
     requires(Robot.m_drivetrain);
     
   }
@@ -22,18 +22,15 @@ public class startL2AscendCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_climbSubsystem.startL2Ascend();
-    setTimeout(Robot.m_climbSubsystem.getTimeLeft());
-    
-    
+    Robot.climbSubsystem.startL2Ascend();
+    setTimeout(Robot.climbSubsystem.getTimeLeft());
+    Robot.climbSubsystem.setauxDrive();
+    Robot.m_drivetrain.update(Robot.climbSubsystem.getMainDrive(), 0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_drivetrain.update(Robot.m_climbSubsystem.getMainDrive(), 0);
-    Robot.m_climbSubsystem.setauxDrive();
-    Robot.m_ledSubsystem.climbL2();
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -7,20 +7,19 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class GrabberOff extends CommandGroup {
-  
   /**
    * Add your docs here.
    */
   public GrabberOff() {
-      requires(Robot.m_grabberArm);
-      requires(Robot.m_grabberHand);
-  
-      addParallel(new PneumaticOffCommand());
-      addParallel(new PneumaticArmOff());
+    requires(Robot.m_grabberArm);
+    requires(Robot.m_grabberHand);
+
+    addParallel(new PneumaticOffCommand());
+    addParallel(new PneumaticArmOff());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

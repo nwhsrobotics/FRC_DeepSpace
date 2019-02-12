@@ -46,4 +46,3 @@ public class PneumaticArmOff extends Command {
   protected void interrupted() {
   }
 }
-

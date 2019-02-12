@@ -1,9 +1,19 @@
 package frc.robot;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SendableBase;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 import frc.robot.commands.*;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 
@@ -13,59 +23,86 @@ public class OI{
 
   Joystick joy = new Joystick(0);
   
-  private final double TURNMODIFIER = 0.6;
-  private final double STRAIGHMODIFIER = 0.9;
-  private final int CAMERA_BUTTON = 2;
-  private final int Lvl2DESC_BUTTON = 7;
-  private final int Lvl2CLIMB_BUTTON = 8;
-  private final int Lvl3CLIMB_BUTTON = 3;//cant find button
-  private final int CLIMBNEXT_BUTTON = 6;
-  private final int CLIMBPREV_BUTTON = 5;
-
-  public JoystickButton bButton1 = new JoystickButton(joy, CAMERA_BUTTON);
-	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
-	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
-  public JoystickButton leftBumper1 = new JoystickButton(joy, CLIMBPREV_BUTTON);
-  public JoystickButton rightBumper1 = new JoystickButton(joy, CLIMBNEXT_BUTTON);
-  public JoystickButton xButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+  private final int CAMERA_BUTTON = 7;
+  private final int ClimbNext = 1;
+  private final int ClimbPrev = 2;
+  private final int startL2Ascend = 3;
+  private final int startL3Ascend = 4;
+  private final int startDescend = 8;
+  public JoystickButton xButton1 = new JoystickButton(joy, startL2Ascend);
+	public JoystickButton bButton1 = new JoystickButton(joy, ClimbPrev);
+	public JoystickButton aButton1 = new JoystickButton(joy, ClimbNext);
+  public JoystickButton yButton1 = new JoystickButton(joy, startL3Ascend);
+  public JoystickButton startButton1 = new JoystickButton(joy, startDescend);
+  public JoystickButton selectButton1 = new JoystickButton(joy, CAMERA_BUTTON);
+    
 
   Joystick joy2 = new Joystick(1);
 
 
-  private final int HIGHHATCH_BUTTON = 4;
-  private final int MIDHATCH_BUTTON = 3;
-  private final int LOWHATCH_BUTTON = 1;
-  private final int CLAMP_BUTTON = 2;
-  private final int BLIND = 5;
+  private final int HIGHHATCH_BUTTON = 1;
+  private final int MIDHATCH_BUTTON = 2;
+  private final int LOWHATCH_BUTTON = 3;
+  private final int CLAMP_BUTTON = 4;
+  private final int ARM_BUTTON = 8;
+ // private final int SLIDE_LEFT = lefttrigger;
+ // private final int SLIDE_RIGHT = righttrigger;
+
   public JoystickButton yButton2 = new JoystickButton(joy2, HIGHHATCH_BUTTON);
   public JoystickButton xButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);
   public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
-  public JoystickButton leftBumper2 = new JoystickButton(joy2, BLIND);
-
+  public JoystickButton startButton2 = new JoystickButton(joy2, ARM_BUTTON);
+//public JoystickButton triggerleft2 = new JoystickButton(joy2, SLIDE_LEFT);
+//public JoystickButton triggerright2 = new JoystickButton(joy2, SLIDE_RIGHT);
+ /* Button b1 = new JoystickButton(joy2, 1);
+  Button b4 = new JoystickButton(joy2, 4);
+  */
+  
 
 
   public OI () {
 
-    //bButton1.toggleWhenPressed(new CameraToggle);
+   // xButton1.toggleWhenPressed(new CameraToggle);
 
-    backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
-    startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
-    xButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
-    
-    leftBumper2.whenPressed(new BlindCommand());
+   // rightTrigger2.togglewhenActive(new SlideRightToggle);
+   // rightTrigger2.whenInactive(new SlideLeftStop);
 
-    leftBumper1.whenPressed(new ClimbPrevCommand());
-    rightBumper1.whenPressed(new ClimbNextCommand());
+    startButton1.whenPressed(new DescendCommandGroup());
+    xButton1.whenPressed(new L2AscendCommandGroup());
+    yButton1.whenPressed(new L3AscendCommandGroup());
+    aButton1.whenPressed(new ClimbNextCommand());
+    bButton1.whenPressed(new ClimbPrevCommand());
+   
+   /* b1.whenPressed(new DownLiftCommand());
+    b1.whenReleased(new StopLiftCommand());
+    m_x.whenPressed(new PositionCommand());
+    m_y.whenPressed(new PositionUpdateCommand());
+    b4.whenPressed(new UpLiftCommand());
+    b4.whenReleased(new StopLiftCommand());
+    */
 
-    
-    yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
-    xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
-    aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
-    
-    bButton2.whenActive(new GrabberExtend()); //toggle for clamp
-    bButton2.whenReleased(new GrabberRetract()); //toggle for clamp
-    
+
+  //  yButton2.toggleWhenPressed(new HighHatchInitiate);
+   // xButton2.toggleWhenPressed(new MidHatchInitiate);
+   // aButton2.toggleWhenPressed(new LowHatchInitiate);
+   // bButton2.toggleWhenPressed(new ClampToggle); 
+  /**  xButton1.toggleWhenPressed(new CameraToggle);
+
+    rightTrigger2.togglewhenActive(new SlideRightToggle);
+    rightTrigger2.whenInactive(new SlideLeftStop);
+
+    backButton1.whenPressed(new Lvl2Descent);
+    startButton1.whenPressed(new Lvl2Climb);
+    playButton1.whenPressed(new Lvl3Climb);
+
+
+    yButton2.toggleWhenPressed(new HighHatchInitiate);
+    xButton2.toggleWhenPressed(new MidHatchInitiate);
+    aButton2.toggleWhenPressed(new LowHatchInitiate);
+    */
+    bButton2.whenPressed(new GrabberExtend());
+    bButton2.whenReleased(new GrabberRetract());
 
     
   }
@@ -74,11 +111,12 @@ public class OI{
 
 
   public double getForwardValue() {
-    return -joy.getRawAxis(1) * STRAIGHMODIFIER;
+
+    return joy.getRawAxis(1);
 
   }
   public double getTurnValue() {
-    return joy.getRawAxis(4) * TURNMODIFIER;
+    return joy.getRawAxis(4);
   }
 
   public double getLiftValue() {
