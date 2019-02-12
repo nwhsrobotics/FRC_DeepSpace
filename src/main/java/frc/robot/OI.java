@@ -36,7 +36,7 @@ public class OI{
   private final int MIDHATCH_BUTTON = 3;
   private final int LOWHATCH_BUTTON = 1;
   private final int CLAMP_BUTTON = 2;
-  private final int BLIND = 5;
+  private final int BLIND = 6;
   public JoystickButton yButton2 = new JoystickButton(joy2, HIGHHATCH_BUTTON);
   public JoystickButton xButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);
   public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
