@@ -53,13 +53,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 30);
+    camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 15);
     m_oi = new OI();
     m_climbSubsystem.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
+    Robot.m_ledSubsystem.LED(true);  
 
 
   }
