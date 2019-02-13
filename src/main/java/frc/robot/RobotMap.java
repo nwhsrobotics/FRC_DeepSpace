@@ -9,6 +9,8 @@ package frc.robot;
 
 import java.util.EnumMap;
 
+import edu.wpi.first.wpilibj.Preferences;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -25,7 +27,7 @@ public class RobotMap {
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
-  
+  Preferences prefs;
   public enum MapKeys {
     DRIVE_FRONTLEFT, DRIVE_FRONTRIGHT, DRIVE_BACKLEFT, DRIVE_BACKRIGHT,
     SLIDE, LIFT_LEFT, LIFT_RIGHT, 
@@ -162,8 +164,7 @@ public class RobotMap {
   }
 
 
-
-  public RobotTypes activeRobot = RobotTypes.DEADPIXEL;
+  public RobotTypes activeRobot = RobotTypes.ALBERT;
 
   public int getId(MapKeys key) {
     if(activeRobot == RobotTypes.BRIEFCASE) {
@@ -179,60 +180,78 @@ public class RobotMap {
   
   public double pidSlideMotor(String x) {
     if (x.toLowerCase() == "p") {
-      return 1.0;
+      return prefs.getDouble("P Slide Motor", 0.0);
     } else if (x.toLowerCase() == "i") {
-      return 0.0;
+      return prefs.getDouble("I Slide Motor", 0.0);
     } else if (x.toLowerCase() == "d") {
-      return 0.0;
+      return prefs.getDouble("D Slide Motor", 0.0);
     } else {
       System.out.println("Valid PID letter not entered");
-      return 0;
+      return 0.0;
     }
   }
 
   public double pidLiftMotor(String x) {
     if (x.toLowerCase() == "p") {
-      return 1.0;
+      return prefs.getDouble("P Lift Motor", 0.0);
     } else if (x.toLowerCase() == "i") {
-      return 0.0;
+      return prefs.getDouble("I Lift Motor", 0.0);
     } else if (x.toLowerCase() == "d") {
-      return 0.0;
+      return prefs.getDouble("D Lift Motor", 0.0);
     } else {
       System.out.println("Valid PID letter not entered");
-      return 0;
+      return 0.0;
     }
   }
 
   public double pidDriveLeft(String x) {
     if (x.toLowerCase() == "p") {
-      return 1.0;
+      return prefs.getDouble("P Drive Left", 0.0);
     } else if (x.toLowerCase() == "i") {
-      return 0.0;
+      return prefs.getDouble("I Drive Left", 0.0);
     } else if (x.toLowerCase() == "d") {
-      return 0.0;
+      return prefs.getDouble("D Drive Left", 0.0);
     } else if (x.toLowerCase() == "f") {
-      return 0.0;
+      return prefs.getDouble("F Drive Left", 0.0);
     } else {
       System.out.println("Valid PIDF letter not entered");
-      return 0;
+      return 0.0;
     }
   }
 
   public double pidDriveRight(String x) {
     if (x.toLowerCase() == "p") {
-      return 1.0;
+      return prefs.getDouble("P Drive Right", 0.0);
     } else if (x.toLowerCase() == "i") {
-      return 0.0;
+      return prefs.getDouble("I Drive Right", 0.0);
     } else if (x.toLowerCase() == "d") {
-      return 0.0;
+      return prefs.getDouble("D Drive Right", 0.0);
     } else if (x.toLowerCase() == "f") {
-      return 0.0;
+      return prefs.getDouble("F Drive Right", 0.0);
     } else {
       System.out.println("Valid PIDF letter not entered");
-      return 0;
+      return 0.0;
     }
   }
 
+  /** public void pidPrefMethod() {
+    prefs.putDouble("P Slide Motor", pidSlideMotor("p"));
+    prefs.putDouble("I Slide Motor", pidSlideMotor("i"));
+    prefs.putDouble("D Slide Motor", pidSlideMotor("d"))
+    prefs.getDouble("P Lift Motor", pidLiftMotor("p"));
+    prefs.getDouble("I Lift Motor", pidLiftMotor("i"));
+    prefs.getDouble("D Lift Motor", pidLiftMotor("d"));
+
+    prefs.getDouble("P Left Drive Motor", pidDriveLeft("p"));
+    prefs.getDouble("I Left Drive Motor", pidDriveLeft("i"));
+    prefs.getDouble("D Left Drive Motor", pidDriveLeft("d"));
+    prefs.getDouble("F Left Drive Motor", pidDriveLeft("f"));
+
+    prefs.getDouble("P Right Drive Motor", pidDriveLeft("p"));
+    prefs.getDouble("I Right Drive Motor", pidDriveLeft("i"));
+    prefs.getDouble("D Right Drive Motor", pidDriveLeft("d"));
+    prefs.getDouble("F Right Drive Motor", pidDriveLeft("f"));
+  } */
 
   public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
 
