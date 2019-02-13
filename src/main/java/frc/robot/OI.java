@@ -63,7 +63,7 @@ public class OI{
     startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
     xButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
     
-    leftBumper2.whenPressed(new BlindCommand());
+    leftBumper2.toggleWhenPressed(new BlindCommand());
 
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
