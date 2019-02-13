@@ -25,10 +25,33 @@ public class DriveTrain extends Subsystem {
   public WPI_TalonSRX m_backleft;
   public WPI_TalonSRX m_frontright;
   public WPI_TalonSRX m_backright;
-  //create drive train and drive train sides objects
-  SpeedControllerGroup m_left;
-  private SpeedControllerGroup m_right;
-  private DifferentialDrive m_drive;
+  private static final int TIMEOUT_MS = 1000;
+  private static double m_velocity_fps; //feet per second velocity
+  private static double m_velocity_turn_rps;//rad per second
+  private static double m_leftSpeed;
+  private static double m_rightSpeed;
+  private static final double WHEELBASE = 19.5/12; //inches on numerator, convert to feet
+  private static double m_radius = WHEELBASE / 2;
+
+
+  private static int m_maxAmps = 0;
+  private static double m_maxIntegral = 0;
+  private static final double REVOLUTIONSPERFOOT = 1/Math.PI;
+  private static final double COUNTSPERREVOLUTION = 4096;
+  private static final double SECONDSPER100MILLISECONDS = .1;
+  private static final double MAXVELOCITY = 5; //fps
+  private static final double MAX_TURN_RATE_DEG_PER_SEC = 15;
+  private static final double RAD_PER_DEG = Math.PI/180;
+
+  private double m_p_right = Robot.m_map.pidDriveRight("p");
+  private double m_i_right = Robot.m_map.pidDriveRight("i");
+  private double m_d_right = Robot.m_map.pidDriveRight("d");
+  private double m_f_right = Robot.m_map.pidDriveRight("f");
+
+  private double m_p_left = Robot.m_map.pidDriveLeft("p");
+  private double m_i_left = Robot.m_map.pidDriveLeft("i");
+  private double m_d_left = Robot.m_map.pidDriveLeft("d");
+  private double m_f_left = Robot.m_map.pidDriveLeft("f");
 
 
 
@@ -36,20 +59,14 @@ public class DriveTrain extends Subsystem {
     //initialize + set objects created above
     m_frontleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTLEFT));
     m_backleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_BACKLEFT));
-    if ((m_frontleft != null) && (m_backleft != null)) {
-      m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
-    } 
+    
 
     m_frontright = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTRIGHT));
     m_backright = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_BACKRIGHT));
-    if ((m_frontright != null) && (m_backright != null)) {
-      m_right = new SpeedControllerGroup(m_frontright, m_backright);
-    }
+    
     //m_left.setInverted(true); invert left side
 
-    if ((m_left != null) && (m_right != null)) {
-      m_drive = new DifferentialDrive(m_left, m_right);
-    }
+      
   }
 
   public void configTalons() {
@@ -57,9 +74,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public void update(double y, double z){
-    if (m_drive != null) {
-      m_drive.arcadeDrive(y, z);
-    }
+    
   }
 
 

@@ -59,6 +59,8 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     Robot.m_ledSubsystem.LED(255, 0, 0, true);
+    SmartDashboard.putData(Scheduler.getInstance());
+
 
 
   }
