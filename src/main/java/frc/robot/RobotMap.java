@@ -90,16 +90,16 @@ public class RobotMap {
     albert.put(MapKeys.DRIVE_BACKLEFT, 21);
     albert.put(MapKeys.DRIVE_BACKRIGHT, 10);
 
-    albert.put(MapKeys.SLIDE, 3);
+    albert.put(MapKeys.SLIDE, 0); //change back to 3
     
-    albert.put(MapKeys.LIFT_LEFT, 0);
-    albert.put(MapKeys.LIFT_RIGHT, 0);
+    albert.put(MapKeys.LIFT_LEFT, 3); // change back to 0
+    albert.put(MapKeys.LIFT_RIGHT, 2); //change back to 0
 
     albert.put(MapKeys.PCM_CLIMBCANID, 0);
     albert.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
     albert.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
-    albert.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
-    albert.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 3);
+    albert.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0); // change back to 2
+    albert.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 0); //change back to 3
     albert.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 4);
     albert.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 5);
     albert.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 6);

@@ -8,7 +8,10 @@
 package frc.robot;
 
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
+//import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -35,14 +38,13 @@ import frc.robot.subsystems.LedSubsystem;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static RobotMap m_map = new RobotMap();
-  public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
   public static LedSubsystem m_ledSubsystem = new LedSubsystem();
   public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
   public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
   public static LiftSubsystem m_lift = new LiftSubsystem();
-  public static Slide m_slide = new Slide();
+  public static SlideSubsystem m_slide = new SlideSubsystem();
   
 
   Command m_autonomousCommand;
@@ -54,13 +56,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 15);
     m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    Robot.m_ledSubsystem.LED(255, 0, 0, true);
-    SmartDashboard.putData(Scheduler.getInstance());
-
+    Robot.m_ledSubsystem.LED(true);  
 
 
   }

@@ -22,8 +22,6 @@ public class GrabberExtend extends CommandGroup {
 
     addParallel(new PneumaticArmExtend());
     addParallel(new PneumaticExtendCommand());
-
-
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
