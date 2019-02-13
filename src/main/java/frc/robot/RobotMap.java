@@ -25,7 +25,7 @@ public class RobotMap {
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
-
+  
   public enum MapKeys {
     DRIVE_FRONTLEFT, DRIVE_FRONTRIGHT, DRIVE_BACKLEFT, DRIVE_BACKRIGHT,
     SLIDE, LIFT_LEFT, LIFT_RIGHT, 
@@ -176,6 +176,63 @@ public class RobotMap {
       return albert.get(key);
     }
   }
+  
+  public double pidSlideMotor(String x) {
+    if (x.toLowerCase() == "p") {
+      return 1.0;
+    } else if (x.toLowerCase() == "i") {
+      return 0.0;
+    } else if (x.toLowerCase() == "d") {
+      return 0.0;
+    } else {
+      System.out.println("Valid PID letter not entered");
+      return 0;
+    }
+  }
+
+  public double pidLiftMotor(String x) {
+    if (x.toLowerCase() == "p") {
+      return 1.0;
+    } else if (x.toLowerCase() == "i") {
+      return 0.0;
+    } else if (x.toLowerCase() == "d") {
+      return 0.0;
+    } else {
+      System.out.println("Valid PID letter not entered");
+      return 0;
+    }
+  }
+
+  public double pidDriveLeft(String x) {
+    if (x.toLowerCase() == "p") {
+      return 1.0;
+    } else if (x.toLowerCase() == "i") {
+      return 0.0;
+    } else if (x.toLowerCase() == "d") {
+      return 0.0;
+    } else if (x.toLowerCase() == "f") {
+      return 0.0;
+    } else {
+      System.out.println("Valid PIDF letter not entered");
+      return 0;
+    }
+  }
+
+  public double pidDriveRight(String x) {
+    if (x.toLowerCase() == "p") {
+      return 1.0;
+    } else if (x.toLowerCase() == "i") {
+      return 0.0;
+    } else if (x.toLowerCase() == "d") {
+      return 0.0;
+    } else if (x.toLowerCase() == "f") {
+      return 0.0;
+    } else {
+      System.out.println("Valid PIDF letter not entered");
+      return 0;
+    }
+  }
+
 
   public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
 
