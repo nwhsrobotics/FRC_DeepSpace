@@ -32,6 +32,8 @@ public class startDescendCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_drivetrain.update(Robot.m_climbSubsystem.getMainDrive(), 0);
+    Robot.m_climbSubsystem.setauxDrive();
     Robot.m_ledSubsystem.climbDescend();
   }
 
@@ -39,6 +41,7 @@ public class startDescendCommand extends Command {
   @Override
   protected boolean isFinished() {
     return isTimedOut();
+    //return !Robot.m_climbSubsystem.m_autoDescend;
   }
 
   // Called once after isFinished returns true
