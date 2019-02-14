@@ -497,37 +497,7 @@ public void DriveLeft(){
       m_pixel[28].set((byte) 0,(byte) ledValue,(byte) 0);
       m_pixel[29].set((byte) 0,(byte) ledValue,(byte) 0);
       
-    } else {
-      m_pixel[1].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[2].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[3].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[4].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[5].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[6].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[7].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[8].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[9].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[10].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[11].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[12].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[13].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[14].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[15].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[16].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[17].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[18].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[19].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[20].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[21].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[22].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[23].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[24].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[25].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[26].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[27].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[28].set((byte) 0,(byte) 0,(byte) 0);
-      m_pixel[29].set((byte) 0,(byte) 0,(byte) 0);
-    }
+    } 
 
   }
 
