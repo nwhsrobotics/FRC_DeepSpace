@@ -9,6 +9,7 @@ package frc.robot;
 
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -36,6 +37,7 @@ import frc.robot.subsystems.LedSubsystem;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static RobotMap m_map = new RobotMap();
+  public static Preferences m_prefs;
   public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
   public static LedSubsystem m_ledSubsystem = new LedSubsystem();
   public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
@@ -57,6 +59,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    m_prefs = Preferences.getInstance();
     m_climbSubsystem.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
