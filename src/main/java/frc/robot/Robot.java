@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
 
 
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 30);
+    camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 15);
     m_oi = new OI();
     m_climbSubsystem.initialize();
     m_grabberArm.initialize();
@@ -73,11 +73,7 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
-    //Read Pressure switch and send it to the dashboard
-    
-
-
+    Robot.m_ledSubsystem.LED(true);  
 
 
   }

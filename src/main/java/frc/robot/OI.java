@@ -12,6 +12,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SendableBase;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.BlindCommand;
+import frc.robot.commands.DescendCommandGroup;
+import frc.robot.commands.L2AscendCommandGroup;
+import frc.robot.commands.L3AscendCommandGroup;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,32 +51,47 @@ public class OI {
 
   Joystick joy = new Joystick(0);
   
-  int CAMERA_BUTTON = 1;
-  int Lvl2DESC_BUTTON = 2;
-  int Lvl2CLIMB_BUTTON = 3;
-  int Lvl3CLIMB_BUTTON = 4;
-  public JoystickButton xButton1 = new JoystickButton(joy, CAMERA_BUTTON);
+  private final double TURNMODIFIER = 0.6;
+  private final double STRAIGHMODIFIER = 0.9;
+  private final int CAMERA_BUTTON = 2;
+  private final int Lvl2DESC_BUTTON = 7;
+  private final int Lvl2CLIMB_BUTTON = 8;
+  private final int Lvl3CLIMB_BUTTON = 3;//cant find button
+  private final int CLIMBNEXT_BUTTON = 6;
+  private final int CLIMBPREV_BUTTON = 5;
+
+  public JoystickButton bButton1 = new JoystickButton(joy, CAMERA_BUTTON);
 	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
 	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
-  public JoystickButton playButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
-    
+  public JoystickButton leftBumper1 = new JoystickButton(joy, CLIMBPREV_BUTTON);
+  public JoystickButton rightBumper1 = new JoystickButton(joy, CLIMBNEXT_BUTTON);
+  public JoystickButton xButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+
+ 
 
   Joystick joy2 = new Joystick(1);
 
-  final int HIGHHATCH_BUTTON = 1;
-  final int MIDHATCH_BUTTON = 2;
-  final int LOWHATCH_BUTTON = 3;
-  final int CLAMP_BUTTON = 4;
+  private final int HIGHHATCH_BUTTON = 4;
+  private final int MIDHATCH_BUTTON = 3;
+  private final int LOWHATCH_BUTTON = 1;
+  private final int CLAMP_BUTTON = 2;
+  private final int BLIND = 6;
   public JoystickButton yButton2 = new JoystickButton(joy2, HIGHHATCH_BUTTON);
   public JoystickButton xButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);
   public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
+  public JoystickButton leftBumper2 = new JoystickButton(joy2, BLIND);
 
 
 
   public OI () {
 
 
+    backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
+    startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
+    xButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
+    
+    leftBumper2.whenPressed(new BlindCommand());
 
 
     //xButton1.toggleWhenPressed(new CameraToggle);
@@ -109,16 +128,8 @@ public class OI {
     return joy2.getRawAxis(1);
   }
 
-  public double getLeftSlideValue() {
-    return joy2.getRawAxis(2);
+  public double getSlideValue() {
+    return joy2.getRawAxis(3) - joy2.getRawAxis(2);
   }
-
-  public double getRightSlideValue() {
-    return joy2.getRawAxis(3);
-  }
-
-
-  
-
 
 }

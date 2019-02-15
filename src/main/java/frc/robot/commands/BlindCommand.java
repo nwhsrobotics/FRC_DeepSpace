@@ -10,11 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SlideCommand extends Command {
-  public SlideCommand() {
+public class BlindCommand extends Command {
+  public BlindCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_slide);
   }
 
   // Called just before this Command runs the first time
@@ -25,9 +24,7 @@ public class SlideCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   Robot.m_slide.update(Robot.m_oi.getSlideValue());
-   
-
+    Robot.m_ledSubsystem.blindCommand(true);
   }
 
   // Make this return true when this Command no longer needs to run execute()

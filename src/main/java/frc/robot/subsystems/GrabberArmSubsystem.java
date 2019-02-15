@@ -19,10 +19,8 @@ public class GrabberArmSubsystem extends Subsystem {
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberArm;
   int  PCM_ARMCANID;
-  @Override
-  public void initDefaultCommand() {
-   
-  }
+  
+ 
   public void initialize(){
     PCM_ARMCANID = Robot.m_map.getId(MapKeys.PCM_ARMCANID);
 
@@ -44,6 +42,11 @@ public class GrabberArmSubsystem extends Subsystem {
   }
   public void armRetract() {
     m_grabberArm.set(DoubleSolenoid.Value.kReverse);
-  } 
+  }
+
+  @Override
+  protected void initDefaultCommand() {
+
+  }
 } 
 

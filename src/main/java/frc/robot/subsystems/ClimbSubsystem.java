@@ -63,16 +63,20 @@ public class ClimbSubsystem extends Subsystem {
   WPI_TalonSRX backrightwheel;
   public SpeedControllerGroup climbwheels;
 
-  private double m_mainDrive;
+  public double m_mainDrive;
 
-  private double m_auxDrive;
+  public double m_auxDrive;
 
-  private int m_LEDRedValue;
+  public int m_LEDRedValue;
 
-  private int m_LEDBlueValue;
+  public int m_LEDBlueValue;
 
-  private int m_LEDGreenValue;
+  public int m_LEDGreenValue;
   
+  public boolean m_autoDescend;
+  public boolean m_autoL2Ascend;
+  public boolean m_autoL3Ascend;
+
 
 
   public ClimbSubsystem() {
@@ -219,7 +223,15 @@ public class ClimbSubsystem extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-
+  public boolean stateDescend(){
+    return !m_autoDescend;
+  } 
+  public boolean stateL2Ascend(){
+    return !m_autoL2Ascend;
+  }
+  public boolean stateL3Ascend(){
+    return !m_autoL3Ascend;
+  }
   public void startDescend() {
 
     m_climbState = ClimbState.DESCEND_S1;
@@ -269,6 +281,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Robot is in stage IDLE\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case DESCEND_S1:
@@ -284,6 +299,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 1\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case DESCEND_S2:
@@ -299,6 +317,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 2\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case DESCEND_S3:
@@ -314,6 +335,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 3\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case DESCEND_S4:
@@ -329,6 +353,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 4\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S1:
@@ -344,6 +371,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 1\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S2:
@@ -359,6 +389,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 2\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S3:
@@ -374,6 +407,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 3\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S4:
@@ -389,6 +425,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 4\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S5:
@@ -404,6 +443,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 5\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L2_S6:
@@ -419,6 +461,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 2 Stage 6\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
+        m_autoL3Ascend = false;
         break;
 
       case CLIMB_L3_S1:
@@ -434,6 +479,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 1\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
         break;
 
       case CLIMB_L3_S2:
@@ -449,6 +497,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 2\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
         break;
 
       case CLIMB_L3_S3:
@@ -464,6 +515,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 3\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
         break;
 
       case CLIMB_L3_S4:
@@ -479,6 +533,9 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 4\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
         break;
 
     }

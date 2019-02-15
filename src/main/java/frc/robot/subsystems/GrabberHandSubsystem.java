@@ -20,10 +20,7 @@ public class GrabberHandSubsystem extends Subsystem {
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberHand;
   int PCM_ARMCANID;
-  @Override
-   public void initDefaultCommand() {
-   
-  }
+ 
 
   public void initialize() {
     
@@ -41,5 +38,10 @@ public class GrabberHandSubsystem extends Subsystem {
   } 
   public void handRetract() {
     m_grabberHand.set(DoubleSolenoid.Value.kReverse);
-  } 
+  }
+
+  @Override
+  protected void initDefaultCommand() {
+
+  }
 } 
