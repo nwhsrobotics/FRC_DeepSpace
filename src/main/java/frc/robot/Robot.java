@@ -46,9 +46,6 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  
-
-
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -59,11 +56,6 @@ public class Robot extends TimedRobot {
     camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 15);
     m_oi = new OI();
     m_climbSubsystem.initialize();
-    m_grabberArm.initialize();
-    m_grabberHand.initialize();
-    m_drivetrain.initialize();
-    m_slide.initialize();
-    m_lift.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
