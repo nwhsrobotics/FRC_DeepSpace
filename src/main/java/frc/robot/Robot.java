@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -46,19 +48,35 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  
+
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
+    
+	
+
+
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 30);
     m_oi = new OI();
     m_climbSubsystem.initialize();
+    m_grabberArm.initialize();
+    m_grabberHand.initialize();
+    m_drivetrain.initialize();
+    m_slide.initialize();
+    m_lift.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    //Read Pressure switch and send it to the dashboard
+    
+
 
 
 
