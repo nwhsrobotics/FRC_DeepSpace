@@ -10,8 +10,6 @@ package frc.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -57,10 +55,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    
-	
-
-
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 15);
     m_oi = new OI();
@@ -73,9 +67,8 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    SmartDashboard.putData(Scheduler.getInstance());
     Robot.m_ledSubsystem.LED(true);  
-
-
   }
 
   /**

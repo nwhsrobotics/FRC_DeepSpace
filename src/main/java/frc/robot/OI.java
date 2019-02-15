@@ -7,15 +7,13 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SendableBase;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.BlindCommand;
 import frc.robot.commands.DescendCommandGroup;
 import frc.robot.commands.L2AscendCommandGroup;
 import frc.robot.commands.L3AscendCommandGroup;
+import java.lang.Math;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -117,11 +115,20 @@ public class OI {
 
 
   public double getForwardValue() {
-    return joy.getRawAxis(1);
+    if (Math.abs(joy.getRawAxis(1)) < .1) {
+      return 0;
+    } else {
+      return joy.getRawAxis(1) * STRAIGHMODIFIER;
+    }
+  
 
   }
   public double getTurnValue() {
-    return joy.getRawAxis(4);
+    if (Math.abs(joy.getRawAxis(4)) < .1) {
+      return 0;
+    } else {
+      return joy.getRawAxis(4) * TURNMODIFIER;
+    }
   }
 
   public double getLiftValue(){
