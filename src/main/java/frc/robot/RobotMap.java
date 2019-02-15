@@ -103,7 +103,7 @@ public class RobotMap {
     albert.put(MapKeys.DRIVE_BACKRIGHT, 10);
 
     albert.put(MapKeys.BACKLEFTCLIMBWHEEL, 2);
-    albert.put(MapKeys.BACKRIGHTCLIMBWHEEL, 3);
+    albert.put(MapKeys.BACKRIGHTCLIMBWHEEL, 4);
 
     albert.put(MapKeys.SLIDE, 3);
     
@@ -230,7 +230,7 @@ public class RobotMap {
 
 
 
-  public RobotTypes activeRobot = RobotTypes.DASHBOARD;
+  public RobotTypes activeRobot = RobotTypes.ALBERT;
 
   public int getId(MapKeys key) {
     System.out.printf("In Get ID. %s\n", key.toString());

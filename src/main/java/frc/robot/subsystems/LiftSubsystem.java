@@ -19,13 +19,14 @@ public class LiftSubsystem extends Subsystem {
   private SpeedControllerGroup m_lift;
 
   public LiftSubsystem(){
-    m_motorup1 = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
-    m_motorup1.set(ControlMode.PercentOutput, 0.0);
-    m_motorup2 = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
-    m_motorup2.set(ControlMode.PercentOutput,0.0);
+    if (m_motorup1 !=null & m_motorup2 !=null) { 
+      m_motorup1 = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
+      m_motorup1.set(ControlMode.PercentOutput, 0.0);
+      m_motorup2 = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
+      m_motorup2.set(ControlMode.PercentOutput,0.0);
     
-    m_lift = new SpeedControllerGroup(m_motorup1, m_motorup2);
-  
+      m_lift = new SpeedControllerGroup(m_motorup1, m_motorup2);
+    }
   }
 
 
@@ -40,7 +41,10 @@ public class LiftSubsystem extends Subsystem {
   }
 
   public void update(double x) {
-    m_lift.set(x);
+    if (m_motorup1 !=null & m_motorup2 !=null) {
+      m_lift.set(x);
+    }
+    
   }
 
   
