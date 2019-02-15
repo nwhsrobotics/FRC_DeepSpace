@@ -119,6 +119,28 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
+    
+    
+    
+  
+
+    m_mainDrive = 0.0;
+    
+    m_auxDrive = 0.0;
+
+    m_LEDRedValue = 0;
+    m_LEDBlueValue = 0;
+    m_LEDGreenValue = 0;
+
+
+
+
+
+
+
+    }
+
+  public void createActuators() {
     backleftwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKLEFTCLIMBWHEEL));  
     backleftwheel.setInverted(true); 
     backrightwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKRIGHTCLIMBWHEEL));
@@ -189,27 +211,10 @@ public class ClimbSubsystem extends Subsystem {
     Solenoid_8.set(DoubleSolenoid.Value.kOff);
     
     
-    
-    
-  
-
-    m_mainDrive = 0.0;
-    
-    m_auxDrive = 0.0;
-
-    m_LEDRedValue = 0;
-    m_LEDBlueValue = 0;
-    m_LEDGreenValue = 0;
-
-
-
-
-
-
-
-    }
+  }
 
   public void initialize() {
+    createActuators();
     setActuators();
   }
 

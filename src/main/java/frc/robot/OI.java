@@ -1,15 +1,53 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package frc.robot;
+
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SendableBase;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.BlindCommand;
+import frc.robot.commands.DescendCommandGroup;
+import frc.robot.commands.L2AscendCommandGroup;
+import frc.robot.commands.L3AscendCommandGroup;
 
-import frc.robot.commands.*;
+/**
+ * This class is the glue that binds the controls on the physical operator
+ * interface to the commands and command groups that allow control of the robot.
+ */
+public class OI {
+  //// CREATING BUTTONS
+  // One type of button is a joystick button which is any button on a
+  //// joystick.
+  // You create one by telling it which joystick it's on and which button
+  // number it is.
+  // Joystick stick = new Joystick(port);
+  // Button button = new JoystickButton(stick, buttonNumber);
+  // There are a few additional built in buttons you can use. Additionally,
+  // by subclassing Button you can create custom triggers and bind those to
+  // commands the same as any other Button.
 
+  //// TRIGGERING COMMANDS WITH BUTTONS
+  // Once you have a button, it's trivial to bind it to a button in one of
+  // three ways:
 
+  // Start the command when the button is pressed and let it run the command
+  // until it is finished as determined by it's isFinished method.
+  // button.whenPressed(new ExampleCommand());
 
+  // Run the command while the button is being held down and interrupt it once
+  // the button is released.
+  // button.whileHeld(new ExampleCommand());
 
-
-public class OI{
-
+  // Start the command when the button is released and let it run the command
+  // until it is finished as determined by it's isFinished method.
+  // button.whenReleased(new ExampleCommand());
 
   Joystick joy = new Joystick(0);
   
@@ -29,8 +67,9 @@ public class OI{
   public JoystickButton rightBumper1 = new JoystickButton(joy, CLIMBNEXT_BUTTON);
   public JoystickButton xButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
 
-  Joystick joy2 = new Joystick(1);
+ 
 
+  Joystick joy2 = new Joystick(1);
 
   private final int HIGHHATCH_BUTTON = 4;
   private final int MIDHATCH_BUTTON = 3;
@@ -47,7 +86,6 @@ public class OI{
 
   public OI () {
 
-    //bButton1.toggleWhenPressed(new CameraToggle);
 
     backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
     startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
@@ -55,18 +93,23 @@ public class OI{
     
     leftBumper2.whenPressed(new BlindCommand());
 
-    leftBumper1.whenPressed(new ClimbPrevCommand());
-    rightBumper1.whenPressed(new ClimbNextCommand());
+
+    //xButton1.toggleWhenPressed(new CameraToggle);
+
+    //rightTrigger2.togglewhenActive(new SlideRightToggle);
+    //rightTrigger2.whenInactive(new SlideLeftStop);
+
+    //backButton1.whenPressed(new Lvl2Descent);
+    //startButton1.whenPressed(new Lvl2Climb);
+    //playButton1.whenPressed(new Lvl3Climb);
+
+
+    //yButton2.toggleWhenPressed(new HighHatchInitiate);
+    //xButton2.toggleWhenPressed(new MidHatchInitiate);
+    //aButton2.toggleWhenPressed(new LowHatchInitiate);
+    //bButton2.toggleWhenPressed(new ClampToggle);
 
     
-    yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
-    xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
-    aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
-    
-    bButton2.whenActive(new GrabberExtend()); //toggle for clamp
-    bButton2.whenReleased(new GrabberRetract()); //toggle for clamp
-    
-
     
   }
  
@@ -74,23 +117,19 @@ public class OI{
 
 
   public double getForwardValue() {
-    return -joy.getRawAxis(1) * STRAIGHMODIFIER;
+    return joy.getRawAxis(1);
 
   }
   public double getTurnValue() {
-    return joy.getRawAxis(4) * TURNMODIFIER;
+    return joy.getRawAxis(4);
   }
 
-  public double getLiftValue() {
+  public double getLiftValue(){
     return joy2.getRawAxis(1);
   }
 
   public double getSlideValue() {
     return joy2.getRawAxis(3) - joy2.getRawAxis(2);
   }
-
-
-  
-
 
 }

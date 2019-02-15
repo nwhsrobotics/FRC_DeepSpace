@@ -9,6 +9,8 @@ package frc.robot;
 
 import java.util.EnumMap;
 
+import edu.wpi.first.wpilibj.Preferences;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -39,10 +41,22 @@ public class RobotMap {
   }
 
   public enum RobotTypes {
-    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT, DEADPIXEL
+    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT, DEADPIXEL, DASHBOARD
   }
 
+  public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> albert = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> deadpixel = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> dashboard = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  boolean m_Initialized = false;
+
   public RobotMap() {
+
+    m_Initialized = false;
 
     // BRIEFCASE IDs BEGIN HERE #########################################
 
@@ -161,27 +175,91 @@ public class RobotMap {
 
   }
 
+  public void initAllMaps() {
+    initDashboardMap();
+    m_Initialized = true;
+
+  }
+
+  public void initDashboardMap() {
+
+    Preferences prefs = Preferences.getInstance();
+
+    //DASHBOARD IDs BEGIN HERE ##########################################
+    //TODO-MR Put real Can Ids
+    int CanID =  prefs.getInt("CanID_Test", 20);
+    System.out.printf("------------- Got CanID %d \n", CanID);
+    dashboard.put(MapKeys.DRIVE_FRONTLEFT, prefs.getInt("CanID_DriveFrontLeft", 20));
+    dashboard.put(MapKeys.DRIVE_FRONTRIGHT, prefs.getInt("CanID_DriveFrontRight", 11));
+    dashboard.put(MapKeys.DRIVE_BACKLEFT, prefs.getInt("CanID_DriveBackLeft", 21));
+    dashboard.put(MapKeys.DRIVE_BACKRIGHT, prefs.getInt("CanID_DriveBackRight", 10));
+
+    dashboard.put(MapKeys.BACKLEFTCLIMBWHEEL, prefs.getInt("CanID_BackLeftClimbWheel", 2));
+    dashboard.put(MapKeys.BACKRIGHTCLIMBWHEEL, prefs.getInt("CanID_BackRightClimbWheel", 3));
+
+    dashboard.put(MapKeys.SLIDE, prefs.getInt("CanID_Slide", 3));
+    dashboard.put(MapKeys.LIFT_LEFT, prefs.getInt("CanID_LiftLeft", 0));
+    dashboard.put(MapKeys.LIFT_RIGHT, prefs.getInt("CanID_LiftRight", 0));
+
+    dashboard.put(MapKeys.PCM_CLIMBCANID, prefs.getInt("CanID_PCM_ClimbID1", 5));
+    dashboard.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, prefs.getInt("CanID_FrontLeftExtend", 0));
+    dashboard.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, prefs.getInt("CanID_FrontLeftRetract", 1));
+    dashboard.put(MapKeys.SOLENOID_BACKLEFTEXTEND, prefs.getInt("CanID_BackLeftExtend", 2));
+    dashboard.put(MapKeys.SOLENOID_BACKLEFTRETRACT, prefs.getInt("CanID_BackLeftRetract", 3));
+    dashboard.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, prefs.getInt("CanID_FrontRightExtend", 6));
+    dashboard.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, prefs.getInt("CanID_FrontRightRetract", 7));
+    dashboard.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, prefs.getInt("CanID_BackRightExtend", 4));
+    dashboard.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, prefs.getInt("CanID_BackRightRetract", 5));
+
+    dashboard.put(MapKeys.PCM_CLIMBCANID2, prefs.getInt("CanID_PCM_ClimbID2", 6));
+    dashboard.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, prefs.getInt("CanID_LowerFrontExtend", 0));
+    dashboard.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, prefs.getInt("CanID_LowerFrontRetract", 1));
+    dashboard.put(MapKeys.SOLENOID_LOWERBACKEXTEND, prefs.getInt("CanID_LowerBackExtend", 2));
+    dashboard.put(MapKeys.SOLENOID_LOWERBACKRETRACT, prefs.getInt("CanID_LowerBackRetract", 3));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, prefs.getInt("CanID_AscendAssistBackLeftExtend", 4));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, prefs.getInt("CanID_AscendAssistBackLeftRetract", 5));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, prefs.getInt("CanID_AscendAssistBackRightExtend", 6));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, prefs.getInt("CanID_AScendAssistBackRightRetract", 7));
+
+    dashboard.put(MapKeys.PCM_ARMCANID, prefs.getInt("CanID_PCM_ArmID", 7));
+    dashboard.put(MapKeys.SOLENOID_PUSHERPUSH, prefs.getInt("CanID_GrabberExtend", 0));
+    dashboard.put(MapKeys.SOLENOID_PUSHERRETRACT, prefs.getInt("CanID_GrabberRetract", 1));
+    dashboard.put(MapKeys.SOLENOID_ARMFORWARD, prefs.getInt("CanID_ArmExtend", 2));
+    dashboard.put(MapKeys.SOLENOID_ARMREVERSE, prefs.getInt("CanID_ArmRetract", 3));
+  }
 
 
-  public RobotTypes activeRobot = RobotTypes.ALBERT;
+
+  public RobotTypes activeRobot = RobotTypes.DASHBOARD;
 
   public int getId(MapKeys key) {
-    if(activeRobot == RobotTypes.BRIEFCASE) {
+    System.out.printf("In Get ID. %s\n", key.toString());
+    if(!m_Initialized) {
+      initAllMaps();
+      System.out.printf("Initialized all maps.\n");
+    }
+
+    if(activeRobot == RobotTypes.DASHBOARD) {
+      System.out.printf("Getting Dashboard key.\n");
+      return dashboard.get(key);
+    }
+
+    else if(activeRobot == RobotTypes.BRIEFCASE) {
+      System.out.printf("Getting Briefcase key.\n");
       return briefcase.get(key);
     }
     else if(activeRobot == RobotTypes.DEADPIXEL) {
+      System.out.printf("Getting Deadpixel key.\n");
       return deadpixel.get(key);
     }
     else {
+      System.out.printf("Getting Albert key.\n");
       return albert.get(key);
     }
+  
   }
 
-  public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
-
-  public EnumMap<MapKeys, Integer> albert = new EnumMap<MapKeys, Integer>(MapKeys.class);
-
-  public EnumMap<MapKeys, Integer> deadpixel = new EnumMap<MapKeys, Integer>(MapKeys.class);
+ 
 
   
 
