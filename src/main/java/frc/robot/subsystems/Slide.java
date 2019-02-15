@@ -22,10 +22,6 @@ public class Slide extends Subsystem {
   // here. Call these from Commands.
   private WPI_TalonSRX m_slide;
   public Slide(){
-    
-  }
-
-  public void initialize(){
     m_slide = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.SLIDE));
   }
 

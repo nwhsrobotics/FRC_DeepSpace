@@ -32,11 +32,6 @@ public class DriveTrain extends Subsystem {
 
 
   public DriveTrain(){
-    
-  }
-
-  public void initialize(){
-
     //initialize + set objects created above
     m_frontleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTLEFT));
     m_backleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_BACKLEFT));
@@ -49,6 +44,7 @@ public class DriveTrain extends Subsystem {
 
     m_drive = new DifferentialDrive(m_left, m_right);
     
+
   }
 
   public void update(double y, double z){
