@@ -18,19 +18,14 @@ public class GrabberArmSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberArm;
-  int  PCM_ARMCANID;
-  
- 
-  public void initialize(){
-    PCM_ARMCANID = Robot.m_map.getId(MapKeys.PCM_ARMCANID);
-
+  final int  PCM_ARMCANID = Robot.m_map.getId(MapKeys.PCM_ARMCANID);
+  public GrabberArmSubsystem() {
     m_grabberArm = new DoubleSolenoid(
       Robot.m_map.getId(MapKeys.PCM_ARMCANID),
       Robot.m_map.getId(MapKeys.SOLENOID_ARMFORWARD),
       Robot.m_map.getId(MapKeys.SOLENOID_ARMREVERSE)
     );
     m_grabberArm.set(DoubleSolenoid.Value.kOff);
-    
   }
   
 
