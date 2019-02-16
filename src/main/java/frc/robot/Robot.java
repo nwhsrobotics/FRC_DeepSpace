@@ -62,7 +62,8 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData(Scheduler.getInstance());
-    Robot.m_ledSubsystem.LED(true);
+    m_ledSubsystem.LED(true);
+    m_slide.set0position();
 
 
 

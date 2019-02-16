@@ -23,7 +23,7 @@ public class SlideSubsystem extends Subsystem {
   private double m_speed_ips; //inches per second
   private double m_position_in; //desired position in inches
   private double m_position_counts; 
-  private static final double MAXSPEED = 20.0; //inches per second
+  private static final double MAXSPEED = 5.0; //inches per second
   private static final double AUTOLIFTSPEED = 10.0; //inches per second
   private static final double SECONDS_PER_TICK = .02; // seconds per encoder tic
   private static final double COUNTS_PER_INCH = 150; // encoder counts per inch
@@ -50,6 +50,8 @@ public class SlideSubsystem extends Subsystem {
     configTalons();
     m_position_in = 0.0;
     m_speed_ips = 0.0;
+    m_autoActiveslide = false;
+    m_autoDistance = 0;
 
 
     
