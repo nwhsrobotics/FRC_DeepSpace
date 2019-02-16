@@ -24,9 +24,11 @@ public class DriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
-    Robot.m_ledSubsystem.DriveLeft();
-    Robot.m_ledSubsystem.DriveRight();
+
+
+    //Robot.m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+    //Robot.m_ledSubsystem.DriveLeft();
+    //Robot.m_ledSubsystem.DriveRight();
 
   }
 

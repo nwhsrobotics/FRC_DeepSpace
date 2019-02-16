@@ -21,8 +21,10 @@ public class Slide extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private WPI_TalonSRX m_slide;
+  private double m_current;
   public Slide(){
     m_slide = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.SLIDE));
+    m_current = Robot.m_pdp.getCurrent(14);
   }
 
   @Override
@@ -32,7 +34,12 @@ public class Slide extends Subsystem {
   }
   
   public void update(double x){
-    m_slide.set(ControlMode.PercentOutput, x);
+    if (m_current > 10) {
+      slideStop();
+    } else {
+      m_slide.set(ControlMode.PercentOutput, x);
+    }
+    
   }
 
   public void slideStop(){

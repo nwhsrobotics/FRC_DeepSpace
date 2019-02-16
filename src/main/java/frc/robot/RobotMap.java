@@ -65,35 +65,35 @@ public class RobotMap {
     briefcase.put(MapKeys.DRIVE_BACKLEFT, 0);
     briefcase.put(MapKeys.DRIVE_BACKRIGHT, 0);
 
-    briefcase.put(MapKeys.SLIDE, 0);
+    briefcase.put(MapKeys.SLIDE, 4);
     briefcase.put(MapKeys.LIFT_LEFT, 0);
     briefcase.put(MapKeys.LIFT_RIGHT, 0);
 
-    briefcase.put(MapKeys.PCM_CLIMBCANID, 0);
+    briefcase.put(MapKeys.PCM_CLIMBCANID, 5);
     briefcase.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 0);
-    briefcase.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 0);
-    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 0);
-    briefcase.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
+    briefcase.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
+    briefcase.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 3);
+    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 4);
+    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 5);
+    briefcase.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 6);
+    briefcase.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 7);
 
-    briefcase.put(MapKeys.PCM_CLIMBCANID2, 0);
+    briefcase.put(MapKeys.PCM_CLIMBCANID2, 6);
     briefcase.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 0);
-    briefcase.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 0);
-    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 0);
-    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 1);
+    briefcase.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 2);
+    briefcase.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 3);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 4);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 5);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 6);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 7);
 
-    briefcase.put(MapKeys.PCM_ARMCANID, 0);
+    briefcase.put(MapKeys.PCM_ARMCANID, 7);
     briefcase.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
-    briefcase.put(MapKeys.SOLENOID_PUSHERRETRACT, 0);
-    briefcase.put(MapKeys.SOLENOID_ARMFORWARD, 0);
-    briefcase.put(MapKeys.SOLENOID_ARMREVERSE, 0);
+    briefcase.put(MapKeys.SOLENOID_PUSHERRETRACT, 1);
+    briefcase.put(MapKeys.SOLENOID_ARMFORWARD, 2);
+    briefcase.put(MapKeys.SOLENOID_ARMREVERSE, 3);
 
     // ALBERT IDs BEGIN HERE #########################################
 
@@ -103,9 +103,9 @@ public class RobotMap {
     albert.put(MapKeys.DRIVE_BACKRIGHT, 10);
 
     albert.put(MapKeys.BACKLEFTCLIMBWHEEL, 2);
-    albert.put(MapKeys.BACKRIGHTCLIMBWHEEL, 4);
+    albert.put(MapKeys.BACKRIGHTCLIMBWHEEL, 3);
 
-    albert.put(MapKeys.SLIDE, 3);
+    albert.put(MapKeys.SLIDE, 4);
     
     albert.put(MapKeys.LIFT_LEFT, 0);
     albert.put(MapKeys.LIFT_RIGHT, 0);
@@ -189,17 +189,17 @@ public class RobotMap {
     //TODO-MR Put real Can Ids
     int CanID =  prefs.getInt("CanID_Test", 20);
     System.out.printf("------------- Got CanID %d \n", CanID);
-    dashboard.put(MapKeys.DRIVE_FRONTLEFT, prefs.getInt("CanID_DriveFrontLeft", 20));
+    dashboard.put(MapKeys.DRIVE_FRONTLEFT, prefs.getInt("CanID_DriveFrontLeft", 12));
     dashboard.put(MapKeys.DRIVE_FRONTRIGHT, prefs.getInt("CanID_DriveFrontRight", 11));
-    dashboard.put(MapKeys.DRIVE_BACKLEFT, prefs.getInt("CanID_DriveBackLeft", 21));
+    dashboard.put(MapKeys.DRIVE_BACKLEFT, prefs.getInt("CanID_DriveBackLeft", 9));
     dashboard.put(MapKeys.DRIVE_BACKRIGHT, prefs.getInt("CanID_DriveBackRight", 10));
 
     dashboard.put(MapKeys.BACKLEFTCLIMBWHEEL, prefs.getInt("CanID_BackLeftClimbWheel", 2));
     dashboard.put(MapKeys.BACKRIGHTCLIMBWHEEL, prefs.getInt("CanID_BackRightClimbWheel", 3));
 
-    dashboard.put(MapKeys.SLIDE, prefs.getInt("CanID_Slide", 3));
-    dashboard.put(MapKeys.LIFT_LEFT, prefs.getInt("CanID_LiftLeft", 0));
-    dashboard.put(MapKeys.LIFT_RIGHT, prefs.getInt("CanID_LiftRight", 0));
+    dashboard.put(MapKeys.SLIDE, prefs.getInt("CanID_Slide", 4));
+    dashboard.put(MapKeys.LIFT_LEFT, prefs.getInt("CanID_LiftLeft", 1));
+    dashboard.put(MapKeys.LIFT_RIGHT, prefs.getInt("CanID_LiftRight", 8));
 
     dashboard.put(MapKeys.PCM_CLIMBCANID, prefs.getInt("CanID_PCM_ClimbID1", 5));
     dashboard.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, prefs.getInt("CanID_FrontLeftExtend", 0));

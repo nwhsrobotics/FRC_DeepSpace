@@ -80,7 +80,7 @@ public class ClimbSubsystem extends Subsystem {
 
 
   public ClimbSubsystem() {
-
+  
     nextStageMap.put(ClimbState.IDLE, ClimbState.IDLE);
 
     nextStageMap.put(ClimbState.DESCEND_S1, ClimbState.DESCEND_S2);

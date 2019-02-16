@@ -32,6 +32,11 @@ public class DriveTrain extends Subsystem {
 
 
   public DriveTrain(){
+    if (m_frontleft == null || m_frontright == null) {
+      return;
+    } else if( m_backleft == null || m_backright == null) {
+      return;
+    }
     //initialize + set objects created above
     m_frontleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTLEFT));
     m_backleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_BACKLEFT));
