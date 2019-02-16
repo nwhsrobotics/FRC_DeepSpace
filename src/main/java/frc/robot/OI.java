@@ -1,7 +1,7 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.commands.*;
 import java.lang.Math.*;
 
@@ -13,6 +13,7 @@ public class OI{
 
 
   Joystick joy = new Joystick(0);
+  Joystick joy2 = new Joystick(1);
 
   private final double FORWARD_DEADBAND_LIMIT = .1;
   private final double TURN_DEADBAND_LIMIT = .1;
@@ -29,24 +30,22 @@ public class OI{
    private static final double MAX_POS_DEG = 90.0;       // how far to rotate shaft at full joystick deflection.
    private static final int POS_HOLD_AXIS = 0;           // left-right on left joystick
 
-   private static final Joystick m_controller = new Joystick(1);
-  private static final JoystickButton m_b = new JoystickButton(m_controller, POS_HOLD_TOGGLE_BUTTON);
-  private static final JoystickButton m_y = new JoystickButton(m_controller, POS_HOLD_UPDATE_BUTTON);
-
   private final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
   private final int Lvl3CLIMB_BUTTON = 3;//cant find button
   private final int CLIMBNEXT_BUTTON = 6;
   private final int CLIMBPREV_BUTTON = 5;
+  private final int SLIDERESET_BUTTON = 0;
   public JoystickButton bButton1 = new JoystickButton(joy, CAMERA_BUTTON);
 	public JoystickButton backButton1 = new JoystickButton(joy, Lvl2DESC_BUTTON);
 	public JoystickButton startButton1 = new JoystickButton(joy, Lvl2CLIMB_BUTTON);
   public JoystickButton leftBumper1 = new JoystickButton(joy, CLIMBPREV_BUTTON);
   public JoystickButton rightBumper1 = new JoystickButton(joy, CLIMBNEXT_BUTTON);
   public JoystickButton xButton1 = new JoystickButton(joy, Lvl3CLIMB_BUTTON);
+  public POVButton dpadUp = new POVButton(joy2, SLIDERESET_BUTTON);
     
-  Joystick joy2 = new Joystick(1);
+  
 
 
   private final int HIGHHATCH_BUTTON = 4;
@@ -80,16 +79,11 @@ public class OI{
 
     bButton2.whenActive(new GrabberExtend()); //toggle for clamp
     bButton2.whenInactive(new GrabberRetract()); //toggle for clamp
+    dpadUp.whenPressed(new slideResetCommand());
     
 
     
   }
-  public double readPositionDeg() {
-    double input = m_controller.getRawAxis(POS_HOLD_AXIS);  // get joystick position, in range -1.0 to 1.0
-    double holdPos = input * MAX_POS_DEG;     // convert to degrees
-
-    return holdPos;
-  } 
  
 
 

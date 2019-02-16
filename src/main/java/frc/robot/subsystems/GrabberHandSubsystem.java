@@ -25,13 +25,19 @@ public class GrabberHandSubsystem extends Subsystem {
   }
 
    public void handTurnOff() {
-    m_grabberHand.set(DoubleSolenoid.Value.kOff);
+    if(m_grabberHand != null) {
+      m_grabberHand.set(DoubleSolenoid.Value.kOff);
+    }
   }
   public void handExtend(){
-    m_grabberHand.set(DoubleSolenoid.Value.kForward);
+    if (m_grabberHand != null) {
+      m_grabberHand.set(DoubleSolenoid.Value.kForward);
+    }
   } 
   public void handRetract() {
-    m_grabberHand.set(DoubleSolenoid.Value.kReverse);
+    if (m_grabberHand != null) {
+      m_grabberHand.set(DoubleSolenoid.Value.kReverse);
+    }
   }
 
   @Override
