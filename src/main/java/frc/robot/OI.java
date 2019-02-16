@@ -59,8 +59,8 @@ public class OI{
   public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
 
-  public double turnModifier = .4;
-  public double driveModifier = .9;
+  public double TURNMODIFIER = .4;
+  public double STRAIGHTMODIFIER = .9;
 
 
   public OI () {
@@ -100,13 +100,13 @@ public class OI{
     } else {
       joy.getRawAxis(1);
     }
-    return joy.getRawAxis(1) * driveModifier;
+    return joy.getRawAxis(1) * STRAIGHTMODIFIER;
   }
   public double getTurnValue() {
     if (Math.abs(joy.getRawAxis(4)) < TURN_DEADBAND_LIMIT) {
       return 0;
     } else {
-      return joy.getRawAxis(4) * turnModifier;
+      return joy.getRawAxis(4) * TURNMODIFIER;
     }
     
   }

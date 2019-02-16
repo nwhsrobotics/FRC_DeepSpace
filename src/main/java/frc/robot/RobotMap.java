@@ -10,6 +10,8 @@ package frc.robot;
 import frc.robot.Robot;
 import java.util.EnumMap;
 
+import edu.wpi.first.wpilibj.Preferences;
+
 
 
 /**
@@ -42,8 +44,18 @@ public class RobotMap {
   }
 
   public enum RobotTypes {
-    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT, DEADPIXEL
+    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT, DEADPIXEL, DASHBOARD
   }
+
+  public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> albert = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> deadpixel = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> dashboard = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  boolean m_Initialized = false;
 
   public RobotMap() {
 
@@ -92,7 +104,7 @@ public class RobotMap {
     albert.put(MapKeys.DRIVE_BACKRIGHT, 10);
 
     albert.put(MapKeys.BACKLEFTCLIMBWHEEL, 2);
-    albert.put(MapKeys.BACKRIGHTCLIMBWHEEL, 3);
+    albert.put(MapKeys.BACKRIGHTCLIMBWHEEL, 4);
 
     albert.put(MapKeys.SLIDE, 3);
     
@@ -164,28 +176,101 @@ public class RobotMap {
 
   }
 
+  public void initAllMaps() {
+    initDashboardMap();
+    m_Initialized = true;
+
+  }
+
+  Preferences prefs = Preferences.getInstance();
+  public void initDashboardMap() {
+
+    
+
+    //DASHBOARD IDs BEGIN HERE ##########################################
+    //TODO-MR Put real Can Ids
+    int CanID =  prefs.getInt("CanID_Test", 20);
+    System.out.printf("------------- Got CanID %d \n", CanID);
+    dashboard.put(MapKeys.DRIVE_FRONTLEFT, prefs.getInt("CanID_DriveFrontLeft", 12));
+    dashboard.put(MapKeys.DRIVE_FRONTRIGHT, prefs.getInt("CanID_DriveFrontRight", 11));
+    dashboard.put(MapKeys.DRIVE_BACKLEFT, prefs.getInt("CanID_DriveBackLeft", 9));
+    dashboard.put(MapKeys.DRIVE_BACKRIGHT, prefs.getInt("CanID_DriveBackRight", 10));
+
+    dashboard.put(MapKeys.BACKLEFTCLIMBWHEEL, prefs.getInt("CanID_BackLeftClimbWheel", 2));
+    dashboard.put(MapKeys.BACKRIGHTCLIMBWHEEL, prefs.getInt("CanID_BackRightClimbWheel", 3));
+
+    dashboard.put(MapKeys.SLIDE, prefs.getInt("CanID_Slide", 4));
+    dashboard.put(MapKeys.LIFT_LEFT, prefs.getInt("CanID_LiftLeft", 1));
+    dashboard.put(MapKeys.LIFT_RIGHT, prefs.getInt("CanID_LiftRight", 8));
+
+    dashboard.put(MapKeys.PCM_CLIMBCANID, prefs.getInt("CanID_PCM_ClimbID1", 5));
+    dashboard.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, prefs.getInt("CanID_FrontLeftExtend", 0));
+    dashboard.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, prefs.getInt("CanID_FrontLeftRetract", 1));
+    dashboard.put(MapKeys.SOLENOID_BACKLEFTEXTEND, prefs.getInt("CanID_BackLeftExtend", 2));
+    dashboard.put(MapKeys.SOLENOID_BACKLEFTRETRACT, prefs.getInt("CanID_BackLeftRetract", 3));
+    dashboard.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, prefs.getInt("CanID_FrontRightExtend", 6));
+    dashboard.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, prefs.getInt("CanID_FrontRightRetract", 7));
+    dashboard.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, prefs.getInt("CanID_BackRightExtend", 4));
+    dashboard.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, prefs.getInt("CanID_BackRightRetract", 5));
+
+    dashboard.put(MapKeys.PCM_CLIMBCANID2, prefs.getInt("CanID_PCM_ClimbID2", 6));
+    dashboard.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, prefs.getInt("CanID_LowerFrontExtend", 0));
+    dashboard.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, prefs.getInt("CanID_LowerFrontRetract", 1));
+    dashboard.put(MapKeys.SOLENOID_LOWERBACKEXTEND, prefs.getInt("CanID_LowerBackExtend", 2));
+    dashboard.put(MapKeys.SOLENOID_LOWERBACKRETRACT, prefs.getInt("CanID_LowerBackRetract", 3));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, prefs.getInt("CanID_AscendAssistBackLeftExtend", 4));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, prefs.getInt("CanID_AscendAssistBackLeftRetract", 5));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, prefs.getInt("CanID_AscendAssistBackRightExtend", 6));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, prefs.getInt("CanID_AScendAssistBackRightRetract", 7));
+
+    dashboard.put(MapKeys.PCM_ARMCANID, prefs.getInt("CanID_PCM_ArmID", 7));
+    dashboard.put(MapKeys.SOLENOID_PUSHERPUSH, prefs.getInt("CanID_GrabberExtend", 0));
+    dashboard.put(MapKeys.SOLENOID_PUSHERRETRACT, prefs.getInt("CanID_GrabberRetract", 1));
+    dashboard.put(MapKeys.SOLENOID_ARMFORWARD, prefs.getInt("CanID_ArmExtend", 2));
+    dashboard.put(MapKeys.SOLENOID_ARMREVERSE, prefs.getInt("CanID_ArmRetract", 3));
+
+    
+  }
+  
 
   public RobotTypes activeRobot = RobotTypes.ALBERT;
 
   public int getId(MapKeys key) {
-    if(activeRobot == RobotTypes.BRIEFCASE) {
+    System.out.printf("In Get ID. %s\n", key.toString());
+    if(!m_Initialized) {
+      initAllMaps();
+      System.out.printf("Initialized all maps.\n");
+    }
+
+    if(activeRobot == RobotTypes.DASHBOARD) {
+      System.out.printf("Getting Dashboard key.\n");
+      return dashboard.get(key);
+    }
+
+    else if(activeRobot == RobotTypes.BRIEFCASE) {
+      System.out.printf("Getting Briefcase key.\n");
       return briefcase.get(key);
     }
     else if(activeRobot == RobotTypes.DEADPIXEL) {
+      System.out.printf("Getting Deadpixel key.\n");
       return deadpixel.get(key);
     }
     else {
+      System.out.printf("Getting Albert key.\n");
       return albert.get(key);
     }
+
   }
+
+
   
   public double pidSlideMotor(String x) {
     if (x.toLowerCase() == "p") {
-      return Robot.m_prefs.getDouble("P Slide Motor", 0.0);
+      return prefs.getDouble("P Slide Motor", 0.0);
     } else if (x.toLowerCase() == "i") {
-      return Robot.m_prefs.getDouble("I Slide Motor", 0.0);
+      return prefs.getDouble("I Slide Motor", 0.0);
     } else if (x.toLowerCase() == "d") {
-      return Robot.m_prefs.getDouble("D Slide Motor", 0.0);
+      return prefs.getDouble("D Slide Motor", 0.0);
     } else {
       System.out.println("Valid PID letter not entered");
       return 0.0;
@@ -194,11 +279,11 @@ public class RobotMap {
 
   public double pidLiftMotor(String x) {
     if (x.toLowerCase() == "p") {
-      return Robot.m_prefs.getDouble("P Lift Motor", 0.0);
+      return prefs.getDouble("P Lift Motor", 0.0);
     } else if (x.toLowerCase() == "i") {
-      return Robot.m_prefs.getDouble("I Lift Motor", 0.0);
+      return prefs.getDouble("I Lift Motor", 0.0);
     } else if (x.toLowerCase() == "d") {
-      return Robot.m_prefs.getDouble("D Lift Motor", 0.0);
+      return prefs.getDouble("D Lift Motor", 0.0);
     } else {
       System.out.println("Valid PID letter not entered");
       return 0.0;
@@ -207,13 +292,13 @@ public class RobotMap {
 
   public double pidDriveLeft(String x) {
     if (x.toLowerCase() == "p") {
-      return Robot.m_prefs.getDouble("P Drive Left", 0.0);
+      return prefs.getDouble("P Drive Left", 0.0);
     } else if (x.toLowerCase() == "i") {
-      return Robot.m_prefs.getDouble("I Drive Left", 0.0);
+      return prefs.getDouble("I Drive Left", 0.0);
     } else if (x.toLowerCase() == "d") {
-      return Robot.m_prefs.getDouble("D Drive Left", 0.0);
+      return prefs.getDouble("D Drive Left", 0.0);
     } else if (x.toLowerCase() == "f") {
-      return Robot.m_prefs.getDouble("F Drive Left", 0.0);
+      return prefs.getDouble("F Drive Left", 0.0);
     } else {
       System.out.println("Valid PIDF letter not entered");
       return 0.0;
@@ -222,13 +307,13 @@ public class RobotMap {
 
   public double pidDriveRight(String x) {
     if (x.toLowerCase() == "p") {
-      return Robot.m_prefs.getDouble("P Drive Right", 0.0);
+      return prefs.getDouble("P Drive Right", 0.0);
     } else if (x.toLowerCase() == "i") {
-      return Robot.m_prefs.getDouble("I Drive Right", 0.0);
+      return prefs.getDouble("I Drive Right", 0.0);
     } else if (x.toLowerCase() == "d") {
-      return Robot.m_prefs.getDouble("D Drive Right", 0.0);
+      return prefs.getDouble("D Drive Right", 0.0);
     } else if (x.toLowerCase() == "f") {
-      return Robot.m_prefs.getDouble("F Drive Right", 0.0);
+      return prefs.getDouble("F Drive Right", 0.0);
     } else {
       System.out.println("Valid PIDF letter not entered");
       return 0.0;
@@ -236,29 +321,24 @@ public class RobotMap {
   }
 
   /** public void pidPrefMethod() {
-    Robot.m_prefs.putDouble("P Slide Motor", pidSlideMotor("p"));
-    Robot.m_prefs.putDouble("I Slide Motor", pidSlideMotor("i"));
-    Robot.m_prefs.putDouble("D Slide Motor", pidSlideMotor("d"))
-    Robot.m_prefs.getDouble("P Lift Motor", pidLiftMotor("p"));
-    Robot.m_prefs.getDouble("I Lift Motor", pidLiftMotor("i"));
-    Robot.m_prefs.getDouble("D Lift Motor", pidLiftMotor("d"));
+    prefs.putDouble("P Slide Motor", pidSlideMotor("p"));
+    prefs.putDouble("I Slide Motor", pidSlideMotor("i"));
+    prefs.putDouble("D Slide Motor", pidSlideMotor("d"))
+    prefs.getDouble("P Lift Motor", pidLiftMotor("p"));
+    prefs.getDouble("I Lift Motor", pidLiftMotor("i"));
+    prefs.getDouble("D Lift Motor", pidLiftMotor("d"));
 
-    Robot.m_prefs.getDouble("P Left Drive Motor", pidDriveLeft("p"));
-    Robot.m_prefs.getDouble("I Left Drive Motor", pidDriveLeft("i"));
-    Robot.m_prefs.getDouble("D Left Drive Motor", pidDriveLeft("d"));
-    Robot.m_prefs.getDouble("F Left Drive Motor", pidDriveLeft("f"));
+    prefs.getDouble("P Left Drive Motor", pidDriveLeft("p"));
+    prefs.getDouble("I Left Drive Motor", pidDriveLeft("i"));
+    prefs.getDouble("D Left Drive Motor", pidDriveLeft("d"));
+    prefs.getDouble("F Left Drive Motor", pidDriveLeft("f"));
 
-    Robot.m_prefs.getDouble("P Right Drive Motor", pidDriveLeft("p"));
-    Robot.m_prefs.getDouble("I Right Drive Motor", pidDriveLeft("i"));
-    Robot.m_prefs.getDouble("D Right Drive Motor", pidDriveLeft("d"));
-    Robot.m_prefs.getDouble("F Right Drive Motor", pidDriveLeft("f"));
+    prefs.getDouble("P Right Drive Motor", pidDriveLeft("p"));
+    prefs.getDouble("I Right Drive Motor", pidDriveLeft("i"));
+    prefs.getDouble("D Right Drive Motor", pidDriveLeft("d"));
+    prefs.getDouble("F Right Drive Motor", pidDriveLeft("f"));
   } */
 
-  public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
-
-  public EnumMap<MapKeys, Integer> albert = new EnumMap<MapKeys, Integer>(MapKeys.class);
-
-  public EnumMap<MapKeys, Integer> deadpixel = new EnumMap<MapKeys, Integer>(MapKeys.class);
 
   
 
