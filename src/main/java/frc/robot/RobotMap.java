@@ -104,11 +104,11 @@ public class RobotMap {
     albert.put(MapKeys.DRIVE_BACKRIGHT, 10);
 
     albert.put(MapKeys.BACKLEFTCLIMBWHEEL, 2);
-    albert.put(MapKeys.BACKRIGHTCLIMBWHEEL, 4);
+    albert.put(MapKeys.BACKRIGHTCLIMBWHEEL, 0);
 
     albert.put(MapKeys.SLIDE, 3);
     
-    albert.put(MapKeys.LIFT_LEFT, 0);
+    albert.put(MapKeys.LIFT_LEFT, 4);
     albert.put(MapKeys.LIFT_RIGHT, 0);
 
     albert.put(MapKeys.PCM_CLIMBCANID, 0);

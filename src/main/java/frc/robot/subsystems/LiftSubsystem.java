@@ -23,15 +23,15 @@ public class LiftSubsystem extends Subsystem {
   private double m_position_in; //desired position in inches
   private double m_position_counts; 
   private static final double MAXSPEED = 20.0; //inches per second
-  private static final double AUTOLIFTSPEED = 10.0; //inches per second
+  private static final double AUTOLIFTSPEED = 20.0; //inches per second
   private static final double SECONDS_PER_TICK = .02; // seconds per encoder tic
-  private static final double COUNTS_PER_INCH = 150; // encoder counts per inch
+  private static final double COUNTS_PER_INCH = 683.0; // encoder counts per inch (formerly 150)
   private static final int TALON_TIMEOUT_MS = 1000; 
   private static final double DISTANCE_PER_TICK = AUTOLIFTSPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
 
-  private double m_p = Robot.m_map.pidLiftMotor("p");
-  private double m_i = Robot.m_map.pidLiftMotor("i");
-  private double m_d = Robot.m_map.pidLiftMotor("d");
+  private double m_p = 0.25;//Robot.m_map.pidLiftMotor("p");
+  private double m_i = 0.0;// Robot.m_map.pidLiftMotor("i");
+  private double m_d = 10.0;//Robot.m_map.pidLiftMotor("d");
   private double m_maxIntegral = 1.0;
   private int m_maxAmps = 2;
 
@@ -59,13 +59,13 @@ public class LiftSubsystem extends Subsystem {
   }
 
   public void configTalons() {
-    if ((m_motorup1 == null) || (m_motorup2 == null)) {
+    if ((m_motorup1 == null) && (m_motorup2 == null)) {
       return;
     }
 
     m_motorup1.selectProfileSlot(0, 0);
     m_motorup1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, TALON_TIMEOUT_MS);
-    m_motorup1.setSensorPhase(false);
+    m_motorup1.setSensorPhase(true);
 
     m_motorup1.config_kP(0, m_p, TALON_TIMEOUT_MS);
     m_motorup1.config_kI(0, m_i, TALON_TIMEOUT_MS);
@@ -80,7 +80,7 @@ public class LiftSubsystem extends Subsystem {
     m_motorup1.setIntegralAccumulator(0);
     m_motorup1.set(ControlMode.Position, m_position_counts); // moves motor to 0
 
-    m_motorup2.set(ControlMode.Follower, Robot.m_map.getId(MapKeys.LIFT_LEFT));
+    //m_motorup2.set(ControlMode.Follower, Robot.m_map.getId(MapKeys.LIFT_LEFT));
   }
 
   /** public void liftToBottom() {
@@ -128,6 +128,7 @@ public class LiftSubsystem extends Subsystem {
     m_position_counts = m_position_in * COUNTS_PER_INCH; //converts desired position to counts
     if (m_motorup1 != null) { //moves tha motor to desired position
       m_motorup1.set(ControlMode.Position, m_position_counts);
+      //System.out.println(m_position_counts);
     }
 
   }

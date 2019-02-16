@@ -24,18 +24,18 @@ public class SlideSubsystem extends Subsystem {
   private double m_position_in; //desired position in inches
   private double m_position_counts; 
   private static final double MAXSPEED = 5.0; //inches per second
-  private static final double AUTOLIFTSPEED = 10.0; //inches per second
+  private static final double AUTOSLIDESPEED = 2.0; //inches per second
   private static final double SECONDS_PER_TICK = .02; // seconds per encoder tic
-  private static final double COUNTS_PER_INCH = 150; // encoder counts per inch
+  private static final double COUNTS_PER_INCH = 2560; // encoder counts per inch
   private static final int TALON_TIMEOUT_MS = 1000; 
-  private static final double DISTANCE_PER_TICK = AUTOLIFTSPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
+  private static final double DISTANCE_PER_TICK = AUTOSLIDESPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
 
   private static final double POSITIVE_LIMIT_IN = 4.5;
   private static final double NEGATIVE_LIMIT_IN = -4.5;
 
-  private double m_p = Robot.m_map.pidSlideMotor("p");
-  private double m_i = Robot.m_map.pidSlideMotor("i");
-  private double m_d = Robot.m_map.pidSlideMotor("d");
+  private double m_p = 1.0;//Robot.m_map.pidSlideMotor("p");
+  private double m_i = .001;//Robot.m_map.pidSlideMotor("i");
+  private double m_d = 0.0;//Robot.m_map.pidSlideMotor("d");
   private double m_maxIntegral = 1.0;
   private int m_maxAmps = 2;
 
@@ -87,7 +87,7 @@ public class SlideSubsystem extends Subsystem {
  
   }
 
-  /** public void liftToBottom() {
+  /** public void slideToBottom() {
     current = Robot.m_pdp.getCurrent(14);
     while(current)
     setOutput(-0.5);
@@ -149,7 +149,7 @@ public void startAutomoveSlide(double position_in) {
     m_autoActiveslide = false;
     m_autoDistance = 0;
   } else {
-    //activate auto lift
+    //activate auto slide
     m_autoActiveslide = true;
     m_autoDistance = position_in - m_position_in; //sets auto distance to travel to the desired - current desired distance
   }

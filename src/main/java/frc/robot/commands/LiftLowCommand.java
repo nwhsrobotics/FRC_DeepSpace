@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LiftLowCommand extends Command {
-  private static final double LOW_POS_IN = 1.0; //inches
+  private static final double LOW_POS_IN = 0.0; //inches
   public LiftLowCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);

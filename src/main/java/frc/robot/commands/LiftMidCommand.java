@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LiftMidCommand extends Command {
-  private static final double MID_POS_IN = 4.0;
+  private static final double MID_POS_IN = 26.0;
   public LiftMidCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);

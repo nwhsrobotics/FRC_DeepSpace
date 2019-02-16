@@ -70,6 +70,9 @@ public class DriveTrain extends Subsystem {
   }
 
   public void configTalons() {
+    if ((m_frontleft == null) || (m_frontright == null)) {
+      return;
+    }
     m_frontright.selectProfileSlot(0, 0);
     m_frontright.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
     m_frontright.setSensorPhase(true); //inverts the phase of the sensor if true.
