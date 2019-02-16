@@ -44,7 +44,7 @@ public class LiftSubsystem extends Subsystem {
   }
 
   public void update(double x) {
-    if (m_motorup1 !=null & m_motorup2 !=null) {
+    if (m_motorup1 !=null && m_motorup2 !=null) {
       m_lift.set(x);
     }
     
