@@ -64,7 +64,7 @@ public class OI{
 
   public OI () {
 
-    bButton1.toggleWhenPressed(new CameraToggle);
+    //bButton1.toggleWhenPressed(new CameraToggle);
 
     backButton1.whenPressed(new startDescendCommand()); //initiate lvl 2 descent
     startButton1.whenPressed(new startL2AscendCommand()); //initiate lvl 2 climb
