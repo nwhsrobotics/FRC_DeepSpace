@@ -41,7 +41,7 @@ public class OI {
   
   private final double TURNMODIFIER = 0.6;
   private final double STRAIGHMODIFIER = 0.9;
-  private final int CAMERA_BUTTON = 2;
+  public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
   private final int Lvl3CLIMB_BUTTON = 3;//cant find button
@@ -75,9 +75,9 @@ public class OI {
 
     //bButton1.toggleWhenPressed(new CameraToggle);
 
-    backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
-    startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
-    xButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
+    backButton1.whenPressed(new startDescendCommand()); //initiate lvl 2 descent
+    startButton1.whenPressed(new startL2AscendCommand()); //initiate lvl 2 climb
+    xButton1.whenPressed(new startL3AscendCommand()); // intiate lvl 3 climb
     
     leftBumper2.whenPressed(new BlindCommand());
 

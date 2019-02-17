@@ -59,8 +59,8 @@ public class ClimbSubsystem extends Subsystem {
   private DoubleSolenoid Solenoid_6;
   private DoubleSolenoid Solenoid_7;
   private DoubleSolenoid Solenoid_8; 
-  WPI_TalonSRX backleftwheel;
-  WPI_TalonSRX backrightwheel;
+  WPI_TalonSRX frontwheel;
+  WPI_TalonSRX backwheel;
   public SpeedControllerGroup climbwheels;
 
   public double m_mainDrive;
@@ -119,11 +119,11 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
-    backleftwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKLEFTCLIMBWHEEL));  
-    backleftwheel.setInverted(true); 
-    backrightwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKRIGHTCLIMBWHEEL));
-    backrightwheel.setInverted(true);
-    climbwheels = new SpeedControllerGroup(backleftwheel, backrightwheel);
+    frontwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.FRONTCLIMBWHEEL));  
+    frontwheel.setInverted(true); 
+    backwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKCLIMBWHEEL));
+    backwheel.setInverted(true);
+    climbwheels = new SpeedControllerGroup(frontwheel, backwheel);
     final int PCM_1_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID);
     final int PCM_2_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2);
 

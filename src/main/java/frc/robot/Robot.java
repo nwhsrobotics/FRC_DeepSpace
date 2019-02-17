@@ -17,6 +17,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import edu.wpi.first.cameraserver.CameraServer;
+
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
+import edu.wpi.cscore.VideoSource;
+import edu.wpi.cscore.VideoMode.PixelFormat;
+
 import frc.robot.subsystems.*;
 /*
 	
@@ -48,14 +56,26 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  UsbCamera camera0;  
+  UsbCamera camera1;
+  VideoSink vidSink;
+  boolean previousButton = false;
+  int currentCamera = 1;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setVideoMode(PixelFormat.kMJPEG, 640, 480, 15);
+    camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+    camera0.setVideoMode(PixelFormat.kMJPEG, 460,340, 15);
+
+    
+    camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    camera1.setVideoMode(PixelFormat.kMJPEG, 460,340, 15);
+   
+    vidSink = CameraServer.getInstance().getServer();
     m_oi = new OI();
     m_climbSubsystem.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
@@ -63,6 +83,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putData(Scheduler.getInstance());
     Robot.m_ledSubsystem.LED(true);  
+
+    
   }
 
   /**
@@ -125,6 +147,20 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+
+    boolean currentButton = m_oi.joy.getRawButton(m_oi.CAMERA_BUTTON) == true;
+    if ((!currentButton) && previousButton) {
+      if (currentCamera == 0) {
+        vidSink.setSource(camera1);
+        System.out.println(1);
+        currentCamera = 1;
+      } else {
+        vidSink.setSource(camera0);
+        System.out.println(0);
+        currentCamera = 0;
+      }
+    }
+    previousButton = currentButton;
     
   }
 
@@ -145,6 +181,20 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+
+    boolean currentButton = m_oi.joy.getRawButton(m_oi.CAMERA_BUTTON) == true;
+    if ((!currentButton) && previousButton) {
+      if (currentCamera == 0) {
+        vidSink.setSource(camera1);
+        System.out.println(1);
+        currentCamera = 1;
+      } else {
+        vidSink.setSource(camera0);
+        System.out.println(0);
+        currentCamera = 0;
+      }
+    }
+    previousButton = currentButton;
     
   }
 
