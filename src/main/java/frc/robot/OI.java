@@ -30,7 +30,7 @@ public class OI{
    private static final double MAX_POS_DEG = 90.0;       // how far to rotate shaft at full joystick deflection.
    private static final int POS_HOLD_AXIS = 0;           // left-right on left joystick
 
-  private final int CAMERA_BUTTON = 2;
+  public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
   private final int Lvl3CLIMB_BUTTON = 3;//cant find button
@@ -64,11 +64,11 @@ public class OI{
 
   public OI () {
 
-    //bButton1.toggleWhenPressed(new CameraToggle);
+    bButton1.toggleWhenPressed(new CameraToggle);
 
-    backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
-    startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
-    xButton1.whenPressed(new L3AscendCommandGroup()); // intiate lvl 3 climb
+    backButton1.whenPressed(new startDescendCommand()); //initiate lvl 2 descent
+    startButton1.whenPressed(new startL2AscendCommand()); //initiate lvl 2 climb
+    xButton1.whenPressed(new startL3AscendCommand()); // intiate lvl 3 climb
 
     leftBumper1.whenPressed(new ClimbPrevCommand());
     rightBumper1.whenPressed(new ClimbNextCommand());
