@@ -61,8 +61,8 @@ public class OI {
 
 
   private final int ARM_BUTTON = 2;
-  private final int MIDHATCH_BUTTON = 3;
-  private final int LOWHATCH_BUTTON = 1;
+  private final int MIDHATCH_BUTTON = 8; // 3 is highest
+  private final int LOWHATCH_BUTTON = 7;
   private final int CLAMP_BUTTON = 4;
   private final int BLIND = 6;
   public JoystickButton yButton2 = new JoystickButton(joy2, ARM_BUTTON);
