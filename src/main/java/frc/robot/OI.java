@@ -41,12 +41,12 @@ public class OI {
   
   private final double TURNMODIFIER = 0.6;
   private final double STRAIGHMODIFIER = -0.9;
-  private final double LIFTMODIFIER = 1;
+  private final double LIFTMODIFIER = -1;
 
   public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
-  private final int Lvl3CLIMB_BUTTON = 3;//cant find button
+  private final int Lvl3CLIMB_BUTTON = 3;
   private final int CLIMBNEXT_BUTTON = 6;
   private final int CLIMBPREV_BUTTON = 5;
 
@@ -60,12 +60,12 @@ public class OI {
   Joystick joy2 = new Joystick(1);
 
 
-  private final int HIGHHATCH_BUTTON = 4;
+  private final int ARM_BUTTON = 4;
   private final int MIDHATCH_BUTTON = 3;
   private final int LOWHATCH_BUTTON = 1;
   private final int CLAMP_BUTTON = 2;
   private final int BLIND = 6;
-  public JoystickButton yButton2 = new JoystickButton(joy2, HIGHHATCH_BUTTON);
+  public JoystickButton yButton2 = new JoystickButton(joy2, ARM_BUTTON);
   public JoystickButton xButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);
   public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
@@ -83,18 +83,18 @@ public class OI {
     
     leftBumper2.whenPressed(new BlindCommand());
 
-    leftBumper1.whenPressed(new ClimbPrevCommand());
-    rightBumper1.whenPressed(new ClimbNextCommand());
+    leftBumper1.whenPressed(new ClimbPrevCommand()); //press to go to the previous climb state in the sequence
+    rightBumper1.whenPressed(new ClimbNextCommand()); //press to go to the next climb state in the sequence
 
     
-    yButton2.whenPressed(new PneumaticArmExtend()); //move lift to high hatch position
-    yButton2.whenReleased(new PneumaticArmRetract());
+    yButton2.whenPressed(new PneumaticArmExtend()); //Press for arm extend
+    yButton2.whenReleased(new PneumaticArmRetract()); //release for arm retract
 
     xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
     aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
     
-    bButton2.whenPressed(new PneumaticExtendCommand()); //toggle for clamp
-    bButton2.whenReleased(new PneumaticRetractCommand()); //toggle for clamp
+    bButton2.whenPressed(new PneumaticExtendCommand()); //press for clamp
+    bButton2.whenReleased(new PneumaticRetractCommand()); //release for clamp
 
     
     
