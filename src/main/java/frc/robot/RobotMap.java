@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import frc.robot.Robot;
 import java.util.EnumMap;
 
 import edu.wpi.first.wpilibj.Preferences;
@@ -233,7 +232,7 @@ public class RobotMap {
   }
   
 
-  public RobotTypes activeRobot = RobotTypes.ALBERT;
+  public RobotTypes activeRobot = RobotTypes.DASHBOARD;
 
   public int getId(MapKeys key) {
     System.out.printf("In Get ID. %s\n", key.toString());

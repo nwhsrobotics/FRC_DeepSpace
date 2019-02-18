@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.commands.*;
-import java.lang.Math.*;
+import java.lang.Math;
 
 
 
@@ -24,11 +24,6 @@ public class OI{
   JoystickButton b = new JoystickButton(joy, 2);
   JoystickButton x = new JoystickButton(joy, 3);
   JoystickButton y = new JoystickButton(joy, 4);
-  private static final int POS_HOLD_TOGGLE_BUTTON = 2;  // B button
-  private static final int POS_HOLD_UPDATE_BUTTON = 4;  // Y button
-
-   private static final double MAX_POS_DEG = 90.0;       // how far to rotate shaft at full joystick deflection.
-   private static final int POS_HOLD_AXIS = 0;           // left-right on left joystick
 
   public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
@@ -58,8 +53,9 @@ public class OI{
   public JoystickButton aButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
 
-  public double TURNMODIFIER = .4;
-  public double STRAIGHTMODIFIER = .9;
+  public final double TURNMODIFIER = .6;
+  public final double STRAIGHTMODIFIER = -.9;
+  public final double LIFTMODIFIER = -.8;
 
 
   public OI () {
@@ -106,7 +102,7 @@ public class OI{
   }
 
   public double getLiftValue() {
-    return joy2.getRawAxis(1);
+    return joy2.getRawAxis(1) * LIFTMODIFIER;
   }
 
   public double getSlideValue() {

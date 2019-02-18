@@ -57,7 +57,6 @@ public class ClimbSubsystem extends Subsystem {
 
   private double m_timeLeft_sec;
 
-  private DoubleSolenoid DummySolenoid;
   private DoubleSolenoid Solenoid_1;
   private DoubleSolenoid Solenoid_2;
   private DoubleSolenoid Solenoid_3;
