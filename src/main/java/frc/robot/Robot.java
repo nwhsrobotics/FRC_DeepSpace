@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
     m_climbSubsystem.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData(Scheduler.getInstance());
+    
     
 
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
@@ -98,6 +98,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putData(Scheduler.getInstance());
   }
 
   /**
