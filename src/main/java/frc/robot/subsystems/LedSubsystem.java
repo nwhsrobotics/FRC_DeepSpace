@@ -8,13 +8,10 @@
 
 package frc.robot.subsystems;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.*;
-import java.math.*;
+import java.lang.Math;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -316,7 +313,87 @@ public class LedSubsystem extends Subsystem {
   }
 
   
+  public void LiftLow(){
+    if (Robot.m_lift.autoMoveFinished() == false){         
+      m_pixel[1].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[2].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[3].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[4].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[5].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[6].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[7].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[8].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[9].set((byte) 255,(byte) 171,(byte) 0);
+      m_pixel[10].set((byte) 255,(byte) 171,(byte) 0);
+  
+      
+    } else {
+      m_pixel[1].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[2].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[3].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[4].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[5].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[6].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[7].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[8].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[9].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[10].set((byte) 0,(byte) 0,(byte) 0);
+    }
+}
+public void LiftMid(){
+  if (Robot.m_lift.autoMoveFinished() == false){         
+    m_pixel[16].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[17].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[18].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[19].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[20].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[21].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[22].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[23].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[24].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[25].set((byte) 255,(byte) 171,(byte) 0);
 
+    
+  } else {
+    m_pixel[16].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[17].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[18].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[19].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[20].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[21].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[22].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[23].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[24].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[25].set((byte) 0,(byte) 0,(byte) 0);
+  }
+}
+public void LiftHigh(){
+  if (Robot.m_lift.autoMoveFinished() == false){         
+    m_pixel[29].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[30].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[31].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[32].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[33].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[34].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[35].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[36].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[37].set((byte) 255,(byte) 171,(byte) 0);
+    m_pixel[38].set((byte) 255,(byte) 171,(byte) 0);
+
+    
+  } else {
+    m_pixel[29].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[30].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[31].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[32].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[33].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[34].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[35].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[36].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[37].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[38].set((byte) 0,(byte) 0,(byte) 0);
+  }
+}
 public void LiftDrive(){
   if (Math.abs(Robot.m_lift.m_motorup1.getMotorOutputVoltage()) > 0){         
     m_pixel[49].set((byte) 255,(byte) 171,(byte) 0);
@@ -463,8 +540,7 @@ public void climbL3(){
   }
 }
 public void DriveLeft(){
-  System.out.println(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage());
-  double ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage() * 0.1, 1) * 255);
+  double ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage() * 0.1, 1) * 255);
   //if (Math.abs(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage()) > 0) {
   if (true) {
       m_pixel[1].set((byte) 0,(byte) ledValue,(byte) 0);
@@ -498,12 +574,11 @@ public void DriveLeft(){
       m_pixel[29].set((byte) 0,(byte) ledValue,(byte) 0);
       
     } 
-
   }
 
 
 public void DriveRight(){
-  double ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_backright.getMotorOutputVoltage() * 0.1, 1) * 255);
+  double ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage() * 0.1, 1) * 255);
 if (true){
   //if (Math.abs(Robot.m_drivetrain.m_backright.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage()) > 0) {
     m_pixel[30].set((byte) ledValue2,(byte) 0,(byte) 0);
@@ -667,5 +742,3 @@ public void blindCommand(boolean state2){
 
 
 }
-
-  
