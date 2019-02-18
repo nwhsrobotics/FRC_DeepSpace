@@ -39,9 +39,9 @@ public class OI {
 
   Joystick joy = new Joystick(0);
   
-  private final double TURNMODIFIER = 0.6;
+  private final double TURNMODIFIER = 0.5;
   private final double STRAIGHMODIFIER = -0.9;
-  private final double LIFTMODIFIER = -1;
+  private final double LIFTMODIFIER = -0.8;
 
   public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
@@ -60,10 +60,10 @@ public class OI {
   Joystick joy2 = new Joystick(1);
 
 
-  private final int ARM_BUTTON = 4;
+  private final int ARM_BUTTON = 2;
   private final int MIDHATCH_BUTTON = 3;
   private final int LOWHATCH_BUTTON = 1;
-  private final int CLAMP_BUTTON = 2;
+  private final int CLAMP_BUTTON = 4;
   private final int BLIND = 6;
   public JoystickButton yButton2 = new JoystickButton(joy2, ARM_BUTTON);
   public JoystickButton xButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);

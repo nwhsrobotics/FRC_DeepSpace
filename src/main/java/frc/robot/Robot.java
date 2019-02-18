@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData(Scheduler.getInstance());
-    m_ledSubsystem.LED(true);
+    
 
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
     camera0.setVideoMode(PixelFormat.kMJPEG, 460,340, 15);
@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
    
     vidSink = CameraServer.getInstance().getServer();
 
-
+    m_ledSubsystem.LED(true);
 
   }
 
