@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap.MapKeys;
+import frc.robot.commands.LiftCommand;
 
 
 
@@ -21,14 +22,16 @@ public class LiftSubsystem extends Subsystem {
   private double m_current2;
 
   public LiftSubsystem(){
-    if (m_motorup1 !=null || m_motorup2 !=null) { 
+     
       m_motorup1 = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
       m_motorup1.set(ControlMode.PercentOutput, 0.0);
       m_motorup2 = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
       m_motorup2.set(ControlMode.PercentOutput,0.0);
     
       m_lift = new SpeedControllerGroup(m_motorup1, m_motorup2);
-    }
+
+    
+  
 
   }
 
@@ -39,7 +42,7 @@ public class LiftSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new LiftCommand());
      
   }
 

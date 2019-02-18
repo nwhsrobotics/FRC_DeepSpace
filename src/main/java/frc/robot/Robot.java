@@ -7,22 +7,20 @@
 
 package frc.robot;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode.PixelFormat;
-import edu.wpi.first.cameraserver.CameraServer;
+
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Slide;
 
 import edu.wpi.first.cameraserver.CameraServer;
 
-import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSink;
-import edu.wpi.cscore.VideoSource;
 import edu.wpi.cscore.VideoMode.PixelFormat;
 
 import frc.robot.subsystems.*;
@@ -43,8 +41,8 @@ import frc.robot.subsystems.LedSubsystem;
  */
 public class Robot extends TimedRobot {
   public static OI m_oi;
-  public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
   public static RobotMap m_map = new RobotMap();
+  public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
   public static LedSubsystem m_ledSubsystem = new LedSubsystem();
   public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
@@ -52,9 +50,10 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_drivetrain = new DriveTrain();
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static Slide m_slide = new Slide();
+  
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+ Command m_autonomousCommand;
+ SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   UsbCamera camera0;  
   UsbCamera camera1;
@@ -62,12 +61,20 @@ public class Robot extends TimedRobot {
   boolean previousButton = false;
   int currentCamera = 1;
 
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
+    m_oi = new OI();
+    m_climbSubsystem.initialize();
+    // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
+    // chooser.addOption("My Auto", new MyAutoCommand());
+    SmartDashboard.putData(Scheduler.getInstance());
+    m_ledSubsystem.LED(true);
+
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
     camera0.setVideoMode(PixelFormat.kMJPEG, 460,340, 15);
 
@@ -76,15 +83,9 @@ public class Robot extends TimedRobot {
     camera1.setVideoMode(PixelFormat.kMJPEG, 460,340, 15);
    
     vidSink = CameraServer.getInstance().getServer();
-    m_oi = new OI();
-    m_climbSubsystem.initialize();
-    // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
-    SmartDashboard.putData(Scheduler.getInstance());
-    Robot.m_ledSubsystem.LED(true);  
 
-    
+
+
   }
 
   /**
@@ -106,6 +107,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    
   }
 
   @Override

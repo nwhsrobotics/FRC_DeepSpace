@@ -40,7 +40,9 @@ public class OI {
   Joystick joy = new Joystick(0);
   
   private final double TURNMODIFIER = 0.6;
-  private final double STRAIGHMODIFIER = 0.9;
+  private final double STRAIGHMODIFIER = -0.9;
+  private final double LIFTMODIFIER = 1;
+
   public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
   private final int Lvl2CLIMB_BUTTON = 8;
@@ -85,12 +87,16 @@ public class OI {
     rightBumper1.whenPressed(new ClimbNextCommand());
 
     
-    yButton2.toggleWhenPressed(new LiftCommand()); //move lift to high hatch position
+    yButton2.whenPressed(new PneumaticArmExtend()); //move lift to high hatch position
+    yButton2.whenReleased(new PneumaticArmRetract());
+
     xButton2.toggleWhenPressed(new LiftCommand()); //move lift to mid hatch position
     aButton2.toggleWhenPressed(new LiftCommand()); //move lift to low hatch position
     
-    bButton2.whenActive(new GrabberExtend()); //toggle for clamp
-    bButton2.whenReleased(new GrabberRetract()); //toggle for clamp
+    bButton2.whenPressed(new PneumaticExtendCommand()); //toggle for clamp
+    bButton2.whenReleased(new PneumaticRetractCommand()); //toggle for clamp
+
+    
     
 
     
@@ -117,11 +123,11 @@ public class OI {
   }
 
   public double getLiftValue() {
-    return joy2.getRawAxis(1);
+    return joy2.getRawAxis(1) * LIFTMODIFIER;
   }
 
   public double getSlideValue() {
-    return joy2.getRawAxis(3) - joy2.getRawAxis(2);
+    return joy2.getRawAxis(2) - joy2.getRawAxis(3);
   }
 
 

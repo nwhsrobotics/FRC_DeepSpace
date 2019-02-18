@@ -230,7 +230,7 @@ public class RobotMap {
 
 
 
-  public RobotTypes activeRobot = RobotTypes.ALBERT;
+  public RobotTypes activeRobot = RobotTypes.DASHBOARD;
 
   public int getId(MapKeys key) {
     System.out.printf("In Get ID. %s\n", key.toString());
@@ -240,20 +240,20 @@ public class RobotMap {
     }
 
     if(activeRobot == RobotTypes.DASHBOARD) {
-      System.out.printf("Getting Dashboard key.\n");
+      System.out.printf("Getting Dashboard key %d.\n", dashboard.get(key));
       return dashboard.get(key);
     }
 
     else if(activeRobot == RobotTypes.BRIEFCASE) {
-      System.out.printf("Getting Briefcase key.\n");
+      System.out.printf("Getting Briefcase key %d.\n", briefcase.get(key));
       return briefcase.get(key);
     }
     else if(activeRobot == RobotTypes.DEADPIXEL) {
-      System.out.printf("Getting Deadpixel key.\n");
+      System.out.printf("Getting Deadpixel key %d.\n", deadpixel.get(key));
       return deadpixel.get(key);
     }
     else {
-      System.out.printf("Getting Albert key.\n");
+      System.out.printf("Getting Albert key %d.\n", albert.get(key));
       return albert.get(key);
     }
   

@@ -462,7 +462,7 @@ public class ClimbSubsystem extends Subsystem {
         break;
 
       case CLIMB_L3_S1:
-        ascendFront(true);
+        ascendFront(true); 
         ascendBack(true);
         descendAssistBack(false);
         descendAssistFront(false);
