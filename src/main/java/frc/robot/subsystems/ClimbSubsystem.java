@@ -289,7 +289,7 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = DESCEND_SLOW;
-        m_timeLeft_sec = 2.0;
+        m_timeLeft_sec = 0.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
@@ -307,7 +307,7 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = DESCEND_SLOW;
-        m_timeLeft_sec = 2.0;
+        m_timeLeft_sec = 0.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
@@ -325,7 +325,7 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = DESCEND_SLOW;
-        m_timeLeft_sec = 2.0;
+        m_timeLeft_sec = 0.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
@@ -343,7 +343,7 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = 0.0;
         m_mainDrive = DESCEND_SLOW;
-        m_timeLeft_sec = 2.0;
+        m_timeLeft_sec = 0.0;
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
