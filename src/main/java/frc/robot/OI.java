@@ -39,8 +39,8 @@ public class OI {
 
   Joystick joy = new Joystick(0);
   
-  private final double TURNMODIFIER = 0.5;
-  private final double STRAIGHMODIFIER = -0.9;
+  private final double TURNMODIFIER = 0.7;
+  private final double STRAIGHMODIFIER = -1;
   private final double LIFTMODIFIER = -0.8;
 
   public final int CAMERA_BUTTON = 2;

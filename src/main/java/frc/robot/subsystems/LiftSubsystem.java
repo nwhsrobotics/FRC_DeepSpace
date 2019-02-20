@@ -25,11 +25,11 @@ public class LiftSubsystem extends Subsystem {
   private static final double MAXSPEED = 20.0; //inches per second
   private static final double AUTOLIFTSPEED = 20.0; //inches per second
   private static final double SECONDS_PER_TICK = .02; // seconds per encoder tic
-  private static final double COUNTS_PER_INCH = 683.0; // encoder counts per inch (formerly 150)
+  private static final double COUNTS_PER_INCH = 1366; // encoder counts per inch (formerly 150)
   private static final int TALON_TIMEOUT_MS = 1000; 
   private static final double DISTANCE_PER_TICK = AUTOLIFTSPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
 
-  private double m_p = 0.25;//Robot.m_map.pidLiftMotor("p");
+  private double m_p = 1;//Robot.m_map.pidLiftMotor("p");
   private double m_i = 0.0;// Robot.m_map.pidLiftMotor("i");
   private double m_d = 10.0;//Robot.m_map.pidLiftMotor("d");
   private double m_maxIntegral = 1.0;
