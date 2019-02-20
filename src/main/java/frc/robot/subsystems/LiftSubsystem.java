@@ -65,7 +65,7 @@ public class LiftSubsystem extends Subsystem {
 
     m_motorup1.selectProfileSlot(0, 0);
     m_motorup1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, TALON_TIMEOUT_MS);
-    m_motorup1.setSensorPhase(true);
+    m_motorup1.setSensorPhase(false);
 
     m_motorup1.config_kP(0, m_p, TALON_TIMEOUT_MS);
     m_motorup1.config_kI(0, m_i, TALON_TIMEOUT_MS);
