@@ -131,7 +131,12 @@ public class OI {
   }
 
   public double getSlideValue() {
-    return joy2.getRawAxis(2) - joy2.getRawAxis(3);
+    if (Math.abs(joy2.getRawAxis(2) - joy2.getRawAxis(3)) < 0.1){
+      return 0;
+    } else {
+      return joy2.getRawAxis(2) - joy2.getRawAxis(3);
+    }
+ 
   }
 
 
