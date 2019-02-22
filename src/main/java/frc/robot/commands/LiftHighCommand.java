@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LiftHighCommand extends Command {
-  private static final double HIGH_POS_IN = 57.0; //inches
+  private static final double HIGH_POS_IN = Robot.m_lift.HIGH_POS_IN; //inches
   public LiftHighCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_lift);
