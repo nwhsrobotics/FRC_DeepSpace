@@ -70,6 +70,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     m_climbSubsystem.initialize();
+    m_grabberArm.Initialize();
+    m_grabberHand.Initialize();
+    m_drivetrain.Initialize();
+    m_lift.Initialize();
+    m_slide.Initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData(Scheduler.getInstance());

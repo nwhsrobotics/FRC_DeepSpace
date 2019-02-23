@@ -37,6 +37,11 @@ public class DriveTrain extends Subsystem {
 
   public DriveTrain(){
     //initialize + set objects created above
+    
+
+  }
+
+  public void Initialize() {
     m_frontleft = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.DRIVE_FRONTLEFT));
     m_frontleft.configContinuousCurrentLimit(m_maxAmps,TALON_TIMEOUT_MS);
     m_frontleft.configPeakCurrentLimit(m_maxAmps,TALON_TIMEOUT_MS);
@@ -57,7 +62,6 @@ public class DriveTrain extends Subsystem {
     //m_left.setInverted(true); 
 
     m_drive = new DifferentialDrive(m_left, m_right);
-
   }
 
   public void update(double y, double z){

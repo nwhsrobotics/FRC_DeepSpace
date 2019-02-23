@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap.MapKeys;
@@ -29,32 +30,51 @@ public class LiftSubsystem extends Subsystem {
   private static final int TALON_TIMEOUT_MS = 1000; 
   private static final double DISTANCE_PER_TICK = AUTOLIFTSPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
 
-  private double m_p = 1;
-  private double m_i = 0.0;
-  private double m_d = 10.0;
+  
+
+
+  private double m_p; 
+  private double m_i;
+  private double m_d;
   private double m_maxIntegral = 1.0;
   private int m_maxAmps = 2;
 
   private boolean m_autoActive; //is auto active?
   private double m_autoDistance; //distance to travel autonomously
 
-  public final double HIGH_POS_IN = 57.0;
-  public final double MID_POS_IN = 26.0;
-  public final double LOW_POS_IN = 0.0;
+  public double HIGH_POS_IN;
+  public double MID_POS_IN;
+  public double LOW_POS_IN;
 
   //private double m_current; //current draw of the talon from the PDP
 
   public LiftSubsystem(){
-    m_motorup1 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
-    m_motorup2 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
-    setOutput(0.0);
-    configTalons();
+    
     m_position_in = 0.0;
     m_speed_ips = 0.0;
 
 
     
   }
+
+  public void Initialize() {
+    Preferences prefs = Preferences.getInstance();
+
+    m_p = prefs.getDouble("Lift_P_Value", 1.0);
+    m_i = prefs.getDouble("Lift_I_Value", 0.0);
+    m_d = prefs.getDouble("Lift_D_Value", 10.0);
+
+    HIGH_POS_IN = prefs.getDouble("Lift_High_Pos", 57.0);
+    MID_POS_IN = prefs.getDouble("Lift_Mid_Pos", 26.0);
+    LOW_POS_IN = prefs.getDouble("Lift_Low_Pos", 0.0);
+    
+    m_motorup1 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
+    m_motorup2 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
+    setOutput(0.0);
+    configTalons();
+
+  }
+
   public void setOutput(double output) {
     if ((m_motorup1 != null) && (m_motorup2 != null)) {
       m_motorup1.set(ControlMode.PercentOutput, output);
@@ -63,6 +83,9 @@ public class LiftSubsystem extends Subsystem {
   }
 
   public void configTalons() {
+
+   
+
     if ((m_motorup1 == null) && (m_motorup2 == null)) {
       return;
     }
