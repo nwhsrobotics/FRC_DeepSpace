@@ -29,7 +29,7 @@ public class ClimbSubsystem extends Subsystem {
 
   enum ClimbState {
     IDLE,
-    DESCEND_S1, DESCEND_S2, DESCEND_S3, DESCEND_S4,
+    DESCEND_S1, DESCEND_S2, DESCEND_S3, DESCEND_S4, DESCEND_S5,
     CLIMB_L2_S1, CLIMB_L2_S2, CLIMB_L2_S3, CLIMB_L2_S4, CLIMB_L2_S5, CLIMB_L2_S6,
     CLIMB_L3_S1, CLIMB_L3_S2, CLIMB_L3_S3, CLIMB_L3_S4,
   }
@@ -89,7 +89,8 @@ public class ClimbSubsystem extends Subsystem {
     nextStageMap.put(ClimbState.DESCEND_S1, ClimbState.DESCEND_S2);
     nextStageMap.put(ClimbState.DESCEND_S2, ClimbState.DESCEND_S3);
     nextStageMap.put(ClimbState.DESCEND_S3, ClimbState.DESCEND_S4);
-    nextStageMap.put(ClimbState.DESCEND_S4, ClimbState.IDLE);
+    nextStageMap.put(ClimbState.DESCEND_S4, ClimbState.DESCEND_S5);
+    nextStageMap.put(ClimbState.DESCEND_S5, ClimbState.IDLE);
 
     nextStageMap.put(ClimbState.CLIMB_L2_S1, ClimbState.CLIMB_L2_S2);
     nextStageMap.put(ClimbState.CLIMB_L2_S2, ClimbState.CLIMB_L2_S3);
@@ -109,6 +110,7 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.DESCEND_S2, ClimbState.DESCEND_S1);
     prevStageMap.put(ClimbState.DESCEND_S3, ClimbState.DESCEND_S2);
     prevStageMap.put(ClimbState.DESCEND_S4, ClimbState.DESCEND_S3);
+    prevStageMap.put(ClimbState.DESCEND_S5, ClimbState.DESCEND_S4);
 
     prevStageMap.put(ClimbState.CLIMB_L2_S1, ClimbState.IDLE);
     prevStageMap.put(ClimbState.CLIMB_L2_S2, ClimbState.CLIMB_L2_S1);
@@ -275,11 +277,11 @@ public class ClimbSubsystem extends Subsystem {
         m_autoL3Ascend = false;
         break;
 
-      case DESCEND_S1:
+        case DESCEND_S1:
         ascendFront(false);
         ascendBack(false);
         descendAssistBack(false);
-        descendAssistFront(true);
+        descendAssistFront(false);
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Descend_S1_AuxDrive", 0.0);
         m_mainDrive = prefs.getDouble("Descend_S1_MainDrive", 0.5);
@@ -296,7 +298,7 @@ public class ClimbSubsystem extends Subsystem {
       case DESCEND_S2:
         ascendFront(false);
         ascendBack(false);
-        descendAssistBack(true);
+        descendAssistBack(false);
         descendAssistFront(true);
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Descend_S2_AuxDrive", 0.0);
@@ -315,7 +317,7 @@ public class ClimbSubsystem extends Subsystem {
         ascendFront(false);
         ascendBack(false);
         descendAssistBack(true);
-        descendAssistFront(false);
+        descendAssistFront(true);
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Descend_S3_AuxDrive", 0.0);
         m_mainDrive = prefs.getDouble("Descend_S3_MainDrive", 0.5);
@@ -332,7 +334,7 @@ public class ClimbSubsystem extends Subsystem {
       case DESCEND_S4:
         ascendFront(false);
         ascendBack(false);
-        descendAssistBack(false);
+        descendAssistBack(true);
         descendAssistFront(false);
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Descend_S4_AuxDrive", 0.0);
@@ -342,6 +344,24 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
         System.out.print("Descend Stage 4\n");
+        m_autoDescend = true;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
+        break;
+
+      case DESCEND_S5:
+        ascendFront(false);
+        ascendBack(false);
+        descendAssistBack(false);
+        descendAssistFront(false);
+        ascendAssistBack(false);
+        m_auxDrive = prefs.getDouble("Descend_S5_AuxDrive", 0.0);
+        m_mainDrive = prefs.getDouble("Descend_S5_MainDrive", 0.5);
+        m_timeLeft_sec = prefs.getDouble("Descend_S5_TimeLeft", 0.0);
+        m_LEDRedValue = 0;
+        m_LEDBlueValue = 255;
+        m_LEDGreenValue = 0;
+        System.out.print("Descend Stage 5\n");
         m_autoDescend = true;
         m_autoL2Ascend = false;
         m_autoL3Ascend = false;
