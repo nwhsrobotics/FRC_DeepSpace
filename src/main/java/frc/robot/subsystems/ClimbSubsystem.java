@@ -19,9 +19,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
 
-/**
- * Add your docs here.
- */
+//Add your docs here.
+ 
 public class ClimbSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.

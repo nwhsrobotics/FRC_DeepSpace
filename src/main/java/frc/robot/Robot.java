@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.SlideSubsystem;
+import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.LedSubsystem;
 
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -29,8 +31,8 @@ import frc.robot.subsystems.*;
 	JAGBOTS 2019 DEEP SPACE CODE
 	
  */
-import frc.robot.subsystems.ClimbSubsystem;
-import frc.robot.subsystems.LedSubsystem;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static RobotMap m_map = new RobotMap();
   public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
+  public static PressureSensor m_pressursensor = new PressureSensor(0);
   public static LedSubsystem m_ledSubsystem = new LedSubsystem();
   public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
@@ -50,6 +53,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_drivetrain = new DriveTrain();
   public static LiftSubsystem m_lift = new LiftSubsystem();
   public static SlideSubsystem m_slide = new SlideSubsystem();
+
   
 
  Command m_autonomousCommand;
@@ -69,7 +73,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_climbSubsystem.initialize();
+    //m_climbSubsystem.initialize();
+    m_lift.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData(Scheduler.getInstance());
@@ -98,6 +103,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("PSI", Robot.m_pressursensor.getAirPressurePsi());
   }
 
   /**
@@ -141,6 +147,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
+    m_lift.autonomousInit();
   }
 
   /**
@@ -175,6 +182,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_lift.teleopInit();
   }
 
   /**

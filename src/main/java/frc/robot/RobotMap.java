@@ -198,8 +198,8 @@ public class RobotMap {
     dashboard.put(MapKeys.BACKCLIMBWHEEL, prefs.getInt("CanID_BackClimbWheel", 12));
 
     dashboard.put(MapKeys.SLIDE, prefs.getInt("CanID_Slide", 3));
-    dashboard.put(MapKeys.LIFT_LEFT, prefs.getInt("CanID_LiftLeft", 4));
-    dashboard.put(MapKeys.LIFT_RIGHT, prefs.getInt("CanID_LiftRight", 8));
+    dashboard.put(MapKeys.LIFT_LEFT, prefs.getInt("CanID_LiftLeft", 8));
+    dashboard.put(MapKeys.LIFT_RIGHT, prefs.getInt("CanID_LiftRight", 4));
 
     dashboard.put(MapKeys.PCM_CLIMBCANID, prefs.getInt("CanID_PCM_ClimbID1", 5));
     dashboard.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, prefs.getInt("CanID_FrontLeftExtend", 0));

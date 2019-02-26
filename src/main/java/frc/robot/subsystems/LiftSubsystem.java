@@ -29,30 +29,24 @@ public class LiftSubsystem extends Subsystem {
   private static final int TALON_TIMEOUT_MS = 1000; 
   private static final double DISTANCE_PER_TICK = AUTOLIFTSPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
 
-  private double m_p = 1;
+  private double m_p = 0.25;
   private double m_i = 0.0;
   private double m_d = 10.0;
   private double m_maxIntegral = 1.0;
-  private int m_maxAmps = 2;
+  private int m_maxAmps = 10;
 
   private boolean m_autoActive; //is auto active?
   private double m_autoDistance; //distance to travel autonomously
 
   public final double HIGH_POS_IN = 57.0;
-  public final double MID_POS_IN = 26.0;
+  public final double MID_POS_IN = 26.0;  
   public final double LOW_POS_IN = 0.0;
 
   //private double m_current; //current draw of the talon from the PDP
 
   public LiftSubsystem(){
-    m_motorup1 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
-    m_motorup2 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
-    setOutput(0.0);
-    configTalons();
     m_position_in = 0.0;
     m_speed_ips = 0.0;
-
-
     
   }
   public void setOutput(double output) {
@@ -84,7 +78,7 @@ public class LiftSubsystem extends Subsystem {
     m_motorup1.setIntegralAccumulator(0);
     m_motorup1.set(ControlMode.Position, m_position_counts); // moves motor to 0
 
-    //m_motorup2.set(ControlMode.Follower, Robot.m_map.getId(MapKeys.LIFT_LEFT));
+    m_motorup2.set(ControlMode.Follower, Robot.m_map.getId(MapKeys.LIFT_LEFT));
   }
 
   /** public void liftToBottom() {
@@ -150,6 +144,27 @@ public void startAutoMove(double position_in) {
 public boolean autoMoveFinished() {
 	return !m_autoActive;
 }
+public void initialize() {
+  m_motorup1 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
+  m_motorup2 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
+  setOutput(0.0);
+  configTalons();
+}
+public void teleopInit(){
+  m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
+  m_position_counts = 0;
+  m_motorup1.setIntegralAccumulator(0);
+  m_motorup1.set(ControlMode.Position, m_position_counts);
+  m_autoDistance = 0;
+  m_autoActive = false;
+}
+public void autonomousInit(){
+  m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
+  m_position_counts = 0;
+  m_motorup1.setIntegralAccumulator(0);
+  m_motorup1.set(ControlMode.Position, m_position_counts);
+  m_autoDistance = 0;
+  m_autoActive = false;
+}
 
-  
 } 
