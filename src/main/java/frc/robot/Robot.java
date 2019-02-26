@@ -29,7 +29,8 @@ import frc.robot.subsystems.*;
 	JAGBOTS 2019 DEEP SPACE CODE
 	
  */
-import frc.robot.subsystems.ClimbSubsystem;
+//TODO-Ethan Make sure to uncomment the items from the Climb Susystem. LED Subsystem, The start ascends, basically anything that has to do with climb
+//import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.LedSubsystem;
 
 /**
@@ -44,7 +45,7 @@ public class Robot extends TimedRobot {
   public static RobotMap m_map = new RobotMap();
   public static PowerDistributionPanel m_pdp = new PowerDistributionPanel();
   public static LedSubsystem m_ledSubsystem = new LedSubsystem();
-  public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
+  //public static ClimbSubsystem m_climbSubsystem = new ClimbSubsystem();
   public static GrabberHandSubsystem m_grabberHand = new GrabberHandSubsystem();
   public static GrabberArmSubsystem m_grabberArm = new GrabberArmSubsystem();
   public static DriveTrain m_drivetrain = new DriveTrain();
@@ -69,7 +70,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_climbSubsystem.initialize();
+    //m_climbSubsystem.initialize();
+    m_lift.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData(Scheduler.getInstance());
@@ -141,6 +143,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
+    m_lift.autonomousInit();
   }
 
   /**
@@ -175,6 +178,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_lift.teleopInit();
   }
 
   /**

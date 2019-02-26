@@ -5,6 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
+/*
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -12,13 +14,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DescendCommandGroup extends CommandGroup {
   /**
    * Add your docs here.
-   */
+   
   public DescendCommandGroup() {
     addSequential(new startDescendCommand());
     addSequential(new ClimbNextCommand());
     addSequential(new ClimbNextCommand());
     addSequential(new ClimbNextCommand());
     addSequential(new ClimbNextCommand());
+  }
+}
+
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -35,5 +40,4 @@ public class DescendCommandGroup extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-  }
-}
+  */

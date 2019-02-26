@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+/*
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -21,7 +21,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
  * Add your docs here.
- */
+ 
 public class ClimbSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -630,4 +630,4 @@ public void ascendAssistBack(boolean state) {
 }
  
 }
-
+*/
