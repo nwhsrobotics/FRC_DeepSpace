@@ -72,7 +72,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public void update(double y, double z){
-    m_drive.arcadeDrive(y, z);
+    m_drive.arcadeDrive(y, z, true);
     //TO-DO: make sure sensor phases are same as motor direction
   }
 

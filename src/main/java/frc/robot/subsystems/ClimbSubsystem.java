@@ -31,25 +31,12 @@ public class ClimbSubsystem extends Subsystem {
     IDLE,
     DESCEND_S1, DESCEND_S2, DESCEND_S3, DESCEND_S4, DESCEND_S5,
     CLIMB_L2_S1, CLIMB_L2_S2, CLIMB_L2_S3, CLIMB_L2_S4, CLIMB_L2_S5, CLIMB_L2_S6,
-    CLIMB_L3_S1, CLIMB_L3_S2, CLIMB_L3_S3, CLIMB_L3_S4,
+    CLIMB_L3_S1, CLIMB_L3_S2, CLIMB_L3_S3, CLIMB_L3_S4, CLIMB_L3_S5,
   }
   private ClimbState m_climbState = ClimbState.IDLE;
 
   private static final EnumMap<ClimbState, ClimbState> nextStageMap = new EnumMap<>(ClimbState.class);
   private static final EnumMap<ClimbState, ClimbState> prevStageMap = new EnumMap<>(ClimbState.class);
-
-  
-/*
-  private static final double DESCEND_SLOW = 0.5;
-
-  private static final double L2_ASCEND_SPEED = 0.5;
-
-  private static final double L2_ASCEND_SLOW = 0.5;
-
-  private static final double L3_ASCEND_SPEED = 0.5;
-
-  private static final double L3_ASCEND_SLOW = 0.5;
-*/
 
   private double m_timeLeft_sec;
 
@@ -61,7 +48,8 @@ public class ClimbSubsystem extends Subsystem {
   private DoubleSolenoid Solenoid_5;
   private DoubleSolenoid Solenoid_6;
   private DoubleSolenoid Solenoid_7;
-  private DoubleSolenoid Solenoid_8; 
+  private DoubleSolenoid Solenoid_8;
+
   WPI_TalonSRX frontwheel;
   WPI_TalonSRX backwheel;
   public SpeedControllerGroup climbwheels;
@@ -102,7 +90,8 @@ public class ClimbSubsystem extends Subsystem {
     nextStageMap.put(ClimbState.CLIMB_L3_S1, ClimbState.CLIMB_L3_S2);
     nextStageMap.put(ClimbState.CLIMB_L3_S2, ClimbState.CLIMB_L3_S3);
     nextStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S4);
-    nextStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.IDLE);
+    nextStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S5);
+    nextStageMap.put(ClimbState.CLIMB_L3_S5, ClimbState.IDLE);
 
     prevStageMap.put(ClimbState.IDLE, ClimbState.IDLE);
 
@@ -123,6 +112,7 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S2, ClimbState.CLIMB_L3_S1);
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
+    prevStageMap.put(ClimbState.CLIMB_L3_S5, ClimbState.CLIMB_L3_S4);
 
     m_mainDrive = 0.0;
     
@@ -135,6 +125,7 @@ public class ClimbSubsystem extends Subsystem {
     }
 
   public void initialize() {
+    
     frontwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.FRONTCLIMBWHEEL));  
     frontwheel.setInverted(true); 
     backwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKCLIMBWHEEL));
@@ -203,7 +194,7 @@ public class ClimbSubsystem extends Subsystem {
       Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT)
     );
     Solenoid_8.set(DoubleSolenoid.Value.kOff);
-
+    
     setActuators();
   }
 
@@ -531,7 +522,7 @@ public class ClimbSubsystem extends Subsystem {
 
       case CLIMB_L3_S4:
         ascendFront(false);
-        ascendBack(false);
+        ascendBack(true);
         descendAssistBack(false);
         descendAssistFront(false);
         ascendAssistBack(false);
@@ -542,6 +533,24 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
         System.out.print("Climb Level 3 Stage 4\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
+        break;
+
+        case CLIMB_L3_S5:
+        ascendFront(false);
+        ascendBack(false);
+        descendAssistBack(false);
+        descendAssistFront(false);
+        ascendAssistBack(false);
+        m_auxDrive = prefs.getDouble("Climb_L3_S5_AuxDrive", 0.0);
+        m_mainDrive = prefs.getDouble("Climb_L3_S5_MainDrive", 0.5);
+        m_timeLeft_sec = prefs.getDouble("Climb_L3_S5_TimeLeft", 2.0);
+        m_LEDRedValue = 0;
+        m_LEDBlueValue = 0;
+        m_LEDGreenValue = 0;
+        System.out.print("Climb Level 3 Stage 5\n");
         m_autoDescend = false;
         m_autoL2Ascend = false;
         m_autoL3Ascend = true;

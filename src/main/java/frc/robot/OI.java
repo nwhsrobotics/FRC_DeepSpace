@@ -123,7 +123,7 @@ public class OI {
 
   }
   public double getTurnValue() {
-    TURNMODIFIER = prefs.getDouble("Drive_Turn_Modifier", 0.7);
+    TURNMODIFIER = prefs.getDouble("Drive_Turn_Modifier", 0.5);
     if (Math.abs(joy.getRawAxis(4)) < .1) {
       return 0;
     } else {
