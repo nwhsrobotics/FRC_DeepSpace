@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
    
     vidSink = CameraServer.getInstance().getServer();
 
-    m_ledSubsystem.LED(true);
+    //m_ledSubsystem.LED(true);
 
   }
 

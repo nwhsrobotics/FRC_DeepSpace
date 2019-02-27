@@ -26,7 +26,7 @@ public class LiftCommand extends Command {
   @Override
   protected void execute() {
     Robot.m_lift.update(Robot.m_oi.getLiftValue());
-    Robot.m_ledSubsystem.LiftDrive();
+    //Robot.m_ledSubsystem.LiftDrive();
   }
 
   // Make this return true when this Command no longer needs to run execute()

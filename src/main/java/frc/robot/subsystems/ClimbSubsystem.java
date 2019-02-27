@@ -119,11 +119,13 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
 
-    frontwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.FRONTCLIMBWHEEL));  
-    frontwheel.setInverted(true); 
-    backwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKCLIMBWHEEL));
-    backwheel.setInverted(true);
-    climbwheels = new SpeedControllerGroup(frontwheel, backwheel);
+    if ((frontwheel != null) && (backwheel != null)){ 
+      frontwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.FRONTCLIMBWHEEL));  
+      frontwheel.setInverted(true); 
+      backwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKCLIMBWHEEL));
+      backwheel.setInverted(true);
+      climbwheels = new SpeedControllerGroup(frontwheel, backwheel);
+    }
     final int PCM_1_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID);
     final int PCM_2_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2);
 

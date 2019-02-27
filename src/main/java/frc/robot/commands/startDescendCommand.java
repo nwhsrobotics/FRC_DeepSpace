@@ -34,7 +34,7 @@ public class startDescendCommand extends Command {
   protected void execute() {
     Robot.m_drivetrain.update(Robot.m_climbSubsystem.getMainDrive(), 0);
     Robot.m_climbSubsystem.setauxDrive();
-    Robot.m_ledSubsystem.climbDescend();
+    //Robot.m_ledSubsystem.climbDescend();
   
   }
 

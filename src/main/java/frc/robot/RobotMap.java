@@ -60,14 +60,14 @@ public class RobotMap {
 
     // BRIEFCASE IDs BEGIN HERE #########################################
 
-    briefcase.put(MapKeys.DRIVE_FRONTLEFT, 0);
-    briefcase.put(MapKeys.DRIVE_FRONTRIGHT, 0);
-    briefcase.put(MapKeys.DRIVE_BACKLEFT, 0);
-    briefcase.put(MapKeys.DRIVE_BACKRIGHT, 0);
+    briefcase.put(MapKeys.DRIVE_FRONTLEFT, 20);
+    briefcase.put(MapKeys.DRIVE_FRONTRIGHT, 21);
+    briefcase.put(MapKeys.DRIVE_BACKLEFT, 22);
+    briefcase.put(MapKeys.DRIVE_BACKRIGHT, 23);
 
     briefcase.put(MapKeys.SLIDE, 4);
-    briefcase.put(MapKeys.LIFT_LEFT, 0);
-    briefcase.put(MapKeys.LIFT_RIGHT, 0);
+    briefcase.put(MapKeys.LIFT_LEFT, 8);
+    briefcase.put(MapKeys.LIFT_RIGHT, 9);
 
     briefcase.put(MapKeys.PCM_CLIMBCANID, 5);
     briefcase.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);

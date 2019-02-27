@@ -26,7 +26,7 @@ public class LiftHighCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_ledSubsystem.LiftHigh(); 
+    //Robot.m_ledSubsystem.LiftHigh(); 
 
   }
 

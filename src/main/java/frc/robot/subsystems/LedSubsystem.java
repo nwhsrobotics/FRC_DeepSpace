@@ -166,7 +166,7 @@ public class LedSubsystem extends Subsystem {
   }
 
 //public void LED(int n, boolean state) {
-  public void LED(boolean state){
+  /** public void LED(boolean state){
     /*if (){         
       m_pixel[n].set((byte) 50,(byte) 0,(byte) 0);
     } else {
@@ -180,7 +180,7 @@ public class LedSubsystem extends Subsystem {
     } Working but need to initialize each LED */
     /*for (int n = NUM_PIXELS-1; n > 0; n--) {
       // shift all pixels by one
-      m_pixel[n].copy(m_pixel[n-1]);*/
+      m_pixel[n].copy(m_pixel[n-1]);
 
       // write one new pixel
       if(state) {
@@ -540,7 +540,7 @@ public void climbL3(){
   }
 }
 public void DriveLeft(){
-  double ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage() * 0.1, 1) * 255);
+  double ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_frontleft.getOutputCurrent() * 0.1, 1) * 255);
   //if (Math.abs(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage()) > 0) {
   if (true) {
       m_pixel[1].set((byte) 0,(byte) ledValue,(byte) 0);
@@ -578,7 +578,7 @@ public void DriveLeft(){
 
 
 public void DriveRight(){
-  double ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage() * 0.1, 1) * 255);
+  double ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_frontright.getOutputCurrent() * 0.1, 1) * 255);
 if (true){
   //if (Math.abs(Robot.m_drivetrain.m_backright.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage()) > 0) {
     m_pixel[30].set((byte) ledValue2,(byte) 0,(byte) 0);
@@ -738,7 +738,7 @@ public void blindCommand(boolean state2){
   m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
   m_pixel[59].set((byte) 0,(byte) 0,(byte) 0);
   }
-}
+} */
 
 
 }
