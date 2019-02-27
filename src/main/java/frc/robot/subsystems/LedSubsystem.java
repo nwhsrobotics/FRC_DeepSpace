@@ -166,7 +166,7 @@ public class LedSubsystem extends Subsystem {
   }
 
 //public void LED(int n, boolean state) {
-  /** public void LED(boolean state){
+  public void LED(boolean state){
     /*if (){         
       m_pixel[n].set((byte) 50,(byte) 0,(byte) 0);
     } else {
@@ -738,7 +738,7 @@ public void blindCommand(boolean state2){
   m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
   m_pixel[59].set((byte) 0,(byte) 0,(byte) 0);
   }
-} */
+}
 
 
 }
