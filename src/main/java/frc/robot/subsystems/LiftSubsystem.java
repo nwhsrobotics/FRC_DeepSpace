@@ -29,7 +29,7 @@ public class LiftSubsystem extends Subsystem {
   private static final int TALON_TIMEOUT_MS = 1000; 
   private static final double DISTANCE_PER_TICK = AUTOLIFTSPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
 
-  private double m_p = 0.25;
+  private double m_p = 0.5;
   private double m_i = 0.0;
   private double m_d = 10.0;
   private double m_maxIntegral = 1.0;
@@ -47,7 +47,16 @@ public class LiftSubsystem extends Subsystem {
   public LiftSubsystem(){
     m_position_in = 0.0;
     m_speed_ips = 0.0;
-    
+  }
+  public void initialize() {
+    int leftCanID = Robot.m_map.getId(MapKeys.LIFT_LEFT);
+    int rightCanID = Robot.m_map.getId(MapKeys.LIFT_RIGHT);
+    if ((leftCanID != 0) && (rightCanID !=0)){
+      m_motorup1 = new TalonSRX(leftCanID);
+      m_motorup2 = new TalonSRX(rightCanID);
+      setOutput(0.0);
+      configTalons();
+    }
   }
   public void setOutput(double output) {
     if ((m_motorup1 != null) && (m_motorup2 != null)) {
@@ -144,12 +153,7 @@ public void startAutoMove(double position_in) {
 public boolean autoMoveFinished() {
 	return !m_autoActive;
 }
-public void initialize() {
-  m_motorup1 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
-  m_motorup2 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
-  setOutput(0.0);
-  configTalons();
-}
+
 public void teleopInit(){
   m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
   m_position_counts = 0;

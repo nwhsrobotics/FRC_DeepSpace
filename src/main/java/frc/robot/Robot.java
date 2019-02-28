@@ -73,8 +73,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    //m_climbSubsystem.initialize();
+    m_drivetrain.initialize();
+    m_climbSubsystem.initialize();
     m_lift.initialize();
+    m_grabberArm.initialize();
+    m_grabberHand.initialize();
+    m_slide.initialize();
     // m_chooser.setDefaultOption("Default Auto", new GrabberOff()); 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData(Scheduler.getInstance());

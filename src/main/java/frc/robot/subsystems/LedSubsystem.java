@@ -539,9 +539,11 @@ public void climbL3(){
     m_pixel[55].set((byte) 0,(byte) 0,(byte) 0);
   }
 }
-
 public void DriveLeft(){
-  double ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage() * 0.1, 1) * 255);
+  double ledValue = 0;
+  if (Robot.m_drivetrain.m_frontleft != null){
+    ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage() * 0.1, 1) * 255);
+  }
   //if (Math.abs(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage()) > 0) {
   if (true) {
       m_pixel[1].set((byte) 0,(byte) ledValue,(byte) 0);
@@ -579,8 +581,11 @@ public void DriveLeft(){
 
 
 public void DriveRight(){
-  double ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage() * 0.1, 1) * 255);
-if (true){
+  double ledValue2 = 0;
+  if (Robot.m_drivetrain.m_frontright != null){
+    ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage() * 0.1, 1) * 255);
+  }
+  if (true){
   //if (Math.abs(Robot.m_drivetrain.m_backright.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage()) > 0) {
     m_pixel[30].set((byte) ledValue2,(byte) 0,(byte) 0);
     m_pixel[31].set((byte) ledValue2,(byte) 0,(byte) 0);
