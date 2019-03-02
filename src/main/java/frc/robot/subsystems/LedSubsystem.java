@@ -178,9 +178,9 @@ public class LedSubsystem extends Subsystem {
     } else {
       m_pixel[n].set((byte)0, (byte)0, (byte)0);
     } Working but need to initialize each LED */
-    /*for (int n = NUM_PIXELS-1; n > 0; n--) {
+    for (int n = NUM_PIXELS-1; n > 0; n--) {
       // shift all pixels by one
-      m_pixel[n].copy(m_pixel[n-1]);*/
+      m_pixel[n].copy(m_pixel[n-1]);
 
       // write one new pixel
       if(state) {
@@ -307,7 +307,9 @@ public class LedSubsystem extends Subsystem {
     m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
     m_pixel[59].set((byte) 0,(byte) 0,(byte) 0);
     }
-      // ___ r _____
+  }
+
+    // ___ r _____
     //sendFrame();
     
   }
@@ -540,7 +542,10 @@ public void climbL3(){
   }
 }
 public void DriveLeft(){
-  /*double ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage() * 0.1, 1) * 255);
+  double ledValue = 0;
+  if (Robot.m_drivetrain.m_frontleft != null){
+    ledValue = Math.abs(Math.min(Robot.m_drivetrain.m_frontleft.getOutputCurrent() * 0.1, 1) * 255);
+  }
   //if (Math.abs(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage()) > 0) {
   if (true) {
       m_pixel[1].set((byte) 0,(byte) ledValue,(byte) 0);
@@ -574,13 +579,16 @@ public void DriveLeft(){
       m_pixel[29].set((byte) 0,(byte) ledValue,(byte) 0);
       
     } 
-    */
+    
   }
 
 
 public void DriveRight(){
-  /*double ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage() * 0.1, 1) * 255);
-if (true){
+  double ledValue2 = 0;
+  if (Robot.m_drivetrain.m_frontright != null){
+    ledValue2 = Math.abs(Math.min(Robot.m_drivetrain.m_frontright.getOutputCurrent() * 0.1, 1) * 255);
+  }
+  if (true){
   //if (Math.abs(Robot.m_drivetrain.m_backright.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontright.getMotorOutputVoltage()) > 0) {
     m_pixel[30].set((byte) ledValue2,(byte) 0,(byte) 0);
     m_pixel[31].set((byte) ledValue2,(byte) 0,(byte) 0);
@@ -613,7 +621,7 @@ if (true){
     m_pixel[58].set((byte) ledValue2,(byte) 0,(byte) 0);
     
   } 
-  */
+  
 }
 
 public void blindCommand(boolean state2){

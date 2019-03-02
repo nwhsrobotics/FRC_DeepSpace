@@ -20,9 +20,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
 
-/**
- * Add your docs here.
- */
+//Add your docs here.
+ 
 public class ClimbSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -67,6 +66,8 @@ public class ClimbSubsystem extends Subsystem {
   public boolean m_autoDescend;
   public boolean m_autoL2Ascend;
   public boolean m_autoL3Ascend;
+
+  private boolean m_configured = false;
 
 
 
@@ -125,79 +126,89 @@ public class ClimbSubsystem extends Subsystem {
     }
 
   public void initialize() {
-    
-    frontwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.FRONTCLIMBWHEEL));  
-    frontwheel.setInverted(true); 
-    backwheel = new WPI_TalonSRX(Robot.m_map.getId(MapKeys.BACKCLIMBWHEEL));
-    backwheel.setInverted(true);
-    climbwheels = new SpeedControllerGroup(frontwheel, backwheel);
-    int PCM_1_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID);
-    int PCM_2_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2);
-
-   
-    Solenoid_1 = new DoubleSolenoid(
-      PCM_1_CAN_ID,
-      Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTEXTEND),
-      Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTRETRACT)
-    );
-    Solenoid_1.set(DoubleSolenoid.Value.kOff);
-
-    Solenoid_2 = new DoubleSolenoid(
-      PCM_1_CAN_ID,
-      Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTEXTEND),
-      Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTRETRACT)
-    );
-    Solenoid_2.set(DoubleSolenoid.Value.kOff);
-  
-
-    
-    Solenoid_3 = new DoubleSolenoid(
-      PCM_1_CAN_ID,
-      Robot.m_map.getId(MapKeys.SOLENOID_BACKLEFTEXTEND),
-      Robot.m_map.getId(MapKeys.SOLENOID_BACKLEFTRETRACT)
-      );
-    Solenoid_3.set(DoubleSolenoid.Value.kOff);
-
-    Solenoid_4 = new DoubleSolenoid(
-      PCM_1_CAN_ID,
-    Robot.m_map.getId(MapKeys.SOLENOID_BACKRIGHTEXTEND),
-    Robot.m_map.getId(MapKeys.SOLENOID_BACKRIGHTRETRACT)
-    );
-    Solenoid_4.set(DoubleSolenoid.Value.kOff);
-    
-   
-
-    Solenoid_5 = new DoubleSolenoid(
-      PCM_2_CAN_ID,
-      Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTEXTEND),
-      Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTRETRACT)
-    );
-    Solenoid_5.set(DoubleSolenoid.Value.kOff);
-
-    Solenoid_6 = new DoubleSolenoid(
-      PCM_2_CAN_ID,
-      Robot.m_map.getId(MapKeys.SOLENOID_LOWERBACKEXTEND),
-      Robot.m_map.getId(MapKeys.SOLENOID_LOWERBACKRETRACT)
-    );
-    Solenoid_6.set(DoubleSolenoid.Value.kOff); 
-    
-    Solenoid_7 = new DoubleSolenoid(
-      PCM_2_CAN_ID,
-      Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND),
-      Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT)
-    );
-    Solenoid_7.set(DoubleSolenoid.Value.kOff);
-
-    Solenoid_8 = new DoubleSolenoid(
-      PCM_2_CAN_ID,
-      Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND),
-      Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT)
-    );
-    Solenoid_8.set(DoubleSolenoid.Value.kOff);
-    
+    initActuators();
     setActuators();
   }
+  public void initActuators(){
+    int frontClimbCanID = Robot.m_map.getId(MapKeys.FRONTCLIMBWHEEL);
+    int backClimbCanID = Robot.m_map.getId(MapKeys.BACKCLIMBWHEEL);
+    if ((frontClimbCanID != 0) && (backClimbCanID != 0)){
+      frontwheel = new WPI_TalonSRX(frontClimbCanID);  
+      frontwheel.setInverted(true); 
+      backwheel = new WPI_TalonSRX(backClimbCanID);
+      backwheel.setInverted(true);
+      climbwheels = new SpeedControllerGroup(frontwheel, backwheel);
+    }
 
+
+    final int PCM_1_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID);
+    final int PCM_2_CAN_ID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2);
+    if ((PCM_1_CAN_ID != 0) && (PCM_2_CAN_ID != 0)){
+      Solenoid_1 = new DoubleSolenoid(
+        PCM_1_CAN_ID,
+        Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTRETRACT)
+      );
+      Solenoid_1.set(DoubleSolenoid.Value.kOff);
+
+      Solenoid_2 = new DoubleSolenoid(
+        PCM_1_CAN_ID,
+        Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTRETRACT)
+      );
+      Solenoid_2.set(DoubleSolenoid.Value.kOff);
+    
+
+      
+      Solenoid_3 = new DoubleSolenoid(
+        PCM_1_CAN_ID,
+        Robot.m_map.getId(MapKeys.SOLENOID_BACKLEFTEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_BACKLEFTRETRACT)
+        );
+      Solenoid_3.set(DoubleSolenoid.Value.kOff);
+
+      Solenoid_4 = new DoubleSolenoid(
+        PCM_1_CAN_ID,
+      Robot.m_map.getId(MapKeys.SOLENOID_BACKRIGHTEXTEND),
+      Robot.m_map.getId(MapKeys.SOLENOID_BACKRIGHTRETRACT)
+      );
+      Solenoid_4.set(DoubleSolenoid.Value.kOff);
+      
+    
+
+      Solenoid_5 = new DoubleSolenoid(
+        PCM_2_CAN_ID,
+        Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTRETRACT)
+      );
+      Solenoid_5.set(DoubleSolenoid.Value.kOff);
+
+      Solenoid_6 = new DoubleSolenoid(
+        PCM_2_CAN_ID,
+        Robot.m_map.getId(MapKeys.SOLENOID_LOWERBACKEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_LOWERBACKRETRACT)
+      );
+      Solenoid_6.set(DoubleSolenoid.Value.kOff); 
+      
+      Solenoid_7 = new DoubleSolenoid(
+        PCM_2_CAN_ID,
+        Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT)
+      );
+      Solenoid_7.set(DoubleSolenoid.Value.kOff);
+
+      Solenoid_8 = new DoubleSolenoid(
+        PCM_2_CAN_ID,
+        Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT)
+      );
+      Solenoid_8.set(DoubleSolenoid.Value.kOff);
+    }
+    if ((frontClimbCanID != 0) && (backClimbCanID != 0) && 
+        (PCM_1_CAN_ID != 0) && (PCM_2_CAN_ID != 0)){
+      m_configured = true;
+    }
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -245,9 +256,10 @@ public class ClimbSubsystem extends Subsystem {
   }
 
   private void setActuators() {
-
     Preferences prefs = Preferences.getInstance();
-
+    if (!m_configured){
+      return;
+    }
     switch(m_climbState) {
 
       case IDLE:

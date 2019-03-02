@@ -53,8 +53,14 @@ public class SlideSubsystem extends Subsystem {
     m_autoActiveslide = false;
     m_autoDistance = 0;
 
-
-    
+  }
+  public void initialize(){
+    int canID = Robot.m_map.getId(MapKeys.SLIDE);
+    if (canID != 0){
+      m_motorSlide = new TalonSRX(canID);
+      setOutput(0.0);
+      configTalons();
+    }
   }
 
   public void Initialize(){
@@ -77,7 +83,7 @@ public class SlideSubsystem extends Subsystem {
     }
   }
 
-  public void configTalons() {
+  private void configTalons() {
     if ((m_motorSlide == null)) {
       return;
     }
