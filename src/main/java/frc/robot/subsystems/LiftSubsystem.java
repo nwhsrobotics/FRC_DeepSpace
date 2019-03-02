@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap.MapKeys;
@@ -38,9 +39,9 @@ public class LiftSubsystem extends Subsystem {
   private boolean m_autoActive; //is auto active?
   private double m_autoDistance; //distance to travel autonomously
 
-  public final double HIGH_POS_IN = 57.0;
-  public final double MID_POS_IN = 26.0;  
-  public final double LOW_POS_IN = 0.0;
+  public double HIGH_POS_IN;
+  public double MID_POS_IN;  
+  public double LOW_POS_IN;
 
   //private double m_current; //current draw of the talon from the PDP
 
@@ -58,6 +59,25 @@ public class LiftSubsystem extends Subsystem {
       configTalons();
     }
   }
+
+  public void Initialize() {
+    Preferences prefs = Preferences.getInstance();
+
+    m_p = prefs.getDouble("Lift_P_Value", 1.0);
+    m_i = prefs.getDouble("Lift_I_Value", 0.0);
+    m_d = prefs.getDouble("Lift_D_Value", 10.0);
+
+    HIGH_POS_IN = prefs.getDouble("Lift_High_Pos", 57.0);
+    MID_POS_IN = prefs.getDouble("Lift_Mid_Pos", 26.0);
+    LOW_POS_IN = prefs.getDouble("Lift_Low_Pos", 0.0);
+    
+    m_motorup1 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_LEFT));
+    m_motorup2 = new TalonSRX(Robot.m_map.getId(MapKeys.LIFT_RIGHT));
+    setOutput(0.0);
+    configTalons();
+
+  }
+
   public void setOutput(double output) {
     if ((m_motorup1 != null) && (m_motorup2 != null)) {
       m_motorup1.set(ControlMode.PercentOutput, output);
@@ -66,6 +86,9 @@ public class LiftSubsystem extends Subsystem {
   }
 
   public void configTalons() {
+
+   
+
     if ((m_motorup1 == null) && (m_motorup2 == null)) {
       return;
     }

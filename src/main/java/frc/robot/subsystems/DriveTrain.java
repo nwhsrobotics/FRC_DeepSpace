@@ -14,6 +14,10 @@ import frc.robot.Robot;
 import frc.robot.RobotMap.MapKeys;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
+import com.revrobotics.CANSparkMax.IdleMode;
+
+
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
@@ -63,7 +67,7 @@ public class DriveTrain extends Subsystem {
   }
   public void update(double y, double z){
     if (m_drive != null){
-      m_drive.arcadeDrive(y, z);
+      m_drive.arcadeDrive(y, z, true);
     }
   }
 

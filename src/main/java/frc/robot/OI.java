@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
 import java.lang.Math;
@@ -38,10 +39,12 @@ public class OI {
   // button.whenReleased(new ExampleCommand());
 
   Joystick joy = new Joystick(0);
+
+  Preferences prefs = Preferences.getInstance();
   
-  private final double TURNMODIFIER = 0.7;
-  private final double STRAIGHMODIFIER = -1;
-  private final double LIFTMODIFIER = -0.8;
+  private double TURNMODIFIER;
+  private double STRAIGHMODIFIER;
+  private double LIFTMODIFIER;
 
   public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
@@ -110,6 +113,7 @@ public class OI {
 
 
   public double getForwardValue() {
+    STRAIGHMODIFIER = prefs.getDouble("Drive_Straight_Modifier", -1);
     if (Math.abs(joy.getRawAxis(1)) < .1) {
       return 0;
     } else {
@@ -119,6 +123,7 @@ public class OI {
 
   }
   public double getTurnValue() {
+    TURNMODIFIER = prefs.getDouble("Drive_Turn_Modifier", 0.5);
     if (Math.abs(joy.getRawAxis(4)) < .1) {
       return 0;
     } else {
@@ -127,6 +132,7 @@ public class OI {
   }
 
   public double getLiftValue() {
+    LIFTMODIFIER = prefs.getDouble("Lift_Modifier", -0.8);
     return joy2.getRawAxis(1) * LIFTMODIFIER;
   }
 

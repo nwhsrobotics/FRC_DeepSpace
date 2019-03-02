@@ -579,6 +579,7 @@ public void DriveLeft(){
       m_pixel[29].set((byte) 0,(byte) ledValue,(byte) 0);
       
     } 
+    
   }
 
 
@@ -620,6 +621,7 @@ public void DriveRight(){
     m_pixel[58].set((byte) ledValue2,(byte) 0,(byte) 0);
     
   } 
+  
 }
 
 public void blindCommand(boolean state2){

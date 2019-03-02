@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap.MapKeys;
@@ -33,9 +34,11 @@ public class SlideSubsystem extends Subsystem {
   private static final double POSITIVE_LIMIT_IN = 4.5;
   private static final double NEGATIVE_LIMIT_IN = -4.5;
 
-  private double m_p = 1.0;//Robot.m_map.pidSlideMotor("p");
-  private double m_i = .001;//Robot.m_map.pidSlideMotor("i");
-  private double m_d = 0.0;//Robot.m_map.pidSlideMotor("d");
+  Preferences prefs = Preferences.getInstance();
+
+  private double m_p;//Robot.m_map.pidSlideMotor("p");
+  private double m_i;//Robot.m_map.pidSlideMotor("i");
+  private double m_d;//Robot.m_map.pidSlideMotor("d");
   private double m_maxIntegral = 1.0;
   private int m_maxAmps = 2;
 
@@ -59,6 +62,21 @@ public class SlideSubsystem extends Subsystem {
       configTalons();
     }
   }
+
+  public void Initialize(){
+
+    Preferences prefs = Preferences.getInstance();
+
+    m_p = prefs.getDouble("Slide_P_Value", 1.0);//Robot.m_map.pidSlideMotor("p");
+    m_i = prefs.getDouble("Slide_I_Value", 0.001);//Robot.m_map.pidSlideMotor("i");
+    m_d = prefs.getDouble("Slide_D_Value", 0.0);//Robot.m_map.pidSlideMotor("d");
+
+    m_motorSlide = new TalonSRX(Robot.m_map.getId(MapKeys.SLIDE));
+    setOutput(0.0);
+    configTalons();
+
+  }
+
   public void setOutput(double output) {
     if ((m_motorSlide != null)) {
       m_motorSlide.set(ControlMode.PercentOutput, output);
