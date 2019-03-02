@@ -79,16 +79,16 @@ public class OI {
   public OI () {
 
     //bButton1.toggleWhenPressed(new CameraToggle);
-
+    
     backButton1.whenPressed(new startDescendCommand()); //initiate lvl 2 descent
     startButton1.whenPressed(new startL2AscendCommand()); //initiate lvl 2 climb
-    xButton1.whenPressed(new startL3AscendCommand()); // intiate lvl 3 climb
+    xButton1.whenPressed(new startL3AscendCommand()); // intiate lvl 3 climb*/
     
     leftBumper2.whenPressed(new BlindCommand());
-
+    
     leftBumper1.whenPressed(new ClimbPrevCommand()); //press to go to the previous climb state in the sequence
     rightBumper1.whenPressed(new ClimbNextCommand()); //press to go to the next climb state in the sequence
-
+    
     
     yButton2.whenPressed(new PneumaticArmExtend()); //Press for arm extend
     yButton2.whenReleased(new PneumaticArmRetract()); //release for arm retract
