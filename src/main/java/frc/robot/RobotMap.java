@@ -60,26 +60,28 @@ public class RobotMap {
 
     // BRIEFCASE IDs BEGIN HERE #########################################
 
-    briefcase.put(MapKeys.DRIVE_FRONTLEFT, 20);
-    briefcase.put(MapKeys.DRIVE_FRONTRIGHT, 21);
-    briefcase.put(MapKeys.DRIVE_BACKLEFT, 22);
-    briefcase.put(MapKeys.DRIVE_BACKRIGHT, 23);
+    briefcase.put(MapKeys.DRIVE_FRONTLEFT, 0);
+    briefcase.put(MapKeys.DRIVE_FRONTRIGHT, 0);
+    briefcase.put(MapKeys.DRIVE_BACKLEFT, 0);
+    briefcase.put(MapKeys.DRIVE_BACKRIGHT, 0);
+    briefcase.put(MapKeys.FRONTCLIMBWHEEL, 0);
+    briefcase.put(MapKeys.BACKCLIMBWHEEL, 0);
 
-    briefcase.put(MapKeys.SLIDE, 4);
+    briefcase.put(MapKeys.SLIDE, 0);
     briefcase.put(MapKeys.LIFT_LEFT, 8);
-    briefcase.put(MapKeys.LIFT_RIGHT, 9);
+    briefcase.put(MapKeys.LIFT_RIGHT, 4);
 
-    briefcase.put(MapKeys.PCM_CLIMBCANID, 5);
+    briefcase.put(MapKeys.PCM_CLIMBCANID, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTLEFTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 1);
-    briefcase.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 2);
-    briefcase.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 3);
-    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 4);
-    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 5);
+    briefcase.put(MapKeys.SOLENOID_FRONTLEFTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_BACKLEFTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_BACKLEFTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 0);
     briefcase.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 6);
     briefcase.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 7);
 
-    briefcase.put(MapKeys.PCM_CLIMBCANID2, 6);
+    briefcase.put(MapKeys.PCM_CLIMBCANID2, 0);
     briefcase.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
     briefcase.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 1);
     briefcase.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 2);
@@ -89,7 +91,7 @@ public class RobotMap {
     briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 6);
     briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 7);
 
-    briefcase.put(MapKeys.PCM_ARMCANID, 7);
+    briefcase.put(MapKeys.PCM_ARMCANID, 0);
     briefcase.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
     briefcase.put(MapKeys.SOLENOID_PUSHERRETRACT, 1);
     briefcase.put(MapKeys.SOLENOID_ARMFORWARD, 2);
@@ -230,7 +232,7 @@ public class RobotMap {
 
 
 
-  public RobotTypes activeRobot = RobotTypes.DASHBOARD;
+  public RobotTypes activeRobot = RobotTypes.BRIEFCASE;
 
   public int getId(MapKeys key) {
     System.out.printf("In Get ID. %s\n", key.toString());

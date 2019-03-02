@@ -45,16 +45,19 @@ public class SlideSubsystem extends Subsystem {
   //private double m_current; //current draw of the talon from the PDP
 
   public SlideSubsystem(){
-    m_motorSlide = new TalonSRX(Robot.m_map.getId(MapKeys.SLIDE));
-    setOutput(0.0);
-    configTalons();
     m_position_in = 0.0;
     m_speed_ips = 0.0;
     m_autoActiveslide = false;
     m_autoDistance = 0;
 
-
-    
+  }
+  public void initialize(){
+    int canID = Robot.m_map.getId(MapKeys.SLIDE);
+    if (canID != 0){
+      m_motorSlide = new TalonSRX(canID);
+      setOutput(0.0);
+      configTalons();
+    }
   }
   public void setOutput(double output) {
     if ((m_motorSlide != null)) {
@@ -62,7 +65,7 @@ public class SlideSubsystem extends Subsystem {
     }
   }
 
-  public void configTalons() {
+  private void configTalons() {
     if ((m_motorSlide == null)) {
       return;
     }
