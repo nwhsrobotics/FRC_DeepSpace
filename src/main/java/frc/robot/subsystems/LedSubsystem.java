@@ -556,35 +556,35 @@ public void DriveLeft(){
   }
   //if (Math.abs(Robot.m_drivetrain.m_backleft.getMotorOutputVoltage()) > 0 && Math.abs(Robot.m_drivetrain.m_frontleft.getMotorOutputVoltage()) > 0) {
   if (true) {
-      m_pixel[1].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[2].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[3].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[4].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[5].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[6].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[7].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[8].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[9].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[10].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[11].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[12].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[13].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[14].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[15].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[16].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[17].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[18].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[19].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[20].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[21].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[22].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[23].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[24].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[25].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[26].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[27].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[28].set((byte) 0,(byte) ledValue,(byte) 0);
-      m_pixel[29].set((byte) 0,(byte) ledValue,(byte) 0);
+      m_pixel[1].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[2].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[3].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[4].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[5].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[6].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[7].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[8].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[9].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[10].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[11].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[12].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[13].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[14].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[15].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[16].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[17].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[18].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[19].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[20].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[21].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[22].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[23].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[24].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[25].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[26].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[27].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[28].set((byte) ledValue,(byte) 0,(byte) 0);
+      m_pixel[29].set((byte) ledValue,(byte) 0,(byte) 0);
       
     } 
     
@@ -631,7 +631,124 @@ public void DriveRight(){
   } 
   
 }
-
+public void grabberArm(){
+  if (Robot.m_grabberArm.armGrabberLED == true){
+    m_pixel[1].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[2].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[3].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[4].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[5].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[6].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[7].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[8].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[9].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[10].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[11].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[12].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[13].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[14].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[15].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[16].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[17].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[18].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[19].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[20].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[21].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[22].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[23].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[24].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[25].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[26].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[27].set((byte) 0,(byte) 255,(byte) 0);
+  } else {
+      m_pixel[1].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[2].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[3].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[4].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[5].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[6].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[7].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[8].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[9].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[10].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[11].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[12].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[13].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[14].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[15].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[16].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[17].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[18].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[19].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[20].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[21].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[22].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[23].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[24].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[25].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[26].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[27].set((byte) 0,(byte) 0,(byte) 0);
+  }
+}
+public void grabberHand(){
+  if(Robot.m_grabberHand.grabberHandLED == true){
+    m_pixel[27].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[28].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[29].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[30].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[31].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[32].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[33].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[34].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[35].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[36].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[37].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[38].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[39].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[40].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[41].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[42].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[43].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[44].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[45].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[46].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[47].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[48].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[49].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[50].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[51].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[52].set((byte) 0,(byte) 255,(byte) 0);
+    m_pixel[53].set((byte) 0,(byte) 255,(byte) 0);
+  } else {
+      m_pixel[27].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[28].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[29].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[30].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[31].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[32].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[33].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[34].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[35].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[36].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[37].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[38].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[39].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[40].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[41].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[42].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[43].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[44].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[45].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[46].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[47].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[48].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[49].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[50].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[51].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[52].set((byte) 0,(byte) 0,(byte) 0);
+      m_pixel[53].set((byte) 0,(byte) 0,(byte) 0);
+  }
+}
 public void blindCommand(boolean state2){
   if(state2) {
     m_pixel[1].set((byte)255, (byte)255, (byte)255);
@@ -696,66 +813,66 @@ public void blindCommand(boolean state2){
 
   } else{
     m_pixel[0].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[1].set((byte) 0,(byte) 0,(byte) 0);     //brg
-  m_pixel[2].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[3].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[4].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[5].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[6].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[7].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[8].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[9].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[10].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[11].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[12].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[13].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[14].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[15].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[16].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[17].set((byte) 0,(byte) 0,(byte) 0);     //brg
-  m_pixel[18].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[19].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[20].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[21].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[22].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[23].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[24].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[25].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[26].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[27].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[28].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[29].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[30].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[31].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[32].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[33].set((byte) 0,(byte) 0,(byte) 0);     //brg
-  m_pixel[34].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[35].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[36].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[37].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[38].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[39].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[40].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[41].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[42].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[43].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[44].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[45].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[46].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[47].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[48].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[49].set((byte) 0,(byte) 0,(byte) 0);     //brg
-  m_pixel[50].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[51].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[52].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[53].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[54].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[55].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[56].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[57].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
-  m_pixel[59].set((byte) 0,(byte) 0,(byte) 0);
-  }
+    m_pixel[1].set((byte) 0,(byte) 0,(byte) 0);     //brg
+    m_pixel[2].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[3].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[4].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[5].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[6].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[7].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[8].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[9].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[10].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[11].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[12].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[13].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[14].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[15].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[16].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[17].set((byte) 0,(byte) 0,(byte) 0);     //brg
+    m_pixel[18].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[19].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[20].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[21].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[22].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[23].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[24].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[25].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[26].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[27].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[28].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[29].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[30].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[31].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[32].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[33].set((byte) 0,(byte) 0,(byte) 0);     //brg
+    m_pixel[34].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[35].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[36].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[37].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[38].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[39].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[40].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[41].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[42].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[43].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[44].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[45].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[46].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[47].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[48].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[49].set((byte) 0,(byte) 0,(byte) 0);     //brg
+    m_pixel[50].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[51].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[52].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[53].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[54].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[55].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[56].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[57].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
+    m_pixel[59].set((byte) 0,(byte) 0,(byte) 0);
+    }
 }
 
 

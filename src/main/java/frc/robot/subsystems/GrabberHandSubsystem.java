@@ -20,6 +20,7 @@ public class GrabberHandSubsystem extends Subsystem {
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberHand;
   private int PCM_ARMCANID = 0;
+  public boolean grabberHandLED;
 
    public GrabberHandSubsystem() {
    
@@ -30,21 +31,25 @@ public class GrabberHandSubsystem extends Subsystem {
       m_grabberHand = new DoubleSolenoid(Robot.m_map.getId(MapKeys.PCM_ARMCANID), Robot.m_map.getId(MapKeys.SOLENOID_PUSHERPUSH), Robot.m_map.getId(MapKeys.SOLENOID_PUSHERRETRACT));
       m_grabberHand.set(DoubleSolenoid.Value.kOff);
     }
+    grabberHandLED = false;
    }
    public void handTurnOff() {
     if (m_grabberHand != null){
       m_grabberHand.set(DoubleSolenoid.Value.kOff);
     }
+    grabberHandLED = false;
   }
   public void handExtend(){
     if (m_grabberHand != null){
       m_grabberHand.set(DoubleSolenoid.Value.kForward);
     }
+    grabberHandLED = true;
   } 
   public void handRetract() {
     if (m_grabberHand != null){
       m_grabberHand.set(DoubleSolenoid.Value.kReverse);
     }
+    grabberHandLED = true;
   }
 
   @Override
