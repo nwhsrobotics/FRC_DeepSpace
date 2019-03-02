@@ -257,9 +257,6 @@ public class ClimbSubsystem extends Subsystem {
 
   private void setActuators() {
     Preferences prefs = Preferences.getInstance();
-    if (!m_configured){
-      return;
-    }
     switch(m_climbState) {
 
       case IDLE:
@@ -608,6 +605,9 @@ public class ClimbSubsystem extends Subsystem {
 
 
   public void ascendFront(boolean state) {
+    if (!m_configured) {
+      return;
+    }
     if (state) {
       System.out.print("Acscend Front Activated\n");
     Solenoid_1.set(DoubleSolenoid.Value.kForward);
@@ -620,6 +620,9 @@ public class ClimbSubsystem extends Subsystem {
 }
 
 public void ascendBack(boolean state) {
+  if (!m_configured) {
+    return;
+  }
   if (state) {
     System.out.print("Acscend Back Activated\n");
     Solenoid_3.set(DoubleSolenoid.Value.kForward);
@@ -632,6 +635,9 @@ public void ascendBack(boolean state) {
 }
 
 public void descendAssistFront(boolean state) {
+  if (!m_configured) {
+    return;
+  }
   if (state) {
     System.out.print("Descend Front Activated\n");
     Solenoid_5.set(DoubleSolenoid.Value.kForward);
@@ -643,6 +649,9 @@ public void descendAssistFront(boolean state) {
 }
 
 public void descendAssistBack(boolean state) {
+  if (!m_configured) {
+    return;
+  }
   if (state) {
     System.out.print("Descend Back Activated\n");
     Solenoid_6.set(DoubleSolenoid.Value.kForward);
@@ -653,6 +662,9 @@ public void descendAssistBack(boolean state) {
 }
 
 public void ascendAssistBack(boolean state) {
+  if (!m_configured) {
+    return;
+  }
   if (state) {
     System.out.print("Acscend Assist Back Activated\n");
     Solenoid_7.set(DoubleSolenoid.Value.kForward);
