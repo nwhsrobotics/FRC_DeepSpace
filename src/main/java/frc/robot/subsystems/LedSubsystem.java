@@ -178,7 +178,7 @@ public class LedSubsystem extends Subsystem {
     } else {
       m_pixel[n].set((byte)0, (byte)0, (byte)0);
     } Working but need to initialize each LED */
-    /*for (int n = NUM_PIXELS-1; n > 0; n--) {
+    for (int n = NUM_PIXELS-1; n > 0; n--) {
       // shift all pixels by one
       m_pixel[n].copy(m_pixel[n-1]);
 
@@ -307,7 +307,9 @@ public class LedSubsystem extends Subsystem {
     m_pixel[58].set((byte) 0,(byte) 0,(byte) 0);
     m_pixel[59].set((byte) 0,(byte) 0,(byte) 0);
     }
-      // ___ r _____
+  }
+
+    // ___ r _____
     //sendFrame();
     
   }
