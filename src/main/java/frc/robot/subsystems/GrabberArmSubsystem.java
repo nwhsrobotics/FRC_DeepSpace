@@ -19,6 +19,7 @@ public class GrabberArmSubsystem extends Subsystem {
   // here. Call these from Commands.
   private DoubleSolenoid m_grabberArm;
   private int  PCM_ARMCANID = 0;
+  public boolean armGrabberLED;
   public GrabberArmSubsystem() {
     
   }
@@ -31,6 +32,7 @@ public class GrabberArmSubsystem extends Subsystem {
         Robot.m_map.getId(MapKeys.SOLENOID_ARMREVERSE)
         );
       m_grabberArm.set(DoubleSolenoid.Value.kOff);
+      armGrabberLED = false;
     }
   }
 
@@ -38,16 +40,19 @@ public class GrabberArmSubsystem extends Subsystem {
      if (m_grabberArm != null){
       m_grabberArm.set(DoubleSolenoid.Value.kOff);
     }
+    armGrabberLED = false;
   }
   public void armExtend() {
     if (m_grabberArm != null){
       m_grabberArm.set(DoubleSolenoid.Value.kForward);
     }
+    armGrabberLED= true;
   }
   public void armRetract() {
     if (m_grabberArm != null){
       m_grabberArm.set(DoubleSolenoid.Value.kReverse);
     }
+    armGrabberLED = true;
   }
 
   @Override
