@@ -50,17 +50,25 @@ public class DriveTrain extends Subsystem {
     int frontRightCanID = Robot.m_map.getId(MapKeys.DRIVE_FRONTRIGHT);
     int backRightCanID = Robot.m_map.getId(MapKeys.DRIVE_BACKRIGHT);
 
-    if ((frontLeftCanID != 0) && (backLeftCanID != 0) && (frontRightCanID != 0) && (backRightCanID != 0)){    
+    if ((frontLeftCanID != 0) && (backLeftCanID != 0) && (frontRightCanID != 0) && (backRightCanID != 0)){
+        m_frontleft = new CANSparkMax(Robot.m_map.getId(MapKeys.DRIVE_FRONTLEFT), MotorType.kBrushless);
+        m_frontleft.setIdleMode(IdleMode.kBrake);
+        m_frontleft.setSmartCurrentLimit(m_maxAmps);
+        m_frontleft.setOpenLoopRampRate(m_rampRate);
         m_frontright = new CANSparkMax(Robot.m_map.getId(MapKeys.DRIVE_FRONTRIGHT), MotorType.kBrushless);
         m_frontright.setIdleMode(IdleMode.kBrake);
         m_frontright.setSmartCurrentLimit(m_maxAmps);
         m_frontright.setOpenLoopRampRate(m_rampRate);
+        m_backleft = new CANSparkMax(Robot.m_map.getId(MapKeys.DRIVE_BACKLEFT), MotorType.kBrushless);
+        m_backleft.setIdleMode(IdleMode.kBrake);
+        m_backleft.setSmartCurrentLimit(m_maxAmps);
+        m_backleft.setOpenLoopRampRate(m_rampRate);
         m_backright = new CANSparkMax(Robot.m_map.getId(MapKeys.DRIVE_BACKRIGHT), MotorType.kBrushless);
         m_backright.setIdleMode(IdleMode.kBrake);
         m_backright.setSmartCurrentLimit(m_maxAmps);
         m_backright.setOpenLoopRampRate(m_rampRate);
         m_right = new SpeedControllerGroup(m_frontright, m_backright);
-
+        m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
         m_drive = new DifferentialDrive(m_left, m_right);
         
     }

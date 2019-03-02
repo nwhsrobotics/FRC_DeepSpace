@@ -18,7 +18,7 @@ import java.lang.Math;
 public class LiftSubsystem extends Subsystem {
   
   public TalonSRX m_motorup1;
-  private TalonSRX m_motorup2;
+  public TalonSRX m_motorup2;
 
   private double m_speed_ips; //inches per second
   private double m_position_in; //desired position in inches
@@ -177,7 +177,7 @@ public boolean autoMoveFinished() {
 	return !m_autoActive;
 }
 
-public void teleopInit(){
+/*public void teleopInit(){
   m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
   m_position_counts = 0;
   m_motorup1.setIntegralAccumulator(0);
@@ -193,5 +193,5 @@ public void autonomousInit(){
   m_autoDistance = 0;
   m_autoActive = false;
 }
-
+*/
 } 

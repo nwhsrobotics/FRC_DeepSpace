@@ -232,7 +232,7 @@ public class RobotMap {
 
 
 
-  public RobotTypes activeRobot = RobotTypes.BRIEFCASE;
+  public RobotTypes activeRobot = RobotTypes.DASHBOARD;
 
   public int getId(MapKeys key) {
     System.out.printf("In Get ID. %s\n", key.toString());
