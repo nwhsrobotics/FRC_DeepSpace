@@ -9,15 +9,11 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.CANSparkMax.*;
+import com.revrobotics.CANSparkMax.IdleMode;
 import frc.robot.Robot;
 import frc.robot.RobotMap.MapKeys;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
-import com.revrobotics.CANSparkMax.IdleMode;
-
-
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
@@ -51,22 +47,26 @@ public class DriveTrain extends Subsystem {
     int backRightCanID = Robot.m_map.getId(MapKeys.DRIVE_BACKRIGHT);
 
     if ((frontLeftCanID != 0) && (backLeftCanID != 0) && (frontRightCanID != 0) && (backRightCanID != 0)){
-        m_frontleft = new CANSparkMax(Robot.m_map.getId(MapKeys.DRIVE_FRONTLEFT), MotorType.kBrushless);
+        m_frontleft = new CANSparkMax(frontLeftCanID, MotorType.kBrushless);
         m_frontleft.setIdleMode(IdleMode.kBrake);
         m_frontleft.setSmartCurrentLimit(m_maxAmps);
         m_frontleft.setOpenLoopRampRate(m_rampRate);
-        m_frontright = new CANSparkMax(Robot.m_map.getId(MapKeys.DRIVE_FRONTRIGHT), MotorType.kBrushless);
+
+        m_frontright = new CANSparkMax(frontRightCanID, MotorType.kBrushless);
         m_frontright.setIdleMode(IdleMode.kBrake);
         m_frontright.setSmartCurrentLimit(m_maxAmps);
         m_frontright.setOpenLoopRampRate(m_rampRate);
-        m_backleft = new CANSparkMax(Robot.m_map.getId(MapKeys.DRIVE_BACKLEFT), MotorType.kBrushless);
+
+        m_backleft = new CANSparkMax(backLeftCanID, MotorType.kBrushless);
         m_backleft.setIdleMode(IdleMode.kBrake);
         m_backleft.setSmartCurrentLimit(m_maxAmps);
         m_backleft.setOpenLoopRampRate(m_rampRate);
-        m_backright = new CANSparkMax(Robot.m_map.getId(MapKeys.DRIVE_BACKRIGHT), MotorType.kBrushless);
+
+        m_backright = new CANSparkMax(backRightCanID, MotorType.kBrushless);
         m_backright.setIdleMode(IdleMode.kBrake);
         m_backright.setSmartCurrentLimit(m_maxAmps);
         m_backright.setOpenLoopRampRate(m_rampRate);
+
         m_right = new SpeedControllerGroup(m_frontright, m_backright);
         m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
         m_drive = new DifferentialDrive(m_left, m_right);
