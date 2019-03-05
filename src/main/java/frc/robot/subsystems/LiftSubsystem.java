@@ -63,7 +63,7 @@ public class LiftSubsystem extends Subsystem {
   public void Initialize() {
     Preferences prefs = Preferences.getInstance();
 
-    m_p = prefs.getDouble("Lift_P_Value", 1.0);
+    m_p = prefs.getDouble("Lift_P_Value", 0.5);
     m_i = prefs.getDouble("Lift_I_Value", 0.0);
     m_d = prefs.getDouble("Lift_D_Value", 10.0);
 

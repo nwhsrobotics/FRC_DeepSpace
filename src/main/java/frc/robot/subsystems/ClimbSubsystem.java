@@ -49,8 +49,8 @@ public class ClimbSubsystem extends Subsystem {
   private DoubleSolenoid Solenoid_7;
   private DoubleSolenoid Solenoid_8;
 
-  WPI_TalonSRX frontwheel;
-  WPI_TalonSRX backwheel;
+  WPI_TalonSRX frontleftwheel;
+  WPI_TalonSRX frontrightwheel;
   public SpeedControllerGroup climbwheels;
 
   public double m_mainDrive;
@@ -130,14 +130,14 @@ public class ClimbSubsystem extends Subsystem {
     setActuators();
   }
   public void initActuators(){
-    int frontClimbCanID = Robot.m_map.getId(MapKeys.FRONTCLIMBWHEEL);
-    int backClimbCanID = Robot.m_map.getId(MapKeys.BACKCLIMBWHEEL);
-    if ((frontClimbCanID != 0) && (backClimbCanID != 0)){
-      frontwheel = new WPI_TalonSRX(frontClimbCanID);  
-      frontwheel.setInverted(true); 
-      backwheel = new WPI_TalonSRX(backClimbCanID);
-      backwheel.setInverted(true);
-      climbwheels = new SpeedControllerGroup(frontwheel, backwheel);
+    int frontLeftClimbCanID = Robot.m_map.getId(MapKeys.FRONTLEFTCLIMBWHEEL);
+    int frontRightClimbCanID = Robot.m_map.getId(MapKeys.FRONTRIGHTCLIMBWHEEL);
+    if ((frontLeftClimbCanID != 0) && (frontRightClimbCanID != 0)){
+      frontleftwheel = new WPI_TalonSRX(frontLeftClimbCanID);  
+      frontleftwheel.setInverted(true); 
+      frontrightwheel = new WPI_TalonSRX(frontRightClimbCanID);
+      frontrightwheel.setInverted(false);
+      climbwheels = new SpeedControllerGroup(frontleftwheel, frontrightwheel);
     }
 
 
@@ -146,21 +146,21 @@ public class ClimbSubsystem extends Subsystem {
     if ((PCM_1_CAN_ID != 0) && (PCM_2_CAN_ID != 0)){
       Solenoid_1 = new DoubleSolenoid(
         PCM_1_CAN_ID,
-        Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTEXTEND),
-        Robot.m_map.getId(MapKeys.SOLENOID_FRONTLEFTRETRACT)
+        Robot.m_map.getId(MapKeys.SOLENOID_FRONTEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_FRONTRETRACT)
       );
       Solenoid_1.set(DoubleSolenoid.Value.kOff);
 
       Solenoid_2 = new DoubleSolenoid(
         PCM_1_CAN_ID,
-        Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTEXTEND),
-        Robot.m_map.getId(MapKeys.SOLENOID_FRONTRIGHTRETRACT)
+        Robot.m_map.getId(MapKeys.SOLENOID_BACKEXTEND),
+        Robot.m_map.getId(MapKeys.SOLENOID_BACKRETRACT)
       );
       Solenoid_2.set(DoubleSolenoid.Value.kOff);
     
 
       
-      Solenoid_3 = new DoubleSolenoid(
+    /*  Solenoid_3 = new DoubleSolenoid(
         PCM_1_CAN_ID,
         Robot.m_map.getId(MapKeys.SOLENOID_BACKLEFTEXTEND),
         Robot.m_map.getId(MapKeys.SOLENOID_BACKLEFTRETRACT)
@@ -173,18 +173,18 @@ public class ClimbSubsystem extends Subsystem {
       Robot.m_map.getId(MapKeys.SOLENOID_BACKRIGHTRETRACT)
       );
       Solenoid_4.set(DoubleSolenoid.Value.kOff);
-      
+      */
     
 
       Solenoid_5 = new DoubleSolenoid(
-        PCM_2_CAN_ID,
+        PCM_1_CAN_ID,
         Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTEXTEND),
         Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTRETRACT)
       );
       Solenoid_5.set(DoubleSolenoid.Value.kOff);
 
       Solenoid_6 = new DoubleSolenoid(
-        PCM_2_CAN_ID,
+        PCM_1_CAN_ID,
         Robot.m_map.getId(MapKeys.SOLENOID_LOWERBACKEXTEND),
         Robot.m_map.getId(MapKeys.SOLENOID_LOWERBACKRETRACT)
       );
@@ -204,7 +204,7 @@ public class ClimbSubsystem extends Subsystem {
       );
       Solenoid_8.set(DoubleSolenoid.Value.kOff);
     }
-    if ((frontClimbCanID != 0) && (backClimbCanID != 0) && 
+    if ((frontLeftClimbCanID != 0) && (frontRightClimbCanID != 0) && 
         (PCM_1_CAN_ID != 0) && (PCM_2_CAN_ID != 0)){
       m_configured = true;
     }
@@ -611,11 +611,11 @@ public class ClimbSubsystem extends Subsystem {
     if (state) {
       System.out.print("Acscend Front Activated\n");
     Solenoid_1.set(DoubleSolenoid.Value.kForward);
-    Solenoid_2.set(DoubleSolenoid.Value.kForward);
+  
   }
   else {
     Solenoid_1.set(DoubleSolenoid.Value.kReverse);
-    Solenoid_2.set(DoubleSolenoid.Value.kReverse);
+    
   }
 }
 
@@ -625,12 +625,10 @@ public void ascendBack(boolean state) {
   }
   if (state) {
     System.out.print("Acscend Back Activated\n");
-    Solenoid_3.set(DoubleSolenoid.Value.kForward);
-    Solenoid_4.set(DoubleSolenoid.Value.kForward);
+    Solenoid_2.set(DoubleSolenoid.Value.kForward);
   }
   else{
-    Solenoid_3.set(DoubleSolenoid.Value.kReverse);
-    Solenoid_4.set(DoubleSolenoid.Value.kReverse);
+    Solenoid_2.set(DoubleSolenoid.Value.kReverse);
   }
 }
 

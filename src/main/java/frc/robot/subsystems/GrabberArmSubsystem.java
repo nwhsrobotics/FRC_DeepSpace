@@ -24,10 +24,10 @@ public class GrabberArmSubsystem extends Subsystem {
     
   }
   public void initialize(){
-    PCM_ARMCANID = Robot.m_map.getId(MapKeys.PCM_ARMCANID);
+    PCM_ARMCANID = Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2);
     if (PCM_ARMCANID != 0){
       m_grabberArm = new DoubleSolenoid(
-        Robot.m_map.getId(MapKeys.PCM_ARMCANID),
+        Robot.m_map.getId(MapKeys.PCM_CLIMBCANID2),
         Robot.m_map.getId(MapKeys.SOLENOID_ARMFORWARD),
         Robot.m_map.getId(MapKeys.SOLENOID_ARMREVERSE)
         );

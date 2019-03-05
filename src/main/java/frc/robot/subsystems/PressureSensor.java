@@ -11,7 +11,7 @@ public class PressureSensor {
 
     public double getAirPressurePsi() {
         // taken from the datasheet
-        return 250.0 * mAnalogInput.getVoltage() / 5.0 - 25.0;
+        return 250.0 * mAnalogInput.getVoltage() / 5.0 - 24.5; //was - 25
     }
     
 

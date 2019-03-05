@@ -749,8 +749,8 @@ public void grabberHand(){
       m_pixel[53].set((byte) 0,(byte) 0,(byte) 0);
   }
 }
-public void blindCommand(boolean state2){
-  if(state2) {
+public void blindCommand(){
+  if(Robot.m_pressursensor.getAirPressurePsi() < 65) {
     m_pixel[1].set((byte)255, (byte)255, (byte)255);
     m_pixel[2].set((byte)255, (byte)255, (byte)255);    //BRG
     m_pixel[3].set((byte)255, (byte)255, (byte)255);
@@ -761,25 +761,25 @@ public void blindCommand(boolean state2){
     m_pixel[8].set((byte)255, (byte)255, (byte)255);
     m_pixel[9].set((byte)255, (byte)255, (byte)255);    //BRG
     m_pixel[10].set((byte)255, (byte)255, (byte)255);
-    m_pixel[11].set((byte)0, (byte)0, (byte)255);
-    m_pixel[12].set((byte)255, (byte)0, (byte)0);
-    m_pixel[13].set((byte)130, (byte)75, (byte)0);
-    m_pixel[14].set((byte)255, (byte)143, (byte)0);
-    m_pixel[15].set((byte)0, (byte)255, (byte)0);
-    m_pixel[16].set((byte)0, (byte)255, (byte)127);    //BRG
-    m_pixel[17].set((byte)0, (byte)255, (byte)255);
-    m_pixel[18].set((byte)0, (byte)0, (byte)255);
-    m_pixel[19].set((byte)255, (byte)0, (byte)0);
-    m_pixel[20].set((byte)130, (byte)75, (byte)0);
-    m_pixel[21].set((byte)255, (byte)143, (byte)0);
-    m_pixel[22].set((byte)0, (byte)255, (byte)0);
-    m_pixel[23].set((byte)0, (byte)255, (byte)127);    //BRG
-    m_pixel[24].set((byte)0, (byte)255, (byte)255);
-    m_pixel[25].set((byte)0, (byte)0, (byte)255);
-    m_pixel[26].set((byte)255, (byte)0, (byte)0);
-    m_pixel[27].set((byte)130, (byte)75, (byte)0);
-    m_pixel[28].set((byte)255, (byte)143, (byte)0);
-    m_pixel[29].set((byte)0, (byte)255, (byte)0);
+    m_pixel[11].set((byte)255, (byte)255, (byte)255);
+    m_pixel[12].set((byte)255, (byte)255, (byte)255);
+    m_pixel[13].set((byte)255, (byte)255, (byte)255);
+    m_pixel[14].set((byte)255, (byte)255, (byte)255);
+    m_pixel[15].set((byte)255, (byte)255, (byte)255);
+    m_pixel[16].set((byte)255, (byte)255, (byte)127);    //BRG
+    m_pixel[17].set((byte)255, (byte)255, (byte)255);
+    m_pixel[18].set((byte)255, (byte)255, (byte)255);
+    m_pixel[19].set((byte)255, (byte)255, (byte)255);
+    m_pixel[20].set((byte)255, (byte)255, (byte)255);
+    m_pixel[21].set((byte)255, (byte)255, (byte)255);
+    m_pixel[22].set((byte)255, (byte)255, (byte)255);
+    m_pixel[23].set((byte)255, (byte)255, (byte)127);    //BRG
+    m_pixel[24].set((byte)255, (byte)255, (byte)255);
+    m_pixel[25].set((byte)255, (byte)255, (byte)255);
+    m_pixel[26].set((byte)255, (byte)255, (byte)255);
+    m_pixel[27].set((byte)255, (byte)255, (byte)255);
+    m_pixel[28].set((byte)255, (byte)255, (byte)255);
+    m_pixel[29].set((byte)255, (byte)255, (byte)255);
     m_pixel[30].set((byte)255, (byte)255, (byte)255);
     m_pixel[31].set((byte)255, (byte)255, (byte)255);    //BRG
     m_pixel[32].set((byte)255, (byte)255, (byte)255);
