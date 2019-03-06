@@ -65,7 +65,7 @@ public class RobotMap {
     briefcase.put(MapKeys.DRIVE_BACKLEFT, 0);
     briefcase.put(MapKeys.DRIVE_BACKRIGHT, 0);
     briefcase.put(MapKeys.FRONTLEFTCLIMBWHEEL, 0);
-    briefcase.put(MapKeys.FRONTRIGHTCLIMBWHEEL, 0);
+    briefcase.put(MapKeys.FRONTLEFTCLIMBWHEEL, 0);
 
     briefcase.put(MapKeys.SLIDE, 0);
     briefcase.put(MapKeys.LIFT_LEFT, 8);
@@ -105,7 +105,7 @@ public class RobotMap {
     albert.put(MapKeys.DRIVE_BACKRIGHT, 10);
 
     albert.put(MapKeys.FRONTLEFTCLIMBWHEEL, 2);
-    albert.put(MapKeys.FRONTRIGHTCLIMBWHEEL, 3);
+    albert.put(MapKeys.FRONTLEFTCLIMBWHEEL, 3);
 
     albert.put(MapKeys.SLIDE, 4);
     
@@ -196,8 +196,8 @@ public class RobotMap {
     dashboard.put(MapKeys.DRIVE_BACKLEFT, prefs.getInt("CanID_DriveBackLeft", 1));
     dashboard.put(MapKeys.DRIVE_BACKRIGHT, prefs.getInt("CanID_DriveBackRight", 11));
 
-    dashboard.put(MapKeys.FRONTLEFTCLIMBWHEEL, prefs.getInt("CanID_FrontLeftClimbWheel", 9));
-    dashboard.put(MapKeys.FRONTRIGHTCLIMBWHEEL, prefs.getInt("CanID_FrontRightClimbWheel", 12));
+    dashboard.put(MapKeys.FRONTRIGHTCLIMBWHEEL, prefs.getInt("CanID_FrontRightClimbWheel", 9));
+    dashboard.put(MapKeys.FRONTLEFTCLIMBWHEEL, prefs.getInt("CanID_FrontLeftClimbWheel", 12));
 
     dashboard.put(MapKeys.SLIDE, prefs.getInt("CanID_Slide", 3));
     dashboard.put(MapKeys.LIFT_LEFT, prefs.getInt("CanID_LiftLeft", 4));
