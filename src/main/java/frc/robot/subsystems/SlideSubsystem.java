@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+/** package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -13,9 +13,6 @@ import frc.robot.commands.SlideCommand;
 import java.lang.Math;
 
 
-/**
- * Add your docs here.
- */
 public class SlideSubsystem extends Subsystem {
   
   public TalonSRX m_motorSlide;
@@ -112,7 +109,7 @@ public class SlideSubsystem extends Subsystem {
     current = Robot.m_pdp.getCurrent(14);
     while(current)
     setOutput(-0.5);
-  } */
+  } 
 
   @Override
   public void initDefaultCommand() {
@@ -187,4 +184,46 @@ public void slideResetCommand() {
 }
 
   
-} 
+} */
+//Power Time Starts here. Encoder code commented out above.
+package frc.robot.subsystems;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
+import frc.robot.RobotMap.MapKeys;
+import frc.robot.commands.SlideCommand;
+/**
+ * Add your docs here.
+ */
+public class SlideSubsystem extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  private TalonSRX m_motorSlide;
+  public SlideSubsystem(){
+  }
+
+  public void initialize(){
+    int canID = Robot.m_map.getId(MapKeys.SLIDE);
+    if (canID != 0){
+      m_motorSlide = new TalonSRX(canID);
+    }
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    setDefaultCommand(new SlideCommand());
+  }
+  
+  public void update(double x){
+      m_motorSlide.set(ControlMode.PercentOutput, x);
+  }
+
+  public void slideStop(){
+    m_motorSlide.set(ControlMode.PercentOutput, 0);
+  }
+  
+}

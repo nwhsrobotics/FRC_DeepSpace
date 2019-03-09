@@ -95,7 +95,7 @@ public class LedSubsystem extends Subsystem {
     }
 */
 //System.out.printf("The output is %d %n", Robot.m_lift.m_motorup1.getOutputCurrent());
-    updateLeds();
+  //  updateLeds();
   
 
   }
