@@ -90,7 +90,7 @@ public class SlideSubsystem extends Subsystem {
 
     m_motorSlide.selectProfileSlot(0, 0);
     m_motorSlide.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, TALON_TIMEOUT_MS);
-    m_motorSlide.setSensorPhase(false);
+    m_motorSlide.setSensorPhase(true);
 
     m_motorSlide.config_kP(0, m_p, TALON_TIMEOUT_MS);
     m_motorSlide.config_kI(0, m_i, TALON_TIMEOUT_MS);

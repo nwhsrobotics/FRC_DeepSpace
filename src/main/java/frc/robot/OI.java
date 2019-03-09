@@ -133,7 +133,12 @@ public class OI {
 
   public double getLiftValue() {
     LIFTMODIFIER = prefs.getDouble("Lift_Modifier", -0.8);
-    return joy2.getRawAxis(1) * LIFTMODIFIER;
+    if (Math.abs(joy2.getRawAxis(1)) < 0.1) {
+      return 0;
+    } else {
+      return joy2.getRawAxis(1) * LIFTMODIFIER;
+    }
+    
   }
 
   public double getSlideValue() {
