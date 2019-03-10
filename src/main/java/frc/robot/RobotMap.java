@@ -208,10 +208,11 @@ public class RobotMap {
     dashboard.put(MapKeys.SOLENOID_FRONTRETRACT, prefs.getInt("CanID_FrontRetract", 1));
     dashboard.put(MapKeys.SOLENOID_BACKEXTEND, prefs.getInt("CanID_BackExtend", 2));
     dashboard.put(MapKeys.SOLENOID_BACKRETRACT, prefs.getInt("CanID_BackRetract", 3));
-    dashboard.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, prefs.getInt("CanID_LowerFrontExtend", 4));
-    dashboard.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, prefs.getInt("CanID_LowerFrontRetract", 5));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, prefs.getInt("CanID_AscendAssistBackRightExtend", 4));
+    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, prefs.getInt("CanID_AScendAssistBackRightRetract", 5));
     dashboard.put(MapKeys.SOLENOID_LOWERBACKEXTEND, prefs.getInt("CanID_LowerBackExtend", 6));
     dashboard.put(MapKeys.SOLENOID_LOWERBACKRETRACT, prefs.getInt("CanID_LowerBackRetract", 7));
+
     /*
     dashboard.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, prefs.getInt("CanID_FrontRightExtend", 6));
     dashboard.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, prefs.getInt("CanID_FrontRightRetract", 7));
@@ -222,10 +223,10 @@ public class RobotMap {
     dashboard.put(MapKeys.PCM_CLIMBCANID2, prefs.getInt("CanID_PCM_ClimbID2", 6));
     dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, prefs.getInt("CanID_AscendAssistBackLeftExtend", 0));
     dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, prefs.getInt("CanID_AscendAssistBackLeftRetract", 1));
-    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, prefs.getInt("CanID_AscendAssistBackRightExtend", 2));
-    dashboard.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, prefs.getInt("CanID_AScendAssistBackRightRetract", 3));
-    dashboard.put(MapKeys.SOLENOID_PUSHERPUSH, prefs.getInt("CanID_GrabberExtend", 4));
-    dashboard.put(MapKeys.SOLENOID_PUSHERRETRACT, prefs.getInt("CanID_GrabberRetract", 5));
+    dashboard.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, prefs.getInt("CanID_LowerFrontExtend", 4));
+    dashboard.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, prefs.getInt("CanID_LowerFrontRetract", 5));
+    dashboard.put(MapKeys.SOLENOID_PUSHERPUSH, prefs.getInt("CanID_GrabberExtend", 2));
+    dashboard.put(MapKeys.SOLENOID_PUSHERRETRACT, prefs.getInt("CanID_GrabberRetract", 3));
     dashboard.put(MapKeys.SOLENOID_ARMFORWARD, prefs.getInt("CanID_ArmExtend", 6));
     dashboard.put(MapKeys.SOLENOID_ARMREVERSE, prefs.getInt("CanID_ArmRetract", 7));
 

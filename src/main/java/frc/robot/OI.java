@@ -75,7 +75,7 @@ public class OI {
   public JoystickButton backButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
   public JoystickButton leftBumper2 = new JoystickButton(joy2, BLIND);
- 
+ //public jous
 
 
 
@@ -115,7 +115,7 @@ public class OI {
 
 
   public double getForwardValue() {
-    STRAIGHMODIFIER = prefs.getDouble("Drive_Straight_Modifier", -1);
+    STRAIGHMODIFIER = prefs.getDouble("Drive_Straight_Modifier", -0.9);
     if (Math.abs(joy.getRawAxis(1)) < .1) {
       return 0;
     } else {
@@ -125,7 +125,7 @@ public class OI {
 
   }
   public double getTurnValue() {
-    TURNMODIFIER = prefs.getDouble("Drive_Turn_Modifier", 0.5);
+    TURNMODIFIER = prefs.getDouble("Drive_Turn_Modifier", 0.6);
     if (Math.abs(joy.getRawAxis(4)) < .1) {
       return 0;
     } else {

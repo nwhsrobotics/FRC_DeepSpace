@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem {
   private DifferentialDrive m_drive;
 
   private int m_maxAmps = 40;
-  private double m_rampRate = 0.75; //seconds from 0 to full throttle
+  private double m_rampRate = 0.1; //seconds from 0 to full throttle
 
 
 

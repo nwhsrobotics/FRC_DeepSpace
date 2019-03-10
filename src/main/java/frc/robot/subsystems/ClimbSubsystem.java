@@ -134,7 +134,7 @@ public class ClimbSubsystem extends Subsystem {
     int frontRightClimbCanID = Robot.m_map.getId(MapKeys.FRONTRIGHTCLIMBWHEEL);
     if ((frontLeftClimbCanID != 0) && (frontRightClimbCanID != 0)){
       frontleftwheel = new WPI_TalonSRX(frontLeftClimbCanID);  
-      frontleftwheel.setInverted(true); 
+      frontleftwheel.setInverted(false); 
       frontrightwheel = new WPI_TalonSRX(frontRightClimbCanID);
       frontrightwheel.setInverted(false);
       climbwheels = new SpeedControllerGroup(frontleftwheel, frontrightwheel);
@@ -177,7 +177,7 @@ public class ClimbSubsystem extends Subsystem {
     
 
       Solenoid_5 = new DoubleSolenoid(
-        PCM_1_CAN_ID,
+        PCM_2_CAN_ID,
         Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTEXTEND),
         Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTRETRACT)
       );
@@ -198,7 +198,7 @@ public class ClimbSubsystem extends Subsystem {
       Solenoid_7.set(DoubleSolenoid.Value.kOff);
 
       Solenoid_8 = new DoubleSolenoid(
-        PCM_2_CAN_ID,
+        PCM_1_CAN_ID,
         Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND),
         Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT)
       );
@@ -675,4 +675,3 @@ public void ascendAssistBack(boolean state) {
 }
  
 }
-
