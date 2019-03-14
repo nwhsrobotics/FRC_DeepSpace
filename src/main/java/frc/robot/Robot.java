@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   UsbCamera camera0;  
-  // UsbCamera camera1;
+  //UsbCamera camera1;
   VideoSink vidSink;
   boolean previousButton = false;
   int currentCamera = 1;
@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
     
 
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
-    camera0.setVideoMode(PixelFormat.kMJPEG, 160 , 120, 20);
+    camera0.setVideoMode(PixelFormat.kMJPEG, 320 , 240, 15);
 
     /*
     camera1 = CameraServer.getInstance().startAutomaticCapture(1);
@@ -108,7 +108,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-   // SmartDashboard.putNumber("PSI", Robot.m_pressursensor.getAirPressurePsi());
+    SmartDashboard.putNumber("PSI", Robot.m_pressursensor.getAirPressurePsi());
    // Robot.m_ledSubsystem.blindCommand();
   }
 
@@ -141,6 +141,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
+    m_autonomousCommand = null;
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -153,7 +154,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
-    //m_lift.autonomousInit();
+    m_lift.autonomousInit();
   }
 
   /**
@@ -166,9 +167,9 @@ public class Robot extends TimedRobot {
     boolean currentButton = m_oi.joy.getRawButton(m_oi.CAMERA_BUTTON) == true;
     if ((!currentButton) && previousButton) {
       if (currentCamera == 0) {
-        // vidSink.setSource(camera1);
-        // System.out.println(1);
-        currentCamera = 1;
+        //vidSink.setSource(camera1);
+        //System.out.println(1);
+        //currentCamera = 1;
       } else {
         vidSink.setSource(camera0);
         System.out.println(0);
@@ -188,7 +189,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    //m_lift.teleopInit();
+    m_lift.teleopInit();
   }
 
   /**
@@ -201,9 +202,9 @@ public class Robot extends TimedRobot {
     boolean currentButton = m_oi.joy.getRawButton(m_oi.CAMERA_BUTTON) == true;
     if ((!currentButton) && previousButton) {
       if (currentCamera == 0) {
-       // vidSink.setSource(camera1);
-       // System.out.println(1);
-        currentCamera = 1;
+        //vidSink.setSource(camera1);
+        //System.out.println(1);
+        //currentCamera = 1;
       } else {
         vidSink.setSource(camera0);
         System.out.println(0);

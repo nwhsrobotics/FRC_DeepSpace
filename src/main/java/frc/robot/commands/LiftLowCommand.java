@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LiftLowCommand extends Command {
-  private static final double LOW_POS_IN = Robot.m_lift.LOW_POS_IN; //inches
   public LiftLowCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_lift);
@@ -20,7 +19,8 @@ public class LiftLowCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_lift.startAutoMove(LOW_POS_IN);
+    Robot.m_lift.startAutoMove(Robot.m_lift.LOW_POS_IN);
+    System.out.println("liftlow");
   }
 
   // Called repeatedly when this Command is scheduled to run

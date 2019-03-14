@@ -23,8 +23,8 @@ public class LiftSubsystem extends Subsystem {
   private double m_speed_ips; //inches per second
   private double m_position_in; //desired position in inches
   private double m_position_counts; 
-  private static final double MAXSPEED = 20.0; //inches per second
-  private static final double AUTOLIFTSPEED = 20.0; //inches per second
+  private static final double MAXSPEED = 40.0; //inches per second
+  private static final double AUTOLIFTSPEED = 30.0; //inches per second
   private static final double SECONDS_PER_TICK = .02; // seconds per encoder tic
   private static final double COUNTS_PER_INCH = 1366; // encoder counts per inch (formerly 150)
   private static final int TALON_TIMEOUT_MS = 1000; 
@@ -50,6 +50,18 @@ public class LiftSubsystem extends Subsystem {
     m_speed_ips = 0.0;
   }
   public void initialize() {
+    Preferences prefs = Preferences.getInstance();
+
+    HIGH_POS_IN = prefs.getDouble("Lift_High_Pos", 57.0);
+    MID_POS_IN = prefs.getDouble("Lift_Mid_Pos", 26.0);
+    LOW_POS_IN = prefs.getDouble("Lift_Low_Pos", 0.0);
+
+    m_p = prefs.getDouble("Lift_P_Value", 0.5);
+    m_i = prefs.getDouble("Lift_I_Value", 0.0);
+    m_d = prefs.getDouble("Lift_D_Value", 10.0);
+
+    
+
     int leftCanID = Robot.m_map.getId(MapKeys.LIFT_LEFT);
     int rightCanID = Robot.m_map.getId(MapKeys.LIFT_RIGHT);
     if ((leftCanID != 0) && (rightCanID !=0)){
@@ -60,6 +72,8 @@ public class LiftSubsystem extends Subsystem {
     }
   }
 
+
+  /*
   public void Initialize() {
     Preferences prefs = Preferences.getInstance();
 
@@ -77,7 +91,7 @@ public class LiftSubsystem extends Subsystem {
     configTalons();
 
   }
-
+*/
   public void setOutput(double output) {
     if ((m_motorup1 != null) && (m_motorup2 != null)) {
       m_motorup1.set(ControlMode.PercentOutput, output);
@@ -171,27 +185,30 @@ public void startAutoMove(double position_in) {
     //activate auto lift
     m_autoActive = true;
     m_autoDistance = position_in - m_position_in; //sets auto distance to travel to the desired - current desired distance
+    System.out.printf("Moving to %f\n", position_in);
   }
 }
 public boolean autoMoveFinished() {
 	return !m_autoActive;
 }
 
-/*public void teleopInit(){
-  m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
+public void teleopInit(){
+  /*m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
   m_position_counts = 0;
   m_motorup1.setIntegralAccumulator(0);
-  m_motorup1.set(ControlMode.Position, m_position_counts);
+  m_motorup1.set(ControlMode.Position, m_position_counts);*/
   m_autoDistance = 0;
   m_autoActive = false;
+  configTalons();
 }
 public void autonomousInit(){
-  m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
+  /*m_motorup1.setSelectedSensorPosition(0, 0 , TALON_TIMEOUT_MS); //sets current pos to be 0
   m_position_counts = 0;
   m_motorup1.setIntegralAccumulator(0);
-  m_motorup1.set(ControlMode.Position, m_position_counts);
+  m_motorup1.set(ControlMode.Position, m_position_counts);*/
   m_autoDistance = 0;
   m_autoActive = false;
+  configTalons();
 }
-*/
+
 } 

@@ -69,7 +69,7 @@ public class LedSubsystem extends Subsystem {
 
     // Init SPI port
     m_spi = new SPI(SPI.Port.kOnboardCS0);
-    m_spi.setClockRate(512000);
+    m_spi.setClockRate(256000);
     m_spi.setClockActiveLow();
     m_spi.setChipSelectActiveLow();
     m_spi.setSampleDataOnRising();
@@ -87,15 +87,15 @@ public class LedSubsystem extends Subsystem {
 
   @Override 
   public void periodic() {
-    /*for (int n = NUM_PIXELS-1; n > 0; n--) {
+    for (int n = NUM_PIXELS-1; n > 0; n--) {
       // shift all pixels by one
       m_pixel[n].copy(m_pixel[n-1]);
       // write one new pixel
       m_pixel[0].set((byte)0, (byte)80, (byte)0); // ___ r _____
     }
-*/
+
 //System.out.printf("The output is %d %n", Robot.m_lift.m_motorup1.getOutputCurrent());
-  //  updateLeds();
+    updateLeds();
   
 
   }

@@ -41,7 +41,8 @@ public class RobotMap {
   }
 
   public enum RobotTypes {
-    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT, DEADPIXEL, DASHBOARD
+    //TODO: Why is there a "DEEPSPACE_ROBOT" and "AIRLOCK"? Aren't they the same?
+    ALBERT, BRIEFCASE, DEEPSPACE_ROBOT, DEADPIXEL, DASHBOARD, AIRLOCK
   }
 
   public EnumMap<MapKeys, Integer> briefcase = new EnumMap<MapKeys, Integer>(MapKeys.class);
@@ -51,6 +52,8 @@ public class RobotMap {
   public EnumMap<MapKeys, Integer> deadpixel = new EnumMap<MapKeys, Integer>(MapKeys.class);
 
   public EnumMap<MapKeys, Integer> dashboard = new EnumMap<MapKeys, Integer>(MapKeys.class);
+
+  public EnumMap<MapKeys, Integer> airlock = new EnumMap<MapKeys, Integer>(MapKeys.class);
 
   boolean m_Initialized = false;
 
@@ -65,7 +68,7 @@ public class RobotMap {
     briefcase.put(MapKeys.DRIVE_BACKLEFT, 0);
     briefcase.put(MapKeys.DRIVE_BACKRIGHT, 0);
     briefcase.put(MapKeys.FRONTLEFTCLIMBWHEEL, 0);
-    briefcase.put(MapKeys.FRONTLEFTCLIMBWHEEL, 0);
+    briefcase.put(MapKeys.FRONTRIGHTCLIMBWHEEL, 0);
 
     briefcase.put(MapKeys.SLIDE, 0);
     briefcase.put(MapKeys.LIFT_LEFT, 8);
@@ -231,11 +234,54 @@ public class RobotMap {
     dashboard.put(MapKeys.SOLENOID_ARMREVERSE, prefs.getInt("CanID_ArmRetract", 7));
 
     dashboard.put(MapKeys.PCM_ARMCANID, prefs.getInt("CanID_PCM_ArmID", 7));
+
+    //AIRLOCK IDs BEGIN HERE ##########################################
+    
+    airlock.put(MapKeys.DRIVE_FRONTLEFT, 2);
+    airlock.put(MapKeys.DRIVE_FRONTRIGHT,10);
+    airlock.put(MapKeys.DRIVE_BACKLEFT, 1);
+    airlock.put(MapKeys.DRIVE_BACKRIGHT, 11);
+
+    airlock.put(MapKeys.FRONTRIGHTCLIMBWHEEL, 9);
+    airlock.put(MapKeys.FRONTLEFTCLIMBWHEEL,  12);
+
+    airlock.put(MapKeys.SLIDE, 3);
+    airlock.put(MapKeys.LIFT_LEFT, 4);
+    airlock.put(MapKeys.LIFT_RIGHT, 8);
+
+    airlock.put(MapKeys.PCM_CLIMBCANID, 5);
+    airlock.put(MapKeys.SOLENOID_FRONTEXTEND, 0);
+    airlock.put(MapKeys.SOLENOID_FRONTRETRACT, 1);
+    airlock.put(MapKeys.SOLENOID_BACKEXTEND, 2);
+    airlock.put(MapKeys.SOLENOID_BACKRETRACT, 3);
+    airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 4);
+    airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 5);
+    airlock.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 6);
+    airlock.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 7);
+
+    /*
+    airlock.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 6);
+    airlock.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 7);
+    airlock.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 4);
+    airlock.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 5);
+    */
+
+    airlock.put(MapKeys.PCM_CLIMBCANID2, 6);
+    airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 0);
+    airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 1);
+    airlock.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 4);
+    airlock.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 5);
+    airlock.put(MapKeys.SOLENOID_PUSHERPUSH, 2);
+    airlock.put(MapKeys.SOLENOID_PUSHERRETRACT, 3);
+    airlock.put(MapKeys.SOLENOID_ARMFORWARD, 6);
+    airlock.put(MapKeys.SOLENOID_ARMREVERSE, 7);
+
+    airlock.put(MapKeys.PCM_ARMCANID, 7);
   }
 
 
 
-  public RobotTypes activeRobot = RobotTypes.DASHBOARD;
+  public RobotTypes activeRobot = RobotTypes.AIRLOCK;
 
   public int getId(MapKeys key) {
     System.out.printf("In Get ID. %s\n", key.toString());
@@ -244,7 +290,12 @@ public class RobotMap {
       System.out.printf("Initialized all maps.\n");
     }
 
-    if(activeRobot == RobotTypes.DASHBOARD) {
+    if(activeRobot == RobotTypes.AIRLOCK) {
+      System.out.printf("Getting Airlock key %d.\n", airlock.get(key));
+      return airlock.get(key);
+    }
+
+    else if(activeRobot == RobotTypes.DASHBOARD) {
       System.out.printf("Getting Dashboard key %d.\n", dashboard.get(key));
       return dashboard.get(key);
     }

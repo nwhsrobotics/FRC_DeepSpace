@@ -69,12 +69,14 @@ public class OI {
   private final int LOWHATCH_BUTTON = 7;
   private final int CLAMP_BUTTON = 4;
   private final int BLIND = 6;
+  //TODO-ADD private final int SLIDERESET_BUTTON = 0;
   public JoystickButton yButton2 = new JoystickButton(joy2, ARM_BUTTON);
   public JoystickButton xButton2 = new JoystickButton(joy2, HIGHHATCH_BUTTON);
   public JoystickButton startButton2 = new JoystickButton(joy2, MIDHATCH_BUTTON);
   public JoystickButton backButton2 = new JoystickButton(joy2, LOWHATCH_BUTTON);
   public JoystickButton bButton2 = new JoystickButton(joy2, CLAMP_BUTTON);
   public JoystickButton leftBumper2 = new JoystickButton(joy2, BLIND);
+  //TODO-ADD public POVButton dpadUp = new POVButton(joys, SLIDERESET_BUTTON);
  //public jous
 
 
