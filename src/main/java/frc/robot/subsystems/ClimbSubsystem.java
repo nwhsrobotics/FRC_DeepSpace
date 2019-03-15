@@ -177,7 +177,7 @@ public class ClimbSubsystem extends Subsystem {
     
 
       Solenoid_5 = new DoubleSolenoid(
-        PCM_2_CAN_ID,
+        PCM_1_CAN_ID,
         Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTEXTEND),
         Robot.m_map.getId(MapKeys.SOLENOID_LOWERFRONTRETRACT)
       );
@@ -198,7 +198,7 @@ public class ClimbSubsystem extends Subsystem {
       Solenoid_7.set(DoubleSolenoid.Value.kOff);
 
       Solenoid_8 = new DoubleSolenoid(
-        PCM_1_CAN_ID,
+        PCM_2_CAN_ID,
         Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND),
         Robot.m_map.getId(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT)
       );
@@ -284,8 +284,8 @@ public class ClimbSubsystem extends Subsystem {
         descendAssistFront(false);
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Descend_S1_AuxDrive", 0.0);
-        m_mainDrive = prefs.getDouble("Descend_S1_MainDrive", 0.5);
-        m_timeLeft_sec = prefs.getDouble("Descend_S1_TimeLeft", 0.0);
+        m_mainDrive = prefs.getDouble("Descend_S1_MainDrive", 0.3);
+        m_timeLeft_sec = prefs.getDouble("Descend_S1_TimeLeft", 0.5);
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
@@ -302,8 +302,8 @@ public class ClimbSubsystem extends Subsystem {
         descendAssistFront(true);
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Descend_S2_AuxDrive", 0.0);
-        m_mainDrive = prefs.getDouble("Descend_S2_MainDrive", 0.5);
-        m_timeLeft_sec = prefs.getDouble("Descend_S2_TimeLeft", 0.0);
+        m_mainDrive = prefs.getDouble("Descend_S2_MainDrive", 0.3);
+        m_timeLeft_sec = prefs.getDouble("Descend_S2_TimeLeft", 2);
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
@@ -316,12 +316,12 @@ public class ClimbSubsystem extends Subsystem {
       case DESCEND_S3:
         ascendFront(false);
         ascendBack(false);
-        descendAssistBack(true);
+        descendAssistBack(false);
         descendAssistFront(true);
-        ascendAssistBack(false);
+        ascendAssistBack(true);
         m_auxDrive = prefs.getDouble("Descend_S3_AuxDrive", 0.0);
-        m_mainDrive = prefs.getDouble("Descend_S3_MainDrive", 0.5);
-        m_timeLeft_sec = prefs.getDouble("Descend_S3_TimeLeft", 0.0);
+        m_mainDrive = prefs.getDouble("Descend_S3_MainDrive", 0.3);
+        m_timeLeft_sec = prefs.getDouble("Descend_S3_TimeLeft", 0.75);
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
@@ -334,12 +334,12 @@ public class ClimbSubsystem extends Subsystem {
       case DESCEND_S4:
         ascendFront(false);
         ascendBack(false);
-        descendAssistBack(true);
+        descendAssistBack(false);
         descendAssistFront(false);
-        ascendAssistBack(false);
+        ascendAssistBack(true);
         m_auxDrive = prefs.getDouble("Descend_S4_AuxDrive", 0.0);
-        m_mainDrive = prefs.getDouble("Descend_S4_MainDrive", 0.5);
-        m_timeLeft_sec = prefs.getDouble("Descend_S4_TimeLeft", 0.0);
+        m_mainDrive = prefs.getDouble("Descend_S4_MainDrive", 0.3);
+        m_timeLeft_sec = prefs.getDouble("Descend_S4_TimeLeft", 0.75);
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;
@@ -356,8 +356,8 @@ public class ClimbSubsystem extends Subsystem {
         descendAssistFront(false);
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Descend_S5_AuxDrive", 0.0);
-        m_mainDrive = prefs.getDouble("Descend_S5_MainDrive", 0.5);
-        m_timeLeft_sec = prefs.getDouble("Descend_S5_TimeLeft", 0.0);
+        m_mainDrive = prefs.getDouble("Descend_S5_MainDrive", 0.3);
+        m_timeLeft_sec = prefs.getDouble("Descend_S5_TimeLeft", 0.75);
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
         m_LEDGreenValue = 0;

@@ -42,9 +42,15 @@ public class OI {
 
   Preferences prefs = Preferences.getInstance();
   
-  private double TURNMODIFIER;
-  private double STRAIGHMODIFIER;
+//  private double TURNMODIFIER;
+//  private double STRAIGHMODIFIER;
   private double LIFTMODIFIER;
+  public double alphaD = 0.75;
+  public double alphaT = 0.75;
+  public double betaD = 0.4;
+  public double betaT = 0.4;
+  public double gammaD = 1;
+  public double gammaT = 1;
 
   public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
@@ -115,8 +121,8 @@ public class OI {
  
 
 
-
-  public double getForwardValue() {
+//REGULAR DRIVE
+  /*public double getForwardValue() {
     STRAIGHMODIFIER = prefs.getDouble("Drive_Straight_Modifier", -0.9);
     if (Math.abs(joy.getRawAxis(1)) < .1) {
       return 0;
@@ -134,6 +140,29 @@ public class OI {
       return joy.getRawAxis(4) * TURNMODIFIER;
     }
   }
+  */
+
+//TURBO MODE
+  public double turbomodeDrive() {
+    if (Math.abs(joy.getRawAxis(1)) < alphaD) {
+      return joy.getRawAxis(1) * (betaD/alphaD);
+    }
+    else {
+      return (joy.getRawAxis(1) * (betaD) + ((gammaD-betaD)/(1-alphaD)) * (Math.abs(joy.getRawAxis(1))-alphaD)) * Math.signum(joy.getRawAxis(1));
+    }
+  }
+  
+
+  public double turbomodeTurn() {
+    if (Math.abs(joy.getRawAxis(4)) < alphaT) {
+      return joy.getRawAxis(4) * (betaT/alphaT);
+    }
+    else {
+      return (joy.getRawAxis(4) * (betaT) + ((gammaT-betaT)/(1-alphaT)) * (Math.abs(joy.getRawAxis(4))-alphaT)) * Math.signum(joy.getRawAxis(4));
+  
+    }
+  }
+  
 
   public double getLiftValue() {
     LIFTMODIFIER = prefs.getDouble("Lift_Modifier", -0.8);

@@ -26,7 +26,8 @@ public class DriveCommand extends Command {
   protected void execute() {
 
 
-    Robot.m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+   // Robot.m_drivetrain.update(Robot.m_oi.getForwardValue(), Robot.m_oi.getTurnValue());
+    Robot.m_drivetrain.update(Robot.m_oi.turbomodeDrive(), Robot.m_oi.turbomodeTurn()); //Turbo Mode
     Robot.m_ledSubsystem.DriveLeft();
     Robot.m_ledSubsystem.DriveRight();
 

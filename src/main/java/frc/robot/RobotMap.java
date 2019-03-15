@@ -246,16 +246,16 @@ public class RobotMap {
     airlock.put(MapKeys.FRONTLEFTCLIMBWHEEL,  12);
 
     airlock.put(MapKeys.SLIDE, 3);
-    airlock.put(MapKeys.LIFT_LEFT, 4);
-    airlock.put(MapKeys.LIFT_RIGHT, 8);
+    airlock.put(MapKeys.LIFT_LEFT, 8);
+    airlock.put(MapKeys.LIFT_RIGHT, 4);
 
     airlock.put(MapKeys.PCM_CLIMBCANID, 5);
     airlock.put(MapKeys.SOLENOID_FRONTEXTEND, 0);
     airlock.put(MapKeys.SOLENOID_FRONTRETRACT, 1);
     airlock.put(MapKeys.SOLENOID_BACKEXTEND, 2);
     airlock.put(MapKeys.SOLENOID_BACKRETRACT, 3);
-    airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 4);
-    airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 5);
+    airlock.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 4);
+    airlock.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 5);
     airlock.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 6);
     airlock.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 7);
 
@@ -269,10 +269,10 @@ public class RobotMap {
     airlock.put(MapKeys.PCM_CLIMBCANID2, 6);
     airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 0);
     airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 1);
-    airlock.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 4);
-    airlock.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 5);
-    airlock.put(MapKeys.SOLENOID_PUSHERPUSH, 2);
-    airlock.put(MapKeys.SOLENOID_PUSHERRETRACT, 3);
+    airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 2);
+    airlock.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 3);
+    airlock.put(MapKeys.SOLENOID_PUSHERPUSH, 4);
+    airlock.put(MapKeys.SOLENOID_PUSHERRETRACT, 5);
     airlock.put(MapKeys.SOLENOID_ARMFORWARD, 6);
     airlock.put(MapKeys.SOLENOID_ARMREVERSE, 7);
 
