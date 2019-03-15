@@ -121,7 +121,7 @@ public class OI {
  
 
 
-//REGULAR DRIVE
+        //REGULAR DRIVE
   /*public double getForwardValue() {
     STRAIGHMODIFIER = prefs.getDouble("Drive_Straight_Modifier", -0.9);
     if (Math.abs(joy.getRawAxis(1)) < .1) {
@@ -142,9 +142,13 @@ public class OI {
   }
   */
 
-//TURBO MODE
+          //TURBO MODE
   public double turbomodeDrive() {
-    if (Math.abs(joy.getRawAxis(1)) < alphaD) {
+    if (Math.abs(joy.getRawAxis(1)) < 0.1) {
+      return 0;
+      //deadband
+    }
+    else if (Math.abs(joy.getRawAxis(1)) < alphaD) {
       return joy.getRawAxis(1) * (betaD/alphaD);
     }
     else {
@@ -154,7 +158,11 @@ public class OI {
   
 
   public double turbomodeTurn() {
-    if (Math.abs(joy.getRawAxis(4)) < alphaT) {
+    if (Math.abs(joy.getRawAxis(1)) < 0.1) {
+      return 0;
+      //deadband
+    }
+    else if (Math.abs(joy.getRawAxis(4)) < alphaT) {
       return joy.getRawAxis(4) * (betaT/alphaT);
     }
     else {

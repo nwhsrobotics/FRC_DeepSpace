@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   UsbCamera camera0;  
-  //UsbCamera camera1;
+  UsbCamera camera1;
   VideoSink vidSink;
   boolean previousButton = false;
   int currentCamera = 1;
@@ -87,10 +87,10 @@ public class Robot extends TimedRobot {
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
     camera0.setVideoMode(PixelFormat.kMJPEG, 320 , 240, 15);
 
-    /*
+    
     camera1 = CameraServer.getInstance().startAutomaticCapture(1);
-    camera1.setVideoMode(PixelFormat.kMJPEG, 460,340, 15); // 320X240
-    */
+    camera1.setVideoMode(PixelFormat.kMJPEG, 320,240, 15); // 320X240
+    
    
     vidSink = CameraServer.getInstance().getServer();
 
@@ -167,9 +167,9 @@ public class Robot extends TimedRobot {
     boolean currentButton = m_oi.joy.getRawButton(m_oi.CAMERA_BUTTON) == true;
     if ((!currentButton) && previousButton) {
       if (currentCamera == 0) {
-        //vidSink.setSource(camera1);
-        //System.out.println(1);
-        //currentCamera = 1;
+        vidSink.setSource(camera1);
+        System.out.println(1);
+        currentCamera = 1;
       } else {
         vidSink.setSource(camera0);
         System.out.println(0);
@@ -202,9 +202,9 @@ public class Robot extends TimedRobot {
     boolean currentButton = m_oi.joy.getRawButton(m_oi.CAMERA_BUTTON) == true;
     if ((!currentButton) && previousButton) {
       if (currentCamera == 0) {
-        //vidSink.setSource(camera1);
-        //System.out.println(1);
-        //currentCamera = 1;
+        vidSink.setSource(camera1);
+        System.out.println(1);
+        currentCamera = 1;
       } else {
         vidSink.setSource(camera0);
         System.out.println(0);
