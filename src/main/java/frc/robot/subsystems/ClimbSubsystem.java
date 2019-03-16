@@ -133,7 +133,7 @@ public class ClimbSubsystem extends Subsystem {
   public void initialize() {
 
     //TODO-CALCULATE VELOCITY
-    m_velocity = 18; //Inches per Second
+    m_velocity = 28.24; //Inches per Second
 
     initActuators();
     setActuators();
@@ -304,7 +304,7 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Descend_S1_AuxDrive", 0.0);
         m_mainDrive = prefs.getDouble("Descend_S1_MainDrive", 0.4);
-        m_timeLeft_sec = getDescecndTimeleft(32.0);
+        m_timeLeft_sec = getDescecndTimeleft(38.0);
         //m_timeLeft_sec = prefs.getDouble("Descend_S1_TimeLeft", 0.5);
         m_LEDRedValue = 0;
         m_LEDBlueValue = 255;
@@ -505,7 +505,7 @@ public class ClimbSubsystem extends Subsystem {
         descendAssistBack(false);
         descendAssistFront(false);
         ascendAssistBack(false);
-        m_auxDrive = prefs.getDouble("Climb_L3_S1_AuxDrive", 0.0);
+        m_auxDrive = prefs.getDouble("Climb_L3_S1_AuxDrive", 0.15);
         m_mainDrive = prefs.getDouble("Climb_L3_S1_MainDrive", 0.0);
         m_timeLeft_sec = prefs.getDouble("Climb_L3_S1_TimeLeft", 2.0);
         m_LEDRedValue = 0;
