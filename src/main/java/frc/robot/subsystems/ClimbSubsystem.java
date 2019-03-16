@@ -30,7 +30,7 @@ public class ClimbSubsystem extends Subsystem {
     IDLE,
     DESCEND_S1, DESCEND_S2, DESCEND_S3, DESCEND_S4, DESCEND_S5,
     CLIMB_L2_S1, CLIMB_L2_S2, CLIMB_L2_S3, CLIMB_L2_S4, CLIMB_L2_S5, CLIMB_L2_S6,
-    CLIMB_L3_S1, CLIMB_L3_S2, CLIMB_L3_S3, CLIMB_L3_S4, CLIMB_L3_S5,
+    CLIMB_L3_S1A, CLIMB_L3_S1B,CLIMB_L3_S2, CLIMB_L3_S3, CLIMB_L3_S4, CLIMB_L3_S5,
   }
   private ClimbState m_climbState = ClimbState.IDLE;
 
@@ -72,6 +72,8 @@ public class ClimbSubsystem extends Subsystem {
   private double m_velocity;
 
   private double m_DriveTime;
+
+  private int m_tickcounter;
   
   
 
@@ -93,7 +95,8 @@ public class ClimbSubsystem extends Subsystem {
     nextStageMap.put(ClimbState.CLIMB_L2_S5, ClimbState.CLIMB_L2_S6);
     nextStageMap.put(ClimbState.CLIMB_L2_S6, ClimbState.IDLE);
 
-    nextStageMap.put(ClimbState.CLIMB_L3_S1, ClimbState.CLIMB_L3_S2);
+    nextStageMap.put(ClimbState.CLIMB_L3_S1A, ClimbState.CLIMB_L3_S1B);
+    nextStageMap.put(ClimbState.CLIMB_L3_S1B, ClimbState.CLIMB_L3_S2);
     nextStageMap.put(ClimbState.CLIMB_L3_S2, ClimbState.CLIMB_L3_S3);
     nextStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S4);
     nextStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S5);
@@ -114,8 +117,9 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.CLIMB_L2_S5, ClimbState.CLIMB_L2_S4);
     prevStageMap.put(ClimbState.CLIMB_L2_S6, ClimbState.CLIMB_L2_S5);
 
-    prevStageMap.put(ClimbState.CLIMB_L3_S1, ClimbState.IDLE);
-    prevStageMap.put(ClimbState.CLIMB_L3_S2, ClimbState.CLIMB_L3_S1);
+    prevStageMap.put(ClimbState.CLIMB_L3_S1A, ClimbState.IDLE);
+    prevStageMap.put(ClimbState.CLIMB_L3_S1B, ClimbState.CLIMB_L3_S1A);
+    prevStageMap.put(ClimbState.CLIMB_L3_S2, ClimbState.CLIMB_L3_S1B);
     prevStageMap.put(ClimbState.CLIMB_L3_S3, ClimbState.CLIMB_L3_S2);
     prevStageMap.put(ClimbState.CLIMB_L3_S4, ClimbState.CLIMB_L3_S3);
     prevStageMap.put(ClimbState.CLIMB_L3_S5, ClimbState.CLIMB_L3_S4);
@@ -254,7 +258,7 @@ public class ClimbSubsystem extends Subsystem {
 
   public void startL3Ascend() {
 
-    m_climbState = ClimbState.CLIMB_L3_S1;
+    m_climbState = ClimbState.CLIMB_L3_S1A;
     setActuators();
 
   }
@@ -262,6 +266,9 @@ public class ClimbSubsystem extends Subsystem {
   public void nextStage() {
 
     m_climbState = nextStageMap.get(m_climbState);
+    if (m_climbState == ClimbState.CLIMB_L3_S1B) {
+      m_tickcounter = 0;
+    }
     setActuators();
 
   }
@@ -269,10 +276,37 @@ public class ClimbSubsystem extends Subsystem {
   public void prevStage() {
 
     m_climbState = prevStageMap.get(m_climbState);
+    if (m_climbState == ClimbState.CLIMB_L3_S1B) {
+      m_tickcounter = 0;
+    }
     setActuators();
   }
 
+  @Override 
+  public void periodic() {
+    
 
+    if (m_climbState == ClimbState.CLIMB_L3_S1B) {
+      Preferences prefs = Preferences.getInstance();
+
+      int onTime = prefs.getInt("Climb_L3_S1B_onTime", 10);
+      int offTime = prefs.getInt("Climb_L3_S1B_offTime", 0);
+
+      if ((m_tickcounter % (onTime + offTime)) < offTime) {
+        //Drive Front Pistons Down for Off Time
+        ascendFront(false);
+      }
+      else{
+        //Drive Front Pistons Up for On Time
+        ascendFront(true);
+      }
+
+      m_tickcounter += 1;
+
+    }
+    
+
+  }
 
   private void setActuators() {
     Preferences prefs = Preferences.getInstance();
@@ -499,7 +533,7 @@ public class ClimbSubsystem extends Subsystem {
         m_autoL3Ascend = false;
         break;
 
-      case CLIMB_L3_S1:
+      case CLIMB_L3_S1A:
         ascendFront(true); 
         ascendBack(true);
         descendAssistBack(false);
@@ -511,7 +545,25 @@ public class ClimbSubsystem extends Subsystem {
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
-        System.out.print("Climb Level 3 Stage 1\n");
+        System.out.print("Climb Level 3 Stage 1A\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = false;
+        m_autoL3Ascend = true;
+        break;
+
+        case CLIMB_L3_S1B:
+        ascendFront(true); 
+        ascendBack(true);
+        descendAssistBack(false);
+        descendAssistFront(false);
+        ascendAssistBack(false);
+        m_auxDrive = prefs.getDouble("Climb_L3_S1_AuxDrive", 0.15);
+        m_mainDrive = prefs.getDouble("Climb_L3_S1_MainDrive", 0.0);
+        m_timeLeft_sec = prefs.getDouble("Climb_L3_S1B_TimeLeft", 0.0);
+        m_LEDRedValue = 0;
+        m_LEDBlueValue = 0;
+        m_LEDGreenValue = 0;
+        System.out.print("Climb Level 3 Stage 1B\n");
         m_autoDescend = false;
         m_autoL2Ascend = false;
         m_autoL3Ascend = true;
@@ -638,6 +690,7 @@ public class ClimbSubsystem extends Subsystem {
   
   }
   else {
+    System.out.print("Acscend Front Retracted\n");
     Solenoid_1.set(DoubleSolenoid.Value.kReverse);
     
   }

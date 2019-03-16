@@ -49,7 +49,7 @@ public class OI {
   public double alphaT = 0.65;
   public double betaD = 0.45;
   public double betaT = 0.35;
-  public double gammaD = 0.75;
+  public double gammaD = 0.9;
   public double gammaT = 0.75;
 
   public final int CAMERA_BUTTON = 2;
