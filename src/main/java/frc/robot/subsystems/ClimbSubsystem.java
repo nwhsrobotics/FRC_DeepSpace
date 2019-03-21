@@ -29,7 +29,7 @@ public class ClimbSubsystem extends Subsystem {
   enum ClimbState {
     IDLE,
     DESCEND_S1, DESCEND_S2, DESCEND_S3, DESCEND_S4, DESCEND_S5,
-    CLIMB_L2_S1, CLIMB_L2_S2, CLIMB_L2_S3, CLIMB_L2_S4, CLIMB_L2_S5, CLIMB_L2_S6,
+    CLIMB_L2_S0, CLIMB_L2_S1, CLIMB_L2_S2, CLIMB_L2_S3, CLIMB_L2_S4, CLIMB_L2_S5, CLIMB_L2_S6,
     CLIMB_L3_S1A, CLIMB_L3_S1B,CLIMB_L3_S2, CLIMB_L3_S3, CLIMB_L3_S4, CLIMB_L3_S5,
   }
   private ClimbState m_climbState = ClimbState.IDLE;
@@ -88,6 +88,7 @@ public class ClimbSubsystem extends Subsystem {
     nextStageMap.put(ClimbState.DESCEND_S4, ClimbState.DESCEND_S5);
     nextStageMap.put(ClimbState.DESCEND_S5, ClimbState.IDLE);
 
+    nextStageMap.put(ClimbState.CLIMB_L2_S0, ClimbState.CLIMB_L2_S1);
     nextStageMap.put(ClimbState.CLIMB_L2_S1, ClimbState.CLIMB_L2_S2);
     nextStageMap.put(ClimbState.CLIMB_L2_S2, ClimbState.CLIMB_L2_S3);
     nextStageMap.put(ClimbState.CLIMB_L2_S3, ClimbState.CLIMB_L2_S4);
@@ -110,7 +111,8 @@ public class ClimbSubsystem extends Subsystem {
     prevStageMap.put(ClimbState.DESCEND_S4, ClimbState.DESCEND_S3);
     prevStageMap.put(ClimbState.DESCEND_S5, ClimbState.DESCEND_S4);
 
-    prevStageMap.put(ClimbState.CLIMB_L2_S1, ClimbState.IDLE);
+    prevStageMap.put(ClimbState.CLIMB_L2_S0, ClimbState.IDLE);
+    prevStageMap.put(ClimbState.CLIMB_L2_S1, ClimbState.CLIMB_L2_S0);
     prevStageMap.put(ClimbState.CLIMB_L2_S2, ClimbState.CLIMB_L2_S1);
     prevStageMap.put(ClimbState.CLIMB_L2_S3, ClimbState.CLIMB_L2_S2);
     prevStageMap.put(ClimbState.CLIMB_L2_S4, ClimbState.CLIMB_L2_S3);
@@ -252,7 +254,7 @@ public class ClimbSubsystem extends Subsystem {
 
   public void startL2Ascend() {
 
-    m_climbState = ClimbState.CLIMB_L2_S1;
+    m_climbState = ClimbState.CLIMB_L2_S0;
     setActuators();
   }
 
@@ -422,6 +424,24 @@ public class ClimbSubsystem extends Subsystem {
         System.out.print("Descend Stage 5\n");
         m_autoDescend = true;
         m_autoL2Ascend = false;
+        m_autoL3Ascend = false;
+        break;
+
+        case CLIMB_L2_S0:
+        ascendFront(false);
+        ascendBack(false);
+        descendAssistBack(false);
+        descendAssistFront(false);
+        ascendAssistBack(false);
+        m_auxDrive = prefs.getDouble("Climb_L2_S0_AuxDrive", 0.0);
+        m_mainDrive = prefs.getDouble("Climb_L2_S0_MainDrive", -0.3);
+        m_timeLeft_sec = prefs.getDouble("Climb_L2_S0_TimeLeft", 0.5);
+        m_LEDRedValue = 0;
+        m_LEDBlueValue = 0;
+        m_LEDGreenValue = 0;
+        System.out.print("Climb Level 2 Stage 0\n");
+        m_autoDescend = false;
+        m_autoL2Ascend = true;
         m_autoL3Ascend = false;
         break;
 
