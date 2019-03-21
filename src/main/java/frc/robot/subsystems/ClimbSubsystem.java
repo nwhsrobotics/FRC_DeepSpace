@@ -435,7 +435,7 @@ public class ClimbSubsystem extends Subsystem {
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Climb_L2_S0_AuxDrive", 0.0);
         m_mainDrive = prefs.getDouble("Climb_L2_S0_MainDrive", -0.3);
-        m_timeLeft_sec = prefs.getDouble("Climb_L2_S0_TimeLeft", 0.5);
+        m_timeLeft_sec = prefs.getDouble("Climb_L2_S0_TimeLeft", 0.25);
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
@@ -542,8 +542,8 @@ public class ClimbSubsystem extends Subsystem {
         descendAssistFront(false);
         ascendAssistBack(false);
         m_auxDrive = prefs.getDouble("Climb_L2_S6_AuxDrive", 0.0);
-        m_mainDrive = prefs.getDouble("Climb_L2_S6_MainDrive", 0.5);
-        m_timeLeft_sec = prefs.getDouble("Climb_L2_S6_TimeLeft", 4.0);
+        m_mainDrive = prefs.getDouble("Climb_L2_S6_MainDrive", 0.0);
+        m_timeLeft_sec = prefs.getDouble("Climb_L2_S6_TimeLeft", 2.0);
         m_LEDRedValue = 0;
         m_LEDBlueValue = 0;
         m_LEDGreenValue = 0;
