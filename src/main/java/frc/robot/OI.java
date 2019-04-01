@@ -47,7 +47,7 @@ public class OI {
   private double LIFTMODIFIER;
   public double alphaD = 0.85;
   public double alphaT = 0.65;
-  public double betaD = 0.45;
+  public double betaD = 0.60; //was .45, 55
   public double betaT = 0.35;
   public double gammaD = 0.9;
   public double gammaT = 0.75;
@@ -144,7 +144,7 @@ public class OI {
 
           //TURBO MODE
   public double turbomodeDrive() {
-    if (Math.abs(joy.getRawAxis(1)) < 0.1) {
+    if (Math.abs(joy.getRawAxis(1)) < 0.05) { // was 0.1
       return 0;
       //deadband
     }
@@ -158,7 +158,7 @@ public class OI {
   
 
   public double turbomodeTurn() {
-    if (Math.abs(joy.getRawAxis(4)) < 0.1) {
+    if (Math.abs(joy.getRawAxis(4)) < 0.05) { // was 0.1
       return 0;
       //deadband
     }

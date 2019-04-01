@@ -246,8 +246,8 @@ public class RobotMap {
     airlock.put(MapKeys.FRONTLEFTCLIMBWHEEL,  12);
 
     airlock.put(MapKeys.SLIDE, 3);
-    airlock.put(MapKeys.LIFT_LEFT, 8);
-    airlock.put(MapKeys.LIFT_RIGHT, 4);
+    airlock.put(MapKeys.LIFT_LEFT, 4); //was 8
+    airlock.put(MapKeys.LIFT_RIGHT, 8); //was 4
 
     airlock.put(MapKeys.PCM_CLIMBCANID, 5);
     airlock.put(MapKeys.SOLENOID_FRONTEXTEND, 0);

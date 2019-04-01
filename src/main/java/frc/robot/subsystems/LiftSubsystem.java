@@ -24,11 +24,13 @@ public class LiftSubsystem extends Subsystem {
   private double m_position_in; //desired position in inches
   private double m_position_counts; 
   private static final double MAXSPEED = 40.0; //inches per second
-  private static final double AUTOLIFTSPEED = 30.0; //inches per second
+  private static final double AUTOLIFTDOWN = 45.0; //inches per second
+  private static final double AUTOLIFTSPEED = 45.0; //inches per second
   private static final double SECONDS_PER_TICK = .02; // seconds per encoder tic
   private static final double COUNTS_PER_INCH = -1366; // encoder counts per inch (formerly 150)
   private static final int TALON_TIMEOUT_MS = 1000; 
   private static final double DISTANCE_PER_TICK = AUTOLIFTSPEED * SECONDS_PER_TICK; // inches travelled per encoder tick
+  private static final double DISTANCE_PER_TICK_DOWN = AUTOLIFTDOWN *SECONDS_PER_TICK; //inches travelled 
 
   private double m_p = 0.5;
   private double m_i = 0.0;
@@ -53,7 +55,7 @@ public class LiftSubsystem extends Subsystem {
     Preferences prefs = Preferences.getInstance();
 
     HIGH_POS_IN = prefs.getDouble("Lift_High_Pos", 57.0);
-    MID_POS_IN = prefs.getDouble("Lift_Mid_Pos", 29.0);
+    MID_POS_IN = prefs.getDouble("Lift_Mid_Pos", 32.0); // was 29
     LOW_POS_IN = prefs.getDouble("Lift_Low_Pos", 0.0);
 
     m_p = prefs.getDouble("Lift_P_Value", 0.5);
@@ -160,8 +162,8 @@ public class LiftSubsystem extends Subsystem {
           m_position_in += DISTANCE_PER_TICK;
           m_autoDistance -= DISTANCE_PER_TICK;
         } else if (m_autoDistance < 0) {
-          m_position_in -= DISTANCE_PER_TICK;
-          m_autoDistance += DISTANCE_PER_TICK;
+          m_position_in -= DISTANCE_PER_TICK_DOWN;
+          m_autoDistance += DISTANCE_PER_TICK_DOWN;
         }
         
       }
