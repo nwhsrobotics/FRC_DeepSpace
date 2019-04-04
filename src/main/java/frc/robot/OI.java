@@ -85,16 +85,17 @@ public class OI {
   //TODO-ADD public POVButton dpadUp = new POVButton(joys, SLIDERESET_BUTTON);
  //public jous
 
-
+  
 
   public OI () {
 
     //bButton1.toggleWhenPressed(new CameraToggle);
     
     backButton1.whenPressed(new DescendCommandGroup()); //initiate lvl 2 descent
-    startButton1.whenPressed(new L2AscendCommandGroup()); //initiate lvl 2 climb
+    startButton1.whenPressed(new startL2AscendCommand()); //initiate lvl 2 climb
     xButton1.whenPressed(new startL3AscendCommand()); // intiate lvl 3 climb
     
+
     leftBumper2.whenPressed(new BlindCommand());
     
     leftBumper1.whenPressed(new ClimbPrevCommand()); //press to go to the previous climb state in the sequence

@@ -93,9 +93,44 @@ public class ClimbSubsystem extends Subsystem {
   private static final double GEAR_RATIO = 20;
   private static final double GEAR_DIAM = 2.0;
   public static final double ROTATIONS_PER_INCH = GEAR_RATIO/(Math.PI*GEAR_DIAM); // 2 inch pulley TODO: check this
+
+
+
+
+  private static final double SPEED_FRONT_L2_S1 = 0.1;
+  private static final double SPEED_BACK_L2_S1 = 0.1;
+  private static final double SPEED_FRONT_L2_S2 = 0.05;
+  private static final double SPEED_BACK_L2_S2 = 0.05;
+  private static final double SPEED_FRONT_L2_S3 = -0.1;
+  private static final double SPEED_BACK_L2_S3 = 0.05;
+  private static final double SPEED_FRONT_L2_S4 = -0.05;
+  private static final double SPEED_BACK_L2_S4 = 0.05;
+  private static final double SPEED_FRONT_L2_S5 = -0.05;
+  private static final double SPEED_BACK_L2_S5 = -0.1;
+  private static final double SPEED_FRONT_L2_S6 = -0.05;
+  private static final double SPEED_BACK_L2_S6 = -0.05;
+
+
+
+  private static final double SPEED_FRONT_L3_S1 = 0.1;
+  private static final double SPEED_BACK_L3_S1 = 0.1;
+  private static final double SPEED_FRONT_L3_S2 = 0.05;
+  private static final double SPEED_BACK_L3_S2 = 0.05;
+  private static final double SPEED_FRONT_L3_S3 = -0.1;
+  private static final double SPEED_BACK_L3_S3 = 0.1;
+  private static final double SPEED_FRONT_L3_S4 = -0.05;
+  private static final double SPEED_BACK_L3_S4 = 0.05;
+  private static final double SPEED_FRONT_L3_S5 = -0.05;
+  private static final double SPEED_BACK_L3_S5 = -0.1;
+
+
+  
+
+
+
   private int m_maxAmps = 20;
-  private final double L3_POS_IN = 20; // inches for L3 Climb 
-  private final double L2_POS_IN = 8;  // inches for L2 Climb
+  private final double L3_POS_IN = 20; // inches for L3 Climb check values 
+  private final double L2_POS_IN = 8;  // inches for L2 Climb check values
   private final boolean m_closedloop = true;
   private final double SPEED_IDLE_IPS = 0.0;
   private final double SPEED_EXTEND_FRONT_IPS = 10.0;
@@ -184,26 +219,26 @@ public class ClimbSubsystem extends Subsystem {
     
 
     int ClimbFront = Robot.m_map.getId(MapKeys.CLIMBFRONT);
-    int ClimbBack = Robot.m_map.getId(MapKeys.CLIMBBACK);
+    //int ClimbBack = Robot.m_map.getId(MapKeys.CLIMBBACK);
 
     m_climbfront = new CANSparkMax(ClimbFront, MotorType.kBrushless);
     m_climbfront.setIdleMode(IdleMode.kBrake);
     m_climbfront.setSmartCurrentLimit(m_maxAmps);
 
-    m_climbback = new CANSparkMax(ClimbBack, MotorType.kBrushless);
-    m_climbback.setIdleMode(IdleMode.kBrake);
-    m_climbback.setSmartCurrentLimit(m_maxAmps);
+   // m_climbback = new CANSparkMax(ClimbBack, MotorType.kBrushless);
+   // m_climbback.setIdleMode(IdleMode.kBrake);
+   // m_climbback.setSmartCurrentLimit(m_maxAmps);
     
     m_pidControllerFront = m_climbfront.getPIDController();
-    m_pidControllerBack = m_climbback.getPIDController();  
+   // m_pidControllerBack = m_climbback.getPIDController();  
     
     m_encoderFront = m_climbfront.getEncoder();
-    m_encoderBack = m_climbback.getEncoder();
+   // m_encoderBack = m_climbback.getEncoder();
 
 
-    kP = 1.0; 
+    kP = 0.02; 
     kI = 0.0;
-    kD = 0.0; 
+    kD = 1.0; 
     kIz = 0.0; 
     kFF = 0.0; 
     kMaxOutput = 1; 
@@ -217,12 +252,12 @@ public class ClimbSubsystem extends Subsystem {
     m_pidControllerFront.setFF(kFF);
     m_pidControllerFront.setOutputRange(kMinOutput, kMaxOutput);
 
-    m_pidControllerBack.setP(kP);
-    m_pidControllerBack.setI(kI);
-    m_pidControllerBack.setD(kD);
-    m_pidControllerBack.setIZone(kIz);
-    m_pidControllerBack.setFF(kFF);
-    m_pidControllerBack.setOutputRange(kMinOutput, kMaxOutput);
+    //m_pidControllerBack.setP(kP);
+    //m_pidControllerBack.setI(kI);
+    //m_pidControllerBack.setD(kD);
+    //m_pidControllerBack.setIZone(kIz);
+    //m_pidControllerBack.setFF(kFF);
+    //m_pidControllerBack.setOutputRange(kMinOutput, kMaxOutput);
 
     // display PID coefficients on SmartDashboard
     // SmartDashboard.putNumber("P Gain", kP);
@@ -399,8 +434,12 @@ public class ClimbSubsystem extends Subsystem {
      }
   }
 
-    m_pidControllerBack.setReference(ROTATIONS_PER_INCH * m_backPos_in, ControlType.kPosition);
-    m_pidControllerFront.setReference(ROTATIONS_PER_INCH * m_frontPos_in, ControlType.kPosition);
+    if (m_closedloop) { 
+      double ref = ROTATIONS_PER_INCH * m_frontPos_in;
+      //System.out.printf("fronttargetPos_in: %f m_frontPos_in = %f\n", m_fronttargetPos_in, m_frontPos_in);
+      /// m_pidControllerBack.setReference(ROTATIONS_PER_INCH * m_backPos_in, ControlType.kPosition);
+      m_pidControllerFront.setReference(ROTATIONS_PER_INCH * m_frontPos_in, ControlType.kPosition);
+    }
   }
 
   private void setActuators() {
@@ -586,8 +625,8 @@ public class ClimbSubsystem extends Subsystem {
         ascendBackPOS(L2_POS_IN);
       }
       else {
-        ascendFrontPT(SPEED_IDLE_IPS);
-        ascendBackPT(SPEED_IDLE_IPS);
+        ascendFrontPT(SPEED_FRONT_L2_S1);
+        ascendBackPT(SPEED_BACK_L2_S1);
       }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -610,8 +649,8 @@ public class ClimbSubsystem extends Subsystem {
         ascendBackPOS(L2_POS_IN);
       }
       else {
-        ascendFrontPT(SPEED_IDLE_IPS);
-        ascendBackPT(SPEED_IDLE_IPS);
+        ascendFrontPT(SPEED_FRONT_L2_S2);
+        ascendBackPT(SPEED_BACK_L2_S2);
       }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -634,8 +673,8 @@ public class ClimbSubsystem extends Subsystem {
         ascendBackPOS(L2_POS_IN);
       }
       else {
-        ascendFrontPT(SPEED_IDLE_IPS);
-        ascendBackPT(SPEED_IDLE_IPS);
+        ascendFrontPT(SPEED_FRONT_L2_S3);
+        ascendBackPT(SPEED_BACK_L2_S3);
       }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -658,8 +697,8 @@ public class ClimbSubsystem extends Subsystem {
         ascendBackPOS(L2_POS_IN);
       }
       else {
-        ascendFrontPT(SPEED_IDLE_IPS);
-        ascendBackPT(SPEED_IDLE_IPS);
+        ascendFrontPT(SPEED_FRONT_L2_S4);
+        ascendBackPT(SPEED_BACK_L2_S4);
       }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -682,8 +721,8 @@ public class ClimbSubsystem extends Subsystem {
         ascendBackPOS(0);
       }
       else {
-        ascendFrontPT(SPEED_IDLE_IPS);
-        ascendBackPT(SPEED_IDLE_IPS);
+        ascendFrontPT(SPEED_FRONT_L2_S5);
+        ascendBackPT(SPEED_BACK_L2_S5);
       }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -706,8 +745,8 @@ public class ClimbSubsystem extends Subsystem {
         ascendBackPOS(0);
       }
       else {
-        ascendFrontPT(SPEED_IDLE_IPS);
-        ascendBackPT(SPEED_IDLE_IPS);
+        ascendFrontPT(SPEED_FRONT_L2_S6);
+        ascendBackPT(SPEED_BACK_L2_S6);
       }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -730,8 +769,8 @@ public class ClimbSubsystem extends Subsystem {
           ascendBackPOS(L3_POS_IN);
         }
         else {
-          ascendFrontPT(SPEED_IDLE_IPS);
-          ascendBackPT(SPEED_IDLE_IPS);
+          ascendFrontPT(SPEED_FRONT_L3_S1);
+          ascendBackPT(SPEED_BACK_L3_S1);
         }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -754,8 +793,8 @@ public class ClimbSubsystem extends Subsystem {
             ascendBackPOS(L3_POS_IN);
           }
           else {
-            ascendFrontPT(SPEED_IDLE_IPS);
-            ascendBackPT(SPEED_IDLE_IPS);
+            ascendFrontPT(SPEED_FRONT_L3_S1);
+            ascendBackPT(SPEED_BACK_L3_S1);
           }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -778,8 +817,8 @@ public class ClimbSubsystem extends Subsystem {
           ascendBackPOS(L3_POS_IN);
         }
         else {
-          ascendFrontPT(SPEED_IDLE_IPS);
-          ascendBackPT(SPEED_IDLE_IPS);
+          ascendFrontPT(SPEED_FRONT_L3_S2);
+          ascendBackPT(SPEED_BACK_L3_S2);
         }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -802,8 +841,8 @@ public class ClimbSubsystem extends Subsystem {
           ascendBackPOS(L3_POS_IN);
         }
         else {
-          ascendFrontPT(SPEED_IDLE_IPS);
-          ascendBackPT(SPEED_IDLE_IPS);
+          ascendFrontPT(SPEED_FRONT_L3_S3);
+          ascendBackPT(SPEED_BACK_L3_S3);
         }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -826,8 +865,8 @@ public class ClimbSubsystem extends Subsystem {
           ascendBackPOS(L3_POS_IN);
         }
         else {
-          ascendFrontPT(SPEED_IDLE_IPS);
-          ascendBackPT(SPEED_IDLE_IPS);
+          ascendFrontPT(SPEED_FRONT_L3_S4);
+          ascendBackPT(SPEED_BACK_L3_S4);
         }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -850,8 +889,8 @@ public class ClimbSubsystem extends Subsystem {
             ascendBackPOS(0);
           }
           else {
-            ascendFrontPT(SPEED_IDLE_IPS);
-            ascendBackPT(SPEED_IDLE_IPS);
+            ascendFrontPT(SPEED_FRONT_L3_S5);
+            ascendBackPT(SPEED_BACK_L3_S5);
           }
         descendAssistBack(false);
         descendAssistFront(false);
@@ -900,7 +939,10 @@ public class ClimbSubsystem extends Subsystem {
   }
 
   public void setauxDrive() {
-    climbwheels.set(m_auxDrive);
+   if (climbwheels!=null) {
+     climbwheels.set(m_auxDrive);
+   }
+
   }
   
 
@@ -908,9 +950,7 @@ public class ClimbSubsystem extends Subsystem {
 
 
   public void ascendFrontPOS(double position_in) {
-    if (!m_configured) {
-      return;
-    }
+    
    
       System.out.print("Acscend Front positioned\n");
       m_fronttargetPos_in = position_in;
@@ -918,9 +958,7 @@ public class ClimbSubsystem extends Subsystem {
   }
 
 public void ascendBackPOS(double position_in) {
-  if (!m_configured) {
-    return;
-  }
+  
     System.out.print("Acscend Back positioned\n");
     m_backtargetPos_in = position_in;
     // m_pidControllerBack.setReference(Rotations_per_inch * position_in, ControlType.kPosition);
@@ -928,22 +966,21 @@ public void ascendBackPOS(double position_in) {
 
 
 public void ascendFrontPT(double speed) {
-  if (!m_configured) {
-    return;
+  
+  if (m_climbfront!=null) {
+    m_climbfront.set(speed);
   }
-  m_climbfront.set(speed);
 }
 
 public void ascendBackPT(double speed) {
-  if (!m_configured) {
-    return;
+  if (m_climbback!=null) {
+    m_climbback.set(speed);
   }
-  m_climbback.set(speed);
 }
 
 
 public void descendAssistFront(boolean state) {
-  if (!m_configured) {
+  if (Solenoid_5 == null) {
     return;
   }
   if (state) {
@@ -957,7 +994,7 @@ public void descendAssistFront(boolean state) {
 }
 
 public void descendAssistBack(boolean state) {
-  if (!m_configured) {
+  if (Solenoid_6 == null) {
     return;
   }
   if (state) {
@@ -970,7 +1007,7 @@ public void descendAssistBack(boolean state) {
 }
 
 public void ascendAssistBack(boolean state) {
-  if (!m_configured) {
+  if ((Solenoid_7 == null) || (Solenoid_8 ==null)) {
     return;
   }
   if (state) {

@@ -71,8 +71,11 @@ public class RobotMap {
     briefcase.put(MapKeys.FRONTRIGHTCLIMBWHEEL, 0);
 
     briefcase.put(MapKeys.SLIDE, 0);
-    briefcase.put(MapKeys.LIFT_LEFT, 8);
-    briefcase.put(MapKeys.LIFT_RIGHT, 4);
+    briefcase.put(MapKeys.LIFT_LEFT, 0); // 8
+    briefcase.put(MapKeys.LIFT_RIGHT, 0); // 4
+
+    briefcase.put(MapKeys.CLIMBFRONT, 20);
+    briefcase.put(MapKeys.CLIMBBACK, 0);
 
     briefcase.put(MapKeys.PCM_CLIMBCANID, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTEXTEND, 0);
@@ -81,24 +84,24 @@ public class RobotMap {
     briefcase.put(MapKeys.SOLENOID_BACKRETRACT, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTRIGHTEXTEND, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTRIGHTRETRACT, 0);
-    briefcase.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 6);
-    briefcase.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 7);
+    briefcase.put(MapKeys.SOLENOID_BACKRIGHTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_BACKRIGHTRETRACT, 0);
 
     briefcase.put(MapKeys.PCM_CLIMBCANID2, 0);
     briefcase.put(MapKeys.SOLENOID_LOWERFRONTEXTEND, 0);
-    briefcase.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 1);
-    briefcase.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 2);
-    briefcase.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 3);
-    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 4);
-    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 5);
-    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 6);
-    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 7);
+    briefcase.put(MapKeys.SOLENOID_LOWERFRONTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_LOWERBACKEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_LOWERBACKRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKLEFTRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTEXTEND, 0);
+    briefcase.put(MapKeys.SOLENOID_ASCENDASSISTBACKRIGHTRETRACT, 0);
 
     briefcase.put(MapKeys.PCM_ARMCANID, 0);
     briefcase.put(MapKeys.SOLENOID_PUSHERPUSH, 0);
-    briefcase.put(MapKeys.SOLENOID_PUSHERRETRACT, 1);
-    briefcase.put(MapKeys.SOLENOID_ARMFORWARD, 2);
-    briefcase.put(MapKeys.SOLENOID_ARMREVERSE, 3);
+    briefcase.put(MapKeys.SOLENOID_PUSHERRETRACT, 0);
+    briefcase.put(MapKeys.SOLENOID_ARMFORWARD, 0);
+    briefcase.put(MapKeys.SOLENOID_ARMREVERSE, 0);
 
     // ALBERT IDs BEGIN HERE #########################################
 
@@ -284,7 +287,7 @@ public class RobotMap {
 
 
 
-  public RobotTypes activeRobot = RobotTypes.AIRLOCK;
+  public RobotTypes activeRobot = RobotTypes.BRIEFCASE;
 
   public int getId(MapKeys key) {
     System.out.printf("In Get ID. %s\n", key.toString());
