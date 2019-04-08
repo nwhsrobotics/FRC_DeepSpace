@@ -55,6 +55,8 @@ public class OI {
   private final double TD2_BETA = 0.6;
   private final double TT2_ALPHA = 0.4;
   private final double TT2_BETA = 0.4;
+  private final double TS_ALPHA = 0.4;
+  private final double TS_BETA = 0.6;
   private final double DEADBAND = 0.05;
   
 
@@ -226,7 +228,19 @@ public class OI {
  
   }
 
-
+  public double turbomodeSlide() {
+    double x = Math.abs(joy2.getRawAxis(2) - joy2.getRawAxis(3));
+    double sign = Math.signum(joy2.getRawAxis(2) - joy2.getRawAxis(3));
+    if (x < DEADBAND) { // was 0.1
+      return 0;
+      //deadband
+    }
+    else {
+      x -= DEADBAND;
+      double x2 = x*x;
+      return sign *(TS_ALPHA*x + TS_BETA*x2);
+    }
+  }
   
 
 
