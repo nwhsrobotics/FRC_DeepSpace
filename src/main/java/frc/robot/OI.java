@@ -51,6 +51,12 @@ public class OI {
   public double betaT = 0.35;
   public double gammaD = 0.9;
   public double gammaT = 0.75;
+  private final double TD2_ALPHA = 0.4;
+  private final double TD2_BETA = 0.6;
+  private final double TT2_ALPHA = 0.4;
+  private final double TT2_BETA = 0.4;
+  private final double DEADBAND = 0.05;
+  
 
   public final int CAMERA_BUTTON = 2;
   private final int Lvl2DESC_BUTTON = 7;
@@ -144,7 +150,7 @@ public class OI {
 
           //TURBO MODE
   public double turbomodeDrive() {
-    if (Math.abs(joy.getRawAxis(1)) < 0.05) { // was 0.1
+    if (Math.abs(joy.getRawAxis(1)) < DEADBAND) { // was 0.1
       return 0;
       //deadband
     }
@@ -155,10 +161,24 @@ public class OI {
       return -(Math.signum(joy.getRawAxis(1)) * ((betaD) + ((gammaD-betaD)/(1-alphaD)) * (Math.abs(joy.getRawAxis(1))-alphaD)));
     }
   }
+
+  public double turbomodeDrive2() {
+    double x = Math.abs(joy.getRawAxis(1));
+    double sign = Math.signum(joy.getRawAxis(1));
+    if (x < DEADBAND) { // was 0.1
+      return 0;
+      //deadband
+    }
+    else {
+      x -= DEADBAND;
+      double x2 = x*x;
+      return -(sign *(TD2_ALPHA*x + TD2_BETA*x2));
+    }
+  }
   
 
   public double turbomodeTurn() {
-    if (Math.abs(joy.getRawAxis(4)) < 0.05) { // was 0.1
+    if (Math.abs(joy.getRawAxis(4)) < DEADBAND) { // was 0.1
       return 0;
       //deadband
     }
@@ -168,6 +188,20 @@ public class OI {
     else {
       return (Math.signum(joy.getRawAxis(4)) * ((betaT) + ((gammaT-betaT)/(1-alphaT)) * (Math.abs(joy.getRawAxis(4))-alphaT)));
   
+    }
+  }
+
+  public double turbomodeTurn2() {
+    double x = Math.abs(joy.getRawAxis(4));
+    double sign = Math.signum(joy.getRawAxis(4));
+    if (x < DEADBAND) { // was 0.1
+      return 0;
+      //deadband
+    }
+    else {
+      x -= DEADBAND;
+      double x2 = x*x;
+      return sign *(TT2_ALPHA*x + TT2_BETA*x2);
     }
   }
   
