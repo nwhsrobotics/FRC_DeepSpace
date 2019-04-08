@@ -91,37 +91,39 @@ public class ClimbSubsystem extends Subsystem {
   private CANEncoder m_encoderBack;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
   private static final double GEAR_RATIO = 20;
-  private static final double GEAR_DIAM = 2.0;
-  public static final double ROTATIONS_PER_INCH = GEAR_RATIO/(Math.PI*GEAR_DIAM); // 2 inch pulley TODO: check this
+  private static final double GEAR_CIRCUM = (30*5)/25.4; //30 Tooth by 5mm
+  public static final double ROTATIONS_PER_INCH = -GEAR_RATIO/GEAR_CIRCUM; // 2 inch pulley TODO: check this
 
 
 
+  //Negative values extend leg
+  private final double SPEED_IDLE_IPS = 0.02;
 
-  private static final double SPEED_FRONT_L2_S1 = 0.1;
-  private static final double SPEED_BACK_L2_S1 = 0.1;
-  private static final double SPEED_FRONT_L2_S2 = 0.05;
-  private static final double SPEED_BACK_L2_S2 = 0.05;
-  private static final double SPEED_FRONT_L2_S3 = -0.1;
-  private static final double SPEED_BACK_L2_S3 = 0.05;
-  private static final double SPEED_FRONT_L2_S4 = -0.05;
-  private static final double SPEED_BACK_L2_S4 = 0.05;
-  private static final double SPEED_FRONT_L2_S5 = -0.05;
-  private static final double SPEED_BACK_L2_S5 = -0.1;
-  private static final double SPEED_FRONT_L2_S6 = -0.05;
-  private static final double SPEED_BACK_L2_S6 = -0.05;
+  private static final double SPEED_FRONT_L2_S1 = -0.1;
+  private static final double SPEED_BACK_L2_S1 = -0.1;
+  private static final double SPEED_FRONT_L2_S2 = -0.05;
+  private static final double SPEED_BACK_L2_S2 = -0.05;
+  private static final double SPEED_FRONT_L2_S3 = 0.1;
+  private static final double SPEED_BACK_L2_S3 = -0.1;
+  private static final double SPEED_FRONT_L2_S4 = 0.05;
+  private static final double SPEED_BACK_L2_S4 = -0.05;
+  private static final double SPEED_FRONT_L2_S5 = 0.05;
+  private static final double SPEED_BACK_L2_S5 = 0.1;
+  private static final double SPEED_FRONT_L2_S6 = 0.05;
+  private static final double SPEED_BACK_L2_S6 = 0.1;
 
 
 
-  private static final double SPEED_FRONT_L3_S1 = 0.1;
-  private static final double SPEED_BACK_L3_S1 = 0.1;
-  private static final double SPEED_FRONT_L3_S2 = 0.05;
-  private static final double SPEED_BACK_L3_S2 = 0.05;
-  private static final double SPEED_FRONT_L3_S3 = -0.1;
-  private static final double SPEED_BACK_L3_S3 = 0.1;
-  private static final double SPEED_FRONT_L3_S4 = -0.05;
-  private static final double SPEED_BACK_L3_S4 = 0.05;
-  private static final double SPEED_FRONT_L3_S5 = -0.05;
-  private static final double SPEED_BACK_L3_S5 = -0.1;
+  private static final double SPEED_FRONT_L3_S1 = -0.1;
+  private static final double SPEED_BACK_L3_S1 = -0.1;
+  private static final double SPEED_FRONT_L3_S2 = -0.05;
+  private static final double SPEED_BACK_L3_S2 = -0.05;
+  private static final double SPEED_FRONT_L3_S3 = 0.1;
+  private static final double SPEED_BACK_L3_S3 = -0.1;
+  private static final double SPEED_FRONT_L3_S4 = 0.05;
+  private static final double SPEED_BACK_L3_S4 = -0.05;
+  private static final double SPEED_FRONT_L3_S5 = 0.05;
+  private static final double SPEED_BACK_L3_S5 = 0.1;
 
 
   
@@ -131,8 +133,7 @@ public class ClimbSubsystem extends Subsystem {
   private int m_maxAmps = 20;
   private final double L3_POS_IN = 20; // inches for L3 Climb check values 
   private final double L2_POS_IN = 8;  // inches for L2 Climb check values
-  private final boolean m_closedloop = true;
-  private final double SPEED_IDLE_IPS = 0.0;
+  private final boolean m_closedloop = false; //True = Position Control, False = PT
   private final double SPEED_EXTEND_FRONT_IPS = 10.0;
   private final double SPEED_RETRACT_FRONT_IPS = 10.0;
   private final double SPEED_EXTEND_BACK_IPS = 10.0;
@@ -219,21 +220,21 @@ public class ClimbSubsystem extends Subsystem {
     
 
     int ClimbFront = Robot.m_map.getId(MapKeys.CLIMBFRONT);
-    //int ClimbBack = Robot.m_map.getId(MapKeys.CLIMBBACK);
+    int ClimbBack = Robot.m_map.getId(MapKeys.CLIMBBACK);
 
     m_climbfront = new CANSparkMax(ClimbFront, MotorType.kBrushless);
     m_climbfront.setIdleMode(IdleMode.kBrake);
     m_climbfront.setSmartCurrentLimit(m_maxAmps);
 
-   // m_climbback = new CANSparkMax(ClimbBack, MotorType.kBrushless);
-   // m_climbback.setIdleMode(IdleMode.kBrake);
-   // m_climbback.setSmartCurrentLimit(m_maxAmps);
+    m_climbback = new CANSparkMax(ClimbBack, MotorType.kBrushless);
+    m_climbback.setIdleMode(IdleMode.kBrake);
+    m_climbback.setSmartCurrentLimit(m_maxAmps);
     
     m_pidControllerFront = m_climbfront.getPIDController();
-   // m_pidControllerBack = m_climbback.getPIDController();  
+    m_pidControllerBack = m_climbback.getPIDController();  
     
     m_encoderFront = m_climbfront.getEncoder();
-   // m_encoderBack = m_climbback.getEncoder();
+    m_encoderBack = m_climbback.getEncoder();
 
 
     kP = 0.02; 
@@ -252,12 +253,12 @@ public class ClimbSubsystem extends Subsystem {
     m_pidControllerFront.setFF(kFF);
     m_pidControllerFront.setOutputRange(kMinOutput, kMaxOutput);
 
-    //m_pidControllerBack.setP(kP);
-    //m_pidControllerBack.setI(kI);
-    //m_pidControllerBack.setD(kD);
-    //m_pidControllerBack.setIZone(kIz);
-    //m_pidControllerBack.setFF(kFF);
-    //m_pidControllerBack.setOutputRange(kMinOutput, kMaxOutput);
+    m_pidControllerBack.setP(kP);
+    m_pidControllerBack.setI(kI);
+    m_pidControllerBack.setD(kD);
+    m_pidControllerBack.setIZone(kIz);
+    m_pidControllerBack.setFF(kFF);
+    m_pidControllerBack.setOutputRange(kMinOutput, kMaxOutput);
 
     // display PID coefficients on SmartDashboard
     // SmartDashboard.putNumber("P Gain", kP);
@@ -437,7 +438,7 @@ public class ClimbSubsystem extends Subsystem {
     if (m_closedloop) { 
       double ref = ROTATIONS_PER_INCH * m_frontPos_in;
       //System.out.printf("fronttargetPos_in: %f m_frontPos_in = %f\n", m_fronttargetPos_in, m_frontPos_in);
-      /// m_pidControllerBack.setReference(ROTATIONS_PER_INCH * m_backPos_in, ControlType.kPosition);
+       m_pidControllerBack.setReference(ROTATIONS_PER_INCH * m_backPos_in, ControlType.kPosition);
       m_pidControllerFront.setReference(ROTATIONS_PER_INCH * m_frontPos_in, ControlType.kPosition);
     }
   }
@@ -954,14 +955,14 @@ public class ClimbSubsystem extends Subsystem {
    
       System.out.print("Acscend Front positioned\n");
       m_fronttargetPos_in = position_in;
-     // m_pidControllerFront.setReference(Rotations_per_inch * position_in, ControlType.kPosition);
+      //m_pidControllerFront.setReference(Rotations_per_inch * position_in, ControlType.kPosition);
   }
 
 public void ascendBackPOS(double position_in) {
   
     System.out.print("Acscend Back positioned\n");
     m_backtargetPos_in = position_in;
-    // m_pidControllerBack.setReference(Rotations_per_inch * position_in, ControlType.kPosition);
+    //m_pidControllerBack.setReference(Rotations_per_inch * position_in, ControlType.kPosition);
 }
 
 

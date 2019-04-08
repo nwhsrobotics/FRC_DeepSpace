@@ -74,8 +74,8 @@ public class RobotMap {
     briefcase.put(MapKeys.LIFT_LEFT, 0); // 8
     briefcase.put(MapKeys.LIFT_RIGHT, 0); // 4
 
-    briefcase.put(MapKeys.CLIMBFRONT, 20);
-    briefcase.put(MapKeys.CLIMBBACK, 0);
+    briefcase.put(MapKeys.CLIMBFRONT, 13);
+    briefcase.put(MapKeys.CLIMBBACK, 14);
 
     briefcase.put(MapKeys.PCM_CLIMBCANID, 0);
     briefcase.put(MapKeys.SOLENOID_FRONTEXTEND, 0);
