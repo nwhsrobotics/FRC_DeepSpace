@@ -69,6 +69,8 @@ public class DriveTrain extends Subsystem {
         m_right = new SpeedControllerGroup(m_frontright, m_backright);
         m_left = new SpeedControllerGroup(m_frontleft, m_backleft);
         m_drive = new DifferentialDrive(m_left, m_right);
+
+        m_drive.setDeadband(0.0);
         
     }
   }
